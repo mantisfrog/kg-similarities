@@ -3,7 +3,7 @@ import geopandas as gpd
 
 DEPOSITS_CSV_PATH = './data/MineralDeposits.csv'
 PROVINCES_SHP_PATH = './raw/116823_AGP_2018/ProvinceFullExtent.shp'
-OUTPUT_CSV_PATH = './data/Deposits2.csv'
+OUTPUT_CSV_PATH = './data/Deposits_spatial.csv'
 
 def process_deposits_with_provinces(deposits_path, provinces_path, output_path):
     """
@@ -37,7 +37,7 @@ def process_deposits_with_provinces(deposits_path, provinces_path, output_path):
 
         # 4) Pivot matched province names into columns by TYPE
         print("Step 4/5: Reshaping join results...")
-        target_types = ['tectonic', 'igneous', 'sedimentary']
+        target_types = ["tectonic", "igneous", "sedimentary"]
         filtered_join = joined_gdf[joined_gdf['TYPE'].isin(target_types)]
         result_df = filtered_join[['original_index', 'NAME', 'TYPE']].drop_duplicates()
 
@@ -56,7 +56,11 @@ def process_deposits_with_provinces(deposits_path, provinces_path, output_path):
         # 5) Merge back and save
         print("Step 5/5: Merging and saving...")
         final_df = pd.merge(deposits_df, province_info, on='original_index', how='left')
-        final_df.drop(columns=['original_index'], inplace=True)
+        # Define cols to drop
+        columns_to_drop = ['original_index', 'ACCURACY_M', 'COMPANY_WEBSITES', 'DEPOSIT_MODEL']
+        final_df.drop(columns=[col for col in columns_to_drop if col in final_df.columns], inplace=True)
+        # Convert all column headers to uppercase before saving
+        final_df.columns = [col.upper() for col in final_df.columns]
         final_df.to_csv(output_path, index=False, encoding='utf-8-sig')
         print(f"Done! Output saved to: {output_path}")
 
