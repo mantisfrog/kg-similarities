@@ -1,0 +1,22 @@
+services:
+  neo4j:
+    image: neo4j:latest
+    container_name: neo4j
+    restart: unless-stopped
+    
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+      
+    volumes:
+      - ./neo4j-docker/data:/data
+      - ./neo4j-docker/logs:/logs
+      - ./neo4j-docker/import:/var/lib/neo4j/import
+      
+    environment:
+      NEO4J_AUTH: neo4j/neo4jroot
+      NEO4J_PLUGINS: '["apoc"]'
+      NEO4J_apoc_export_file_enabled: "true"
+      NEO4J_apoc_import_file_enabled: "true"
+      NEO4J_apoc_import_file_use__neo4j__config: "true"
+      NEO4J_dbms_security_procedures_unrestricted: apoc.*
