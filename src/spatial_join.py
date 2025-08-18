@@ -1,9 +1,9 @@
 import pandas as pd
 import geopandas as gpd
 
-DEPOSITS_CSV_PATH = './data/MineralDeposits.csv'
-PROVINCES_SHP_PATH = './raw/116823_AGP_2018/ProvinceFullExtent.shp'
-OUTPUT_CSV_PATH = './data/Deposits_spatial.csv'
+DEPOSITS_CSV_PATH = './src/data/MineralDeposits.csv'
+PROVINCES_SHP_PATH = './src/raw/116823_AGP_2018/ProvinceFullExtent.shp'
+OUTPUT_CSV_PATH = './src/data/Deposits_spatial.csv'
 
 def process_deposits_with_provinces(deposits_path, provinces_path, output_path):
     """

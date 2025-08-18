@@ -3,8 +3,8 @@
 
 import json, csv
 
-INPUT = "./raw/MineralDeposits.json"
-OUTPUT = "./data/MineralDeposits.csv"
+INPUT = "./src/raw/MineralDeposits.json"
+OUTPUT = "./src/data/MineralDeposits.csv"
 
 # CSV column headers
 HEADERS = [
