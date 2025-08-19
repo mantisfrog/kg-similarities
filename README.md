@@ -12,7 +12,7 @@ Before running the setup script, make sure the following tools are installed on 
 ### Windows (Recommended: WSL2 + Ubuntu)
 
 1. Install **Docker Desktop for Windows**
-   👉 [https://docs.docker.com/desktop/install/windows/](https://docs.docker.com/desktop/install/windows/)
+   👉 [https://docs.docker.com/get-started/get-docker/](https://docs.docker.com/get-started/get-docker/)
 
 2. Install **Windows Subsystem for Linux (WSL2)** and Ubuntu:
    👉 [https://learn.microsoft.com/en-us/windows/wsl/install](https://learn.microsoft.com/en-us/windows/wsl/install)
@@ -37,7 +37,7 @@ Before running the setup script, make sure the following tools are installed on 
    ```
 
 3. Install **Docker Desktop for Mac**:
-   👉 [https://docs.docker.com/desktop/install/mac/](https://docs.docker.com/desktop/install/mac/)
+   👉 [https://docs.docker.com/get-started/get-docker/](https://docs.docker.com/get-started/get-docker/)
 
 ---
 
