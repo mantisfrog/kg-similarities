@@ -48,45 +48,48 @@ run_with_spinner() {
 
 echo -e "\n🚀 Starting the Neo4j Environment Setup..."
 
-# [0/6] 只创建，不激活（激活必须在当前 shell 执行，不能放 spinner 里）
-run_with_spinner "🆕 [0/6] Creating Python virtual environment..." "python3 -m venv .venv"
+# [0/7] 只创建，不激活（激活必须在当前 shell 执行，不能放 spinner 里）
+run_with_spinner "🆕 [0/7] Creating Python virtual environment..." "python3 -m venv .venv"
 # 立刻在当前脚本的 shell 激活
 # shellcheck source=/dev/null
 source .venv/bin/activate
-echo "   (venv) activated."
 
-run_with_spinner "🐍 [1/6] Installing Python dependencies..." "pip install -r requirements.txt"
-run_with_spinner "📊 [2/6] Converting JSON to CSV..." "python ./src/json2csv.py"
-run_with_spinner "🔗 [3/6] Running spatial join..." "python ./src/spatial_join.py"
+run_with_spinner "🐍 [1/7] Installing Python dependencies..." "pip install -r requirements.txt"
+run_with_spinner "📊 [2/7] Converting JSON to CSV..." "python ./src/json2csv.py"
+run_with_spinner "🔗 [3/7] Running spatial join..." "python ./src/spatial_join.py"
 
 # For Docker commands, we want to see the output, so we run them directly
-echo -e "\n🐳 [4/6] Pulling latest Neo4j Docker image..."
+echo -e "\n🐳 [4/7] Pulling latest Neo4j Docker image..."
 docker pull neo4j:latest
 echo "✅ Image pull complete."
 
-echo -e "\n🚀 [5/6] Starting Neo4j container via Docker Compose..."
+echo -e "\n🚀 [5/7] Starting Neo4j container via Docker Compose..."
 docker compose up -d
 echo "✅ Docker services started."
 
-echo -e "\n🔑 [6/6] Adding permissions for ./neo4j-docker directory..."
+echo -e "\n🔑 [6/7] Adding permissions for ./neo4j-docker directory..."
 if [ -d "./neo4j-docker" ]; then
     # This command requires sudo and will likely prompt for your password
-    sudo chown -R $(id -u):$(id -g) ./neo4j-docker
-    chmod -R u+rwX,g+rwX ./neo4j-docker
+    sudo chmod -R 777 ./neo4j-docker
+    # Copy csv file to Neo4j import folder
+    cp ./src/data/Deposits_spatial.csv ./neo4j-docker/import
     echo "✅ Permissions Added."
 else
     echo "🟡 Directory ./neo4j-docker not found, skipping permission fix."
 fi
 
-# --- NEW: Countdown to allow Docker container to initialize ---
+# --- Countdown to allow Docker container to initialize ---
 echo ""
-for i in {4..0}; do
+for i in {5..0}; do
     echo -ne "Allowing Neo4j to initialize... $i second(s) \r"
     sleep 1
 done
-
 echo " " # Clear the line
 
+# --- NEW: Import CSV into the graph with cypher_run.py ---
+echo -e "\n🧩 [7/7] Importing CSV into Neo4j graph..."
+python ./src/cypher_run.py
+echo "✅ Graph import complete."
 # --- Final success message with highlighted URL ---
 
 # ANSI escape codes for formatting
