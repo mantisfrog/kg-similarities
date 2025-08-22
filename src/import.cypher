@@ -55,4 +55,26 @@ CALL () {
   ON CREATE SET r.role = 'SECONDARY'
   ON MATCH SET r.role = r.role
 } IN TRANSACTIONS OF 1000 ROWS;
+
+// ========= 1b) Company constraint =========
+CREATE CONSTRAINT company_name IF NOT EXISTS
+FOR (co:Company) REQUIRE co.name IS UNIQUE;
+
+// ========= 5) Create Company nodes & OWNS relationships =========
+CALL () {
+  LOAD CSV WITH HEADERS FROM 'file:///Deposits_spatial.csv' AS row FIELDTERMINATOR ','
+  WITH row,
+       CASE
+         WHEN row.COMPANIES IS NULL OR trim(row.COMPANIES) = '' THEN []
+         ELSE [x IN split(
+                    replace(replace(row.COMPANIES, ';', ','), '|', '/')
+                 , '/') | trim(x)]
+       END AS companies
+  MATCH (d:Deposit {ENO: row.ENO})
+  UNWIND companies AS cname
+  WITH d, cname WHERE cname <> ''
+  MERGE (co:Company {name: cname})
+  MERGE (co)-[:OWNS]->(d)
+} IN TRANSACTIONS OF 1000 ROWS;
+
   
