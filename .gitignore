@@ -209,3 +209,4 @@ neo4j-docker
 .trash
 src/data/*
 !src/data/.gitkeep
+.Identifier
