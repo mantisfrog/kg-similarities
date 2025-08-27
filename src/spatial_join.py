@@ -8,7 +8,7 @@ OUTPUT_CSV_PATH = './src/data/Deposits_spatial.csv'
 def process_deposits_with_provinces(deposits_path, provinces_path, output_path):
     """
     Load deposits (CSV) and provinces (shapefile), spatially join them,
-    and write deposits annotated with tectonic/igneous/sedimentary province names to CSV.
+    and write deposits annotated with province names by TYPE (igneous/metallogenic/sedimentary/tectonic).
     """
     try:
         # 1) Load data
@@ -32,35 +32,54 @@ def process_deposits_with_provinces(deposits_path, provinces_path, output_path):
         # 3) Spatial join (ensure same CRS)
         print("Step 3/5: Performing spatial join (this may take a while)...")
         provinces_gdf = provinces_gdf.to_crs(deposits_gdf.crs)
-        joined_gdf = gpd.sjoin(deposits_gdf, provinces_gdf, how='left', predicate='within')
+
+        # --- 关键：TYPE 统一为小写，避免大小写不一致带来的漏匹配 ---
+        if 'TYPE' in provinces_gdf.columns:
+            provinces_gdf['TYPE'] = provinces_gdf['TYPE'].astype(str).str.strip().str.lower()
+        else:
+            raise KeyError("Shapefile 缺少 TYPE 字段")
+
+        if 'NAME' not in provinces_gdf.columns:
+            raise KeyError("Shapefile 缺少 NAME 字段")
+
+        joined_gdf = gpd.sjoin(deposits_gdf, provinces_gdf, how='left', predicate='intersects')
         print("Spatial join done.")
 
         # 4) Pivot matched province names into columns by TYPE
         print("Step 4/5: Reshaping join results...")
-        target_types = ["tectonic", "igneous", "sedimentary"]
-        filtered_join = joined_gdf[joined_gdf['TYPE'].isin(target_types)]
+        # 目标类型集（含 metallogenic），并指定最终列顺序
+        target_types_order = ["igneous", "metallogenic", "sedimentary", "tectonic"]
+
+        filtered_join = joined_gdf[joined_gdf['TYPE'].isin(target_types_order)]
         result_df = filtered_join[['original_index', 'NAME', 'TYPE']].drop_duplicates()
 
-        province_info = result_df.pivot_table(
-            index='original_index',
-            columns='TYPE',
-            values='NAME',
-            aggfunc='first'  # if multiple matches of same TYPE, keep first
-        ).reset_index()
+        province_info = (result_df
+            .pivot_table(index='original_index', columns='TYPE', values='NAME', aggfunc='first')
+            .reset_index()
+        )
 
-        # Ensure all target columns exist even if missing in data
-        for t_type in target_types:
-            if t_type not in province_info.columns:
-                province_info[t_type] = None
+        # 确保四列都存在（即使某类在数据中不存在）
+        for t in target_types_order:
+            if t not in province_info.columns:
+                province_info[t] = None
 
         # 5) Merge back and save
         print("Step 5/5: Merging and saving...")
         final_df = pd.merge(deposits_df, province_info, on='original_index', how='left')
-        # Define cols to drop
+
+        # 删除不需要的列（存在才删）
         columns_to_drop = ['original_index', 'ACCURACY_M', 'COMPANY_WEBSITES', 'DEPOSIT_MODEL']
-        final_df.drop(columns=[col for col in columns_to_drop if col in final_df.columns], inplace=True)
-        # Convert all column headers to uppercase before saving
-        final_df.columns = [col.upper() for col in final_df.columns]
+        final_df.drop(columns=[c for c in columns_to_drop if c in final_df.columns], inplace=True)
+
+        # 调整列顺序：把四个类型列放到表尾且顺序固定
+        # 先把列名都转大写
+        final_df.columns = [c.upper() for c in final_df.columns]
+        # 目标顺序（大写）
+        tail_cols = ["IGNEOUS", "METALLOGENIC", "SEDIMENTARY", "TECTONIC"]
+        # 不在 tail 的列保持原顺序
+        leading_cols = [c for c in final_df.columns if c not in tail_cols]
+        final_df = final_df[leading_cols + tail_cols]
+
         final_df.to_csv(output_path, index=False, encoding='utf-8-sig')
         print(f"Done! Output saved to: {output_path}")
 

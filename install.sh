@@ -80,7 +80,7 @@ fi
 
 # --- Countdown to allow Docker container to initialize ---
 echo ""
-for i in {9..0}; do
+for i in {19..0}; do
     echo -ne "Allowing Neo4j to initialize... $i second(s) \r"
     sleep 1
 done
