@@ -50,11 +50,27 @@ def parse_deposit_model(s: str):
                     typ = v
     return env, grp, typ
 
-# Load JSON data
+def clean_strings(obj):
+    """
+    Recursively remove \\r and \\n from all string values in the JSON-parsed object.
+    Non-string values are returned unchanged.
+    """
+    if isinstance(obj, str):
+        return obj.replace("\r", "").replace("\n", "")
+    elif isinstance(obj, dict):
+        return {k: clean_strings(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [clean_strings(v) for v in obj]
+    else:
+        return obj
+
+# Load JSON data and clean CR/LF in strings
 with open(INPUT, "r", encoding="utf-8") as f:
     data = json.load(f)
 
-features = data["features"]
+data = clean_strings(data)
+
+features = data.get("features", [])
 
 # Write CSV
 with open(OUTPUT, "w", encoding="utf-8-sig", newline="") as f:
@@ -62,8 +78,8 @@ with open(OUTPUT, "w", encoding="utf-8-sig", newline="") as f:
     w.writeheader()
 
     for feat in features:
-        props = feat.get("properties", {})
-        geom = feat.get("geometry", {})
+        props = feat.get("properties", {}) or {}
+        geom = feat.get("geometry", {}) or {}
         coords = geom.get("coordinates", [None, None]) 
 
         row = {}
