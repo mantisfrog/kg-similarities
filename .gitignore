@@ -207,6 +207,6 @@ marimo/_lsp/
 __marimo__/
 neo4j-docker
 .trash
-src/data/*
-!src/data/.gitkeep
+data/processed/*
+data/graph/*
 .Identifier
