@@ -1,0 +1,1044 @@
+﻿companyID:ID,companyName:string,:LABEL
+company_0001,29Metals Ltd,Company
+company_0002,3E Steel Pty Ltd,Company
+company_0003,A-Cap Energy Ltd,Company
+company_0004,A1 Minerals Limited,Company
+company_0005,ABA Resources,Company
+company_0006,Abra Mining Limited,Company
+company_0007,Acacia Coal Limited,Company
+company_0008,Acacia Resources Limited,Company
+company_0009,Accent Resources Ltd,Company
+company_0010,ACDC Metals Limited,Company
+company_0011,ACH Global Pty Ltd,Company
+company_0012,ActivEX Limited,Company
+company_0013,Adaman Resources Pty Ltd,Company
+company_0014,Adamelia Global Pty Ltd,Company
+company_0015,Adani Enterprises Limited,Company
+company_0016,Adelaide Resources Limited,Company
+company_0017,Aditya Birla Minerals Ltd,Company
+company_0018,Admiralty Resources NL,Company
+company_0019,Advaita Power Resources Pty Ltd,Company
+company_0020,Aeon Metals Limited,Company
+company_0021,Aeris Resources Limited,Company
+company_0022,Agnico Eagle Mines Ltd,Company
+company_0023,Agrimin Ltd,Company
+company_0024,AIC Mines Ltd,Company
+company_0025,Alacer Gold Corporation,Company
+company_0026,Albemarle Corporation,Company
+company_0027,Alchemy Resources Limited,Company
+company_0028,Alcoa,Company
+company_0029,Alcoa Incorporated,Company
+company_0030,Alcyone Resources Limited,Company
+company_0031,Aldoro Resources Ltd,Company
+company_0032,Alice Queen Limited,Company
+company_0033,Alien Metals Ltd,Company
+company_0034,Alkane Resources Limited,Company
+company_0035,Allegiance Coal Ltd,Company
+company_0036,Alliance Nickel Ltd,Company
+company_0037,Alliance Resources Limited,Company
+company_0038,Allkem Ltd,Company
+company_0039,Alma Metals Ltd.,Company
+company_0040,Alpha Bauxite Pty Ltd,Company
+company_0041,Altech Chemicals Ltd,Company
+company_0042,Alto Metals Ltd,Company
+company_0043,Altona Energy Plc,Company
+company_0044,Altona Mining Limited,Company
+company_0045,Altura Mining Limited,Company
+company_0046,Alumina Limited,Company
+company_0047,AMCI Inc,Company
+company_0048,American Metals and Coal International,Company
+company_0049,ANAX Metals Limited,Company
+company_0050,Andromeda Metals Ltd,Company
+company_0051,Anglo American Plc,Company
+company_0052,Anglo Coal Australia Pty Ltd,Company
+company_0053,AngloGold Ashanti Limited,Company
+company_0054,Anova Metals ltd,Company
+company_0055,Antipa Minerals Limited,Company
+company_0056,Apex Minerals NL,Company
+company_0057,APIJV,Company
+company_0058,Apollo Minerals Ltd,Company
+company_0059,Aquila Resources Limited,Company
+company_0060,Arafura Resources Limited,Company
+company_0061,Archer Exlporation Limited,Company
+company_0062,Ardea Resources Limited,Company
+company_0063,Arete Capital Partners,Company
+company_0064,Areva,Company
+company_0065,Argent Minerals Limited,Company
+company_0066,Argonaut Resources NL,Company
+company_0067,Arika Resources Ltd,Company
+company_0068,Ark Mines Ltd,Company
+company_0069,Arrium Ltd,Company
+company_0070,Artemis Resources Limited,Company
+company_0071,Aruma Resources Ltd,Company
+company_0072,ASCOT RESOURCES,Company
+company_0073,Ascot Resources Ltd,Company
+company_0074,Ashbridge Holdings Pty Ltd,Company
+company_0075,Ashburton Minerals,Company
+company_0076,Ashton Coal,Company
+company_0077,Asia Iron Australia Limited,Company
+company_0078,Asra Minerals Ltd,Company
+company_0079,Astral Resources NL,Company
+company_0080,Astron Corporation Limited,Company
+company_0081,Astute Metals NL,Company
+company_0082,Athena Resources Limited,Company
+company_0083,Atlantic Limited,Company
+company_0084,Atlas Iron Ltd,Company
+company_0085,Auctus Minerals,Company
+company_0086,Audalia Resources Limited,Company
+company_0087,Audax Resources,Company
+company_0088,AuKing Mining Ltd,Company
+company_0089,Aurelia Metals Limited,Company
+company_0090,Aurene Group Mining,Company
+company_0091,Auric Mining Ltd,Company
+company_0092,AuRico Gold Corporporation,Company
+company_0093,Auris Minerals Ltd,Company
+company_0094,Aurizon Holdings Ltd,Company
+company_0095,Aurora Metals Ltd,Company
+company_0096,Aurumin Limited,Company
+company_0097,Ausgold Ltd,Company
+company_0098,Ausmon Resources Limited,Company
+company_0099,AusQuest Ltd,Company
+company_0100,Aust-Pac Capital Pty Ltd,Company
+company_0101,Austar Coal Mine Pty Ltd,Company
+company_0102,AustChina Holdings Limited,Company
+company_0103,AusTinMining,Company
+company_0104,Austminex,Company
+company_0105,Austral Resources,Company
+company_0106,Australasian Resources Ltd,Company
+company_0107,Australia,Company
+company_0108,Australia New Agribusiness & Chemical Group Limited,Company
+company_0109,Australia Oriental Minerals NL,Company
+company_0110,Australian Aboriginal Mining Corporation,Company
+company_0111,Australian Bauxite Limited,Company
+company_0112,Australian Hualong Pty Ltd,Company
+company_0113,Australian Ilmenite Resources Pty Ltd,Company
+company_0114,Australian Mines Ltd,Company
+company_0115,Australian Pacific Coal Ltd,Company
+company_0116,Australian Potash Ltd,Company
+company_0117,Australian Rare Earths Limited,Company
+company_0118,Australian Rutile Pty Ltd,Company
+company_0119,Australian Silica Quartz Group Ltd,Company
+company_0120,Australian Strategic Materials Ltd,Company
+company_0121,Australian Vanadium Ltd,Company
+company_0122,Australian Zircon NL,Company
+company_0123,Austsino Resources Group Ltd,Company
+company_0124,Auzex Resources Limited,Company
+company_0125,Aviva Corporation Ltd,Company
+company_0126,Azure Minerals Ltd,Company
+company_0127,Balamara Resources Limited,Company
+company_0128,Bandanna Energy Limited,Company
+company_0129,Banpu Public Company Limited,Company
+company_0130,Baosteel Group Corp,Company
+company_0131,Baotou Iron & Steel Group Company Limited,Company
+company_0132,Baralaba Coal Company Limited,Company
+company_0133,Barra Resources Limited,Company
+company_0134,Barrick Gold Corporation,Company
+company_0135,Barton Gold Holdings Ltd,Company
+company_0136,Bass Metals Limited,Company
+company_0137,Batavia Mining Limited,Company
+company_0138,Batchfire Resources Pty Ltd,Company
+company_0139,Bauxite Resources Limited,Company
+company_0140,BBI Group Pty Ltd,Company
+company_0141,BC Iron Ltd,Company
+company_0142,BCD Resources NL,Company
+company_0143,Beacon Minerals Limited,Company
+company_0144,Beadell Resources Limited,Company
+company_0145,Belararox Ltd,Company
+company_0146,Bellevue Gold Ltd,Company
+company_0147,BeMax Resources NL,Company
+company_0148,Bendigo Mining,Company
+company_0149,Bengal Coal Pty Limited,Company
+company_0150,Benz Mining Corporation,Company
+company_0151,BHP Billiton Limited,Company
+company_0152,BHP Group Limited,Company
+company_0153,Bickham Coal Company,Company
+company_0154,BK Gold Mines Pty Ltd,Company
+company_0155,Black Cat Syndicate ltd,Company
+company_0156,Black Mountain Metals LLC,Company
+company_0157,Black Oak Minerals Limited,Company
+company_0158,Black Range Minerals Ltd,Company
+company_0159,Blackham Resources Limited,Company
+company_0160,Bligh Resources Limited,Company
+company_0161,Bloomfield Group,Company
+company_0162,BMA,Company
+company_0163,Boab Minerals Ltd,Company
+company_0164,Boral Ltd,Company
+company_0165,Boss Resources Ltd,Company
+company_0166,Bounty Mining Limited,Company
+company_0167,Bowen Coking Coal Ltd,Company
+company_0168,Bravus Mining and Resources,Company
+company_0169,Bright Star Resources Ltd,Company
+company_0170,Brightstar Resources Ltd,Company
+company_0171,Brockman Mining limited,Company
+company_0172,Broken Hill Mines Pty Ltd,Company
+company_0173,Bullabulling Gold Limited,Company
+company_0174,Bullseye Mining Ltd,Company
+company_0175,Bunji Corporation Ltd,Company
+company_0176,Burley Minerals Ltd,Company
+company_0177,Buxton Resources Ltd,Company
+company_0178,Cable Sands (WA) Pty Ltd,Company
+company_0179,Cadoux Limited,Company
+company_0180,Caledon Resources plc,Company
+company_0181,Calidus Resources Ltd,Company
+company_0182,Caltex,Company
+company_0183,CAMECO,Company
+company_0184,Cameco Corporation,Company
+company_0185,Cannindah Resources Limited,Company
+company_0186,Cannon Resources Ltd,Company
+company_0187,Cape Alumina Limited,Company
+company_0188,Cape Lambert Resources Ltd,Company
+company_0189,Capital Mining Limited,Company
+company_0190,Capricorn Metals Ltd,Company
+company_0191,Carabella Resources,Company
+company_0192,Caramal,Company
+company_0193,Caravel Minerals Limited,Company
+company_0194,Carawine Resources Limited,Company
+company_0195,Carbine Resources,Company
+company_0196,Carbon Energy Limited,Company
+company_0197,Carnaby Resources Ltd,Company
+company_0198,Carnavale Resources Ltd,Company
+company_0199,Carpentaria Exploration Limited,Company
+company_0200,Carrick Gold Limited,Company
+company_0201,Cascade Resources Limited,Company
+company_0202,Cashmere Iron Ltd,Company
+company_0203,Caspin Resources Ltd,Company
+company_0204,Castile Resources Ltd,Company
+company_0205,Catalina Resources Limited,Company
+company_0206,Catalyst Metals Ltd,Company
+company_0207,Cauldron Energy Limited,Company
+company_0208,Cazaly Resources Limited,Company
+company_0209,CBH Resources Limited,Company
+company_0210,Centennial Coal Co Ltd,Company
+company_0211,Centennial Mining Ltd,Company
+company_0212,Centius Gold Limited,Company
+company_0213,Central Iron Ore Ltd,Company
+company_0214,Central Queensland Metals Pty Ltd.,Company
+company_0215,Centrex Metals Limited,Company
+company_0216,CFMEU,Company
+company_0217,Chalice Mining Ltd,Company
+company_0218,Chandail Pty Ltd,Company
+company_0219,Chase Mining Corporation Limited,Company
+company_0220,China Baowu Steel Group,Company
+company_0221,China Hanking Holdings Limited,Company
+company_0222,China Metallurgical Group Corporation,Company
+company_0223,China National Coal Corp Group,Company
+company_0224,China Shenhua Energy Company Limited,Company
+company_0225,China Steel Corporation,Company
+company_0226,Chinalco Yunnan Copper Resources Limited,Company
+company_0227,Chinova Resources,Company
+company_0228,CI Resources Limited,Company
+company_0229,CITIC Pacific Ltd,Company
+company_0230,Citic Pacific Mining,Company
+company_0231,Citigold Corporation Limited,Company
+company_0232,Clara Resources Australia Ltd,Company
+company_0233,Classic Minerals Limited,Company
+company_0234,Clean Global Energy,Company
+company_0235,Clear Logistics Australia,Company
+company_0236,Cliffs Natural Resources,Company
+company_0237,CLP Holdings,Company
+company_0238,CMR Coal Queensland,Company
+company_0239,Coal and Allied,Company
+company_0240,Coalpac Pty Ltd,Company
+company_0241,Coalworks Ltd,Company
+company_0242,Cobalt Blue Holdings ltd,Company
+company_0243,Cobbora Holding Company,Company
+company_0244,Cobra Resources PLC,Company
+company_0245,Cockatoo Coal Limited,Company
+company_0246,Cockatoo Iron NL,Company
+company_0247,Cockatoo Island Mining Pty Ltd,Company
+company_0248,Coda Minerals Ltd,Company
+company_0249,Comalco Ltd,Company
+company_0250,Comet Resources Ltd,Company
+company_0251,Commissioners Gold Limited,Company
+company_0252,Compass Resources NL,Company
+company_0253,Conico Ltd,Company
+company_0254,Conquest Mining Ltd,Company
+company_0255,Consolidated Minerals Limited,Company
+company_0256,Consolidated Mining & Civil Pty Ltd,Company
+company_0257,Consolidated Tin Mines,Company
+company_0258,Consolidated Uranium Inc.,Company
+company_0259,Convergent Minerals Limited,Company
+company_0260,Coolabah Metals Ltd.,Company
+company_0261,Copar Resources Pty Ltd,Company
+company_0262,Copper Mountain Mining Corporation,Company
+company_0263,Copper Strike Limited,Company
+company_0264,CopperCo,Company
+company_0265,Corazon Mining Limited,Company
+company_0266,Core Resources,Company
+company_0267,Corella Resources Ltd,Company
+company_0268,Cornwall Coal Company NL,Company
+company_0269,Coronado Global Resources,Company
+company_0270,Cotona Resources Ltd.,Company
+company_0271,Cougar Energy Ltd,Company
+company_0272,Cougar Metals NL,Company
+company_0273,Creasy Group Ltd,Company
+company_0274,Creat Resources Holdings Limited,Company
+company_0275,Critica Limited,Company
+company_0276,Critical Minerals Group Ltd,Company
+company_0277,Crocodile Gold Corporation,Company
+company_0278,Croesus Mining,Company
+company_0279,Crosslands Resources Pty Ltd,Company
+company_0280,CS Energy Limited,Company
+company_0281,CST Mining Group Limited,Company
+company_0282,Cu-River Mining Australia,Company
+company_0283,Cuesta Coal Limited,Company
+company_0284,CuFe Ltd,Company
+company_0285,Curnamona Energy Limited,Company
+company_0286,Curtain Brothers,Company
+company_0287,Cuvier Resources Pty Ltd,Company
+company_0288,Cyprium Metals Ltd,Company
+company_0289,CZR Resources Ltd,Company
+company_0290,Dacian Gold Limited,Company
+company_0291,Daguilar Gold Ltd,Company
+company_0292,Dampier Gold Limited,Company
+company_0293,Dart Mining NL,Company
+company_0294,De Grey Mining Limited,Company
+company_0295,Deep Yellow Limited,Company
+company_0296,Delta Coal,Company
+company_0297,Delta Electricity,Company
+company_0298,Delta Lithium Ltd,Company
+company_0299,DeltaSBD,Company
+company_0300,Dempsey Minerals Limited,Company
+company_0301,Department of Environment and Resource Management,Company
+company_0302,Department of Mines and Energy Queensland,Company
+company_0303,Department of Natural Resources and Mines,Company
+company_0304,Department of Primary Industries,Company
+company_0305,Deutsche Rohstoff AG,Company
+company_0306,Develop Global Ltd,Company
+company_0307,DevEx Resources Ltd,Company
+company_0308,Diatreme Resources Limited,Company
+company_0309,Dominion Mining Ltd,Company
+company_0310,Donaldson Coal Pty Ltd,Company
+company_0311,Doral Mineral Sands Pty Ltd,Company
+company_0312,Doray Minerals Limited,Company
+company_0313,Double 8 Uranium Project,Company
+company_0314,Dragon Energy Limited,Company
+company_0315,Drummond Gold Limited,Company
+company_0316,Duketon Mining Limited,Company
+company_0317,Dynamic Metals Ltd,Company
+company_0318,Dyno Nobel Limited,Company
+company_0319,East Energy Resources Limited,Company
+company_0320,Eastern Iron Ltd,Company
+company_0321,Ecarlate Pty Ltd,Company
+company_0322,Eleckra Mines Limited,Company
+company_0323,Electric Power Development Co.,Company
+company_0324,Element 25 Limited,Company
+company_0325,Elementos Limited,Company
+company_0326,Ellemby Resources,Company
+company_0327,Elmore Limited,Company
+company_0328,Emmerson Resources Limited,Company
+company_0329,Empire Resources Limited,Company
+company_0330,EMR Capital Group,Company
+company_0331,Emu NL,Company
+company_0332,Encounter Resources Limited,Company
+company_0333,Eneabba Gas Ltd,Company
+company_0334,Energia Minerals Limited,Company
+company_0335,Energy Australia,Company
+company_0336,Energy Brix Australia Corporation,Company
+company_0337,Energy Exploration Ltd,Company
+company_0338,Energy Future Holdings,Company
+company_0339,Energy Investments Pty Ltd,Company
+company_0340,Energy Metals Limited,Company
+company_0341,Energy Resources of Australia Limited,Company
+company_0342,Enterprise Energy NL,Company
+company_0343,EQ Resources Limited,Company
+company_0344,Equinox Resources,Company
+company_0345,Eraring Energy,Company
+company_0346,Estrella Resources,Company
+company_0347,Evolution Mining Limited,Company
+company_0348,Exco Resources Limited,Company
+company_0349,Exergen,Company
+company_0350,Exterra Resources Limited,Company
+company_0351,Extract Resources,Company
+company_0352,Exxaro resources Ltd.,Company
+company_0353,Fairstar Resources,Company
+company_0354,FairStar Resources Ltd,Company
+company_0355,Falcon Minerals Limited,Company
+company_0356,Fe Limited,Company
+company_0357,Fe Ltd,Company
+company_0358,Felix Resources,Company
+company_0359,Fenix Resources Limited,Company
+company_0360,Ferrowest Limited,Company
+company_0361,Fetch Metals,Company
+company_0362,Firebird Metals Ltd,Company
+company_0363,Firetail Resources Ltd,Company
+company_0364,First Au Ltd,Company
+company_0365,First Quantum Minerals,Company
+company_0366,First Tin PLC,Company
+company_0367,Fitzroy Mining Operations Pty Ltd,Company
+company_0368,Fitzroy Resources Limited,Company
+company_0369,Flinders Mines Ltd,Company
+company_0370,FMR Investments Pty Ltd,Company
+company_0371,Focus Minerals Limited,Company
+company_0372,Fortescue Metals Group Limited,Company
+company_0373,Forward Mining Ltd,Company
+company_0374,Frid Energy Pty Ltd,Company
+company_0375,Frontier Resources Limited,Company
+company_0376,Futura Resources,Company
+company_0377,Future Battery Minerals Ltd,Company
+company_0378,Future Metals NL,Company
+company_0379,Galena Mining Ltd,Company
+company_0380,Galileo Mining Ltd,Company
+company_0381,Gascoyne Resources Limited,Company
+company_0382,GBM Gold Limited,Company
+company_0383,GBM Resources Limited,Company
+company_0384,Gel Resources Pty Ltd,Company
+company_0385,Gem Diamonds Limited,Company
+company_0386,Genesis Minerals Ltd,Company
+company_0387,GFG Alliance,Company
+company_0388,Gibb River Diamonds,Company
+company_0389,Gindalbie Metals Ltd,Company
+company_0390,Giralia Resources NL,Company
+company_0391,Gladstone Pacific Nickel Ltd,Company
+company_0392,Glencore Plc,Company
+company_0393,Glencore Xstrata plc,Company
+company_0394,Gleneagle Gold Limited,Company
+company_0395,Global Energy Metals Corp,Company
+company_0396,Global Lithium Resources Ltd,Company
+company_0397,Gloucester Resources Ltd,Company
+company_0398,GM3,Company
+company_0399,GME Resources Limited,Company
+company_0400,Godolphin Resources Ltd,Company
+company_0401,Gold Fields Limited,Company
+company_0402,Gold Mountain Ltd,Company
+company_0403,Gold Road Resources Limited,Company
+company_0404,Gold Valley,Company
+company_0405,Gold Valley Holdings Pty Ltd.,Company
+company_0406,Goldcorp,Company
+company_0407,Golden Cross Resources Limited,Company
+company_0408,Golden Energy and Resources Limited,Company
+company_0409,Golden Horse Minerals Ltd,Company
+company_0410,Golden Mile Resources Ltd,Company
+company_0411,Golden Stallion Resources,Company
+company_0412,Golden West Resources Ltd,Company
+company_0413,Goldsearch Limited,Company
+company_0414,Gondwana Resources Limited,Company
+company_0415,Gorilla Gold Mines Limited,Company
+company_0416,Gossan Hill Gold Ltd,Company
+company_0417,Governor Broome Sands Pty ltd,Company
+company_0418,Grange Resources Ltd,Company
+company_0419,Graphinex Pty Ltd,Company
+company_0420,Great Divide Mining Ltd,Company
+company_0421,Great Northern Minerals Limited,Company
+company_0422,Great Southern Mining Ltd,Company
+company_0423,Greatland Pty Ltd,Company
+company_0424,Greatland Resources Ltd,Company
+company_0425,Green Critical Minerals Ltd,Company
+company_0426,Greenpower Energy Limited,Company
+company_0427,Greenstone Resources Ltd,Company
+company_0428,GreenTech Metals Ltd,Company
+company_0429,Greentech Technology Intl Ltd.,Company
+company_0430,Gregory JV,Company
+company_0431,Griffin Coal,Company
+company_0432,Group 6 Metals Ltd,Company
+company_0433,Guangdong Orient Zirconic Industry Science & Technology Co,Company
+company_0434,Guildford Coal,Company
+company_0435,Gujarat NRE,Company
+company_0436,Gulf Alumina Limited,Company
+company_0437,Gulf Mines Ltd,Company
+company_0438,GVK Power & Infrastructure,Company
+company_0439,GWR Group Ltd,Company
+company_0440,Haddington Resources Ltd,Company
+company_0441,Hamersley Iron - Home Page,Company
+company_0442,Hammer Metals Ltd,Company
+company_0443,Hancock Coal,Company
+company_0444,Hancock Prospecting Pty Ltd,Company
+company_0445,Haoma Mining NL,Company
+company_0446,Hardy Resources Ltd,Company
+company_0447,Harmony Gold Mining,Company
+company_0448,Hastings Rare Metals Limited,Company
+company_0449,Havilah Resources NL,Company
+company_0450,Hawthorn Resources Limited,Company
+company_0451,Hazelwood Power Corporation,Company
+company_0452,Heathgate Resources Proprietary Limited,Company
+company_0453,Helix Resources Limited,Company
+company_0454,Henan Yukuang Rsrc Dev Grp,Company
+company_0455,Henna shenhuo Group Co. Ltd,Company
+company_0456,Heron Resources Limited,Company
+company_0457,High Titanium Resources & Technology Limited,Company
+company_0458,High-Tech Metals Limited,Company
+company_0459,Hill End Gold Limited,Company
+company_0460,Hillgrove Resources Limited,Company
+company_0461,HIsmelt,Company
+company_0462,Horizon Gold Limited,Company
+company_0463,Horizon Minerals Ltd.,Company
+company_0464,Horseshoe Metals Limited,Company
+company_0465,HRL Ltd,Company
+company_0466,Huaneng Power International,Company
+company_0467,Huntore,Company
+company_0468,Hyde Park Coal Project,Company
+company_0469,Icon Resources Ltd,Company
+company_0470,Idemitsu Australia Resources,Company
+company_0471,Idemitsu Kosan Co Ltd,Company
+company_0472,IGO Ltd,Company
+company_0473,Illawarra Coal,Company
+company_0474,Iltani Resources Ltd,Company
+company_0475,Iluka Resources Limited,Company
+company_0476,Image Resources NL,Company
+company_0477,IMD Mines Ltd,Company
+company_0478,Imdex Ltd,Company
+company_0479,Impress Energy  Limited,Company
+company_0480,Inc,Company
+company_0481,Ind & Mining Investigations,Company
+company_0482,Independence Group NL,Company
+company_0483,Industrial Minerals Ltd,Company
+company_0484,Infinity Mining,Company
+company_0485,Inova Resources,Company
+company_0486,Integra Mining Limited,Company
+company_0487,InterGen Australia,Company
+company_0488,Intermin Resources Limited,Company
+company_0489,International Coal Limited,Company
+company_0490,International Graphite Ltd,Company
+company_0491,Investigator Resources Limited,Company
+company_0492,Iron Mountain Mining Limited,Company
+company_0493,Iron Ore Holdings Ltd,Company
+company_0494,Iron Road Limited,Company
+company_0495,Ironbark Gold Limited,Company
+company_0496,Ironclad Mining Ltd,Company
+company_0497,ISK Minerals Pty Ltd,Company
+company_0498,IsoEnergy Ltd,Company
+company_0499,iTech Minerals Pty Ltd,Company
+company_0500,Itochu Corporation,Company
+company_0501,ITOCHU MINERALS & ENERGY OF AUSTRALIA PTY LTD,Company
+company_0502,Ivanhoe Australia Limited,Company
+company_0503,Ivernia Inc.,Company
+company_0504,Jabiru Metals Ltd,Company
+company_0505,Jackson Gold Limited,Company
+company_0506,Jackson Minerals Limited,Company
+company_0507,Jaguar Minerals Limited,Company
+company_0508,Japan Alumina Associates (Australia) Pty Ltd,Company
+company_0509,Japan Coal Development Co. Ltd,Company
+company_0510,Japan Oil Gas and Metals Natl,Company
+company_0511,Javelin Minerals Limited,Company
+company_0512,Jellinbah Group Pty Ltd,Company
+company_0513,Jervois Mining Limited,Company
+company_0514,JFE Holdings Inc,Company
+company_0515,Jiangxi Ganfeng Lithium Co. Ltd,Company
+company_0516,Jin Xin Resources Group Ltd,Company
+company_0517,Jindalee Resources Ltd,Company
+company_0518,Jubilee Mines NL,Company
+company_0519,Juno Minerals Ltd,Company
+company_0520,Jupiter Mines Ltd,Company
+company_0521,Kagara Limited,Company
+company_0522,Kaili Resources Ltd,Company
+company_0523,Kairos Minerals Ltd,Company
+company_0524,Kaiser Reef Limited,Company
+company_0525,Kalgoorlie Consolidated Gold Mines,Company
+company_0526,Kalium Lakes Ltd,Company
+company_0527,KalNorth Gold Mines Limited,Company
+company_0528,Kandos Collieries Pty Ltd,Company
+company_0529,Karara Mining Ltd,Company
+company_0530,Karora Resources Inc,Company
+company_0531,Kentor Gold Limited,Company
+company_0532,KGL Resources Limited,Company
+company_0533,Kidman Resources Limited,Company
+company_0534,Kimberley Metals Group,Company
+company_0535,Kimberley Mining Limited,Company
+company_0536,Kin Mining NL,Company
+company_0537,King Island Scheelite Ltd,Company
+company_0538,Kingsland Minerals,Company
+company_0539,Kingston Resources Ltd,Company
+company_0540,Kobe Steel Group,Company
+company_0541,Koolanooka,Company
+company_0542,Korab Resources Limited,Company
+company_0543,Korea Electric Power Corp,Company
+company_0544,Korea Resources Corporation,Company
+company_0545,Krucible Metals Limited,Company
+company_0546,Kula Gold Ltd,Company
+company_0547,Kumarina Resources Limited,Company
+company_0548,La Mancha Resources Inc,Company
+company_0549,Labyrinth Resources Ltd,Company
+company_0550,Lachlan Star Ltd,Company
+company_0551,Lake Nerramyne,Company
+company_0552,Lake Vermont Coal,Company
+company_0553,LakeCoal Pty Ltd,Company
+company_0554,Lanco Infratech Ltd,Company
+company_0555,Lanthanein Resources Limited,Company
+company_0556,Laramide Resources Limited,Company
+company_0557,Larvotto Resources Limited,Company
+company_0558,Latitude 66 Ltd,Company
+company_0559,Lava Blue Pty Ltd,Company
+company_0560,LD Operations,Company
+company_0561,Lefroy Exploration Ltd,Company
+company_0562,Legacy Iron Ore Limited,Company
+company_0563,Legacy Minerals Limited,Company
+company_0564,Legend International Holdings Inc,Company
+company_0565,Legend Mining,Company
+company_0566,Leichhardt Industrials Pty Ltd,Company
+company_0567,Leigh Creek Energy Ltd,Company
+company_0568,Lenton Joint Venture,Company
+company_0569,Leopard Resources NL,Company
+company_0570,Liberty Resources Ltd,Company
+company_0571,Liddell Coal,Company
+company_0572,Limited,Company
+company_0573,Linc Energy Limited,Company
+company_0574,Lincoln Minerals Limited,Company
+company_0575,Linecrest Pty Ltd,Company
+company_0576,Lion Gold Corporation Limited,Company
+company_0577,LionOre Australia (Nickel) Ltd,Company
+company_0578,Lithium Energy Ltd,Company
+company_0579,Lithium Plus Minerals Ltd,Company
+company_0580,Locksley Resources Limited,Company
+company_0581,Lodestone Equities Ltd,Company
+company_0582,Loy Yang Power,Company
+company_0583,Lucapa Diamond Company Limited,Company
+company_0584,Lukah Mining Pty Ltd,Company
+company_0585,Lunnon Metals Ltd,Company
+company_0586,Lustrum Minerals Limited,Company
+company_0587,Lynas Corporation Limited,Company
+company_0588,M Resources Pty Ltd,Company
+company_0589,MAC Copper Limited,Company
+company_0590,Macarthur Coal,Company
+company_0591,Macarthur Minerals Ltd,Company
+company_0592,Mach Energy Pty Limited,Company
+company_0593,Macmines AustAsia,Company
+company_0594,Macmines Austasia Pty Ltd,Company
+company_0595,Macquarie Generation,Company
+company_0596,Magnetic Resources NL,Company
+company_0597,Magnetic South,Company
+company_0598,Magnetite Mines,Company
+company_0599,Magnis Resources Ltd,Company
+company_0600,Malabar Coal Limited,Company
+company_0601,Malachite Resources Limited,Company
+company_0602,Malaco Group,Company
+company_0603,Mallee Resources Ltd,Company
+company_0604,Mandalay Resources Corporation,Company
+company_0605,Mantle Minerals Ltd,Company
+company_0606,Mantle Mining Corporation Ltd,Company
+company_0607,Manuka Resources ltd.,Company
+company_0608,Maosen Australia Pty Ltd,Company
+company_0609,Marathon Resources Ltd.,Company
+company_0610,Marmota Energy Limited,Company
+company_0611,Maronan Metals,Company
+company_0612,Maroon Gold Pty Ltd,Company
+company_0613,Marubeni Corporation,Company
+company_0614,Matilda Minerals Ltd,Company
+company_0615,Matrix Gold Limited,Company
+company_0616,Matrix metals,Company
+company_0617,Matsa Resources Limited,Company
+company_0618,Mawson West - Maybell,Company
+company_0619,Maximus Resources Limited,Company
+company_0620,Mazel Resources,Company
+company_0621,McArthur River Mine,Company
+company_0622,MCG Coal Holdings Pty Ltd.,Company
+company_0623,McLaren Minerals Ltd,Company
+company_0624,Medallion Metals Limited,Company
+company_0625,Meeka Metals Limited,Company
+company_0626,Mega Uranium Limited,Company
+company_0627,Menzies project,Company
+company_0628,Meridian Minerals Ltd,Company
+company_0629,Meridien Resources Limited,Company
+company_0630,Merrywood Coal Company,Company
+company_0631,Metal Bank Ltd,Company
+company_0632,Metaliko Resources Limited,Company
+company_0633,Metallica Minerals Limited,Company
+company_0634,Metals Australia Ltd,Company
+company_0635,Metals X Limited,Company
+company_0636,Meteoric Resources NL,Company
+company_0637,Metro Mining Limited,Company
+company_0638,MetroCoal Ltd,Company
+company_0639,Metroof Industries,Company
+company_0640,MGT Resources Limited,Company
+company_0641,Midas Resources Limited,Company
+company_0642,Midwest Corporation Limited,Company
+company_0643,Millennium Minerals Limited,Company
+company_0644,MIncor Resources NL,Company
+company_0645,Mindax Limited,Company
+company_0646,Mindax Ltd,Company
+company_0647,Minemakers Ltd (MAK),Company
+company_0648,Mineral Commodities Ltd,Company
+company_0649,Mineral Deposits Ltd,Company
+company_0650,Mineral Resources,Company
+company_0651,Minerals and Metals Group (MMG),Company
+company_0652,Minerals Corporation,Company
+company_0653,Minindi Creek,Company
+company_0654,Mining Exploration Group Pty Ltd,Company
+company_0655,Minjar Gold Pty Ltd,Company
+company_0656,Minotaur Exploration Limited,Company
+company_0657,MinRex Resources Ltd,Company
+company_0658,Miracle Iron Holdings Pty Ltd,Company
+company_0659,Mitsubishi Corp,Company
+company_0660,Mitsubishi Corporation,Company
+company_0661,MITSUI & CO. (AUSTRALIA) LTD.,Company
+company_0662,Mitsui Matsushima Co. Ltd,Company
+company_0663,Mn Energy Ltd,Company
+company_0664,Moho Resources Ltd,Company
+company_0665,Moly Mines Ltd,Company
+company_0666,Monger Gold Ltd,Company
+company_0667,Montezuma Mining Limited,Company
+company_0668,Monto Minerals NL,Company
+company_0669,Monument Mining Limited,Company
+company_0670,Moreton Resources Limited,Company
+company_0671,Morgan Stanley,Company
+company_0672,Morning Star Gold NL,Company
+company_0673,Moto Goldmines Ltd.,Company
+company_0674,Mount Burgess Mining N.L.,Company
+company_0675,Mount Gibson Iron Ltd.,Company
+company_0676,Mount Ridley Mines Ltd,Company
+company_0677,Mt Gibson Ltd,Company
+company_0678,Mt Margaret project,Company
+company_0679,Multicom Resources Pty Ltd,Company
+company_0680,Munich Partners Ag,Company
+company_0681,Murchison Metals Ltd,Company
+company_0682,Murray Zircon Pty Ltd,Company
+company_0683,Musgrave Minerals Ltd,Company
+company_0684,Musketeer Mining Ltd,Company
+company_0685,Muswellbrook Coal Company,Company
+company_0686,Mutiny Gold Limited,Company
+company_0687,MZI Resources Limited,Company
+company_0688,Nagambie Resources Limited,Company
+company_0689,Nathan River Resources,Company
+company_0690,Navarre Minerals Limited,Company
+company_0691,Navigator Resources Limited,Company
+company_0692,Neometals Ltd,Company
+company_0693,New Century Resources Ltd,Company
+company_0694,New Coal Energy Pty Ltd,Company
+company_0695,New Gold Incorporated,Company
+company_0696,New Hope Coal,Company
+company_0697,New South Resources Limited,Company
+company_0698,Newcrest Mining Limited,Company
+company_0699,Newmarket Gold Inc,Company
+company_0700,Newmont Mining Corporation,Company
+company_0701,Nex Metals Explorations Limited,Company
+company_0702,Nexus Minerals Ltd,Company
+company_0703,NH3 Clean Energy,Company
+company_0704,NickelSearch Ltd,Company
+company_0705,NICO Resources Ltd,Company
+company_0706,Nippon Steel Australia Pty Ltd,Company
+company_0707,Noble Group,Company
+company_0708,Norilsk Nickel,Company
+company_0709,Norseman Gold PLC,Company
+company_0710,Northern Gold,Company
+company_0711,Northern Iron Pty Ltd,Company
+company_0712,Northern Minerals Limited,Company
+company_0713,Northern Star Resources Limited,Company
+company_0714,Northern Territory Iron Ore,Company
+company_0715,Northwest Nonferrous International Investment Company Limited,Company
+company_0716,Northwest Resources Limited,Company
+company_0717,Norton Gold Fields Limited,Company
+company_0718,Norwest Minerals Ltd,Company
+company_0719,Novo Resources Corp,Company
+company_0720,Novonix Ltd,Company
+company_0721,NSW DMR,Company
+company_0722,NuCoal Resources Ltd,Company
+company_0723,Nupower Resources Limited,Company
+company_0724,OceanaGold Ltd.,Company
+company_0725,Ochre Group Holdings,Company
+company_0726,Octagonal Resources Limited,Company
+company_0727,Olympia Resources Limited,Company
+company_0728,OM Holdings Limited,Company
+company_0729,OneSteel Ltd,Company
+company_0730,Opal Horizon Limited,Company
+company_0731,Ora Banda Mining Ltd,Company
+company_0732,Orange Minerals NL,Company
+company_0733,Orion Gold NL,Company
+company_0734,Otter Gold Mines Limited,Company
+company_0735,Ozore Pty Ltd,Company
+company_0736,Ozz Resources Ltd,Company
+company_0737,Pacifico Minerals Limited,Company
+company_0738,Pacrim Energy Limited,Company
+company_0739,Paladin Energy Limited,Company
+company_0740,Pan Pacific Petroleum NL,Company
+company_0741,PanAust Ltd,Company
+company_0742,Panoramic Resources Limited,Company
+company_0743,Panther Metals Ltd,Company
+company_0744,Pantoro Ltd,Company
+company_0745,Patronus Resources,Company
+company_0746,Peabody Energy Corp.,Company
+company_0747,Peak Iron Mines Pty Ltd,Company
+company_0748,Peak Minerals Ltd,Company
+company_0749,Peel Mining Limited,Company
+company_0750,Pegmont Mines Ltd,Company
+company_0751,Pelican Resources,Company
+company_0752,Pembroke Resources Pty Ltd,Company
+company_0753,PepinNini Minerals Limited,Company
+company_0754,Perilya Limited,Company
+company_0755,Perpetual Mining Holding Limited,Company
+company_0756,Phillips River Mining NL,Company
+company_0757,Phoenix Copper Limited,Company
+company_0758,Phoenix Gold Limited,Company
+company_0759,Phosphate International Pty Ltd,Company
+company_0760,Pilbara Minerals Limited,Company
+company_0761,Plateau Bauxite Limited,Company
+company_0762,Pluton Resources,Company
+company_0763,PNX Metals Limited,Company
+company_0764,Podium Minerals Ltd,Company
+company_0765,Polaris Metals NL,Company
+company_0766,Polymetals Mining Limited,Company
+company_0767,Polymetals Resources,Company
+company_0768,POSCO,Company
+company_0769,Poseidon Nickel Limited,Company
+company_0770,PowerWorks,Company
+company_0771,Prairie Downs Metals Ltd,Company
+company_0772,Primary Industries and Resources South Australia,Company
+company_0773,Private Consortium,Company
+company_0774,Private Interest,Company
+company_0775,Process Minerals International Pty Ltd,Company
+company_0776,Prodigy Gold NL,Company
+company_0777,Programmed Maintenance Services Ltd,Company
+company_0778,PT Adaro Energy Tbk,Company
+company_0779,PT Sinar Mas,Company
+company_0780,QCoal Pty Ltd,Company
+company_0781,QEM Limited,Company
+company_0782,QMAG Pty Ltd,Company
+company_0783,QMetco Limited,Company
+company_0784,QMines Ltd,Company
+company_0785,Quantum Graphite Ltd,Company
+company_0786,Queensland Bauxite Limited,Company
+company_0787,QX Resources Ltd,Company
+company_0788,Racle Resources Pty Ltd,Company
+company_0789,Radar Iron Ltd,Company
+company_0790,Raiden Resources Ltd,Company
+company_0791,Ramelius Resources Limited,Company
+company_0792,Rand Mining Limited,Company
+company_0793,Range River Gold Limited,Company
+company_0794,RareX Ltd,Company
+company_0795,Reach Resources Ltd,Company
+company_0796,Realm Resources Ltd.,Company
+company_0797,Red 5 Limited,Company
+company_0798,Red Hawk Mining Limited,Company
+company_0799,Red HIll Iron Limited,Company
+company_0800,Red River Resources,Company
+company_0801,Redbank Copper Limited,Company
+company_0802,Redstone Resources Ltd,Company
+company_0803,Reed Resources Limited,Company
+company_0804,Regis Resources Limited,Company
+company_0805,Renascor Resources,Company
+company_0806,Republic Gold Ltd.,Company
+company_0807,Resolve Coal Pty Ltd,Company
+company_0808,Resource and Investment NL,Company
+company_0809,Resource Base Limited,Company
+company_0810,Resource Development Group,Company
+company_0811,Resource Mining Corporation,Company
+company_0812,Resourcehouse Ltd,Company
+company_0813,Resources & Energy Group Limited,Company
+company_0814,Revolver Resources Ltd,Company
+company_0815,Reward Minerals Ltd - Jervois Range project,Company
+company_0816,Rex Minerals Limited,Company
+company_0817,Rey Resources Ltd,Company
+company_0818,Richmond Resources Pty Ltd,Company
+company_0819,Richmond Vanadium Technology,Company
+company_0820,Rimfire Pacific Mining NL,Company
+company_0821,Rio Tinto Limited,Company
+company_0822,Riverstone Holdings LLC,Company
+company_0823,RNC Minerals,Company
+company_0824,Rockfire Resources PLC,Company
+company_0825,Rocklands Richfield Ltd,Company
+company_0826,Rocktivity Pty Ltd,Company
+company_0827,Rox Resources Limited,Company
+company_0828,Royal Nickel Corp,Company
+company_0829,Royal Resources Limited,Company
+company_0830,Rubix Resources Ltd,Company
+company_0831,Rum Jungle Resources Limited,Company
+company_0832,Rumble Resources Ltd,Company
+company_0833,RZ Resources Limited,Company
+company_0834,RZM Pty Ltd,Company
+company_0835,S32 Ltd.,Company
+company_0836,Sabre Resources Ltd,Company
+company_0837,Salt Lake Potash Ltd,Company
+company_0838,Sandfire Resources NL,Company
+company_0839,SAPEX Ltd,Company
+company_0840,Saracen Mineral Holdings Limited,Company
+company_0841,Saturn Metals Ltd,Company
+company_0842,Saul Geological Pty Ltd,Company
+company_0843,Savannah Goldfields Limited,Company
+company_0844,Scandium International Mining Corp.,Company
+company_0845,Scorpion Minerals Limited,Company
+company_0846,Sedimentary Holdings,Company
+company_0847,Shandong Energy,Company
+company_0848,Shandong Tianye Real Estate,Company
+company_0849,Shanxi Donghui,Company
+company_0850,Shen Yao Holdings Limited,Company
+company_0851,Shenhua Group,Company
+company_0852,Sherlock Investors Pty Ltd,Company
+company_0853,Shoalhaven Coal Pty Ltd,Company
+company_0854,SI6 Metals,Company
+company_0855,Sibanye Stillwater,Company
+company_0856,Sichuan Railway Investment Group Company Limited,Company
+company_0857,Silver Lake Resources Limited,Company
+company_0858,Silver Metal Group,Company
+company_0859,Silver Mines Limited,Company
+company_0860,SIMEC Mining,Company
+company_0861,Sino-Aus Energy Group Ltd,Company
+company_0862,Sinosteel Midwest Corporation,Company
+company_0863,Sinosteel Ocean Capital Pty Ltd,Company
+company_0864,Sipa Resources Ltd,Company
+company_0865,SK Holdings Co. Ltd,Company
+company_0866,Sky Metals Ltd,Company
+company_0867,Sociedad Quimica y Minera de Chile S.A.,Company
+company_0868,Sojitz Corporation,Company
+company_0869,Solbec Pharmaceuticals Ltd.,Company
+company_0870,SolGold plc,Company
+company_0871,Solstice Minerals Ltd,Company
+company_0872,Somerset Mining,Company
+company_0873,Sons Of Gwalia Limited,Company
+company_0874,South Africa,Company
+company_0875,South32 Limited,Company
+company_0876,Southern Cross Goldfields Limited,Company
+company_0877,Southern Gold Limited,Company
+company_0878,Sovereign Gold Company Limited,Company
+company_0879,Spartan Resources Ltd,Company
+company_0880,Spitfire Oil Pty Ltd,Company
+company_0881,Spitfire Resources Limited,Company
+company_0882,Square Resources Pty Ltd,Company
+company_0883,SR Mining Pty Ltd,Company
+company_0884,St Barbara Limited,Company
+company_0885,Stanmore Coal Limited,Company
+company_0886,Stanmore Resources Limited,Company
+company_0887,Stanwell Corp Ltd,Company
+company_0888,State of Western Australia,Company
+company_0889,Stavely Minerals Limited,Company
+company_0890,Stellar Resources Limited,Company
+company_0891,Stone Resources Australia Limited,Company
+company_0892,Stonehenge Metals,Company
+company_0893,Stonewall Resources Limited,Company
+company_0894,Straits Resources Limited,Company
+company_0895,Strandline Resources Limited,Company
+company_0896,Strategic Energy Resources,Company
+company_0897,Strategic Metals Australia,Company
+company_0898,Strategic Minerals Plc,Company
+company_0899,Strickland Metals Ltd,Company
+company_0900,Strike Energy Limited,Company
+company_0901,Sultan Corporation Limited,Company
+company_0902,Sumitomo Corp.,Company
+company_0903,Sumitomo Corporation,Company
+company_0904,Sumitomo Metal Mining Co Ltd,Company
+company_0905,Summit Resources Limited,Company
+company_0906,Sunrise Energy Metals Ltd,Company
+company_0907,Sunshine Metals Ltd,Company
+company_0908,Superior Resources Limited,Company
+company_0909,SUREFIRE RESOURCES NL,Company
+company_0910,Swan Gold Mining Limited,Company
+company_0911,Syndicated Metals Limited,Company
+company_0912,Tablelands Mining Group Pty Ltd,Company
+company_0913,Taipower,Company
+company_0914,Talison Minerals,Company
+company_0915,Tanami Gold NL,Company
+company_0916,Tanwind Pty Ltd,Company
+company_0917,Tartana Minerals,Company
+company_0918,Tartana Resources Ltd,Company
+company_0919,Tasmania Data Infrastructure Pty Ltd,Company
+company_0920,Tasmania Energy Metals Pty Ltd,Company
+company_0921,Tasmania Mines Limited,Company
+company_0922,Tasmanian Minerals Council,Company
+company_0923,Tawana Resources NL,Company
+company_0924,Technology Metals Australia Ltd,Company
+company_0925,Teck Australia Pty Ltd,Company
+company_0926,Teck Cominco Ltd,Company
+company_0927,TerraCom Limited,Company
+company_0928,Terrain Minerals Limited,Company
+company_0929,Terramin Australia Limited,Company
+company_0930,Territory Minerals Pty Ltd,Company
+company_0931,Territory Resources Ltd,Company
+company_0932,Thanksgiving,Company
+company_0933,The Chugoku Electric Power Company Inc,Company
+company_0934,Thomson Resources Ltd,Company
+company_0935,Thor Mining PLC,Company
+company_0936,Thundelarra Exploration,Company
+company_0937,Thunderstruck Investments Pty Ltd,Company
+company_0938,Thungela,Company
+company_0939,Tianqi Lithium Corp,Company
+company_0940,Tiaro Coal Limited,Company
+company_0941,TinOne Resources Ltd,Company
+company_0942,Tivan Limited,Company
+company_0943,TNG Limited,Company
+company_0944,TNT Mines Limited,Company
+company_0945,Todd Corporation,Company
+company_0946,Toho Zinc Company Ltd,Company
+company_0947,Tombola Gold Ltd,Company
+company_0948,Toro Energy Limited,Company
+company_0949,Torque Mining Limited,Company
+company_0950,Trafford Resources Ltd,Company
+company_0951,Transition Minerals,Company
+company_0952,Trek Metals Ltd,Company
+company_0953,TriAusMin Limited,Company
+company_0954,Tribune Resources Limited,Company
+company_0955,Trigg Mining Limited,Company
+company_0956,Tronox Limited,Company
+company_0957,Troy Resources NL,Company
+company_0958,TRU Energy,Company
+company_0959,True North Copper Ltd,Company
+company_0960,Truscott Mining Corporation Limited,Company
+company_0961,Tulla Resources PLC,Company
+company_0962,Tungsten Mining NL,Company
+company_0963,Tyranna Resources Limited,Company
+company_0964,U&D Coal Limited,Company
+company_0965,Unimin Australia Ltd,Company
+company_0966,United Minerals Corporation,Company
+company_0967,United Mining Group,Company
+company_0968,Unity Mining Limited,Company
+company_0969,Universal Resources,Company
+company_0970,Unnamed Owner,Company
+company_0971,Uranium One Incorporated,Company
+company_0972,UraniumSA Limited,Company
+company_0973,Vale Australia,Company
+company_0974,Vale S.A.,Company
+company_0975,Valiant Resources,Company
+company_0976,Vango Mining Ltd,Company
+company_0977,Vasse Coal Management,Company
+company_0978,Vault Minerals,Company
+company_0979,Vecco Group,Company
+company_0980,Vedanta Resources PLC,Company
+company_0981,Velox Energy Materials,Company
+company_0982,Vendetta Mining Crop,Company
+company_0983,Ventnor Resources limited,Company
+company_0984,Venturex Resources Limited,Company
+company_0985,Venus Metals Corporation Limited,Company
+company_0986,Vertex Minerals Limited,Company
+company_0987,VHM Limited,Company
+company_0988,Viking Mines,Company
+company_0989,Vista Gold Corporation,Company
+company_0990,Vitrinite Pty Ltd,Company
+company_0991,WA Iron Pty Ltd,Company
+company_0992,Waratah Coal Inc,Company
+company_0993,Warriedar Resources,Company
+company_0994,Wasabi Energy Ltd.,Company
+company_0995,Watts-Butler Denise Elaine,Company
+company_0996,Wavenet International Ltd,Company
+company_0997,Wealth Mining Pty Limited,Company
+company_0998,Weather Investments II S.ar.l,Company
+company_0999,Wesfarmers Limited,Company
+company_1000,West Coast Gold Pty Ltd,Company
+company_1001,Western Areas Limited,Company
+company_1002,Western Gold Resources Ltd,Company
+company_1003,Western Metals Pty Ltd,Company
+company_1004,Westfarmers Ltd,Company
+company_1005,Westgen Pty Ltd,Company
+company_1006,Westgold Resources Limited,Company
+company_1007,White Cliff,Company
+company_1008,White Energy Company Ltd,Company
+company_1009,White Rock Minerals,Company
+company_1010,Whitehaven Coal Limited,Company
+company_1011,Widgie Nickel Ltd,Company
+company_1012,Widgiemooltha North,Company
+company_1013,Wim Resources Pty Ltd,Company
+company_1014,Win Metals,Company
+company_1015,WIN Metals Ltd,Company
+company_1016,Wingstar Investments Pty Ltd,Company
+company_1017,Wintask Group Ltd,Company
+company_1018,Wintime Energy Co. Ltd,Company
+company_1019,Wolfram Limited,Company
+company_1020,Wollongong Coal Ltd,Company
+company_1021,Wondinong,Company
+company_1022,WPG Resources Limited,Company
+company_1023,Wright Prospecting Pty Ltd,Company
+company_1024,Wyloo Metals,Company
+company_1025,Wyloo Pty Ltd,Company
+company_1026,Xstrata plc,Company
+company_1027,Xtract Resources plc,Company
+company_1028,Yancoal Australia Limited,Company
+company_1029,Yandal Resources Limited,Company
+company_1030,Yankuang Group Corporation Limited,Company
+company_1031,Yanzhou Coal Mining Company Limited,Company
+company_1032,Young Australian Mines Ltd,Company
+company_1033,Young Mining Company Pty Ltd,Company
+company_1034,YTC Resources,Company
+company_1035,Yunnan Tin Group,Company
+company_1036,Zamia Metals Limited,Company
+company_1037,Zashvin Pty. Ltd.,Company
+company_1038,Zedemar Holdings Pty Ltd,Company
+company_1039,Zenith Minerals Limited,Company
+company_1040,Zeotech Ltd,Company
+company_1041,Zeta Resources Limited,Company
+company_1042,Zijin Mining Group Company Ltd,Company
+company_1043,ZLD International Holdings Limited,Company

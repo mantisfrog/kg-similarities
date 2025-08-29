@@ -6,7 +6,7 @@ NEO4J_URI  = os.getenv("NEO4J_URI",  "bolt://localhost:7687")
 NEO4J_USER = os.getenv("NEO4J_USER", "neo4j")
 NEO4J_PASS = os.getenv("NEO4J_PASS", "neo4jroot")
 NEO4J_DB   = os.getenv("NEO4J_DB",   "neo4j")
-CYPHER_FILE = os.getenv("CYPHER_FILE", "./src/import.cypher")
+CYPHER_FILE = os.getenv("CYPHER_FILE", "./cypher/import.cypher")
 
 def load_statements(path: str):
     with open(path, "r", encoding="utf-8") as f:

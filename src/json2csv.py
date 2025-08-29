@@ -3,15 +3,15 @@
 
 import json, csv
 
-INPUT = "./src/raw/MineralDeposits.json"
-OUTPUT = "./src/data/MineralDeposits.csv"
+INPUT = "./data/raw/MineralDeposits.json"
+OUTPUT = "./data/processed/MineralDeposits.csv"
 
 # CSV column headers
 HEADERS = [
     "ENO","DEPOSIT_NAME","SYNONYMS","STATE","LONG_GDA94","LAT_GDA94","ACCURACY_M",
     "OPERATING_STATUS","COMMODITY_PRIMARY","COMMODITY_SECONDARY","COMMODITY_NAMES",
     "COMPANIES","COMPANY_WEBSITES","PROVINCES","GEOLOGIC_AGE","DEPOSIT_MODEL",
-    "Environment","Group","Type"
+    "DEPOSIT_MODEL_ENVIRONMENT","DEPOSIT_MODEL_GROUP","DEPOSIT_MODEL_TYPE"
 ]
 
 def split_primary_secondary(s: str):
@@ -88,9 +88,9 @@ with open(OUTPUT, "w", encoding="utf-8-sig", newline="") as f:
 
         # Parse deposit model
         env, grp, typ = parse_deposit_model(props.get("DEPOSIT_MODEL", ""))
-        row["Environment"] = env
-        row["Group"] = grp
-        row["Type"] = typ
+        row["DEPOSIT_MODEL_ENVIRONMENT"] = env
+        row["DEPOSIT_MODEL_GROUP"] = grp
+        row["DEPOSIT_MODEL_TYPE"] = typ
 
         w.writerow(row)
 
