@@ -49,7 +49,11 @@ def split_commas(s):
     return [] if not s else [p.strip() for p in s.split(",") if clean(p)]
 
 def split_names_cell(s, is_synonyms=False):
-    """Comma-split; in SYNONYMS, keep special phrases as single tokens."""
+    """
+    Name splitting rule:
+    - For DEPOSIT_NAME (is_synonyms=False): treat whole cell as ONE name (do NOT split by comma).
+    - For SYNONYMS (is_synonyms=True): split by comma, while keeping special phrases intact.
+    """
     s_clean = clean(s)
     if not s_clean:
         return []
@@ -64,7 +68,8 @@ def split_names_cell(s, is_synonyms=False):
                 tmp = tmp.replace(sp, ph)
         parts = [p.strip() for p in tmp.split(",") if clean(p)]
         return [placeholders.get(p, p) for p in parts]
-    return [p.strip() for p in s_clean.split(",") if clean(p)]
+    # DEPOSIT_NAME: return the full cell as a single token, even if it contains commas
+    return [s_clean]
 
 def norm_key(s):
     return re.sub(r"\s+", " ", clean(s)).strip().lower()

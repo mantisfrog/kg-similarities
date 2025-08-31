@@ -2,8 +2,8 @@ import pandas as pd
 import geopandas as gpd
 
 DEPOSITS_CSV_PATH = './data/processed/MineralDeposits.csv'
-PROVINCES_SHP_PATH = './data/raw/116823_AGP_2018/ProvinceFullExtent.shp'
-STATES_SHP_PATH   = './data/raw/STE_2021_AUST_SHP_GDA94/STE_2021_AUST_GDA94.shp'
+PROVINCES_SHP_PATH = './data/raw/shp/116823_AGP_2018/ProvinceFullExtent.shp'
+STATES_SHP_PATH   = './data/raw/shp/STE_2021_AUST_SHP_GDA94/STE_2021_AUST_GDA94.shp'
 OUTPUT_CSV_PATH   = './data/processed/Deposits_spatial.csv'
 
 def process_deposits_with_provinces(deposits_path, provinces_path, output_path):

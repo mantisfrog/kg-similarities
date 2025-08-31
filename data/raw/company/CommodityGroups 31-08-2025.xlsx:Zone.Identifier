@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://minedex.dmirs.wa.gov.au/Web/commodity-groups
+HostUrl=https://minedex.dmirs.wa.gov.au/api/CommodityGroup/CommodityGroupSearch/Download?query=%7B%22groupName%22:null,%22groupAbbreviation%22:null,%22commodityName%22:null,%22commodityAbbreviation%22:null,%22isTargetCommodityGroup%22:null%7D
