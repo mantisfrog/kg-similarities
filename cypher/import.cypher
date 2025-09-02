@@ -1,73 +1,77 @@
-// ========= 1) Constraints =========
-CREATE CONSTRAINT deposit_eno IF NOT EXISTS
-FOR (d:Deposit) REQUIRE d.ENO IS UNIQUE;
+// Clear existing data (optional, for a clean import)
+MATCH (n) DETACH DELETE n;
 
-CREATE CONSTRAINT commodity_name IF NOT EXISTS
-FOR (c:Commodity) REQUIRE c.name IS UNIQUE;
+// Disable schema constraints during import for faster performance (APOC feature)
+CALL apoc.schema.assert(
+    {}, // no constraints
+    {
+        Name: ["nameID"],
+        Company: ["companyID"],
+        Commodity: ["commodityID"],
+        Deposit: ["depositID"]
+    }
+);
 
-// ========= 2) Create Deposit nodes =========
-CALL () {
-  LOAD CSV WITH HEADERS FROM 'file:///Deposits_spatial.csv' AS row FIELDTERMINATOR ','
-  MERGE (d:Deposit {ENO: row.ENO})
-  SET
-    d.name             = row.DEPOSIT_NAME,
-    d.DEPOSIT_NAME     = row.DEPOSIT_NAME,
-    d.SYNONYMS         = row.SYNONYMS,
-    d.STATE            = row.STATE,
-    d.LONG_GDA94       = CASE WHEN row.LONG_GDA94 IS NULL OR trim(row.LONG_GDA94) = '' THEN NULL ELSE toFloat(row.LONG_GDA94) END,
-    d.LAT_GDA94        = CASE WHEN row.LAT_GDA94  IS NULL OR trim(row.LAT_GDA94)  = '' THEN NULL ELSE toFloat(row.LAT_GDA94)  END,
-    d.OPERATING_STATUS = row.OPERATING_STATUS,
-    d.COMPANIES        = row.COMPANIES,
-    d.COMMODITY_NAMES  = row.COMMODITY_NAMES
-} IN TRANSACTIONS OF 1000 ROWS;
+// Load and create Node_Name
+LOAD CSV WITH HEADERS FROM 'file:///node_Name.csv' AS row
+MERGE (n:Name {nameID: row.`nameID:ID`})
+SET n.nameText = row.`nameText:string`;
 
+// Load and create Node_Company
+LOAD CSV WITH HEADERS FROM 'file:///node_Company.csv' AS row
+MERGE (c:Company {companyID: row.`companyID:ID`})
+SET c.companyName = row.`companyName:string`; 
 
-// ========= 3) Create PRIMARY relationships =========
-CALL () {
-  LOAD CSV WITH HEADERS FROM 'file:///Deposits_spatial.csv' AS row FIELDTERMINATOR ','
-  WITH row,
-    CASE
-      WHEN row.COMMODITY_PRIMARY IS NULL OR trim(row.COMMODITY_PRIMARY) = '' THEN []
-      ELSE [x IN split(row.COMMODITY_PRIMARY, ',') | trim(x)]
-    END AS prims
-  MATCH (d:Deposit {ENO: row.ENO})
-  UNWIND prims AS p
-  WITH d, p WHERE p <> ''
-  MERGE (c:Commodity {name: p})
-  MERGE (d)-[r:HAS_COMMODITY]->(c)
-  ON CREATE SET r.role = 'PRIMARY'
-} IN TRANSACTIONS OF 1000 ROWS;
+// Load and create Node_Commodity
+LOAD CSV WITH HEADERS FROM 'file:///node_Commodity.csv' AS row
+MERGE (c:Commodity {commodityID: row.`commodityID:ID`})
+SET c.commoditySymbol = row.`commoditySymbol:string`,
+    c.commodityDesc = row.`commodityName:string`,
+    c.commodityGroup = row.`commodityGroup:string`;
 
+// Load and create Node_Deposit
+LOAD CSV WITH HEADERS FROM 'file:///node_Deposit.csv' AS row
+MERGE (d:Deposit {depositID: row.`depositID:ID`})
+SET d.eno = toInteger(row.`ENO:int`),
+    d.state = row.`STATE:string`,
+    d.location = row.`LOCATION:string`,
+    d.operatingStatus = row.`OPERATING_STATUS:string`,
+    d.geologicAge = row.`GEOLOGIC_AGE:string`,
+    d.depositModelEnvironment = row.`DEPOSIT_MODEL_ENVIRONMENT:string`,
+    d.depositModelGroup = row.`DEPOSIT_MODEL_GROUP:string`,
+    d.depositModelType = row.`DEPOSIT_MODEL_TYPE:string`,
+    d.provinces = row.`PROVINCES:string`,
+    d.igneous = row.`IGNEOUS:string`,
+    d.metallogenic = row.`METALLOGENIC:string`,
+    d.sedimentary = row.`SEDIMENTARY:string`,
+    d.tectonic = row.`TECTONIC:string`;
 
-// ========= 4) Create SECONDARY relationships =========
-CALL () {
-  LOAD CSV WITH HEADERS FROM 'file:///Deposits_spatial.csv' AS row FIELDTERMINATOR ','
-  WITH row,
-    CASE
-      WHEN row.COMMODITY_SECONDARY IS NULL OR trim(row.COMMODITY_SECONDARY) = '' THEN []
-      ELSE [x IN split(row.COMMODITY_SECONDARY, ',') | trim(x)]
-    END AS secs
-  MATCH (d:Deposit {ENO: row.ENO})
-  UNWIND secs AS s
-  WITH d, s WHERE s <> ''
-  MERGE (c:Commodity {name: s})
-  MERGE (d)-[r:HAS_COMMODITY]->(c)
-  ON CREATE SET r.role = 'SECONDARY'
-  ON MATCH SET r.role = r.role
-} IN TRANSACTIONS OF 1000 ROWS;
+// Create rel_Refers_to relationships
+LOAD CSV WITH HEADERS FROM 'file:///rel_Refers_to.csv' AS row
+MATCH (n:Name {nameID: row.`:START_ID`})
+MATCH (d:Deposit {depositID: row.`:END_ID`})
+MERGE (n)-[:REFERS_TO]->(d);
 
-// ========= 5) Create Company nodes & OWNS relationships =========
-CALL () {
-  LOAD CSV WITH HEADERS FROM 'file:///Deposits_spatial.csv' AS row FIELDTERMINATOR ','
-  WITH row,
-       CASE
-         WHEN row.COMPANIES IS NULL OR trim(row.COMPANIES) = '' THEN []
-         // Delimited by comma ','
-         ELSE [x IN split(row.COMPANIES, ',') | trim(x)]
-       END AS companies
-  MATCH (d:Deposit {ENO: row.ENO})
-  UNWIND companies AS cname
-  WITH d, cname WHERE cname <> ''
-  MERGE (co:Company {name: cname})
-  MERGE (co)-[:OWNS]->(d)
-} IN TRANSACTIONS OF 1000 ROWS;
+// Create rel_Has relationships
+LOAD CSV WITH HEADERS FROM 'file:///rel_Has.csv' AS row
+MATCH (d:Deposit {depositID: row.`:START_ID`})
+MATCH (c:Commodity {commodityID: row.`:END_ID`})
+MERGE (d)-[:HAS {role: row.`ROLE:string`}]->(c);
+
+// Create rel_Owns relationships
+LOAD CSV WITH HEADERS FROM 'file:///rel_Owns.csv' AS row
+MATCH (c:Company {companyID: row.`:START_ID`})
+MATCH (d:Deposit {depositID: row.`:END_ID`})
+MERGE (c)-[:OWNS]->(d);
+
+// Re-enable schema constraints after import (APOC feature)
+CALL apoc.schema.assert(
+    {
+        Name: ["nameID"],
+        Company: ["companyID"],
+        Commodity: ["commodityID"],
+        Deposit: ["depositID"]
+    },
+    {} // no indexes
+);
+

@@ -49,41 +49,53 @@ echo "✅ Image pull complete."
 # [3/7] Start Neo4j container
 echo -e "\n🚀 [3/7] Starting Neo4j container via Docker Compose..."
 docker compose up -d
-echo "✅ Docker services started."
+# Wait for Neo4j to initialize
+echo ""
+for i in {3..0}; do
+    echo -ne "\nAllowing Neo4j to initialize... $i second(s) \r"
+    sleep 1
+done
+echo -e "\n✅ Docker services started."
 
-# [4/7] Fix permissions and copy CSV
-echo -e "\n🔑 [4/7] Adding permissions for ./neo4j-docker directory..."
+echo " "
+
+# [4/7] Convert JSON to CSV --- FILENAME CORRECTED
+run_with_spinner "📊 [4/7] Converting JSON to CSV..." "python ./src/etl/convert_json_csv.py"
+
+# [5/7] Run spatial join
+run_with_spinner "🔗 [5/7] Running spatial join..." "python ./src/etl/join_spatial.py"
+
+# [6/7] Fix permissions and copy CSV
+echo -e "\n🔑 [6/7] Adding permissions for ./neo4j-docker directory..."
 if [ -d "./neo4j-docker" ]; then
+    # Use sudo only if necessary, or ensure user is in the docker group
     sudo chmod -R 777 ./neo4j-docker
     echo "✅ Permissions Added."
 else
     echo "🟡 Directory ./neo4j-docker not found, skipping permission fix."
 fi
 
-# [5/7] Convert JSON to CSV
-run_with_spinner "📊 [5/7] Converting JSON to CSV..." "python ./src/json2csv.py"
+# [7/7] Generate graph CSVs and Import into Neo4j
+echo -e "\n🧩 [7/7] Generating graph files and importing into Neo4j..."
 
-# [6/7] Run spatial join
-run_with_spinner "🔗 [6/7] Running spatial join..." "python ./src/spatial_join.py"
+# First, generate the graph CSVs --- FILENAME CORRECTED
+run_with_spinner "  -> Generating graph CSVs..." "python ./src/etl/generate_graph_csv.py"
 
-# Copy CSV to import folder (after spatial join output exists)
-if [ -d "./neo4j-docker" ]; then
-    cp ./data/processed/Deposits_spatial.csv ./neo4j-docker/import
-    echo "✅ Deposits_spatial.csv copied to Neo4j import."
+# Then, add the commodity groups --- Assuming this script exists from your previous requests
+run_with_spinner "  -> Categorising commodities..." "python ./src/feature/categorise_commodity.py"
+
+# Copy CSV to import folder (after all graph CSVs are generated/modified)
+if [ -d "./neo4j-docker/import" ]; then
+    cp ./data/graph/*.csv ./neo4j-docker/import/
+    echo "✅ Graph CSV files copied to Neo4j import."
+else
+    echo "🟡 Directory ./neo4j-docker/import not found, skipping copy."
 fi
 
-# Wait for Neo4j to initialize
-echo ""
-for i in {3..0}; do
-    echo -ne "Allowing Neo4j to initialize... $i second(s) \r"
-    sleep 1
-done
-echo " "
+# Finally, run the Cypher script to load data --- FILENAME CORRECTED
+run_with_spinner "  -> Loading data via Cypher..." "python ./src/etl/load_cyper.py"
 
-# [7/7] Import CSV into Neo4j
-echo -e "\n🧩 [7/7] Importing CSV into Neo4j graph..."
-python ./src/cypher_run.py
-echo "✅ Graph import complete."
+echo "✅ Graph import process complete."
 
 BOLD="\033[1m"
 GREEN="\033[32m"
