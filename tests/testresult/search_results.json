@@ -1,0 +1,1254 @@
+{
+  "results": [
+    {
+      "file": "KStanley_Resume_2025.md.csv",
+      "search_results": [
+        {
+          "search_term": "Roy Hill",
+          "match_count": 1,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:16183",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_4608",
+                "nameText": "Roy Hill"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Eramurra",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Pilgangoora",
+          "match_count": 2,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:15827",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_4252",
+                "nameText": "Pilgangoora (Altura Mining)"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:15828",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_4253",
+                "nameText": "Pilgangoora (Altura)"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Southflank",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Kansanshi",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Cobre",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Cloudbreak",
+          "match_count": 1,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:8990",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_1030",
+                "nameText": "Chichester Hub - Cloudbreak Christmas Creek (FMG)"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Aurora",
+          "match_count": 2,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:8184",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_0224",
+                "nameText": "Aurora"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:8185",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_0225",
+                "nameText": "Aurora - Inuendo"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Hang Shan",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "RGP3",
+          "match_count": 0,
+          "matches": []
+        }
+      ]
+    },
+    {
+      "file": "Wendy Stanfield's CV.DOC.md.csv",
+      "search_results": [
+        {
+          "search_term": "Ichthys",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "North West Shelf",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Gorgon",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Solomons",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Karara",
+          "match_count": 6,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10632",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2672",
+                "nameText": "Karara"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10633",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2673",
+                "nameText": "Karara - Blue Hills"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10634",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2674",
+                "nameText": "Karara East"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10635",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2675",
+                "nameText": "Karara Mungada"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10636",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2676",
+                "nameText": "Karara South"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:15259",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_3684",
+                "nameText": "Mt Karara"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Kemerton",
+          "match_count": 1,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10657",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2697",
+                "nameText": "Kemerton"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "ILUKA",
+          "match_count": 10,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:9595",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_1635",
+                "nameText": "Eneabba area (Iluka Mid West)"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:9596",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_1636",
+                "nameText": "Eneabba IPL Norh (Iluka)"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10360",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2400",
+                "nameText": "Iluka South West Province (Capel North)"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10465",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2505",
+                "nameText": "Jabiluka"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:11253",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_3293",
+                "nameText": "Mid-West (Iluka)"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:15334",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_3759",
+                "nameText": "Murray Basin - Iluka (Douglas, Kulwin etc)"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:15805",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_4230",
+                "nameText": "Perth Basin (Iluka)"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:16884",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_5309",
+                "nameText": "Tutunup Iluka"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:16886",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_5311",
+                "nameText": "Tutunup South/Iluka"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:17464",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_5889",
+                "nameText": "Yoganup Group/Iluka"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Oyu Tolgoi",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Jimblebar",
+          "match_count": 3,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:9490",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_1530",
+                "nameText": "East Jimblebar"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10521",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2561",
+                "nameText": "Jimblebar (Atlas Iron)"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10522",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2562",
+                "nameText": "Jimblebar (BHP)"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Arafura",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Radio Hill",
+          "match_count": 1,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:15960",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_4385",
+                "nameText": "Radio Hill"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Udokan",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Ban Phuc",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Sukari",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Wagerup",
+          "match_count": 1,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:17006",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_5431",
+                "nameText": "Wagerup"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Burswood",
+          "match_count": 0,
+          "matches": []
+        }
+      ]
+    },
+    {
+      "file": "Brad Robson - Resume 2025.md.csv",
+      "search_results": [
+        {
+          "search_term": "West Angelas",
+          "match_count": 1,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:17131",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_5556",
+                "nameText": "West Angelas"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Kemerton",
+          "match_count": 1,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10657",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2697",
+                "nameText": "Kemerton"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Robe Valley",
+          "match_count": 1,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10880",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2920",
+                "nameText": "Latrobe Valley (Brown Coal)"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Tanami",
+          "match_count": 7,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:8952",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_0992",
+                "nameText": "Central Tanami"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:8953",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_0993",
+                "nameText": "Central Tanami Project"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:16641",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_5066",
+                "nameText": "Tanami (Central)"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:16642",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_5067",
+                "nameText": "Tanami - Newmont"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:16643",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_5068",
+                "nameText": "Tanami Mine JV"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:16644",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_5069",
+                "nameText": "Tanami Project"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:17172",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_5597",
+                "nameText": "Western Tanami Project"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Orange Grove",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Yandicoogina",
+          "match_count": 3,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10169",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2209",
+                "nameText": "Hamersley Iron - Yandicoogina-Junction (Rio Tinto-HIYandi)"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:17418",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_5843",
+                "nameText": "Yandicoogina"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:17419",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_5844",
+                "nameText": "Yandicoogina South"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Western Turner",
+          "match_count": 1,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10168",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2208",
+                "nameText": "Hamersley Iron - Western Turner Syncline"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Brockman 4",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Cape Preston",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Sino Iron",
+          "match_count": 1,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:8247",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_0287",
+                "nameText": "Balmoral Central  (Sino Iron)"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "CLU 80",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "RPG3",
+          "match_count": 0,
+          "matches": []
+        }
+      ]
+    },
+    {
+      "file": "Marilyn King - Professional Resume.md.csv",
+      "search_results": [
+        {
+          "search_term": "Wodgina",
+          "match_count": 3,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10247",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2287",
+                "nameText": "Hercules - Wodgina (Atlas Iron)"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:17309",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_5734",
+                "nameText": "Wodgina"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:17310",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_5735",
+                "nameText": "Wodgina (Atlas Iron)"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Pilgangoora",
+          "match_count": 2,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:15827",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_4252",
+                "nameText": "Pilgangoora (Altura Mining)"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:15828",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_4253",
+                "nameText": "Pilgangoora (Altura)"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Robe Valley",
+          "match_count": 1,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10880",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2920",
+                "nameText": "Latrobe Valley (Brown Coal)"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Radio Hill",
+          "match_count": 1,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:15960",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_4385",
+                "nameText": "Radio Hill"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "SCM17",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "OCRS (Ore Car Repair Shop)",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Port Hedland Inner Harbour",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Jimblebar",
+          "match_count": 3,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:9490",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_1530",
+                "nameText": "East Jimblebar"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10521",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2561",
+                "nameText": "Jimblebar (Atlas Iron)"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10522",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2562",
+                "nameText": "Jimblebar (BHP)"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Hope Downs 4",
+          "match_count": 1,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10308",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2348",
+                "nameText": "Hope Downs 4"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Brockman 4",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Perth Desalination",
+          "match_count": 0,
+          "matches": []
+        }
+      ]
+    },
+    {
+      "file": "CV Vladimir Ivanov - Professional Structural Engineer.md.csv",
+      "search_results": [
+        {
+          "search_term": "Port Onslow",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Cape Lambert",
+          "match_count": 1,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:8849",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_0889",
+                "nameText": "Cape Lambert Magnetite (MCC)"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Pilgangoora",
+          "match_count": 2,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:15827",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_4252",
+                "nameText": "Pilgangoora (Altura Mining)"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:15828",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_4253",
+                "nameText": "Pilgangoora (Altura)"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Ahafo North",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Kathleen Valley",
+          "match_count": 2,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10649",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2689",
+                "nameText": "Kathleen Valley"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10650",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2690",
+                "nameText": "Kathleen Valley Project"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Bulong",
+          "match_count": 2,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:8697",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_0737",
+                "nameText": "Bulong"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:8698",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_0738",
+                "nameText": "Bulong Project"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Iron Bridge",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Brockman 4",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Koodaideri",
+          "match_count": 2,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10736",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2776",
+                "nameText": "Koodaideri (Hamersley Iron)"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10737",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2777",
+                "nameText": "Koodaideri South  (Hamersley Iron)"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Christmas Creek",
+          "match_count": 2,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:8990",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_1030",
+                "nameText": "Chichester Hub - Cloudbreak Christmas Creek (FMG)"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:9009",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_1049",
+                "nameText": "Christmas Creek"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "South Flank",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Nelson Point",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Iron Road",
+          "match_count": 2,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:8946",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_0986",
+                "nameText": "Central Eyre Iron-Warramboo (Iron Road)"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:17065",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_5490",
+                "nameText": "Warramboo-Boo Loo (CEIP - Iron Road)"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Simandou",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Jack Hills",
+          "match_count": 2,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:8611",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_0651",
+                "nameText": "Brindal - Jack Hills"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10470",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2510",
+                "nameText": "Jack Hills"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Roy Hill",
+          "match_count": 1,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:16183",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_4608",
+                "nameText": "Roy Hill"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Tonkolili",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Yandi",
+          "match_count": 4,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:8394",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_0434",
+                "nameText": "BHP Yandi"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10169",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2209",
+                "nameText": "Hamersley Iron - Yandicoogina-Junction (Rio Tinto-HIYandi)"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:17418",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_5843",
+                "nameText": "Yandicoogina"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:17419",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_5844",
+                "nameText": "Yandicoogina South"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Ban Phuc",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Karara",
+          "match_count": 6,
+          "matches": [
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10632",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2672",
+                "nameText": "Karara"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10633",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2673",
+                "nameText": "Karara - Blue Hills"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10634",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2674",
+                "nameText": "Karara East"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10635",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2675",
+                "nameText": "Karara Mungada"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:10636",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_2676",
+                "nameText": "Karara South"
+              }
+            },
+            {
+              "element_id": "4:34ae4146-4e8c-4bff-a72e-c402872aea11:15259",
+              "labels": [
+                "Name"
+              ],
+              "properties": {
+                "nameID": "name_3684",
+                "nameText": "Mt Karara"
+              }
+            }
+          ]
+        },
+        {
+          "search_term": "Muliashi",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Sukari",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Sabodala",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Lumwana",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Jinfeng",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Krumovgrad",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Chelopech",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Kozloduy",
+          "match_count": 0,
+          "matches": []
+        },
+        {
+          "search_term": "Mt Ambine",
+          "match_count": 0,
+          "matches": []
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

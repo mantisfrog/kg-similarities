@@ -1,16 +1,8 @@
-// Clear existing data (optional, for a clean import)
 MATCH (n) DETACH DELETE n;
-
-// Disable schema constraints during import for faster performance (APOC feature)
-CALL apoc.schema.assert(
-    {}, // no constraints
-    {
-        Name: ["nameID"],
-        Company: ["companyID"],
-        Commodity: ["commodityID"],
-        Deposit: ["depositID"]
-    }
-);
+CREATE CONSTRAINT Name_nameID IF NOT EXISTS FOR (n:Name) REQUIRE n.nameID IS UNIQUE;
+CREATE CONSTRAINT Company_companyID IF NOT EXISTS FOR (c:Company) REQUIRE c.companyID IS UNIQUE;
+CREATE CONSTRAINT Commodity_commodityID IF NOT EXISTS FOR (c:Commodity) REQUIRE c.commodityID IS UNIQUE;
+CREATE CONSTRAINT Deposit_depositID IF NOT EXISTS FOR (d:Deposit) REQUIRE d.depositID IS UNIQUE;
 
 // Load and create Node_Name
 LOAD CSV WITH HEADERS FROM 'file:///node_Name.csv' AS row
@@ -20,7 +12,7 @@ SET n.nameText = row.`nameText:string`;
 // Load and create Node_Company
 LOAD CSV WITH HEADERS FROM 'file:///node_Company.csv' AS row
 MERGE (c:Company {companyID: row.`companyID:ID`})
-SET c.companyName = row.`companyName:string`; 
+SET c.companyName = row.`companyName:string`;
 
 // Load and create Node_Commodity
 LOAD CSV WITH HEADERS FROM 'file:///node_Commodity.csv' AS row
@@ -63,15 +55,3 @@ LOAD CSV WITH HEADERS FROM 'file:///rel_Owns.csv' AS row
 MATCH (c:Company {companyID: row.`:START_ID`})
 MATCH (d:Deposit {depositID: row.`:END_ID`})
 MERGE (c)-[:OWNS]->(d);
-
-// Re-enable schema constraints after import (APOC feature)
-CALL apoc.schema.assert(
-    {
-        Name: ["nameID"],
-        Company: ["companyID"],
-        Commodity: ["commodityID"],
-        Deposit: ["depositID"]
-    },
-    {} // no indexes
-);
-
