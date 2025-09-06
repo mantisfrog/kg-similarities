@@ -120,4 +120,4 @@ with tab_query:
     st.subheader("🔎 查询执行（占位）")
     st.caption("后续可接入 Neo4j 执行与 JSON 序列化。当前为占位展示。")
     st.text_area("Cypher（占位）", height=120, placeholder="MATCH (n) RETURN n LIMIT 10")
-    st.button("执行（禁用）", disabled=True)    st.text_area("Cypher（占位）", height=120, placeholder="MATCH (n) RETURN n LIMIT 10")    st.button("执行（禁用）", disabled=True)
+    st.button("执行（禁用）", disabled=True)
