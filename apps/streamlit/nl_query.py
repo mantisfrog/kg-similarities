@@ -32,11 +32,9 @@ MODEL_ID = "gemini-2.5-flash-preview-05-20"
 
 def _read_secret_api_key() -> str | None:
     try:
-        if "GOOGLE_GENAI_API_KEY" in st.secrets:
-            return st.secrets["GOOGLE_GENAI_API_KEY"]
+        return st.secrets["GOOGLE_GENAI_API_KEY"]
     except Exception:
-        pass
-    return None
+        return None
 
 def generate_cypher_with_gemini(nl_prompt: str, schema_text: str) -> str:
     if genai is None:
@@ -58,17 +56,18 @@ def generate_cypher_with_gemini(nl_prompt: str, schema_text: str) -> str:
     )
     prompt = f"{sys_hint}\n\nSchema:\n{schema_text}\n\nUser request:\n{nl_prompt}\n\nReturn only the Cypher."
 
-    # 设置生成配置：低 temperature 保证结果稳定性，max_output_tokens 控制长度
-    generation_config = {
-        "temperature": 0.1,
-        "max_output_tokens": 1024,
-    }
-
-    resp = client.responses.generate(
-        model=MODEL_ID, 
-        input=prompt,
-        generation_config=generation_config
+    # 仅设置最必要参数：降低随机性 + 合理长度
+    config = genai.types.GenerateContentConfig(
+        temperature=0.1,
+        max_output_tokens=1024,
     )
+
+    resp = client.models.generate_content(
+        model=MODEL_ID,
+        contents=prompt,
+        config=config,
+    )
+
     text = getattr(resp, "output_text", None) or getattr(resp, "text", "") or ""
     text = text.strip()
 
