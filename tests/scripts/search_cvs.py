@@ -3,6 +3,8 @@ import json
 from pathlib import Path
 from neo4j import GraphDatabase
 
+# This script will iterate through all CSV files under testdata/CVs (expecting one column of project names), then attempt to match them with the Name nodes in the Graph. The results will be output to testresult/search_result.json.
+
 # Neo4j connection details from docker-compose.yaml
 URI = "bolt://localhost:7687"
 AUTH = ("neo4j", "neo4jroot")
