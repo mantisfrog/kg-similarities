@@ -84,4 +84,4 @@ with st.expander("🔎 查询执行"):
     st.text_area("Cypher", height=100)
     st.json({"columns": [], "data": []})
 
-st.caption("以上示例仅展示 UI 布局与模式区分方式，不包含任何后
+st.caption("以上示例仅展示 UI 布局与模式区分方式，不包含任何后端逻辑。")
