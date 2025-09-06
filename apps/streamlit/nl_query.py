@@ -1,87 +1,123 @@
 import streamlit as st
 
-st.set_page_config(page_title="Neo4j 前端原型：模式区分演示", page_icon="🕸️", layout="wide")
+# 使用新版 SDK：pip install google-genai
+try:
+    from google import genai
+except Exception:
+    genai = None
 
-st.title("Neo4j 前端原型：模式区分演示")
-st.caption("本页面仅用于展示不同的“模式区分”UI 方案，无任何后台功能。")
+st.set_page_config(page_title="Neo4j 前端：Cypher 编写助手（Tabs）", page_icon="🕸️", layout="wide")
+st.title("Neo4j 前端：Cypher 编写助手（Tabs 布局）")
+st.caption("API 仅从 st.secrets 读取，模型固定为 gemini-2.5-flash-preview-05-20。")
 
-# 简单样式用于“卡片”展示
-st.markdown("""
-<style>
-.card {
-  padding: 1rem;
-  border: 1px solid #e9ecef;
-  border-radius: 0.5rem;
-  background: #f8f9fa;
-}
-.card h3 { margin-top: 0; }
-.card.assistant { background: #f5f8ff; border-color: #d6e4ff; }
-.card.query { background: #f6fff6; border-color: #d2f4d2; }
-</style>
-""", unsafe_allow_html=True)
+# ---- Schema（来自 import.cypher 的结构摘要）----
+SCHEMA = """
+Graph schema (simplified):
 
-# 方式一：侧边栏模式切换（单选）
-st.sidebar.header("方式一：侧边栏模式切换")
-sidebar_mode = st.sidebar.radio(
-    "选择模式",
-    options=["🧠 Cypher 编写助手", "🔎 查询执行"],
-    index=0,
-    key="sidebar_mode",
-)
-st.subheader("方式一：侧边栏单选")
-st.info(f"当前选择：{sidebar_mode}（演示用，不触发任何功能）")
+Nodes:
+- Name(nameID UNIQUE, nameText)
+- Company(companyID UNIQUE, companyName)
+- Commodity(commodityID UNIQUE, commoditySymbol, commodityDesc, commodityGroup)
+- Deposit(depositID UNIQUE, eno:int, state, location, operatingStatus, geologicAge,
+          depositModelEnvironment, depositModelGroup, depositModelType, provinces,
+          igneous, metallogenic, sedimentary, tectonic)
 
-# 方式二：主区标签页（Tabs）
-st.subheader("方式二：主区顶部标签页")
-tab_assist, tab_query = st.tabs(["🧠 Cypher 编写助手", "🔎 查询执行"])
+Relationships:
+- (Name)-[:REFERS_TO]->(Deposit)
+- (Deposit)-[:HAS {role}]->(Commodity)
+- (Company)-[:OWNS]->(Deposit)
+"""
+
+MODEL_ID = "gemini-2.5-flash-preview-05-20"
+
+def _read_secret_api_key() -> str | None:
+    try:
+        if "GOOGLE_GENAI_API_KEY" in st.secrets:
+            return st.secrets["GOOGLE_GENAI_API_KEY"]
+    except Exception:
+        pass
+    return None
+
+def generate_cypher_with_gemini(nl_prompt: str, schema_text: str) -> str:
+    if genai is None:
+        raise RuntimeError("未安装 google-genai，请先执行：pip install google-genai")
+    api_key = _read_secret_api_key()
+    if not api_key:
+        raise RuntimeError("缺少 Gemini API Key，请在 .streamlit/secrets.toml 配置 GOOGLE_GENAI_API_KEY")
+
+    client = genai.Client(api_key=api_key)
+
+    sys_hint = (
+        "You are a Cypher assistant for Neo4j 5. Respond with a single Cypher query only, "
+        "no explanations, no markdown fences.\n"
+        "Use the provided schema. Prefer read-only queries unless the user explicitly requests writes.\n"
+        "Use property names exactly as in schema (e.g., Name.nameText, Company.companyName, "
+        "Commodity.commoditySymbol/commodityDesc/commodityGroup, Deposit.* fields).\n"
+        "If filtering by substring, use CONTAINS; for case-insensitive use toLower().\n"
+        "Limit results with LIMIT when reasonable."
+    )
+    prompt = f"{sys_hint}\n\nSchema:\n{schema_text}\n\nUser request:\n{nl_prompt}\n\nReturn only the Cypher."
+
+    # 设置生成配置：低 temperature 保证结果稳定性，max_output_tokens 控制长度
+    generation_config = {
+        "temperature": 0.1,
+        "max_output_tokens": 1024,
+    }
+
+    resp = client.responses.generate(
+        model=MODEL_ID, 
+        input=prompt,
+        generation_config=generation_config
+    )
+    text = getattr(resp, "output_text", None) or getattr(resp, "text", "") or ""
+    text = text.strip()
+
+    # 清理可能出现的代码围栏
+    if text.startswith("```"):
+        lines = [ln for ln in text.strip("`").splitlines()]
+        if lines and lines[0].strip().lower() == "cypher":
+            lines = lines[1:]
+        text = "\n".join(lines).strip()
+
+    return text
+
+# ---- Tabs：仅保留 方式二 ----
+tab_assist, tab_query = st.tabs(["🧠 Cypher 编写助手", "🔎 查询执行（占位）"])
 
 with tab_assist:
-    st.markdown('<div class="card assistant">', unsafe_allow_html=True)
-    st.markdown("### 🧠 Cypher 编写助手")
-    st.write("在此输入自然语言需求（演示占位）：")
-    st.text_area("自然语言输入", height=120, placeholder="例如：查找名称包含 'BHP' 的节点")
-    st.code("MATCH (n:Name) WHERE n.nameText CONTAINS 'BHP' RETURN n LIMIT 25", language="cypher")
-    st.button("生成 Cypher（演示）", disabled=True)
-    st.button("执行查询（演示）", disabled=True)
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.subheader("🧠 Cypher 编写助手")
+    st.caption("输入自然语言，基于给定 Schema 生成 Cypher。")
+
+    with st.expander("查看当前 Schema"):
+        st.code(SCHEMA.strip(), language="text")
+
+    # 仅从 secrets 读取 API Key，并显示状态
+    api_key_present = _read_secret_api_key() is not None
+    if api_key_present:
+        st.success("已从 st.secrets 读取 Gemini API Key")
+    else:
+        st.warning("未读取到 Gemini API Key。请在 .streamlit/secrets.toml 配置 GOOGLE_GENAI_API_KEY")
+
+    st.text_input("模型（只读）", value=MODEL_ID, disabled=True)
+
+    nl_prompt = st.text_area("自然语言需求", height=160, placeholder="例如：查找名称包含 'BHP' 的 Name 节点，并返回节点与数量")
+    gen_btn = st.button("生成 Cypher")
+
+    if gen_btn:
+        try:
+            cypher = generate_cypher_with_gemini(nl_prompt, SCHEMA)
+            st.session_state["generated_cypher"] = cypher
+            st.success("已生成 Cypher")
+            st.code(cypher, language="cypher")
+        except Exception as e:
+            st.error(f"生成失败：{e}")
+
+    if "generated_cypher" in st.session_state and not gen_btn:
+        st.subheader("上次生成的 Cypher")
+        st.code(st.session_state["generated_cypher"], language="cypher")
 
 with tab_query:
-    st.markdown('<div class="card query">', unsafe_allow_html=True)
-    st.markdown("### 🔎 查询执行")
-    st.write("在此输入 Cypher（演示占位）：")
-    st.text_area("Cypher 输入", height=120, placeholder="MATCH (n) RETURN n LIMIT 10")
-    st.text_area("参数 JSON（可选）", height=80, placeholder='{"term": "BHP"}')
-    st.button("执行（演示）", disabled=True)
-    st.json({"query": "...", "columns": ["..."], "data": [{"row": ["..."]}]})
-    st.markdown('</div>', unsafe_allow_html=True)
-
-# 方式三：左右“卡片”对比布局
-st.subheader("方式三：左右卡片区分")
-col1, col2 = st.columns(2)
-with col1:
-    st.markdown('<div class="card assistant">', unsafe_allow_html=True)
-    st.markdown("### 🧠 Cypher 编写助手")
-    st.caption("适用于将自然语言转换为 Cypher。")
-    st.text_area("自然语言", height=100, placeholder="例如：统计项目数量…")
-    st.button("仅生成（演示）", disabled=True)
-    st.markdown('</div>', unsafe_allow_html=True)
-with col2:
-    st.markdown('<div class="card query">', unsafe_allow_html=True)
-    st.markdown("### 🔎 查询执行")
-    st.caption("适用于直接输入并运行 Cypher。")
-    st.text_area("Cypher", height=100, placeholder="MATCH (n) RETURN count(n)")
-    st.button("仅执行（演示）", disabled=True)
-    st.markdown('</div>', unsafe_allow_html=True)
-
-# 方式四：折叠面板（Expanders）
-st.subheader("方式四：折叠面板（可按需展开其一）")
-with st.expander("🧠 Cypher 编写助手"):
-    st.write("用于自然语言到 Cypher 的辅助编辑区（演示）。")
-    st.text_area("自然语言", height=100)
-    st.code("// 生成的 Cypher（演示）", language="cypher")
-with st.expander("🔎 查询执行"):
-    st.write("用于直接输入 Cypher 并查看 JSON 结果（演示）。")
-    st.text_area("Cypher", height=100)
-    st.json({"columns": [], "data": []})
-
-st.caption("以上示例仅展示 UI 布局与模式区分方式，不包含任何后端逻辑。")
+    st.subheader("🔎 查询执行（占位）")
+    st.caption("后续可接入 Neo4j 执行与 JSON 序列化。当前为占位展示。")
+    st.text_area("Cypher（占位）", height=120, placeholder="MATCH (n) RETURN n LIMIT 10")
+    st.button("执行（禁用）", disabled=True)    st.text_area("Cypher（占位）", height=120, placeholder="MATCH (n) RETURN n LIMIT 10")    st.button("执行（禁用）", disabled=True)
