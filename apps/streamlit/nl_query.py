@@ -1,23 +1,31 @@
 import streamlit as st
+import os
 import random
 import json
 from time import perf_counter
 from neo4j import GraphDatabase
 from neo4j.graph import Node, Relationship, Path as Neo4jPath
 
-# Import Gemini SDK (pip install google-genai)
 try:
     from google import genai
 except Exception:
     genai = None
 
-# --- Page and Neo4j Configuration ---
-st.set_page_config(page_title="Neo4j AI Assistant", page_icon="🕸️", layout="wide")
-NEO4J_URI = "bolt://localhost:7687"
-NEO4J_USER = "neo4j"
-NEO4J_PASSWORD = "neo4jroot"
+def get_secret(name: str, default: str | None = None):
+    val = os.getenv(name)
+    if val:
+        return val
+    try:
+        return st.secrets[name]
+    except Exception:
+        return default
 
-# --- Static Content ---
+st.set_page_config(page_title="Neo4j AI Assistant", page_icon="🕸️", layout="wide")
+
+NEO4J_URI = get_secret("NEO4J_URI", "bolt://localhost:7687")
+NEO4J_USER = get_secret("NEO4J_USER", "neo4j")
+NEO4J_PASSWORD = get_secret("NEO4J_PASSWORD", "neo4jroot")
+
 SCHEMA = """
 Graph schema (simplified):
 Nodes:
@@ -27,7 +35,7 @@ Nodes:
 - Deposit(depositID UNIQUE, eno:int, state, location, operatingStatus, geologicAge, depositModelEnvironment, depositModelGroup, depositModelType, provinces, igneous, metallogenic, sedimentary, tectonic)
 Relationships:
 - (Name)-[:REFERS_TO]->(Deposit)
-- (Deposit)-[:HAS {role}]->(Commodody)
+- (Deposit)-[:HAS {role}]->(Commodity)
 - (Company)-[:OWNS]->(Deposit)
 """
 MODEL_ID = "gemini-2.5-flash-preview-05-20"
@@ -37,20 +45,16 @@ SPINNER_MESSAGES = [
     "Polishing the Cypher query...", "Don't worry, the AI is friendly... for now.",
 ]
 
-# --- Neo4j Helper Functions ---
 @st.cache_resource
 def get_neo4j_driver():
-    """Create and cache a Neo4j driver instance."""
     try:
         driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD))
         driver.verify_connectivity()
         return driver
-    except Exception as e:
-        st.error(f"Neo4j connection failed: {e}")
+    except Exception:
         return None
 
 def _serialize_value(v):
-    """Recursively serialize Neo4j graph objects to JSON-friendly formats."""
     if isinstance(v, (Node, Relationship)):
         return dict(v)
     if isinstance(v, Neo4jPath):
@@ -62,27 +66,21 @@ def _serialize_value(v):
     return v
 
 def run_cypher_query(driver, query, params=None):
-    """Execute a Cypher query and return serialized results."""
     with driver.session() as session:
         result = session.run(query, params or {})
         records = [r.data() for r in result]
         serialized_records = [_serialize_value(rec) for rec in records]
         summary = result.consume()
-        return {
-            "records": serialized_records,
-            "summary": summary.counters.__dict__
-        }
+        counters = getattr(summary, "counters", None)
+        counters_dict = getattr(counters, "__dict__", {}) if counters else {}
+        return {"records": serialized_records, "summary": counters_dict}
 
-# --- Gemini Helper Function ---
 def generate_cypher_with_gemini(nl_prompt: str, schema_text: str) -> str:
-    """Generate a Cypher query from natural language using Gemini."""
     if genai is None:
         raise RuntimeError("google-genai is not installed. Run: pip install google-genai")
-    try:
-        api_key = st.secrets["GOOGLE_GENAI_API_KEY"]
-    except Exception:
-        raise RuntimeError("Missing API key. Configure GOOGLE_GENAI_API_KEY in .streamlit/secrets.toml")
-
+    api_key = get_secret("GOOGLE_GENAI_API_KEY")
+    if not api_key:
+        raise RuntimeError("Missing API key. Set env GOOGLE_GENAI_API_KEY or configure it in .streamlit/secrets.toml")
     client = genai.Client(api_key=api_key)
     sys_hint = (
         "You are a Cypher assistant for Neo4j 5. Respond with a single Cypher query only, no explanations, no markdown fences.\n"
@@ -96,27 +94,28 @@ def generate_cypher_with_gemini(nl_prompt: str, schema_text: str) -> str:
     text = getattr(resp, "text", "") or getattr(resp, "output_text", "") or ""
     text = text.strip()
     if text.startswith("```"):
-        lines = [ln for ln in text.strip("`").splitlines() if not ln.strip().lower() == "cypher"]
+        lines = [ln for ln in text.strip("`").splitlines() if ln.strip().lower() != "cypher"]
         text = "\n".join(lines).strip()
     return text
 
-# --- Streamlit UI ---
 st.title("Neo4j AI Assistant")
-tab_assist, tab_query = st.tabs(["Cypher Assistant", "Query Runner"])
 
-# --- Cypher Assistant Tab ---
+driver = get_neo4j_driver()
+api_key_probe = get_secret("GOOGLE_GENAI_API_KEY")
+
+tab_assist, tab_runner = st.tabs(["📝 Cypher Generator", "🔍 AI-Powered Query"])
+
 with tab_assist:
     st.subheader("Generate Cypher from Natural Language")
     with st.expander("View current schema"):
         st.code(SCHEMA.strip(), language="text")
 
-    if "GOOGLE_GENAI_API_KEY" in st.secrets:
-        st.success("Gemini API key found in st.secrets.")
-    else:
-        st.warning("Gemini API key not found. Please set GOOGLE_GENAI_API_KEY in .streamlit/secrets.toml.")
-
-    st.text_input("Model (read-only)", value=MODEL_ID, disabled=True, key="assist_model")
-    nl_prompt = st.text_area("Natural language request", height=160, placeholder="e.g., Find 5 companies and the deposits they own.")
+    nl_prompt_assist = st.text_area(
+        "Natural language request",
+        height=160,
+        placeholder="e.g., Return the company nodes that include BHP and Rio Tinto.",
+        key="nl_assist",
+    )
     gen_btn = st.button("Generate Cypher", key="assist_gen_btn")
 
     if gen_btn:
@@ -125,7 +124,7 @@ with tab_assist:
             spinner_message = random.choice(SPINNER_MESSAGES)
             with st.spinner(spinner_message):
                 t1 = perf_counter()
-                cypher = generate_cypher_with_gemini(nl_prompt, SCHEMA)
+                cypher = generate_cypher_with_gemini(nl_prompt_assist, SCHEMA)
                 t2 = perf_counter()
             st.session_state["generated_cypher"] = cypher
             st.success("Cypher generated.")
@@ -141,34 +140,55 @@ with tab_assist:
         st.subheader("Last generated Cypher")
         st.code(st.session_state["generated_cypher"], language="cypher")
 
-# --- Query Runner Tab ---
-with tab_query:
-    st.subheader("Execute a Cypher Query")
-    driver = get_neo4j_driver()
-    if driver:
-        st.success("Successfully connected to Neo4j.")
-    else:
-        st.stop()
+with tab_runner:
+    st.subheader("Query with Natural Language")
+    with st.expander("View current schema"):
+        st.code(SCHEMA.strip(), language="text")
 
-    cypher_input = st.text_area("Cypher Query", height=160, placeholder="MATCH (n) RETURN n LIMIT 5")
-    params_input = st.text_area("Parameters (JSON format)", height=80, placeholder='{"name": "BHP"}')
-    run_btn = st.button("Execute Query", key="query_run_btn")
+    nl_prompt_runner = st.text_area(
+        "Natural language request",
+        height=160,
+        placeholder="e.g., Which company owns the deposit named 'Golden Grove'?",
+        key="nl_runner",
+    )
+    run_btn = st.button("Run AI Query", key="runner_run_btn")
 
     if run_btn:
+        if not driver:
+            st.error("Cannot run query: Neo4j connection failed. Check console for details.")
+            st.stop()
         t0 = perf_counter()
         try:
-            params = json.loads(params_input) if params_input.strip() else {}
-            with st.spinner("Executing query in Neo4j..."):
+            spinner_message = random.choice(SPINNER_MESSAGES)
+            with st.spinner(spinner_message):
                 t1 = perf_counter()
-                result = run_cypher_query(driver, cypher_input, params)
+                cypher_query = generate_cypher_with_gemini(nl_prompt_runner, SCHEMA)
                 t2 = perf_counter()
-            st.success("Query executed.")
+                result = run_cypher_query(driver, cypher_query)
+                t3 = perf_counter()
+            st.success("AI query executed successfully.")
+            with st.expander("View Generated Cypher"):
+                st.code(cypher_query, language="cypher")
             st.json(result)
-            total_ms = int((t2 - t0) * 1000)
-            query_ms = int((t2 - t1) * 1000)
-            st.caption(f"Total elapsed: {total_ms} ms  ·  Database query time: {query_ms} ms")
+            total_ms = int((t3 - t0) * 1000)
+            model_ms = int((t2 - t1) * 1000)
+            db_ms = int((t3 - t2) * 1000)
+            st.caption(f"Total: {total_ms} ms  ·  AI generation: {model_ms} ms  ·  Database query: {db_ms} ms")
             st.balloons()
-        except json.JSONDecodeError:
-            st.error("Invalid JSON in parameters. Please check the format.")
         except Exception as e:
-            st.error(f"Query failed: {e}")
+            st.error(f"Query execution failed: {e}")
+
+st.divider()
+status_col1, status_col2, status_col3 = st.columns(3)
+with status_col1:
+    st.caption(f"🧠 Model: {MODEL_ID}")
+with status_col2:
+    if api_key_probe:
+        st.caption("🟢 Gemini API Key: Found")
+    else:
+        st.caption("🔴 Gemini API Key: Not Found")
+with status_col3:
+    if driver:
+        st.caption("🟢 Neo4j Connection: Active")
+    else:
+        st.caption("🔴 Neo4j Connection: Failed")
