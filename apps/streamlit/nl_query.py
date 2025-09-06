@@ -1,4 +1,5 @@
 import streamlit as st
+import random
 from time import perf_counter
 
 # Import Gemini SDK (pip install google-genai)
@@ -33,6 +34,18 @@ Relationships:
 # Fixed Gemini model
 MODEL_ID = "gemini-2.5-flash-preview-05-20"
 
+# Engaging messages for the spinner
+SPINNER_MESSAGES = [
+    "Contacting the AI overlords...",
+    "Translating human thoughts into Cypher...",
+    "Warming up the graph traversal engines...",
+    "Asking the model nicely for a query...",
+    "Reticulating splines... and nodes...",
+    "Consulting the Neo4j oracles...",
+    "Polishing the Cypher query...",
+    "Don't worry, the AI is friendly... for now.",
+]
+
 def _read_secret_api_key() -> str | None:
     """Read the Gemini API key strictly from Streamlit secrets."""
     try:
@@ -61,7 +74,7 @@ def generate_cypher_with_gemini(nl_prompt: str, schema_text: str) -> str:
     )
     prompt = f"{sys_hint}\n\nSchema:\n{schema_text}\n\nUser request:\n{nl_prompt}\n\nReturn only the Cypher."
 
-    # Minimal settings for deterministic, concise code-like output
+    # Minimal and valuable generation settings for code-like outputs
     config = genai.types.GenerateContentConfig(
         temperature=0.2,
         max_output_tokens=512,
@@ -113,7 +126,8 @@ with tab_assist:
     if gen_btn:
         t0 = perf_counter()
         try:
-            with st.spinner("Generating Cypher with Gemini..."):
+            spinner_message = random.choice(SPINNER_MESSAGES)
+            with st.spinner(spinner_message):
                 t1 = perf_counter()
                 cypher = generate_cypher_with_gemini(nl_prompt, SCHEMA)
                 t2 = perf_counter()
@@ -121,12 +135,10 @@ with tab_assist:
             st.session_state["generated_cypher"] = cypher
             st.success("Cypher generated.")
             st.code(cypher, language="cypher")
-
+            
             total_ms = int((t2 - t0) * 1000)
             model_ms = int((t2 - t1) * 1000)
-            col_a, col_b = st.columns(2)
-            col_a.metric("Total elapsed", f"{total_ms} ms")
-            col_b.metric("Model generation time", f"{model_ms} ms")
+            st.caption(f"Total elapsed: {total_ms} ms  ·  Model generation time: {model_ms} ms")
 
             st.balloons()
         except Exception as e:
