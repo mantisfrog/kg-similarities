@@ -1,16 +1,17 @@
 import streamlit as st
 
-# 使用新版 SDK：pip install google-genai
+# Import Gemini SDK (pip install google-genai)
 try:
     from google import genai
 except Exception:
     genai = None
 
-st.set_page_config(page_title="Neo4j 前端：Cypher 编写助手（Tabs）", page_icon="🕸️", layout="wide")
-st.title("Neo4j 前端：Cypher 编写助手（Tabs 布局）")
-st.caption("API 仅从 st.secrets 读取，模型固定为 gemini-2.5-flash-preview-05-20。")
+# Basic Streamlit page config
+st.set_page_config(page_title="Neo4j Frontend: Cypher Assistant (Tabs)", page_icon="🕸️", layout="wide")
+st.title("Neo4j Frontend: Cypher Assistant (Tabs)")
+st.caption("API key is read from st.secrets only. Model is fixed to gemini-2.5-flash-preview-05-20.")
 
-# ---- Schema（来自 import.cypher 的结构摘要）----
+# Static schema context shown to the user
 SCHEMA = """
 Graph schema (simplified):
 
@@ -28,20 +29,23 @@ Relationships:
 - (Company)-[:OWNS]->(Deposit)
 """
 
+# Fixed Gemini model
 MODEL_ID = "gemini-2.5-flash-preview-05-20"
 
 def _read_secret_api_key() -> str | None:
+    """Read the Gemini API key strictly from Streamlit secrets."""
     try:
         return st.secrets["GOOGLE_GENAI_API_KEY"]
     except Exception:
         return None
 
 def generate_cypher_with_gemini(nl_prompt: str, schema_text: str) -> str:
+    """Generate a Cypher query from natural language using Gemini."""
     if genai is None:
-        raise RuntimeError("未安装 google-genai，请先执行：pip install google-genai")
+        raise RuntimeError("google-genai is not installed. Run: pip install google-genai")
     api_key = _read_secret_api_key()
     if not api_key:
-        raise RuntimeError("缺少 Gemini API Key，请在 .streamlit/secrets.toml 配置 GOOGLE_GENAI_API_KEY")
+        raise RuntimeError("Missing API key. Configure GOOGLE_GENAI_API_KEY in .streamlit/secrets.toml")
 
     client = genai.Client(api_key=api_key)
 
@@ -56,22 +60,22 @@ def generate_cypher_with_gemini(nl_prompt: str, schema_text: str) -> str:
     )
     prompt = f"{sys_hint}\n\nSchema:\n{schema_text}\n\nUser request:\n{nl_prompt}\n\nReturn only the Cypher."
 
-    # 仅设置最必要参数：降低随机性 + 合理长度
-    config = genai.types.GenerateContentConfig(
-        temperature=0.1,
-        max_output_tokens=1024,
+    # Minimal and valuable generation settings for code-like outputs
+    generation_config = genai.types.GenerateContentConfig(
+        temperature=0.1,        # lower randomness for more deterministic code
+        max_output_tokens=1024, # reasonable cap for a single query
     )
 
     resp = client.models.generate_content(
         model=MODEL_ID,
         contents=prompt,
-        config=config,
+        generation_config=generation_config,
     )
 
-    text = getattr(resp, "output_text", None) or getattr(resp, "text", "") or ""
+    text = getattr(resp, "text", "") or getattr(resp, "output_text", "") or ""
     text = text.strip()
 
-    # 清理可能出现的代码围栏
+    # Remove potential code fences if present
     if text.startswith("```"):
         lines = [ln for ln in text.strip("`").splitlines()]
         if lines and lines[0].strip().lower() == "cypher":
@@ -80,43 +84,46 @@ def generate_cypher_with_gemini(nl_prompt: str, schema_text: str) -> str:
 
     return text
 
-# ---- Tabs：仅保留 方式二 ----
-tab_assist, tab_query = st.tabs(["🧠 Cypher 编写助手", "🔎 查询执行（占位）"])
+# Tabs layout: keep only the "Method 2" UI
+tab_assist, tab_query = st.tabs(["Cypher Assistant", "Query Runner (placeholder)"])
 
 with tab_assist:
-    st.subheader("🧠 Cypher 编写助手")
-    st.caption("输入自然语言，基于给定 Schema 生成 Cypher。")
+    st.subheader("Cypher Assistant")
+    st.caption("Enter natural language and generate a Cypher query using the provided schema.")
 
-    with st.expander("查看当前 Schema"):
+    with st.expander("View current schema"):
         st.code(SCHEMA.strip(), language="text")
 
-    # 仅从 secrets 读取 API Key，并显示状态
     api_key_present = _read_secret_api_key() is not None
     if api_key_present:
-        st.success("已从 st.secrets 读取 Gemini API Key")
+        st.success("Gemini API key found in st.secrets.")
     else:
-        st.warning("未读取到 Gemini API Key。请在 .streamlit/secrets.toml 配置 GOOGLE_GENAI_API_KEY")
+        st.warning("Gemini API key not found. Please set GOOGLE_GENAI_API_KEY in .streamlit/secrets.toml.")
 
-    st.text_input("模型（只读）", value=MODEL_ID, disabled=True)
+    st.text_input("Model (read-only)", value=MODEL_ID, disabled=True)
 
-    nl_prompt = st.text_area("自然语言需求", height=160, placeholder="例如：查找名称包含 'BHP' 的 Name 节点，并返回节点与数量")
-    gen_btn = st.button("生成 Cypher")
+    nl_prompt = st.text_area(
+        "Natural language request",
+        height=160,
+        placeholder="e.g., Find Name nodes whose nameText contains 'BHP' and return the nodes and the count",
+    )
+    gen_btn = st.button("Generate Cypher")
 
     if gen_btn:
         try:
             cypher = generate_cypher_with_gemini(nl_prompt, SCHEMA)
             st.session_state["generated_cypher"] = cypher
-            st.success("已生成 Cypher")
+            st.success("Cypher generated.")
             st.code(cypher, language="cypher")
         except Exception as e:
-            st.error(f"生成失败：{e}")
+            st.error(f"Generation failed: {e}")
 
     if "generated_cypher" in st.session_state and not gen_btn:
-        st.subheader("上次生成的 Cypher")
+        st.subheader("Last generated Cypher")
         st.code(st.session_state["generated_cypher"], language="cypher")
 
 with tab_query:
-    st.subheader("🔎 查询执行（占位）")
-    st.caption("后续可接入 Neo4j 执行与 JSON 序列化。当前为占位展示。")
-    st.text_area("Cypher（占位）", height=120, placeholder="MATCH (n) RETURN n LIMIT 10")
-    st.button("执行（禁用）", disabled=True)
+    st.subheader("Query Runner (placeholder)")
+    st.caption("This tab can be wired to Neo4j execution and JSON serialization later.")
+    st.text_area("Cypher (placeholder)", height=120, placeholder="MATCH (n) RETURN n LIMIT 10")
+    st.button("Execute (disabled)", disabled=True)
