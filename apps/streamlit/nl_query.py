@@ -1,4 +1,5 @@
 import streamlit as st
+from time import perf_counter
 
 # Import Gemini SDK (pip install google-genai)
 try:
@@ -60,16 +61,16 @@ def generate_cypher_with_gemini(nl_prompt: str, schema_text: str) -> str:
     )
     prompt = f"{sys_hint}\n\nSchema:\n{schema_text}\n\nUser request:\n{nl_prompt}\n\nReturn only the Cypher."
 
-    # Minimal and valuable generation settings for code-like outputs
-    generation_config = genai.types.GenerateContentConfig(
-        temperature=0.1,        # lower randomness for more deterministic code
-        max_output_tokens=1024, # reasonable cap for a single query
+    # Minimal settings for deterministic, concise code-like output
+    config = genai.types.GenerateContentConfig(
+        temperature=0.2,
+        max_output_tokens=512,
     )
 
     resp = client.models.generate_content(
         model=MODEL_ID,
         contents=prompt,
-        generation_config=generation_config,
+        config=config,
     )
 
     text = getattr(resp, "text", "") or getattr(resp, "output_text", "") or ""
@@ -110,13 +111,29 @@ with tab_assist:
     gen_btn = st.button("Generate Cypher")
 
     if gen_btn:
+        t0 = perf_counter()
         try:
-            cypher = generate_cypher_with_gemini(nl_prompt, SCHEMA)
+            with st.spinner("Generating Cypher with Gemini..."):
+                t1 = perf_counter()
+                cypher = generate_cypher_with_gemini(nl_prompt, SCHEMA)
+                t2 = perf_counter()
+
             st.session_state["generated_cypher"] = cypher
             st.success("Cypher generated.")
             st.code(cypher, language="cypher")
+
+            total_ms = int((t2 - t0) * 1000)
+            model_ms = int((t2 - t1) * 1000)
+            col_a, col_b = st.columns(2)
+            col_a.metric("Total elapsed", f"{total_ms} ms")
+            col_b.metric("Model generation time", f"{model_ms} ms")
+
+            st.balloons()
         except Exception as e:
+            t_fail = perf_counter()
+            total_ms = int((t_fail - t0) * 1000)
             st.error(f"Generation failed: {e}")
+            st.caption(f"Total elapsed: {total_ms} ms")
 
     if "generated_cypher" in st.session_state and not gen_btn:
         st.subheader("Last generated Cypher")
