@@ -210,3 +210,4 @@ neo4j-docker
 data/processed/
 data/graph/
 .Identifier
+apps/streamlit/.streamlit/secrets.toml
