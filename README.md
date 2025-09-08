@@ -11,6 +11,7 @@ A knowledge graph application for analyzing mineral deposit data from Geoscience
 - [Prerequisites](#prerequisites-)
 - [Installation & Deployment](#installation--deployment-)
 - [Features](#features-)
+- [Frontend Example Queries](#frontend-example-queries-)
 - [Usage Examples](#usage-examples-)
 - [Data Sources](#data-sources-)
 - [Contributing](#contributing-)
@@ -49,10 +50,16 @@ The knowledge graph is built from the Geoscience Australia dataset, connecting d
 
 ## Prerequisites 🛠️
 
--   Python 3.8+
+-   Python 3.9+
 -   [Neo4j Database](https://neo4j.com/download/) (Desktop or Server)
 -   [Streamlit](https://streamlit.io/)
 -   Required Python packages (see `requirements.txt`)
+
+⚠️ Important: Python >= 3.9 is required. Check your version:
+
+```bash
+python3 --version
+```
 
 ## Installation & Deployment 🚀
 
@@ -63,43 +70,50 @@ git clone <repository-url>
 cd kg-similarities
 ```
 
-### 2. Install Dependencies
+### 2. Make scripts executable (one-time) 🔐
 
 ```bash
-pip install -r requirements.txt
+chmod +x install.sh frontend.sh
 ```
 
-### 3. Setup Neo4j Database
-
-1.  Install and start your Neo4j instance.
-2.  Create a new database (e.g., `neo4j`).
-3.  Configure your application's connection parameters (URI, user, password).
-
-### 4. Import Data 📊
-
-1.  Place your CSV files into the `import` directory of your Neo4j database instance. The required files are:
-    -   `node_Name.csv`
-    -   `node_Company.csv`
-    -   `node_Commodity.csv`
-    -   `node_Deposit.csv`
-    -   `rel_Refers_to.csv`
-    -   `rel_Has.csv`
-    -   `rel_Owns.csv`
-
-2.  Execute the import script `cypher/import.cypher`. You can do this by:
-    -   Pasting the contents of the file into the Neo4j Browser and running it.
-    -   Using `cypher-shell`:
-        ```bash
-        cat cypher/import.cypher | cypher-shell -u <user> -p <password> -d <database>
-        ```
-
-### 5. Launch the Application
+### 3. Install and import via script ⚙️
 
 ```bash
-streamlit run app.py
+./install.sh
+```
+
+- Installs Python dependencies and executes `cypher/import.cypher`.
+- Ensure CSVs are in Neo4j’s `import` directory before running.
+
+### 4. Configure API Keys 🔑
+
+Create a `secrets.toml` file in the `apps/streamlit/.streamlit/` directory with your API keys (replace placeholders with actual values):
+
+```toml
+GOOGLE_GENAI_API_KEY = "{Your API Key}"
+OPENAI_API_KEY = "{Your API Key}"
+NEO4J_URI = "bolt://localhost:7687"
+NEO4J_USER = "neo4j"
+NEO4J_PASSWORD = "neo4jroot"
+```
+
+This file is required for the Streamlit app to connect to Neo4j and use AI features.
+
+### 5. Launch the frontend 🚀
+
+```bash
+./frontend.sh
 ```
 
 The application will be available at `http://localhost:8501` 🎉
+
+> Optional manual setup (only if not using scripts):
+> - `pip install -r requirements.txt`
+> - Import using Neo4j Browser or:
+>   ```bash
+>   cat cypher/import.cypher | cypher-shell -u <user> -p <password> -d <database>
+>   ```
+> - Start: `streamlit run app.py`
 
 ## Features ✨
 
@@ -119,6 +133,34 @@ The application will be available at `http://localhost:8501` 🎉
 - 📊 Analyze commodity distribution patterns.
 - 💡 Identify similar deposit types.
 - 📂 Explore company portfolios.
+
+## Frontend Example Queries 🔎
+
+Run these in the Streamlit UI (or Neo4j Browser) to verify end-to-end behavior.
+
+1) Who are the top five companies that own the most gold mines?
+Expected result:
+```cypher
+MATCH (comp:Company)-[:OWNS]->(d:Deposit)-[:HAS]->(c:Commodity)
+WHERE toLower(c.commodityDesc) CONTAINS 'gold'
+RETURN comp.companyName AS companyName, count(DISTINCT d.depositID) AS goldMineCount
+ORDER BY goldMineCount DESC
+LIMIT 5
+```
+Take off attributes ".companyName" in order to show visuals in Neo4j Browser(http://localhost:7474/browser/)
+
+2) Find a path between a company containing 'bhp' and a company containing 'rio tinto'. The path goes through their deposits to a common commodity which must contain 'iron ore' in its description. Return the path and both companies.
+Expected result:
+```cypher
+MATCH p = (comp:Company)-[:OWNS]->(d1:Deposit)-[:HAS]->(c:Commodity)<-[:HAS]-(d2:Deposit)<-[:OWNS]-(comp2:Company)
+WHERE toLower(comp.companyName) CONTAINS 'bhp'
+  AND toLower(comp2.companyName) CONTAINS 'rio tinto'
+  AND toLower(c.commodityDesc) CONTAINS 'iron ore'
+  AND comp <> comp2
+RETURN p, comp, comp2;
+```
+
+Tip: For better match rate, use CONTAINS in prompt.
 
 ## Usage Examples 🧑‍💻
 
