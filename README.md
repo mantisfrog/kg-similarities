@@ -55,7 +55,7 @@ The knowledge graph is built from the Geoscience Australia dataset, connecting d
 -   [Streamlit](https://streamlit.io/)
 -   Required Python packages (see `requirements.txt`)
 
-⚠️ Important: Python >= 3.9 is required. Check your version:
+⚠️ Important: Python >= 3.9 is required. In the install.sh, a virtual environment will be created using python -m venv .venv, making sure that python points to version 3.9 or higher. Check your version:
 
 ```bash
 python3 --version
@@ -66,7 +66,7 @@ python3 --version
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/mantisfrog/kg-similarities.git
 cd kg-similarities
 ```
 
@@ -82,16 +82,15 @@ chmod +x install.sh frontend.sh
 ./install.sh
 ```
 
-- Installs Python dependencies and executes `cypher/import.cypher`.
-- Ensure CSVs are in Neo4j’s `import` directory before running.
+The Neo4j Browser will be available at `http://localhost:7474` 🎉
 
 ### 4. Configure API Keys 🔑
 
 Create a `secrets.toml` file in the `apps/streamlit/.streamlit/` directory with your API keys (replace placeholders with actual values):
 
 ```toml
-GOOGLE_GENAI_API_KEY = "{Your API Key}"
-OPENAI_API_KEY = "{Your API Key}"
+GOOGLE_GENAI_API_KEY = "<Your API Key>"
+OPENAI_API_KEY = "<Your API Key>"
 NEO4J_URI = "bolt://localhost:7687"
 NEO4J_USER = "neo4j"
 NEO4J_PASSWORD = "neo4jroot"
@@ -105,15 +104,7 @@ This file is required for the Streamlit app to connect to Neo4j and use AI featu
 ./frontend.sh
 ```
 
-The application will be available at `http://localhost:8501` 🎉
-
-> Optional manual setup (only if not using scripts):
-> - `pip install -r requirements.txt`
-> - Import using Neo4j Browser or:
->   ```bash
->   cat cypher/import.cypher | cypher-shell -u <user> -p <password> -d <database>
->   ```
-> - Start: `streamlit run app.py`
+The frontend will be available at `http://localhost:8501` 🎉
 
 ## Features ✨
 
