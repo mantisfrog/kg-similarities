@@ -154,33 +154,37 @@ def main():
     if miss:
         raise ValueError(f"Missing required columns in source CSV: {miss}")
 
-    # --- Process and generate unique Name nodes ---
-    name_vals = set()
+    # --- Process and generate unique DepositName nodes ---
+    deposit_name_vals = set()
     for _, r in df.iterrows():
         # Extract names from DEPOSIT_NAME column (treated as a single name).
         for n in split_names_cell(r["DEPOSIT_NAME"], is_synonyms=False):
             if n not in EXCLUDED_NAMES:
-                name_vals.add((norm_key(n), n))
+                deposit_name_vals.add((norm_key(n), n))
         # Extract names from SYNONYMS column (split by comma).
         for n in split_names_cell(r["SYNONYMS"], is_synonyms=True):
             if n not in EXCLUDED_NAMES:
-                name_vals.add((norm_key(n), n))
+                deposit_name_vals.add((norm_key(n), n))
     
-    # Create a sorted list of unique names and assign a unique ID to each.
-    name_sorted = [orig for _, orig in sorted(name_vals, key=lambda x: x[0])]
-    name_id = {v: f"name_{i:04d}" for i, v in enumerate(name_sorted, 1)}
+    # Create a sorted list of unique deposit names and assign a unique ID to each.
+    deposit_name_sorted = [orig for _, orig in sorted(deposit_name_vals, key=lambda x: x[0])]
+    deposit_name_id = {v: f"depositName_{i:04d}" for i, v in enumerate(deposit_name_sorted, 1)}
 
-    # --- Process and generate unique Company nodes ---
-    comp_vals = set()
+    # --- Process and generate unique Company and CompanyName nodes ---
+    company_name_vals = set()
     for _, r in df.iterrows():
         for c in split_commas(r["COMPANIES"]):
             k = norm_key(c)
             if k != EXCLUDED_COMPANY_NORM:
-                comp_vals.add((k, c))
-    
-    # Create a sorted list of unique companies and assign a unique ID.
-    comp_sorted = [orig for _, orig in sorted(comp_vals, key=lambda x: x[0])]
-    comp_id = {v: f"company_{i:04d}" for i, v in enumerate(comp_sorted, 1)}
+                company_name_vals.add((k, c))
+
+    # Create a sorted list of unique company names and assign a unique ID to each name.
+    company_name_sorted = [orig for _, orig in sorted(company_name_vals, key=lambda x: x[0])]
+    company_name_id = {v: f"companyName_{i:04d}" for i, v in enumerate(company_name_sorted, 1)}
+
+    # Create canonical Company nodes based on the normalized key.
+    company_map = {k: f"company_{i:04d}" for i, k in enumerate(sorted({k for k, v in company_name_vals}), 1)}
+    company_id = {v: company_map[norm_key(v)] for v in company_name_sorted}
 
     # --- Process and generate unique Commodity nodes ---
     sym_keys = {} # Maps normalized symbol to original symbol.
@@ -219,15 +223,21 @@ def main():
 
     # --- Write Node CSV files ---
     write_csv(
-        OUTPUT_DIR / "node_Name.csv",
-        [[name_id[v], v, "Name"] for v in name_sorted],
-        header=["nameID:ID", "nameText:string", ":LABEL"]
+        OUTPUT_DIR / "node_DepositName.csv",
+        [[deposit_name_id[v], v, "DepositName"] for v in deposit_name_sorted],
+        header=["depositNameID:ID", "depositNameText:string", ":LABEL"]
     )
     
     write_csv(
         OUTPUT_DIR / "node_Company.csv",
-        [[comp_id[v], v, "Company"] for v in comp_sorted],
-        header=["companyID:ID", "companyName:string", ":LABEL"]
+        [[cid, "Company"] for cid in sorted(company_map.values())],
+        header=["companyID:ID", ":LABEL"]
+    )
+
+    write_csv(
+        OUTPUT_DIR / "node_CompanyName.csv",
+        [[company_name_id[v], v, "CompanyName"] for v in company_name_sorted],
+        header=["companyNameID:ID", "companyNameText:string", ":LABEL"]
     )
     
     node_commodity_rows = []
@@ -278,17 +288,28 @@ def main():
 
     # --- Generate and write Relationship CSV files ---
     
-    # Relationship: (Name)-[:REFERS_TO]->(Deposit)
-    rel_refers = set()
+    # Relationship: (DepositName)-[:REFERS_TO_DEPOSIT]->(Deposit)
+    rel_refers_deposit = set()
     for i, r in df.iterrows():
         did = dep_id[i]
         names_to_link = split_names_cell(r["DEPOSIT_NAME"], False) + split_names_cell(r["SYNONYMS"], True)
         for n in names_to_link:
-            if n in name_id: # Ensure the name exists as a node before creating a relationship.
-                rel_refers.add((name_id[n], did))
+            if n in deposit_name_id: # Ensure the name exists as a node before creating a relationship.
+                rel_refers_deposit.add((deposit_name_id[n], did))
     write_csv(
-        OUTPUT_DIR / "rel_Refers_to.csv",
-        [[a, b, "REFERS_TO"] for (a, b) in sorted(rel_refers)],
+        OUTPUT_DIR / "rel_Refers_to_Deposit.csv",
+        [[a, b, "REFERS_TO_DEPOSIT"] for (a, b) in sorted(rel_refers_deposit)],
+        header=[":START_ID", ":END_ID", ":TYPE"]
+    )
+
+    # Relationship: (CompanyName)-[:REFERS_TO_COMPANY]->(Company)
+    rel_refers_company = set()
+    for name_text, name_id in company_name_id.items():
+        comp_id = company_id[name_text]
+        rel_refers_company.add((name_id, comp_id))
+    write_csv(
+        OUTPUT_DIR / "rel_Refers_to_Company.csv",
+        [[a, b, "REFERS_TO_COMPANY"] for (a, b) in sorted(rel_refers_company)],
         header=[":START_ID", ":END_ID", ":TYPE"]
     )
 
@@ -315,8 +336,8 @@ def main():
     for i, r in df.iterrows():
         did = dep_id[i]
         for c in split_commas(r["COMPANIES"]):
-            if c in comp_id: # Ensure the company exists as a node.
-                rel_owns.add((comp_id[c], did, "OWNS"))
+            if c in company_id: # Ensure the company exists as a node.
+                rel_owns.add((company_id[c], did, "OWNS"))
     write_csv(
         OUTPUT_DIR / "rel_Owns.csv",
         [[a, b, t] for (a, b, t) in sorted(rel_owns)],

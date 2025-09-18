@@ -1,18 +1,18 @@
 MATCH (n) DETACH DELETE n;
-CREATE CONSTRAINT Name_nameID IF NOT EXISTS FOR (n:Name) REQUIRE n.nameID IS UNIQUE;
 CREATE CONSTRAINT Company_companyID IF NOT EXISTS FOR (c:Company) REQUIRE c.companyID IS UNIQUE;
 CREATE CONSTRAINT Commodity_commodityID IF NOT EXISTS FOR (c:Commodity) REQUIRE c.commodityID IS UNIQUE;
 CREATE CONSTRAINT Deposit_depositID IF NOT EXISTS FOR (d:Deposit) REQUIRE d.depositID IS UNIQUE;
-
-// Load and create Node_Name
-LOAD CSV WITH HEADERS FROM 'file:///node_Name.csv' AS row
-MERGE (n:Name {nameID: row.`nameID:ID`})
-SET n.nameText = row.`nameText:string`;
+CREATE CONSTRAINT DepositName_depositNameID IF NOT EXISTS FOR (n:DepositName) REQUIRE n.depositNameID IS UNIQUE;
+CREATE CONSTRAINT CompanyName_companyNameID IF NOT EXISTS FOR (n:CompanyName) REQUIRE n.companyNameID IS UNIQUE;
 
 // Load and create Node_Company
 LOAD CSV WITH HEADERS FROM 'file:///node_Company.csv' AS row
-MERGE (c:Company {companyID: row.`companyID:ID`})
-SET c.companyName = row.`companyName:string`;
+MERGE (c:Company {companyID: row.`companyID:ID`});
+
+// Load and create Node_CompanyName
+LOAD CSV WITH HEADERS FROM 'file:///node_CompanyName.csv' AS row
+MERGE (n:CompanyName {companyNameID: row.`companyNameID:ID`})
+SET n.companyNameText = row.`companyNameText:string`;
 
 // Load and create Node_Commodity
 LOAD CSV WITH HEADERS FROM 'file:///node_Commodity.csv' AS row
@@ -38,11 +38,22 @@ SET d.eno = toInteger(row.`ENO:int`),
     d.sedimentary = row.`SEDIMENTARY:string`,
     d.tectonic = row.`TECTONIC:string`;
 
-// Create rel_Refers_to relationships
-LOAD CSV WITH HEADERS FROM 'file:///rel_Refers_to.csv' AS row
-MATCH (n:Name {nameID: row.`:START_ID`})
+// Load and create Node_DepositName
+LOAD CSV WITH HEADERS FROM 'file:///node_DepositName.csv' AS row
+MERGE (n:DepositName {depositNameID: row.`depositNameID:ID`})
+SET n.depositNameText = row.`depositNameText:string`;
+
+// Create rel_Refers_to_Deposit relationships
+LOAD CSV WITH HEADERS FROM 'file:///rel_Refers_to_Deposit.csv' AS row
+MATCH (n:DepositName {depositNameID: row.`:START_ID`})
 MATCH (d:Deposit {depositID: row.`:END_ID`})
-MERGE (n)-[:REFERS_TO]->(d);
+MERGE (n)-[:REFERS_TO_DEPOSIT]->(d);
+
+// Create rel_Refers_to_Company relationships
+LOAD CSV WITH HEADERS FROM 'file:///rel_Refers_to_Company.csv' AS row
+MATCH (n:CompanyName {companyNameID: row.`:START_ID`})
+MATCH (c:Company {companyID: row.`:END_ID`})
+MERGE (n)-[:REFERS_TO_COMPANY]->(c);
 
 // Create rel_Has relationships
 LOAD CSV WITH HEADERS FROM 'file:///rel_Has.csv' AS row
