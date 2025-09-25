@@ -44,6 +44,8 @@ SPECIAL_SYNONYMS = [
 # Define data to be excluded from the graph.
 EXCLUDED_NAMES = set(SPECIAL_SYNONYMS)
 EXCLUDED_COMPANY_NORM = "unnamed owner"
+# Define company name tokens that should be ignored if they appear alone after splitting.
+EXCLUDED_COMPANY_TOKENS = {"limited", "ltd", "ltd.", "australia", "South Africa"}
 # --- END: Added section for data exclusion ---
 
 def clean(s):
@@ -175,7 +177,7 @@ def main():
     for _, r in df.iterrows():
         for c in split_commas(r["COMPANIES"]):
             k = norm_key(c)
-            if k != EXCLUDED_COMPANY_NORM:
+            if k != EXCLUDED_COMPANY_NORM and k not in EXCLUDED_COMPANY_TOKENS:
                 company_name_vals.add((k, c))
 
     # Create a sorted list of unique company names and assign a unique ID to each name.
