@@ -68,15 +68,18 @@ def parse_deposit_model(s: str):
     return env, grp, typ
 
 def clean_strings(obj):
-    """Recursively removes newline and carriage return characters from all string values in a nested object."""
+    """Recursively removes newline and carriage return characters from all string values in a nested object.
+       Also fixes known dirty data issues."""
     if isinstance(obj, str):
-        return obj.replace("\r", "").replace("\n", "")
+        s = obj.replace("\r", "").replace("\n", "")
+        # 修正脏数据
+        s = s.replace("AuRico Gold Corporporation", "AuRico Gold Corporation")
+        return s
     elif isinstance(obj, dict):
         return {k: clean_strings(v) for k, v in obj.items()}
     elif isinstance(obj, list):
         return [clean_strings(v) for v in obj]
     else:
-        # Return non-string, non-dict, non-list values as is.
         return obj
 
 # Open and load the source JSON file.
