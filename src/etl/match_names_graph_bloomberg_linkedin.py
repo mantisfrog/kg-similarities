@@ -92,7 +92,7 @@ def main():
         return
 
     # Extract company lists from their respective dataframes
-    bloomberg_companies = bloomberg_df.iloc[:, 1].dropna().unique() # Column B (index 1) is company name
+    bloomberg_companies = bloomberg_df['LONG_COMP_NAME'].dropna().unique() # Use column name instead of index
     
     # Clean dirty values from LinkedIn data before creating the unique list
     linkedin_col_name = 'Linkedin_Name' # The column name is now fixed
@@ -121,11 +121,10 @@ def main():
     # --- Special Test Case (Currently Disabled) ---
     # The following block can be un-commented to run a detailed analysis on a specific list of names.
     # It finds all potential candidates, scores them, and saves the results to 'Special_Test_Bloomberg_Matches.csv'.
-    """
+    '''
     special_test_names = [
         "Minerals and Metals Group (MMG)", "MITSUI & CO. (AUSTRALIA) LTD.", 
-        "Zashvin Pty. Ltd.", "Impress Energy  Limited", "Weather Investments II S.ar.l",
-        "Vale Australia", "Vale S.A."
+        "Athena Resources Limited"
     ]
     print(f"\n--- Running special test for: {special_test_names} ---")
     
@@ -174,7 +173,7 @@ def main():
         print("\nNo potential Bloomberg candidates found for the special test names.")
 
     print("--- Special test finished. Continuing with main process... ---\n")
-    """
+    '''
     # --- End of Special Test Case ---
 
 
@@ -205,17 +204,17 @@ def main():
             
         all_results.append(result_row)
 
-    # 6. Save Output
+    # 6. Create Initial Results DataFrame
     results_df = pd.DataFrame(all_results)
-    results_df.to_csv(output_path, index=False)
-    print(f"Matching process complete. Results saved to {output_path}")
-
+    
     # 7. Process and save perfect matches with new hierarchical criteria
     print("Processing and saving perfect matches with new criteria...")
 
-    # Initialize new columns for the 'au' removal logic
-    results_df['Bloomberg_au_removed_match'] = np.nan
-    results_df['LinkedIn_au_removed_match'] = np.nan
+    # Initialize new columns for the 'au' removal logic and matching rule
+    results_df['Bloomberg_au_removed_match'] = None
+    results_df['LinkedIn_au_removed_match'] = None
+    results_df['Bloomberg_Matching_Rule'] = None
+    results_df['LinkedIn_Matching_Rule'] = None
 
     matched_nodes = set()
     bloomberg_matches_list = []
@@ -225,8 +224,9 @@ def main():
     bloomberg_step1_matches = results_df[
         (results_df['Bloomberg_no_space_exact_match'] == 1) &
         (~results_df['Graph_Company_Name'].isin(matched_nodes))
-    ]
+    ].copy()
     if not bloomberg_step1_matches.empty:
+        bloomberg_step1_matches['Bloomberg_Matching_Rule'] = 'No-Space Exact Match'
         bloomberg_matches_list.append(bloomberg_step1_matches)
         matched_nodes.update(bloomberg_step1_matches['Graph_Company_Name'])
     
@@ -237,14 +237,18 @@ def main():
         (remaining_df['Bloomberg_levenshtein_ratio'] >= 90) &
         (remaining_df['Bloomberg_jaccard_similarity'] >= 0.5) &
         (remaining_df['Bloomberg_spacy_similarity'] >= 0.5)
-    ]
+    ].copy()
     if not bloomberg_step2_matches.empty:
+        bloomberg_step2_matches['Bloomberg_Matching_Rule'] = 'High-Confidence Match'
         bloomberg_matches_list.append(bloomberg_step2_matches)
         matched_nodes.update(bloomberg_step2_matches['Graph_Company_Name'])
 
-    # --- Step 2.5: Bloomberg 'au' Suffix Removal Exact Match ---
-    remaining_df = results_df[~results_df['Graph_Company_Name'].isin(matched_nodes)]
-    au_removal_candidates_b = remaining_df[remaining_df['Graph_Company_Name'].str.lower().str.endswith(' au', na=False)].copy()
+    # --- Step 3: Bloomberg 'au' Suffix Removal Exact Match ---
+    remaining_df = results_df[~results_df['Graph_Company_Name'].isin(matched_nodes)].copy()
+    
+    # First, normalize the graph name to correctly identify candidates ending in ' au'
+    remaining_df['normalized_graph_name'] = remaining_df['Graph_Company_Name'].apply(normalize_name)
+    au_removal_candidates_b = remaining_df[remaining_df['normalized_graph_name'].str.endswith(' au', na=False)].copy()
     
     if not au_removal_candidates_b.empty:
         au_removal_candidates_b['Bloomberg_au_removed_match'] = au_removal_candidates_b.apply(
@@ -255,37 +259,43 @@ def main():
         results_df.update(au_removal_candidates_b['Bloomberg_au_removed_match'])
 
         # Filter for the ones that actually matched
-        bloomberg_step2_5_matches = au_removal_candidates_b[au_removal_candidates_b['Bloomberg_au_removed_match'] == 1]
+        bloomberg_step3_matches = au_removal_candidates_b[au_removal_candidates_b['Bloomberg_au_removed_match'] == 1].copy()
         
-        if not bloomberg_step2_5_matches.empty:
-            bloomberg_matches_list.append(bloomberg_step2_5_matches)
-            matched_nodes.update(bloomberg_step2_5_matches['Graph_Company_Name'])
+        if not bloomberg_step3_matches.empty:
+            bloomberg_step3_matches['Bloomberg_Matching_Rule'] = 'AU-Removed Exact Match'
+            bloomberg_matches_list.append(bloomberg_step3_matches)
+            matched_nodes.update(bloomberg_step3_matches['Graph_Company_Name'])
 
 
-    # --- Step 3: LinkedIn NoSpace Exact Match (for remaining nodes) ---
-    remaining_df = results_df[~results_df['Graph_Company_Name'].isin(matched_nodes)]
-    linkedin_step3_matches = remaining_df[
-        (remaining_df['LinkedIn_no_space_exact_match'] == 1)
-    ]
-    if not linkedin_step3_matches.empty:
-        linkedin_matches_list.append(linkedin_step3_matches)
-        matched_nodes.update(linkedin_step3_matches['Graph_Company_Name'])
-
-    # --- Step 4: LinkedIn High-Confidence Match (for remaining nodes) ---
+    # --- Step 4: LinkedIn NoSpace Exact Match (for remaining nodes) ---
     remaining_df = results_df[~results_df['Graph_Company_Name'].isin(matched_nodes)]
     linkedin_step4_matches = remaining_df[
+        (remaining_df['LinkedIn_no_space_exact_match'] == 1)
+    ].copy()
+    if not linkedin_step4_matches.empty:
+        linkedin_step4_matches['LinkedIn_Matching_Rule'] = 'No-Space Exact Match'
+        linkedin_matches_list.append(linkedin_step4_matches)
+        matched_nodes.update(linkedin_step4_matches['Graph_Company_Name'])
+
+    # --- Step 5: LinkedIn High-Confidence Match (for remaining nodes) ---
+    remaining_df = results_df[~results_df['Graph_Company_Name'].isin(matched_nodes)]
+    linkedin_step5_matches = remaining_df[
         (remaining_df['LinkedIn_w_ratio'] >= 95) &
         (remaining_df['LinkedIn_levenshtein_ratio'] >= 90) &
         (remaining_df['LinkedIn_jaccard_similarity'] >= 0.5) &
         (remaining_df['LinkedIn_spacy_similarity'] >= 0.5)
-    ]
-    if not linkedin_step4_matches.empty:
-        linkedin_matches_list.append(linkedin_step4_matches)
-        matched_nodes.update(linkedin_step4_matches['Graph_Company_Name'])
+    ].copy()
+    if not linkedin_step5_matches.empty:
+        linkedin_step5_matches['LinkedIn_Matching_Rule'] = 'High-Confidence Match'
+        linkedin_matches_list.append(linkedin_step5_matches)
+        matched_nodes.update(linkedin_step5_matches['Graph_Company_Name'])
 
-    # --- Step 4.5: LinkedIn 'au' Suffix Removal Exact Match ---
-    remaining_df = results_df[~results_df['Graph_Company_Name'].isin(matched_nodes)]
-    au_removal_candidates_l = remaining_df[remaining_df['Graph_Company_Name'].str.lower().str.endswith(' au', na=False)].copy()
+    # --- Step 6: LinkedIn 'au' Suffix Removal Exact Match ---
+    remaining_df = results_df[~results_df['Graph_Company_Name'].isin(matched_nodes)].copy()
+    
+    # First, normalize the graph name to correctly identify candidates ending in ' au'
+    remaining_df['normalized_graph_name'] = remaining_df['Graph_Company_Name'].apply(normalize_name)
+    au_removal_candidates_l = remaining_df[remaining_df['normalized_graph_name'].str.endswith(' au', na=False)].copy()
 
     if not au_removal_candidates_l.empty:
         au_removal_candidates_l['LinkedIn_au_removed_match'] = au_removal_candidates_l.apply(
@@ -296,17 +306,21 @@ def main():
         results_df.update(au_removal_candidates_l['LinkedIn_au_removed_match'])
 
         # Filter for the ones that actually matched
-        linkedin_step4_5_matches = au_removal_candidates_l[au_removal_candidates_l['LinkedIn_au_removed_match'] == 1]
+        linkedin_step6_matches = au_removal_candidates_l[au_removal_candidates_l['LinkedIn_au_removed_match'] == 1].copy()
 
-        if not linkedin_step4_5_matches.empty:
-            linkedin_matches_list.append(linkedin_step4_5_matches)
-            matched_nodes.update(linkedin_step4_5_matches['Graph_Company_Name'])
+        if not linkedin_step6_matches.empty:
+            linkedin_step6_matches['LinkedIn_Matching_Rule'] = 'AU-Removed Exact Match'
+            linkedin_matches_list.append(linkedin_step6_matches)
+            matched_nodes.update(linkedin_step6_matches['Graph_Company_Name'])
 
 
     # --- Process and save final Bloomberg matches ---
     if bloomberg_matches_list:
         final_bloomberg_matches = pd.concat(bloomberg_matches_list)
-        bloomberg_company_col = bloomberg_df.columns[1]
+        # Update the main results_df with the matching rule
+        results_df.update(final_bloomberg_matches['Bloomberg_Matching_Rule'])
+        
+        bloomberg_company_col = 'LONG_COMP_NAME' # Use column name instead of index
         
         # Keep Graph_Company_Name during the merge
         merged_bloomberg = pd.merge(
@@ -327,9 +341,6 @@ def main():
         original_bloomberg_cols = [col for col in bloomberg_df.columns if col != bloomberg_company_col]
         output_cols.extend(original_bloomberg_cols)
         
-        # Add the new 'au_removed_match' column
-        output_cols.append('Bloomberg_au_removed_match')
-
         # Reorder and select final columns, handling potential missing columns
         final_bloomberg_df = final_bloomberg_df[[col for col in output_cols if col in final_bloomberg_df.columns]]
 
@@ -342,6 +353,8 @@ def main():
     # --- Process and save final LinkedIn matches ---
     if linkedin_matches_list:
         final_linkedin_matches = pd.concat(linkedin_matches_list)
+        # Update the main results_df with the matching rule
+        results_df.update(final_linkedin_matches['LinkedIn_Matching_Rule'])
         
         # Keep Graph_Company_Name during the merge
         merged_linkedin = pd.merge(
@@ -361,9 +374,6 @@ def main():
         original_linkedin_cols = [col for col in linkedin_df.columns if col != 'LinkedIn_Match_Name' and col != 'Linkedin_Name']
         output_cols.extend(original_linkedin_cols)
 
-        # Add the new 'au_removed_match' column
-        output_cols.append('LinkedIn_au_removed_match')
-
         # Reorder and select final columns
         final_linkedin_df = final_linkedin_df[[col for col in output_cols if col in final_linkedin_df.columns]]
 
@@ -372,6 +382,22 @@ def main():
         print(f"Saved {len(final_linkedin_df)} perfect LinkedIn matches to {linkedin_output_path}")
     else:
         print("No perfect LinkedIn matches found.")
+
+    # Reorder columns before saving the final results file
+    cols = results_df.columns.tolist()
+    # Reorder Bloomberg columns
+    b_no_space_idx = cols.index('Bloomberg_no_space_exact_match')
+    cols.insert(b_no_space_idx + 1, cols.pop(cols.index('Bloomberg_au_removed_match')))
+    cols.insert(b_no_space_idx + 2, cols.pop(cols.index('Bloomberg_Matching_Rule')))
+    # Reorder LinkedIn columns
+    l_no_space_idx = cols.index('LinkedIn_no_space_exact_match')
+    cols.insert(l_no_space_idx + 1, cols.pop(cols.index('LinkedIn_au_removed_match')))
+    cols.insert(l_no_space_idx + 2, cols.pop(cols.index('LinkedIn_Matching_Rule')))
+    results_df = results_df[cols]
+
+    # Save final results DataFrame with all matching scores including au_removed_match
+    results_df.to_csv(output_path, index=False)
+    print(f"Matching process complete. All results (including au_removed_match) saved to {output_path}")
 
 
 if __name__ == "__main__":

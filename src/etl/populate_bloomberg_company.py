@@ -20,7 +20,7 @@ def convert_shorthand_to_numeric(value):
         return pd.to_numeric(value, errors='coerce')
     value = value.strip()
     if not value:
-        return pd.NA
+        return None
     suffix = value[-1].upper()
     multiplier = 1
     if suffix == 'K':
@@ -37,12 +37,12 @@ def convert_shorthand_to_numeric(value):
 def iso_to_country_name(code):
     """Converts a 2-letter ISO country code to a country name."""
     if pd.isna(code) or not isinstance(code, str) or len(code.strip()) != 2:
-        return pd.NA  # Return Not Available for invalid or missing codes
+        return None  # Return Not Available for invalid or missing codes
     try:
         country = pycountry.countries.get(alpha_2=code.strip().upper())
-        return country.name if country else pd.NA
+        return country.name if country else None
     except (AttributeError, KeyError):
-        return pd.NA # Handle any lookup errors gracefully
+        return None # Handle any lookup errors gracefully
 
 
 
@@ -53,19 +53,24 @@ def main():
 
     df_list = []
     seen_ids = set()
-    first_col_name = None
+    # Use a fixed, known ID column name for deduplication instead of the first column by index.
+    id_col_name = "Ticker"
 
     for directory in dirs_to_process:
         for csv_file in sorted(directory.glob('*.csv')):
             temp_df = pd.read_csv(csv_file, dtype=str)
             if temp_df.empty:
                 continue
-            if first_col_name is None:
-                first_col_name = temp_df.columns[0]
-            temp_df = temp_df[~temp_df[first_col_name].isin(seen_ids)]
+            
+            # Ensure the expected ID column exists in the dataframe for deduplication.
+            if id_col_name not in temp_df.columns:
+                print(f"Warning: Expected ID column '{id_col_name}' not found in {csv_file}. Skipping file.")
+                continue
+
+            temp_df = temp_df[~temp_df[id_col_name].isin(seen_ids)]
             if temp_df.empty:
                 continue
-            seen_ids.update(temp_df[first_col_name])
+            seen_ids.update(temp_df[id_col_name])
             df_list.append(temp_df)
 
     if not df_list:
@@ -73,17 +78,21 @@ def main():
 
     combined_df = pd.concat(df_list, ignore_index=True)
 
-    # Convert 2-letter ISO country code in the 3rd column to full country name.
-    if len(combined_df.columns) >= 3:
-        country_col_name = combined_df.columns[2]
+    # Define original column names from the source files for explicit selection.
+    country_col_name = "Cntry Terrtry Of Dom"
+    numeric_cols = ["Market Cap", "Revenue:Y", "Tot Assets:Y", "Number of Employees LF"]
+
+    # Convert 2-letter ISO country code to full country name using the specific column name.
+    if country_col_name in combined_df.columns:
         combined_df[country_col_name] = combined_df[country_col_name].apply(iso_to_country_name)
 
-    if len(combined_df.columns) >= 8:
-        for col in combined_df.columns[4:8]:
+    # Convert shorthand numeric strings to numbers for specific columns by name.
+    for col in numeric_cols:
+        if col in combined_df.columns:
             combined_df[col] = combined_df[col].apply(convert_shorthand_to_numeric)
 
-    combined_df = combined_df.replace(r'^\s*$', pd.NA, regex=True)
-    combined_df.replace(['0', 0, '--'], pd.NA, inplace=True)
+    combined_df = combined_df.replace(r'^\s*$', None, regex=True)
+    combined_df.replace(['0', 0, '--'], None, inplace=True)
 
     # Define the standardized headers
     new_headers = [
@@ -105,22 +114,23 @@ def main():
         des_df = pd.read_csv(des_file_path, dtype=str)
         
         if not des_df.empty and not combined_df.empty:
-            # Get the name of the first column from both dataframes to use as join keys
-            left_key = combined_df.columns[0]
-            right_key = des_df.columns[0]
+            # Use explicit key name for joining.
+            left_key = 'Ticker'
+            right_key = 'Ticker'
 
-            # Drop columns from des_df that already exist in combined_df, except for the key
-            cols_to_drop = [col for col in des_df.columns if col in combined_df.columns and col != right_key]
-            des_df.drop(columns=cols_to_drop, inplace=True)
-            
-            # Perform the left join
-            combined_df = pd.merge(combined_df, des_df, left_on=left_key, right_on=right_key, how='left')
+            # Ensure keys exist before attempting a join.
+            if left_key not in combined_df.columns:
+                print(f"Warning: Join key '{left_key}' not in main dataframe. Skipping join.")
+            elif right_key not in des_df.columns:
+                print(f"Warning: Join key '{right_key}' not in description dataframe. Skipping join.")
+            else:
+                # Drop columns from des_df that already exist in combined_df, except for the key
+                cols_to_drop = [col for col in des_df.columns if col in combined_df.columns and col != right_key]
+                des_df.drop(columns=cols_to_drop, inplace=True)
+                
+                # Perform the left join
+                combined_df = pd.merge(combined_df, des_df, left_on=left_key, right_on=right_key, how='left')
 
-            # If the key from the right table was different and added, drop it
-            if left_key != right_key and right_key in combined_df.columns:
-                combined_df.drop(columns=[right_key], inplace=True)
-        else:
-            print(f"Warning: One of the dataframes for joining is empty. Skipping join.")
     else:
         print(f"Warning: Description file not found at {des_file_path}")
 
@@ -154,7 +164,8 @@ def main():
         
         if not rows_to_drop.empty:
             combined_df.drop(rows_to_drop, inplace=True)
-            print(f"{len(combined_df)} rows populated.")
+            print(f"{len(rows_to_drop)} rows dropped due to filter criteria.")
+            print(f"{len(combined_df)} rows remaining.")
 
     # Custom sort before output
     if all(col in combined_df.columns for col in ['Market Cap', 'Country of Domicile', 'Tot Assets:Y']):

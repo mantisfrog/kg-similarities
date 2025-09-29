@@ -59,7 +59,7 @@ def main():
     cleaned_linkedin_col = filter_dirty_values(linkedin_col)
     
     linkedin_companies = cleaned_linkedin_col.dropna().unique()
-    bloomberg_companies = bloomberg_df.iloc[:, 1].dropna().unique()
+    bloomberg_companies = bloomberg_df['LONG_COMP_NAME'].dropna().unique()
     
     print(f"Loaded {len(linkedin_companies)} LinkedIn companies (after cleaning) and {len(bloomberg_companies)} Bloomberg companies.")
     
@@ -114,11 +114,11 @@ def main():
             results.append({
                 "Bloomberg_Company": bloomberg_name,
                 "LinkedIn_Company": None,
-                "w_ratio": np.nan,
-                "levenshtein_ratio": np.nan,
-                "jaccard_similarity": np.nan,
-                "spacy_similarity": np.nan,
-                "no_space_exact_match": np.nan,
+                "w_ratio": None,
+                "levenshtein_ratio": None,
+                "jaccard_similarity": None,
+                "spacy_similarity": None,
+                "no_space_exact_match": None,
             })
 
     # Create and save match results DataFrame
