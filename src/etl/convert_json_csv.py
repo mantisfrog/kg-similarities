@@ -72,7 +72,8 @@ def clean_strings(obj):
        Also fixes known dirty data issues."""
     if isinstance(obj, str):
         s = obj.replace("\r", "").replace("\n", "")
-        # 修正脏数据
+        # Replace historical name and name errors with correct names.
+        # https://www.delisted.com.au/ and Bloomberg Company Actions <GO>.
         s = s.replace("AuRico Gold Corporporation", "AuRico Gold Corporation")
         s = s.replace("Resource and Investment NL", "Auris Minerals Ltd")
         s = s.replace("Vendetta Mining Crop", "Vendetta Mining Corp")
@@ -80,6 +81,16 @@ def clean_strings(obj):
         s = s.replace("Minemakers Ltd (MAK)", "Avenira Limited")
         s = s.replace("BHP Billiton Limited", "BHP Group Limited")
         s = s.replace("Gujarat NRE", "Gujarat NRE Coke Ltd")
+        s = s.replace("Black Oak Minerals Limited", "Marda Operations Pty Ltd")
+        s = s.replace("Southern Cross Gold Ltd", "Marda Operations Pty Ltd")
+        s = s.replace("Centrex Metals Limited", "Centrex Ltd")
+        s = s.replace("Fortescue Metals Group Limited", "Fortescue Ltd")
+        s = s.replace("Cougar Energy Ltd", "Moreton Resources")
+        s = s.replace("Minerals and Metals Group (MMG)", "MMG Ltd")
+        s = s.replace("Minerals and Metals Group", "MMG Ltd")
+        s = s.replace("MMG Limited (MMG)", "MMG Ltd")
+        s = s.replace("Minerals Corporation", "MSM Corporation International Ltd")
+
         return s
     elif isinstance(obj, dict):
         return {k: clean_strings(v) for k, v in obj.items()}
