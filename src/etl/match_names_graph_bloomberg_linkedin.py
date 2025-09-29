@@ -15,7 +15,7 @@ sys.path.append(str(project_root))
 
 # Import customised normalization function
 from src.utils.normalize_names import normalize_name, filter_dirty_values
-from src.utils.calculate_similarities import calculate_text_similarities
+from src.utils.calculate_similarities import calculate_text_similarities, calculate_au_removed_match
 from src.utils.build_word_index import build_word_index
 
 
@@ -148,30 +148,19 @@ def main():
             for candidate_name in tqdm(list(potential_bloomberg_matches), desc=f"Scoring '{test_graph_name}' candidates"):
                 normalized_candidate = normalize_name(candidate_name)
                 
-                set1 = set(normalized_test_name.split())
-                set2 = set(normalized_candidate.split())
-                intersection = len(set1.intersection(set2))
-                union = len(set1.union(set2))
-                jaccard_sim = intersection / union if union != 0 else 0.0
-
-                no_space_source = normalized_test_name.replace(' ', '')
-                no_space_match = normalized_candidate.replace(' ', '')
-                no_space_exact = 1 if no_space_source == no_space_match else 0
-
-                doc1 = nlp(normalized_test_name)
-                doc2 = nlp(normalized_candidate)
-                spacy_sim = doc1.similarity(doc2) if doc1.vector_norm and doc2.vector_norm else 0.0
+                # Use the centralized similarity calculation function
+                scores = calculate_text_similarities(normalized_test_name, normalized_candidate, nlp)
 
                 special_test_results.append({
                     "Graph_Name": test_graph_name,
                     "Normalized_Graph_Name": normalized_test_name,
                     "Bloomberg_Candidate_Name": candidate_name,
                     "Normalized_Candidate_Name": normalized_candidate,
-                    "WRatio": fuzz.WRatio(normalized_test_name, normalized_candidate),
-                    "Levenshtein_Ratio": fuzz.ratio(normalized_test_name, normalized_candidate),
-                    "Jaccard_Similarity": jaccard_sim,
-                    "Spacy_Similarity": spacy_sim,
-                    "NoSpace_Exact_Match": no_space_exact
+                    "WRatio": scores["w_ratio"],
+                    "Levenshtein_Ratio": scores["levenshtein_ratio"],
+                    "Jaccard_Similarity": scores["jaccard_similarity"],
+                    "Spacy_Similarity": scores["spacy_similarity"],
+                    "NoSpace_Exact_Match": scores["no_space_exact_match"]
                 })
 
     if special_test_results:
@@ -224,6 +213,10 @@ def main():
     # 7. Process and save perfect matches with new hierarchical criteria
     print("Processing and saving perfect matches with new criteria...")
 
+    # Initialize new columns for the 'au' removal logic
+    results_df['Bloomberg_au_removed_match'] = np.nan
+    results_df['LinkedIn_au_removed_match'] = np.nan
+
     matched_nodes = set()
     bloomberg_matches_list = []
     linkedin_matches_list = []
@@ -249,6 +242,26 @@ def main():
         bloomberg_matches_list.append(bloomberg_step2_matches)
         matched_nodes.update(bloomberg_step2_matches['Graph_Company_Name'])
 
+    # --- Step 2.5: Bloomberg 'au' Suffix Removal Exact Match ---
+    remaining_df = results_df[~results_df['Graph_Company_Name'].isin(matched_nodes)]
+    au_removal_candidates_b = remaining_df[remaining_df['Graph_Company_Name'].str.lower().str.endswith(' au', na=False)].copy()
+    
+    if not au_removal_candidates_b.empty:
+        au_removal_candidates_b['Bloomberg_au_removed_match'] = au_removal_candidates_b.apply(
+            lambda row: calculate_au_removed_match(row['Graph_Company_Name'], row['Bloomberg_Match_Name']), axis=1
+        )
+        
+        # Update the main dataframe with the results (1 or 0)
+        results_df.update(au_removal_candidates_b['Bloomberg_au_removed_match'])
+
+        # Filter for the ones that actually matched
+        bloomberg_step2_5_matches = au_removal_candidates_b[au_removal_candidates_b['Bloomberg_au_removed_match'] == 1]
+        
+        if not bloomberg_step2_5_matches.empty:
+            bloomberg_matches_list.append(bloomberg_step2_5_matches)
+            matched_nodes.update(bloomberg_step2_5_matches['Graph_Company_Name'])
+
+
     # --- Step 3: LinkedIn NoSpace Exact Match (for remaining nodes) ---
     remaining_df = results_df[~results_df['Graph_Company_Name'].isin(matched_nodes)]
     linkedin_step3_matches = remaining_df[
@@ -269,6 +282,26 @@ def main():
     if not linkedin_step4_matches.empty:
         linkedin_matches_list.append(linkedin_step4_matches)
         matched_nodes.update(linkedin_step4_matches['Graph_Company_Name'])
+
+    # --- Step 4.5: LinkedIn 'au' Suffix Removal Exact Match ---
+    remaining_df = results_df[~results_df['Graph_Company_Name'].isin(matched_nodes)]
+    au_removal_candidates_l = remaining_df[remaining_df['Graph_Company_Name'].str.lower().str.endswith(' au', na=False)].copy()
+
+    if not au_removal_candidates_l.empty:
+        au_removal_candidates_l['LinkedIn_au_removed_match'] = au_removal_candidates_l.apply(
+            lambda row: calculate_au_removed_match(row['Graph_Company_Name'], row['LinkedIn_Match_Name']), axis=1
+        )
+        
+        # Update the main dataframe with the results (1 or 0)
+        results_df.update(au_removal_candidates_l['LinkedIn_au_removed_match'])
+
+        # Filter for the ones that actually matched
+        linkedin_step4_5_matches = au_removal_candidates_l[au_removal_candidates_l['LinkedIn_au_removed_match'] == 1]
+
+        if not linkedin_step4_5_matches.empty:
+            linkedin_matches_list.append(linkedin_step4_5_matches)
+            matched_nodes.update(linkedin_step4_5_matches['Graph_Company_Name'])
+
 
     # --- Process and save final Bloomberg matches ---
     if bloomberg_matches_list:
@@ -294,9 +327,8 @@ def main():
         original_bloomberg_cols = [col for col in bloomberg_df.columns if col != bloomberg_company_col]
         output_cols.extend(original_bloomberg_cols)
         
-        # # Add score columns for context -- REMOVED AS PER REQUEST
-        # score_cols = [col for col in final_bloomberg_matches.columns if col.startswith('Bloomberg_')]
-        # output_cols.extend(score_cols)
+        # Add the new 'au_removed_match' column
+        output_cols.append('Bloomberg_au_removed_match')
 
         # Reorder and select final columns, handling potential missing columns
         final_bloomberg_df = final_bloomberg_df[[col for col in output_cols if col in final_bloomberg_df.columns]]
@@ -329,9 +361,8 @@ def main():
         original_linkedin_cols = [col for col in linkedin_df.columns if col != 'LinkedIn_Match_Name' and col != 'Linkedin_Name']
         output_cols.extend(original_linkedin_cols)
 
-        # # Add score columns for context -- REMOVED AS PER REQUEST
-        # score_cols = [col for col in final_linkedin_matches.columns if col.startswith('LinkedIn_')]
-        # output_cols.extend(score_cols)
+        # Add the new 'au_removed_match' column
+        output_cols.append('LinkedIn_au_removed_match')
 
         # Reorder and select final columns
         final_linkedin_df = final_linkedin_df[[col for col in output_cols if col in final_linkedin_df.columns]]

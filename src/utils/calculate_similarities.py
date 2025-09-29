@@ -11,6 +11,9 @@
 import numpy as np
 from rapidfuzz import fuzz
 
+from src.utils.normalize_names import normalize_name
+
+
 def calculate_text_similarities(text1: str, text2: str, nlp_model=None) -> dict:
     # Basic validation
     if not text1 or not text2:
@@ -53,3 +56,23 @@ def calculate_text_similarities(text1: str, text2: str, nlp_model=None) -> dict:
         "spacy_similarity": spacy_sim,
         "no_space_exact_match": no_space_match
     }
+
+def calculate_au_removed_match(text1: str, text2: str) -> int:
+    """
+    Checks for an exact match after removing the ' au' suffix from the first text.
+    Both texts are normalized before comparison.
+    If a company name failed to match, try to compare without subsidiary indicator.
+    """
+    # Basic validation
+    if not text1 or not text2:
+        return 0
+
+    norm_text1 = normalize_name(text1)
+    norm_text2 = normalize_name(text2)
+
+    # Check if the first text ends with ' au' and remove it
+    if norm_text1.endswith(' au'):
+        modified_text1 = norm_text1.removesuffix(' au')
+        return 1 if modified_text1 == norm_text2 else 0
+    
+    return 0
