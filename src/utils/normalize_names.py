@@ -21,6 +21,7 @@ RAW_SUFFIXES = [
     'pty ltd', 'p/l', 'proprietary limited',
     'ltd', 'limited',
     'nl', 'n.l.', 'no liability',
+    'Ltd/Australia', 'Limited/Australia',
 
     # US
     'inc', 'incorporated',
@@ -63,11 +64,12 @@ RAW_SUFFIXES = [
 
 
 # List of dirty values that should be filtered out before processing
+# Storing them in lowercase for case-insensitive comparison
 DIRTY_VALUES = [
-    "Minerals", 
-    "Mining Corp", 
-    "GROUP Engineering Pty Ltd", 
-    "Minerals Corporation"
+    "minerals", 
+    "mining corp", 
+    "group engineering pty ltd", 
+    "minerals corporation"
 ]
 
 
@@ -104,10 +106,17 @@ def _strip_trailing_suffix_tokens(tokens: List[str]) -> List[str]:
 def is_dirty_value(name: str) -> bool:
     if not isinstance(name, str):
         return False
-    return name in DIRTY_VALUES
+    # Perform a case-insensitive and space-trimmed comparison
+    return name.strip().lower() in DIRTY_VALUES
 
 def filter_dirty_values(names_series):
-    return names_series[~names_series.isin(DIRTY_VALUES)]
+    # Create a boolean mask for dirty values using a case-insensitive and space-trimmed check
+    # .str.strip() removes leading/trailing whitespace
+    # .str.lower() converts to lowercase
+    # .isin() checks against the lowercase DIRTY_VALUES list
+    is_dirty_mask = names_series.str.strip().str.lower().isin(DIRTY_VALUES)
+    # Return the series where the mask is False (i.e., not dirty)
+    return names_series[~is_dirty_mask]
 
 # Main function to clean and normalize a company name.
 def normalize_name(name):
