@@ -74,6 +74,12 @@ def clean_strings(obj):
         s = obj.replace("\r", "").replace("\n", "")
         # 修正脏数据
         s = s.replace("AuRico Gold Corporporation", "AuRico Gold Corporation")
+        s = s.replace("Resource and Investment NL", "Auris Minerals Ltd")
+        s = s.replace("Vendetta Mining Crop", "Vendetta Mining Corp")
+        s = s.replace("Henna shenhuo Group Co. Ltd", "Henan Shenhuo Group Co Ltd")
+        s = s.replace("Minemakers Ltd (MAK)", "Avenira Limited")
+        s = s.replace("BHP Billiton Limited", "BHP Group Limited")
+        s = s.replace("Gujarat NRE", "Gujarat NRE Coke Ltd")
         return s
     elif isinstance(obj, dict):
         return {k: clean_strings(v) for k, v in obj.items()}

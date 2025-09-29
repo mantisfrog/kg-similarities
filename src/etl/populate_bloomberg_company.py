@@ -1,3 +1,15 @@
+# These logical steps serve as tie breakers within same w_ratio scores.
+
+# Filtering Logic:
+# 1. Deduplication: Ensures each company (based on its ticker/ID) is included only once.
+# 2. Asset-based Filter: Drops any company whose 'Country of Domicile' is NOT 'Australia' AND its 'Tot Assets:Y' value is missing.
+
+# Sorting Logic:
+# The data is sorted in two main tiers:
+# 1. Primary Group (companies with a valid Market Cap): Sorted first by a custom country order, then by 'Market Cap' in descending order.
+# 2. Secondary Group (remaining companies): Sorted by the same custom country order, then by 'Tot Assets:Y' in descending order.
+# The final output lists the primary group first, followed by the secondary group.
+
 import pandas as pd
 from pathlib import Path
 import pycountry
@@ -31,6 +43,8 @@ def iso_to_country_name(code):
         return country.name if country else pd.NA
     except (AttributeError, KeyError):
         return pd.NA # Handle any lookup errors gracefully
+
+
 
 def main():
     project_root = Path(__file__).resolve().parents[2]
@@ -130,6 +144,63 @@ def main():
         # Drop the 'Short Name' column
         combined_df.drop(columns=['Short Name'], inplace=True)
 
+    # Filter rows: Drop if Country is not Australia AND Total Assets is null
+    if 'Country of Domicile' in combined_df.columns and 'Tot Assets:Y' in combined_df.columns:
+        # Identify rows to drop
+        rows_to_drop = combined_df[
+            (combined_df['Country of Domicile'] != 'Australia') & 
+            (combined_df['Tot Assets:Y'].isna())
+        ].index
+        
+        if not rows_to_drop.empty:
+            combined_df.drop(rows_to_drop, inplace=True)
+            print(f"{len(combined_df)} rows populated.")
+
+    # Custom sort before output
+    if all(col in combined_df.columns for col in ['Market Cap', 'Country of Domicile', 'Tot Assets:Y']):
+        # Define the custom sort order for countries
+        country_order = [
+            "Australia", "United States", "China", "United Kingdom", "France", 
+            "Japan", "Canada", "Mexico", "Saudi Arabia", "India", "South Africa", 
+            "Korea, Republic of", "Brazil"
+        ]
+        
+        # --- New Sorting Logic ---
+        
+        # 1. Split DataFrame into two groups
+        # Group 1: Market Cap is not null and not zero
+        market_cap_valid = combined_df['Market Cap'].notna() & (combined_df['Market Cap'] != 0)
+        df_market_cap = combined_df[market_cap_valid].copy()
+        
+        # Group 2: Remaining records (Market Cap is null or zero)
+        df_remaining = combined_df[~market_cap_valid].copy()
+
+        # Helper function to apply country-based sorting
+        def sort_by_country_and_value(df, value_col, ascending_val):
+            if df.empty:
+                return df
+            df['country_cat'] = pd.Categorical(
+                df['Country of Domicile'], 
+                categories=country_order, 
+                ordered=True
+            )
+            df.sort_values(
+                by=['country_cat', value_col], 
+                ascending=[True, ascending_val], 
+                inplace=True,
+                na_position='last'
+            )
+            df.drop(columns=['country_cat'], inplace=True)
+            return df
+
+        # 2. Sort the first group by Market Cap (desc) and then by country
+        df_market_cap = sort_by_country_and_value(df_market_cap, 'Market Cap', False)
+
+        # 3. Sort the second group by Total Assets (desc) and then by country
+        df_remaining = sort_by_country_and_value(df_remaining, 'Tot Assets:Y', False)
+        
+        # 4. Concatenate the sorted groups
+        combined_df = pd.concat([df_market_cap, df_remaining], ignore_index=True)
 
     output_path = project_root / 'data' / 'processed' / 'Bloomberg_Companies.csv'
     output_path.parent.mkdir(parents=True, exist_ok=True)
