@@ -9,7 +9,7 @@
 #     Dictionary with various similarity scores
 
 import numpy as np
-from fuzzywuzzy import fuzz
+from rapidfuzz import fuzz
 
 def calculate_text_similarities(text1: str, text2: str, nlp_model=None) -> dict:
     # Basic validation

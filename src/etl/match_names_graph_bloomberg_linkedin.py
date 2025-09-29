@@ -1,7 +1,7 @@
 import pandas as pd
 import spacy
 from pathlib import Path
-from fuzzywuzzy import fuzz
+from rapidfuzz import fuzz
 from tqdm import tqdm
 import re
 from collections import defaultdict

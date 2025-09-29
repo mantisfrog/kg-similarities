@@ -1,6 +1,6 @@
 import pandas as pd
 from pathlib import Path
-from fuzzywuzzy import fuzz
+from rapidfuzz import fuzz
 from tqdm import tqdm
 import re
 from collections import defaultdict
