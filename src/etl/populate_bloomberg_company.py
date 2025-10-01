@@ -154,14 +154,13 @@ def main():
         # Drop the 'Short Name' column
         combined_df.drop(columns=['Short Name'], inplace=True)
 
-    # Filter rows: Drop if Country is not Australia AND Total Assets is null
-    if 'Country of Domicile' in combined_df.columns and 'Tot Assets:Y' in combined_df.columns:
-        # Identify rows to drop
+    # Filter rows: Drop if Country is not Australia AND Market Cap, Revenue:Y, Tot Assets:Y are all null
+    if all(col in combined_df.columns for col in ['Country of Domicile', 'Market Cap', 'Revenue:Y', 'Tot Assets:Y']):
         rows_to_drop = combined_df[
-            (combined_df['Country of Domicile'] != 'Australia') & 
-            (combined_df['Tot Assets:Y'].isna())
+            (combined_df['Country of Domicile'] != 'Australia') &
+            combined_df[['Market Cap', 'Revenue:Y', 'Tot Assets:Y']].isna().all(axis=1)
         ].index
-        
+
         if not rows_to_drop.empty:
             combined_df.drop(rows_to_drop, inplace=True)
             print(f"{len(rows_to_drop)} rows dropped due to filter criteria.")

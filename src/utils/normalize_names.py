@@ -69,7 +69,7 @@ DIRTY_VALUES = [
     "minerals", 
     "mining corp", 
     "group engineering pty ltd", 
-    "minerals corporation"
+    "minerals corporation",
 ]
 
 
