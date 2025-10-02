@@ -31,7 +31,7 @@ def load_commodity_mapping(filepath):
     """Loads commodity mappings from symbol to name and name to symbol."""
     symbol_to_name, name_to_symbol = {}, {}
     try:
-        with open(filepath, "r", encoding="utf-8") as f:
+        with open(filepath, "r", encoding="utf-8-sig") as f:
             reader = csv.reader(f)
             next(reader)  # Skip header
             for row in reader:
@@ -129,7 +129,7 @@ def main():
     symbol_to_name, name_to_symbol = load_commodity_mapping(COMMODITY_MAPPING_CSV)
 
     # 1. Process MineralDeposits.json
-    with open(INPUT, "r", encoding="utf-8") as f:
+    with open(INPUT, "r", encoding="utf-8-sig") as f:
         data = json.load(f)
     data = clean_strings(data)
     features = data.get("features", [])
@@ -166,7 +166,7 @@ def main():
 
     # 2. Process MajorResourceProjects.csv
     try:
-        with open(INPUT_CSV, "r", encoding="utf-8") as f_in:
+        with open(INPUT_CSV, "r", encoding="utf-8-sig") as f_in:
             reader = csv.DictReader(f_in)
             for row_in in reader:
                 cleaned_row_in = clean_strings(row_in)
@@ -195,7 +195,7 @@ def main():
 
     # 3. Process MineView.csv
     try:
-        with open(INPUT_CSV_2, "r", encoding="latin-1") as f_in:
+        with open(INPUT_CSV_2, "r", encoding="utf-8-sig") as f_in:
             reader = csv.DictReader(f_in)
             for row_in in reader:
                 cleaned_row_in = clean_strings(row_in)
@@ -228,8 +228,30 @@ def main():
     except FileNotFoundError:
         print(f"Warning: {INPUT_CSV_2} not found. Skipping.")
 
-    # --- Final Processing: Repopulate COMMODITY_NAMES ---
+    # --- Final Processing ---
+    # Define the mapping for operating status
+    status_mapping = {
+        "Mine Projects": [
+            "mineral deposit", "mining", "new mine", "mine expansion",
+            "operating mine", "under development", "care and maintenance",
+            "historic mine", "closed"
+        ],
+        "Processing Projects": ["processing"],
+        "Infrastructure Projects": ["infrastructure"],
+        "Feasibility Studies": [
+            "scoping", "pre-feasibility", "feasibility",
+            "definitive feasibility", "bankable feasibility"
+        ]
+    }
+    # Create a reverse mapping for easier lookup (old_status -> new_status)
+    reverse_status_mapping = {}
+    for new_status, old_statuses in status_mapping.items():
+        for old_status in old_statuses:
+            reverse_status_mapping[old_status.lower()] = new_status
+
+    # Repopulate COMMODITY_NAMES and OPERATING_STATUS
     for row in all_data:
+        # Repopulate COMMODITY_NAMES
         names = []
         primary_symbols_str = row.get("COMMODITY_PRIMARY", "")
         if primary_symbols_str:
@@ -240,11 +262,17 @@ def main():
         secondary_symbols_str = row.get("COMMODITY_SECONDARY", "")
         if secondary_symbols_str:
             secondary_symbols = [s.strip() for s in secondary_symbols_str.split(",") if s.strip()]
-            for symbol in secondary_symbols:
-                name = symbol_to_name.get(symbol, symbol)
-                names.append(f"({name})")
+            secondary_names = [symbol_to_name.get(symbol, symbol) for symbol in secondary_symbols]
+            if secondary_names:
+                names.append(f"({', '.join(secondary_names)})")
         
         row["COMMODITY_NAMES"] = ", ".join(names)
+
+        # Repopulate OPERATING_STATUS
+        current_status = row.get("OPERATING_STATUS", "").lower().strip()
+        # Keep original value if no mapping is found
+        row["OPERATING_STATUS"] = reverse_status_mapping.get(current_status, row.get("OPERATING_STATUS", ""))
+
 
     # --- Write Final CSV ---
     if all_data:

@@ -34,15 +34,9 @@ COLS = [
     "DEPOSIT_MODEL_TYPE","PROVINCES","IGNEOUS","METALLOGENIC","SEDIMENTARY","TECTONIC"
 ]
 
-# Define specific synonym phrases that should not be split by commas.
-SPECIAL_SYNONYMS = [
-    "2, 3, 4, 5, 6/7, 9",
-    "2, 3",
-]
-
 # --- START: Added section for data exclusion ---
 # Define data to be excluded from the graph.
-EXCLUDED_NAMES = set(SPECIAL_SYNONYMS)
+EXCLUDED_NAMES = set()
 EXCLUDED_COMPANY_NORM = "unnamed owner"
 # Define company name tokens that should be ignored if they appear alone after splitting.
 EXCLUDED_COMPANY_TOKENS = {"limited", "ltd", "ltd.", "australia", "South Africa"}
@@ -115,25 +109,14 @@ def split_names_cell(s, is_synonyms=False):
     """
     Splits a cell containing deposit names or synonyms based on specific rules.
     - PROJECT_NAME is treated as a single entity.
-    - SYNONYMS are split by comma, respecting special multi-part phrases.
+    - SYNONYMS are split by comma.
     """
     s_clean = clean(s)
     if not s_clean:
         return []
     
     if is_synonyms:
-        tmp = s_clean
-        placeholders = {}
-        # Temporarily replace special synonym phrases with placeholders to avoid splitting them.
-        for idx, sp in enumerate(sorted(SPECIAL_SYNONYMS, key=len, reverse=True), 1):
-            if sp in tmp:
-                ph = f"__SPECIAL_{idx}__"
-                placeholders[ph] = sp
-                tmp = tmp.replace(sp, ph)
-        
-        # Split by comma and then restore the special phrases.
-        parts = [p.strip() for p in tmp.split(",") if clean(p)]
-        return [placeholders.get(p, p) for p in parts]
+        return split_commas(s_clean)
     
     # For PROJECT_NAME, return the entire string as one item.
     return [s_clean]
