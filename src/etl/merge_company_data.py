@@ -35,7 +35,7 @@ def main():
     ms_path = project_root / "data" / "raw" / "company" / "modern_slavery" / "cleaned_ms_statements.csv"
     match_output_path = project_root / "data" / "processed" / "Matches_Scores_Bloomberg_to_Linkedin.csv"
     ms_match_output_path = project_root / "data" / "processed" / "Matches_Scores_Merged_to_MS.csv"
-    master_data_output_path = project_root / "data" / "processed" / "CompanyData_Master.csv"
+    master_data_output_path = project_root / "data" / "master" / "CompanyData_Master.csv"
     
     master_data_output_path.parent.mkdir(parents=True, exist_ok=True)
     

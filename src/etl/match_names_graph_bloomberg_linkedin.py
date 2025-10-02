@@ -31,7 +31,7 @@ def main():
     # 1. Setup Paths
     project_root = Path(__file__).resolve().parents[2]
     graph_path = project_root / "data" / "graph" / "node_CompanyName.csv"
-    master_data_path = project_root / "data" / "processed" / "CompanyData_Master.csv"
+    master_data_path = project_root / "data" / "master" / "CompanyData_Master.csv"
     output_path = project_root / "data" / "processed" / "Matches_Scores_Graph.csv"
     consolidated_output_path = output_path.parent / "Perfect_Matches_All_Sources.csv"
     

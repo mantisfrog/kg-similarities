@@ -12,7 +12,8 @@ project_root = script_dir.parent.parent
 DEPOSITS_CSV_PATH = project_root / 'data/processed/MineralDeposits.csv'
 PROVINCES_SHP_PATH = project_root / 'data/raw/shp/116823_AGP_2018/ProvinceFullExtent.shp'
 STATES_SHP_PATH = project_root / 'data/raw/shp/STE_2021_AUST_SHP_GDA94/STE_2021_AUST_GDA94.shp'
-OUTPUT_CSV_PATH = project_root / 'data/processed/Deposits_spatial.csv'
+OUTPUT_CSV_PATH = project_root / 'data/master/ProjectData_Master.csv'
+
 
 # --- End of Modification ---
 
@@ -121,6 +122,10 @@ def process_deposits_with_provinces(deposits_path, provinces_path, output_path):
         # Standardize column names to uppercase.
         final_df.columns = [c.upper() for c in final_df.columns]
         
+        # Rename DEPOSIT_NAME to PROJECT_NAME
+        if 'DEPOSIT_NAME' in final_df.columns:
+            final_df.rename(columns={'DEPOSIT_NAME': 'PROJECT_NAME'}, inplace=True)
+        
         # --- START: Modified section to standardize STATE column ---
         print("Standardizing STATE column values...")
         # Map full state names to their standard abbreviations.
@@ -141,7 +146,7 @@ def process_deposits_with_provinces(deposits_path, provinces_path, output_path):
 
         # Define the final column order for the output CSV.
         desired_order = [
-            "ENO", "DEPOSIT_NAME", "SYNONYMS", "STATE", "LONG_GDA94", "LAT_GDA94",
+            "ENO", "PROJECT_NAME", "SYNONYMS", "STATE", "LONG_GDA94", "LAT_GDA94",
             "OPERATING_STATUS", "COMMODITY_PRIMARY", "COMMODITY_SECONDARY", "COMMODITY_NAMES",
             "COMPANIES", "GEOLOGIC_AGE", "DEPOSIT_MODEL_ENVIRONMENT", "DEPOSIT_MODEL_GROUP",
             "DEPOSIT_MODEL_TYPE", "PROVINCES", "IGNEOUS", "METALLOGENIC", "SEDIMENTARY", "TECTONIC"

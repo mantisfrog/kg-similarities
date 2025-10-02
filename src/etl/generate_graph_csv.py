@@ -17,7 +17,7 @@ script_dir = Path(__file__).resolve().parent
 project_root = script_dir.parent.parent
 
 # Define absolute paths for the source CSV and the output directory for graph files.
-SRC = project_root / "data/processed/Deposits_spatial.csv"
+SRC = project_root / "data/master/ProjectData_Master.csv"
 OUTPUT_DIR = project_root / "data/graph"
 
 # Ensure the output directory exists, creating it if necessary.
@@ -28,7 +28,7 @@ OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # Define the columns required from the source CSV file.
 COLS = [
-    "ENO","DEPOSIT_NAME","SYNONYMS","STATE","LONG_GDA94","LAT_GDA94",
+    "ENO","PROJECT_NAME","SYNONYMS","STATE","LONG_GDA94","LAT_GDA94",
     "OPERATING_STATUS","COMMODITY_PRIMARY","COMMODITY_SECONDARY","COMMODITY_NAMES",
     "COMPANIES","GEOLOGIC_AGE","DEPOSIT_MODEL_ENVIRONMENT","DEPOSIT_MODEL_GROUP",
     "DEPOSIT_MODEL_TYPE","PROVINCES","IGNEOUS","METALLOGENIC","SEDIMENTARY","TECTONIC"
@@ -114,7 +114,7 @@ def split_commas(s):
 def split_names_cell(s, is_synonyms=False):
     """
     Splits a cell containing deposit names or synonyms based on specific rules.
-    - DEPOSIT_NAME is treated as a single entity.
+    - PROJECT_NAME is treated as a single entity.
     - SYNONYMS are split by comma, respecting special multi-part phrases.
     """
     s_clean = clean(s)
@@ -135,7 +135,7 @@ def split_names_cell(s, is_synonyms=False):
         parts = [p.strip() for p in tmp.split(",") if clean(p)]
         return [placeholders.get(p, p) for p in parts]
     
-    # For DEPOSIT_NAME, return the entire string as one item.
+    # For PROJECT_NAME, return the entire string as one item.
     return [s_clean]
 
 def norm_key(s):
@@ -159,8 +159,8 @@ def main():
     # --- Process and generate unique DepositName nodes ---
     deposit_name_vals = set()
     for _, r in df.iterrows():
-        # Extract names from DEPOSIT_NAME column (treated as a single name).
-        for n in split_names_cell(r["DEPOSIT_NAME"], is_synonyms=False):
+        # Extract names from PROJECT_NAME column (treated as a single name).
+        for n in split_names_cell(r["PROJECT_NAME"], is_synonyms=False):
             if n not in EXCLUDED_NAMES:
                 deposit_name_vals.add((norm_key(n), n))
         # Extract names from SYNONYMS column (split by comma).
@@ -294,7 +294,7 @@ def main():
     rel_refers_deposit = set()
     for i, r in df.iterrows():
         did = dep_id[i]
-        names_to_link = split_names_cell(r["DEPOSIT_NAME"], False) + split_names_cell(r["SYNONYMS"], True)
+        names_to_link = split_names_cell(r["PROJECT_NAME"], False) + split_names_cell(r["SYNONYMS"], True)
         for n in names_to_link:
             if n in deposit_name_id: # Ensure the name exists as a node before creating a relationship.
                 rel_refers_deposit.add((deposit_name_id[n], did))
