@@ -42,8 +42,8 @@ source .venv/bin/activate
 run_with_spinner "🐍 [1/7] Installing Python dependencies..." "pip install -r requirements.txt"
 
 # [2/7] Pull Neo4j image
-echo -e "\n🐳 [2/7] Pulling latest Neo4j Docker image..."
-docker pull neo4j:latest
+echo -e "\n🐳 [2/7] Pulling Neo4j Docker image..."
+docker pull neo4j:5.26.12
 echo "✅ Image pull complete."
 
 # [3/7] Start Neo4j container
@@ -51,7 +51,7 @@ echo -e "\n🚀 [3/7] Starting Neo4j container via Docker Compose..."
 docker compose up -d
 # Wait for Neo4j to initialize
 echo ""
-for i in {3..0}; do
+for i in {9..0}; do
     echo -ne "\nAllowing Neo4j to initialize... $i second(s) \r"
     sleep 1
 done
@@ -59,11 +59,11 @@ echo -e "\n✅ Docker services started."
 
 echo " "
 
-# [4/7] Convert JSON to CSV --- FILENAME CORRECTED
-run_with_spinner "📊 [4/7] Converting JSON to CSV..." "python ./src/etl/convert_json_csv.py"
+# [4/7] Load Pproject Datasets
+run_with_spinner "📊 [4/7] Converting JSON to CSV..." "python ./src/etl/populate_projects.py"
 
-# [5/7] Run spatial join
-run_with_spinner "🔗 [5/7] Running spatial join..." "python ./src/etl/join_spatial.py"
+# [5/7] Run Cleaning
+run_with_spinner "🔗 [5/7] Cleaning names and filling missing values..." "python ./src/etl/clean_projects.py"
 
 # [6/7] Fix permissions and copy CSV
 echo -e "\n🔑 [6/7] Adding permissions for ./neo4j-docker directory..."
@@ -82,7 +82,7 @@ echo -e "\n🧩 [7/7] Generating graph files and importing into Neo4j..."
 run_with_spinner "  -> Generating graph CSVs..." "python ./src/etl/generate_graph_csv.py"
 
 # Then, add the commodity groups --- Assuming this script exists from your previous requests
-run_with_spinner "  -> Categorising commodities..." "python ./src/feature/categorise_commodity.py"
+# run_with_spinner "  -> Categorising commodities..." "python ./src/feature/categorise_commodity.py"
 
 # Copy CSV to import folder (after all graph CSVs are generated/modified)
 if [ -d "./neo4j-docker/import" ]; then
