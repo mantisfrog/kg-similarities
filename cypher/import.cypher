@@ -1,68 +1,84 @@
+// =================================================================
+// 1. 清理数据库 (可选，确保从一个干净的状态开始)
+// =================================================================
 MATCH (n) DETACH DELETE n;
-CREATE CONSTRAINT Company_companyID IF NOT EXISTS FOR (c:Company) REQUIRE c.companyID IS UNIQUE;
-CREATE CONSTRAINT Commodity_commodityID IF NOT EXISTS FOR (c:Commodity) REQUIRE c.commodityID IS UNIQUE;
-CREATE CONSTRAINT Deposit_depositID IF NOT EXISTS FOR (d:Deposit) REQUIRE d.depositID IS UNIQUE;
-CREATE CONSTRAINT DepositName_depositNameID IF NOT EXISTS FOR (n:DepositName) REQUIRE n.depositNameID IS UNIQUE;
-CREATE CONSTRAINT CompanyName_companyNameID IF NOT EXISTS FOR (n:CompanyName) REQUIRE n.companyNameID IS UNIQUE;
 
-// Load and create Node_Company
-LOAD CSV WITH HEADERS FROM 'file:///node_Company.csv' AS row
-MERGE (c:Company {companyID: row.`companyID:ID`});
+// =================================================================
+// 2. 创建约束 (为了数据完整性和导入性能，至关重要)
+// =================================================================
+// 这会为每种节点的 ID 属性创建唯一性约束和索引
+CREATE CONSTRAINT project_id_unique IF NOT EXISTS FOR (p:Project) REQUIRE p.projectID IS UNIQUE;
+CREATE CONSTRAINT projectname_id_unique IF NOT EXISTS FOR (pn:ProjectName) REQUIRE pn.projectNameID IS UNIQUE;
+CREATE CONSTRAINT state_id_unique IF NOT EXISTS FOR (s:State) REQUIRE s.stateID IS UNIQUE;
+CREATE CONSTRAINT commodity_id_unique IF NOT EXISTS FOR (c:Commodity) REQUIRE c.commodityID IS UNIQUE;
+CREATE CONSTRAINT company_id_unique IF NOT EXISTS FOR (c:Company) REQUIRE c.companyID IS UNIQUE;
 
-// Load and create Node_CompanyName
-LOAD CSV WITH HEADERS FROM 'file:///node_CompanyName.csv' AS row
-MERGE (n:CompanyName {companyNameID: row.`companyNameID:ID`})
-SET n.companyNameText = row.`companyNameText:string`;
+// =================================================================
+// 3. 导入节点数据
+// =================================================================
 
-// Load and create Node_Commodity
+// 导入 Project 节点
+LOAD CSV WITH HEADERS FROM 'file:///node_Project.csv' AS row
+MERGE (p:Project {projectID: row.`projectID:ID`})
+SET p.eno = toInteger(row.`eno:int`),
+    // 注意：这里的 location 是作为一个普通字符串导入的。
+    // 要使其成为真正的地理空间 point 类型，Python 脚本最好生成独立的 lon/lat 列，
+    // 然后在这里使用 SET p.location = point({longitude: toFloat(row.lon), latitude: toFloat(row.lat)})
+    p.location = row.`location:point`,
+    p.geologicAge = row.`geologicAge:string`,
+    p.depositModelEnvironment = row.`depositModelEnvironment:string`,
+    p.depositModelGroup = row.`depositModelGroup:string`,
+    p.depositModelType = row.`depositModelType:string`,
+    p.igneous = row.`igneous:string`,
+    p.metallogenic = row.`metallogenic:string`,
+    p.sedimentary = row.`sedimentary:string`,
+    p.tectonic = row.`tectonic:string`;
+
+// 导入 ProjectName 节点
+LOAD CSV WITH HEADERS FROM 'file:///node_ProjectName.csv' AS row
+MERGE (pn:ProjectName {projectNameID: row.`projectNameID:ID`})
+SET pn.text = row.`text:string`;
+
+// 导入 State 节点
+LOAD CSV WITH HEADERS FROM 'file:///node_State.csv' AS row
+MERGE (s:State {stateID: row.`stateID:ID`})
+SET s.text = row.`text:string`;
+
+// 导入 Commodity 节点
 LOAD CSV WITH HEADERS FROM 'file:///node_Commodity.csv' AS row
 MERGE (c:Commodity {commodityID: row.`commodityID:ID`})
-SET c.commoditySymbol = row.`commoditySymbol:string`,
-    c.commodityDesc = row.`commodityName:string`,
-    c.commodityGroup = row.`commodityGroup:string`;
+SET c.symbol = row.`symbol:string`,
+    c.name = row.`name:string`;
 
-// Load and create Node_Deposit
-LOAD CSV WITH HEADERS FROM 'file:///node_Deposit.csv' AS row
-MERGE (d:Deposit {depositID: row.`depositID:ID`})
-SET d.eno = toInteger(row.`ENO:int`),
-    d.state = row.`STATE:string`,
-    d.location = row.`LOCATION:string`,
-    d.operatingStatus = row.`OPERATING_STATUS:string`,
-    d.geologicAge = row.`GEOLOGIC_AGE:string`,
-    d.depositModelEnvironment = row.`DEPOSIT_MODEL_ENVIRONMENT:string`,
-    d.depositModelGroup = row.`DEPOSIT_MODEL_GROUP:string`,
-    d.depositModelType = row.`DEPOSIT_MODEL_TYPE:string`,
-    d.provinces = row.`PROVINCES:string`,
-    d.igneous = row.`IGNEOUS:string`,
-    d.metallogenic = row.`METALLOGENIC:string`,
-    d.sedimentary = row.`SEDIMENTARY:string`,
-    d.tectonic = row.`TECTONIC:string`;
+// 导入 Company 节点
+LOAD CSV WITH HEADERS FROM 'file:///node_Company.csv' AS row
+MERGE (c:Company {companyID: row.`companyID:ID`})
+SET c.name = row.`name:string`;
 
-// Load and create Node_DepositName
-LOAD CSV WITH HEADERS FROM 'file:///node_DepositName.csv' AS row
-MERGE (n:DepositName {depositNameID: row.`depositNameID:ID`})
-SET n.depositNameText = row.`depositNameText:string`;
+// =================================================================
+// 4. 导入关系数据
+// =================================================================
 
-// Create rel_Refers_to_Deposit relationships
-LOAD CSV WITH HEADERS FROM 'file:///rel_Refers_to_Deposit.csv' AS row
-MATCH (n:DepositName {depositNameID: row.`:START_ID`})
-MATCH (d:Deposit {depositID: row.`:END_ID`})
-MERGE (n)-[:REFERS_TO_DEPOSIT]->(d);
+// 导入关系: ProjectName -> REFERS_TO_PROJECT -> Project
+LOAD CSV WITH HEADERS FROM 'file:///rel_Refers_to.csv' AS row
+MATCH (start:ProjectName {projectNameID: row.`:START_ID`})
+MATCH (end:Project {projectID: row.`:END_ID`})
+MERGE (start)-[:REFERS_TO_PROJECT]->(end);
 
-// Create rel_Refers_to_Company relationships
-LOAD CSV WITH HEADERS FROM 'file:///rel_Refers_to_Company.csv' AS row
-MATCH (n:CompanyName {companyNameID: row.`:START_ID`})
-MATCH (c:Company {companyID: row.`:END_ID`})
-MERGE (n)-[:REFERS_TO_COMPANY]->(c);
+// 导入关系: Project -> LOCATED_IN -> State
+LOAD CSV WITH HEADERS FROM 'file:///rel_Located_in.csv' AS row
+MATCH (start:Project {projectID: row.`:START_ID`})
+MATCH (end:State {stateID: row.`:END_ID`})
+MERGE (start)-[:LOCATED_IN]->(end);
 
-// Create rel_Has relationships
-LOAD CSV WITH HEADERS FROM 'file:///rel_Has.csv' AS row
-MATCH (d:Deposit {depositID: row.`:START_ID`})
-MATCH (c:Commodity {commodityID: row.`:END_ID`})
-MERGE (d)-[:HAS {role: row.`ROLE:string`}]->(c);
+// 导入关系: Project -> HAS_COMMODITY -> Commodity
+LOAD CSV WITH HEADERS FROM 'file:///rel_Has_Commodity.csv' AS row
+MATCH (start:Project {projectID: row.`:START_ID`})
+MATCH (end:Commodity {commodityID: row.`:END_ID`})
+MERGE (start)-[:HAS_COMMODITY {role: row.`role:string`}]->(end);
 
-// Create rel_Owns relationships
+// 导入关系: Company -> OWNS -> Project
 LOAD CSV WITH HEADERS FROM 'file:///rel_Owns.csv' AS row
-MATCH (c:Company {companyID: row.`:START_ID`})
-MATCH (d:Deposit {depositID: row.`:END_ID`})
-MERGE (c)-[:OWNS]->(d);
+MATCH (start:Company {companyID: row.`:START_ID`})
+MATCH (end:Project {projectID: row.`:END_ID`})
+MERGE (start)-[:OWNS]->(end);

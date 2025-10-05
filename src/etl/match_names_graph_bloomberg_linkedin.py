@@ -24,14 +24,14 @@ from src.utils.match_rules import get_match_status
 
 def main():
     """
-    For each company in node_CompanyName.csv, find the best match in the master data file,
+    For each company in node_Company.csv, find the best match in the merged company data file (CompanyData_Merged.csv),
     which contains data from Bloomberg, LinkedIn, and Modern Slavery statements.
     The matching logic is hierarchical: it stops as soon as a perfect match is found.
     """
     # 1. Setup Paths
     project_root = Path(__file__).resolve().parents[2]
-    graph_path = project_root / "data" / "graph" / "node_CompanyName.csv"
-    master_data_path = project_root / "data" / "master" / "CompanyData_Master.csv"
+    graph_path = project_root / "data" / "graph" / "node_Company.csv"
+    merged_company_data_path = project_root / "data" / "processed" / "CompanyData_Merged.csv"
     output_path = project_root / "data" / "processed" / "Matches_Scores_Graph.csv"
     consolidated_output_path = output_path.parent / "Perfect_Matches_All_Sources.csv"
     
@@ -41,8 +41,8 @@ def main():
     print("Loading data files...")
     try:
         graph_df = pd.read_csv(graph_path)
-        master_cols = ['companyID:ID', 'Company Name', 'Source']
-        master_df = pd.read_csv(master_data_path, usecols=master_cols)
+        master_cols = ['Company Name', 'Source']
+        master_df = pd.read_csv(merged_company_data_path, usecols=master_cols)
     except Exception as e:
         print(f"Error loading data files: {e}")
         return
@@ -67,10 +67,10 @@ def main():
     bloomberg_companies_norm = bloomberg_df['normalized_name'].dropna().unique()
     linkedin_companies_norm = linkedin_df['normalized_name'].dropna().unique()
     modern_slavery_companies_norm = modern_slavery_df['normalized_name'].dropna().unique()
-    graph_companies = graph_df['companyNameText:string'].dropna().unique()
+    graph_companies = graph_df['name:string'].dropna().unique()
     
     print(f"Loaded {len(graph_companies)} graph nodes.")
-    print(f"Loaded {len(bloomberg_companies_norm)} Bloomberg, {len(linkedin_companies_norm)} LinkedIn, and {len(modern_slavery_companies_norm)} Modern Slavery companies from master file.")
+    print(f"Loaded {len(bloomberg_companies_norm)} Bloomberg, {len(linkedin_companies_norm)} LinkedIn, and {len(modern_slavery_companies_norm)} Modern Slavery companies from the merged data file.")
 
     # 3. Load spaCy Model
     print("Loading spaCy model...")

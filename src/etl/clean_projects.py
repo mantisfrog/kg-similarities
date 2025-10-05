@@ -126,6 +126,10 @@ def process_deposits_with_provinces(deposits_path, provinces_path, output_path):
         if 'DEPOSIT_NAME' in final_df.columns:
             final_df.rename(columns={'DEPOSIT_NAME': 'PROJECT_NAME'}, inplace=True)
         
+        # Rename OPERATING_STATUS to PROJECT_TYPE
+        if 'OPERATING_STATUS' in final_df.columns:
+            final_df.rename(columns={'OPERATING_STATUS': 'PROJECT_TYPE'}, inplace=True)
+        
         # --- START: Modified section to standardize STATE column ---
         print("Standardizing STATE column values...")
         # Map full state names to their standard abbreviations.
@@ -147,7 +151,7 @@ def process_deposits_with_provinces(deposits_path, provinces_path, output_path):
         # Define the final column order for the output CSV.
         desired_order = [
             "ENO", "PROJECT_NAME", "SYNONYMS", "STATE", "LONG_GDA94", "LAT_GDA94",
-            "OPERATING_STATUS", "COMMODITY_PRIMARY", "COMMODITY_SECONDARY", "COMMODITY_NAMES",
+            "PROJECT_TYPE", "COMMODITY_PRIMARY", "COMMODITY_SECONDARY", "COMMODITY_NAMES",
             "COMPANIES", "GEOLOGIC_AGE", "DEPOSIT_MODEL_ENVIRONMENT", "DEPOSIT_MODEL_GROUP",
             "DEPOSIT_MODEL_TYPE", "PROVINCES", "IGNEOUS", "METALLOGENIC", "SEDIMENTARY", "TECTONIC"
         ]
