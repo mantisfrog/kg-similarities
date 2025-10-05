@@ -55,7 +55,7 @@ def create_master_company_data():
         df_master.drop(columns=['Matched_Name', 'Matched_Source'], inplace=True)
 
         # Replace NaN values in SYNONYMS column with empty strings
-        df_master['SYNONYMS'].fillna('', inplace=True)
+        df_master['SYNONYMS'] = df_master['SYNONYMS'].fillna('')
 
         # 4. Reorder columns, placing SYNONYMS column after Company Name
         print("Reordering columns...")
@@ -67,7 +67,57 @@ def create_master_company_data():
         cols.insert(company_name_index + 1, synonyms_col)
         df_master = df_master[cols]
 
-        # 5. Save the final master file
+        # 5. Integrate former names from former_names.csv
+        print("Integrating former names...")
+        try:
+            former_names_path = project_root / "data" / "raw" / "company" / "former_names.csv"
+            print(f"Reading former names data: {former_names_path}")
+            df_former_names = pd.read_csv(former_names_path)
+
+            # Set companyID as index for efficient lookups
+            df_master.set_index('companyID', inplace=True)
+
+            for _, row in df_former_names.iterrows():
+                company_id = row['ID']
+                # Check if the company_id from former_names exists in the master dataframe
+                if company_id in df_master.index:
+                    # Get current company name and synonyms
+                    company_name = df_master.loc[company_id, 'Company Name']
+                    existing_synonyms_str = df_master.loc[company_id, 'SYNONYMS']
+
+                    # Create a set of existing names (union of Company Name and SYNONYMS) for case-insensitive checking
+                    existing_names_set = {str(company_name).lower()}
+                    if pd.notna(existing_synonyms_str) and existing_synonyms_str:
+                        existing_names_set.update([s.strip().lower() for s in existing_synonyms_str.split(',')])
+
+                    # Get new potential names and find ones that are not already present
+                    former_names_list = [name.strip() for name in str(row['MatchedNames']).split(',')]
+                    names_to_add = []
+                    for name in former_names_list:
+                        # Case-insensitive exact match check
+                        if name.lower() not in existing_names_set:
+                            names_to_add.append(name)
+                            # Add to the set to avoid adding duplicates from the same row in former_names.csv
+                            existing_names_set.add(name.lower())
+                    
+                    # If there are new names to add, append them to the SYNONYMS column
+                    if names_to_add:
+                        new_synonyms_str = ', '.join(names_to_add)
+                        if existing_synonyms_str:
+                            df_master.loc[company_id, 'SYNONYMS'] = existing_synonyms_str + ', ' + new_synonyms_str
+                        else:
+                            df_master.loc[company_id, 'SYNONYMS'] = new_synonyms_str
+            
+            # Reset index to bring companyID back as a column before saving
+            df_master.reset_index(inplace=True)
+
+        except FileNotFoundError:
+            print(f"Warning: former_names.csv not found at {former_names_path}. Skipping integration.", file=sys.stderr)
+            # If the file was not found, we might have set the index, so we should reset it.
+            if 'companyID' not in df_master.columns:
+                 df_master.reset_index(inplace=True)
+
+        # 6. Save the final master file
         print(f"Saving master data file to: {output_path}")
         output_path.parent.mkdir(parents=True, exist_ok=True)
         df_master.to_csv(output_path, index=False, encoding='utf-8-sig')
