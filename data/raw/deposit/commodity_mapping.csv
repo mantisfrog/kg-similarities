@@ -69,7 +69,7 @@ Li2O,Lithium oxide
 Lime,Agricultural Lime
 Mag,Magnetite
 Mg,Magnesium
-MgO,Magnesia magnesium oxide
+MgO,Magnesia (magnesium oxide)
 Mgs,Magnesite
 Mica,Mica
 Mn,Manganese
@@ -145,4 +145,11 @@ Stl,Steel
 Lst,Limestone
 Qklm,Quicklime
 FeCr,Ferrochrome
-Ap,Apatite
+Be,Beryllium
+CaCO3,Calcite
+Ge,Germanium
+Jade,Jade
+Py,Pyrite
+Quartz-U,Quartz - undifferentiated
+Agg-CR,Aggregate - crushed rock
+Te,Tellurium
