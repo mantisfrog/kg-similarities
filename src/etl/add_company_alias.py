@@ -142,13 +142,19 @@ def create_master_company_data():
         changes_log = []
 
         for current_index, current_row in df_master.iterrows():
-            # Collect all unique, non-empty names from the current row
-            current_names = set()
+            # Collect all unique, non-empty names from the current row in an ordered list
+            all_names_with_dupes = []
             if pd.notna(current_row['Company Name']):
-                current_names.add(current_row['Company Name'].strip())
+                all_names_with_dupes.append(current_row['Company Name'].strip())
             if pd.notna(current_row['SYNONYMS']) and current_row['SYNONYMS']:
-                current_names.update([s.strip() for s in str(current_row['SYNONYMS']).split(',')])
-            current_names = {name for name in current_names if name} # Remove empty strings
+                all_names_with_dupes.extend([s.strip() for s in str(current_row['SYNONYMS']).split(',')])
+
+            current_names = []
+            seen_names_lower_for_row = set()
+            for name in all_names_with_dupes:
+                if name and name.lower() not in seen_names_lower_for_row:
+                    current_names.append(name)
+                    seen_names_lower_for_row.add(name.lower())
 
             # Find the first previously seen name, which determines the target row for merging
             target_index = None
