@@ -82,8 +82,8 @@ def process_files(MERGED_CSV_path, company_tsv_path, output_csv_path):
 
                     upper_name = company_name.upper()
                     
-                    # Use a set to automatically handle and store all unique name variants
-                    names_to_check = {upper_name}
+                    # Use a list to ensure a deterministic check order for name variants
+                    names_to_check = [upper_name]
                     
                     # Define pairs of variations to replace mutually
                     variation_pairs = [
@@ -95,10 +95,10 @@ def process_files(MERGED_CSV_path, company_tsv_path, output_csv_path):
                         # Use regex with word boundaries (\b) to ensure only whole words are replaced
                         # Check if v1 exists, and if so, generate a variant by replacing it with v2
                         if re.search(r'\b' + v1 + r'\b', upper_name):
-                            names_to_check.add(re.sub(r'\b' + v1 + r'\b', v2, upper_name))
+                            names_to_check.append(re.sub(r'\b' + v1 + r'\b', v2, upper_name))
                         # Check if v2 exists, and if so, generate a variant by replacing it with v1
                         if re.search(r'\b' + v2 + r'\b', upper_name):
-                            names_to_check.add(re.sub(r'\b' + v2 + r'\b', v1, upper_name))
+                            names_to_check.append(re.sub(r'\b' + v2 + r'\b', v1, upper_name))
 
                     found_acn = None
                     # Try to match all possible name variants
