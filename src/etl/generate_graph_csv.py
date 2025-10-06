@@ -3,6 +3,8 @@ import os
 import re
 from pathlib import Path
 
+from ..utils.generate_node_rel import generate_node_csv, generate_rel_csv
+
 def generate_project_nodes(df: pd.DataFrame, output_dir: Path):
     """
     Generates node_Project.csv for :Project nodes.
@@ -68,21 +70,15 @@ def generate_project_name_nodes(df: pd.DataFrame, output_dir: Path):
 
     # Create DataFrame for unique names
     df_names = pd.DataFrame(list(names), columns=['text:string'])
-    df_names.sort_values('text:string', inplace=True)
-    df_names.reset_index(drop=True, inplace=True)
-
-    # Generate unique IDs
-    df_names['projectNameID:ID'] = 'projectName_' + (df_names.index + 1).astype(str)
     
-    # Reorder columns and save
-    df_names = df_names[['projectNameID:ID', 'text:string']]
-    output_file = output_dir / "node_ProjectName.csv"
-    df_names.to_csv(output_file, index=False)
-    print(f"Generated {output_file}")
-
-    # Create and return a mapping from name text to ID for relationship generation
-    name_to_id = pd.Series(df_names['projectNameID:ID'].values, index=df_names['text:string']).to_dict()
-    return name_to_id
+    return generate_node_csv(
+        df_nodes=df_names,
+        id_col_name='projectNameID:ID',
+        id_prefix='projectName_',
+        value_col_for_mapping='text:string',
+        output_dir=output_dir,
+        filename="node_ProjectName.csv"
+    )
 
 def generate_state_nodes(df: pd.DataFrame, output_dir: Path):
     """
@@ -95,21 +91,15 @@ def generate_state_nodes(df: pd.DataFrame, output_dir: Path):
     
     # Create DataFrame for unique states
     df_states = pd.DataFrame(states, columns=['text:string'])
-    df_states.sort_values('text:string', inplace=True)
-    df_states.reset_index(drop=True, inplace=True)
 
-    # Generate unique IDs
-    df_states['stateID:ID'] = 'state_' + (df_states.index + 1).astype(str)
-
-    # Reorder columns and save
-    df_states = df_states[['stateID:ID', 'text:string']]
-    output_file = output_dir / "node_State.csv"
-    df_states.to_csv(output_file, index=False)
-    print(f"Generated {output_file}")
-
-    # Create and return a mapping from state text to ID
-    state_to_id = pd.Series(df_states['stateID:ID'].values, index=df_states['text:string']).to_dict()
-    return state_to_id
+    return generate_node_csv(
+        df_nodes=df_states,
+        id_col_name='stateID:ID',
+        id_prefix='state_',
+        value_col_for_mapping='text:string',
+        output_dir=output_dir,
+        filename="node_State.csv"
+    )
 
 def generate_commodity_nodes(df: pd.DataFrame, output_dir: Path):
     """
@@ -148,22 +138,18 @@ def generate_commodity_nodes(df: pd.DataFrame, output_dir: Path):
 
     # Create DataFrame for commodities
     df_commodities = pd.DataFrame(list(symbols), columns=['symbol:string'])
-    df_commodities.sort_values('symbol:string', inplace=True)
-    df_commodities.reset_index(drop=True, inplace=True)
     
-    # Map symbols to names and generate IDs
+    # Map symbols to names
     df_commodities['name:string'] = df_commodities['symbol:string'].map(symbol_to_name).fillna('')
-    df_commodities['commodityID:ID'] = 'commodity_' + (df_commodities.index + 1).astype(str)
 
-    # Reorder columns and save
-    df_commodities = df_commodities[['commodityID:ID', 'symbol:string', 'name:string']]
-    output_file = output_dir / "node_Commodity.csv"
-    df_commodities.to_csv(output_file, index=False)
-    print(f"Generated {output_file}")
-
-    # Create and return a mapping from symbol to ID
-    symbol_to_id = pd.Series(df_commodities['commodityID:ID'].values, index=df_commodities['symbol:string']).to_dict()
-    return symbol_to_id
+    return generate_node_csv(
+        df_nodes=df_commodities,
+        id_col_name='commodityID:ID',
+        id_prefix='commodity_',
+        value_col_for_mapping='symbol:string',
+        output_dir=output_dir,
+        filename="node_Commodity.csv"
+    )
 
 def generate_company_nodes(df: pd.DataFrame, output_dir: Path):
     """
@@ -179,21 +165,15 @@ def generate_company_nodes(df: pd.DataFrame, output_dir: Path):
 
     # Create DataFrame for unique companies
     df_companies = pd.DataFrame(list(companies), columns=['name:string'])
-    df_companies.sort_values('name:string', inplace=True)
-    df_companies.reset_index(drop=True, inplace=True)
-
-    # Generate unique IDs
-    df_companies['companyID:ID'] = 'company_' + (df_companies.index + 1).astype(str)
     
-    # Reorder columns and save
-    df_companies = df_companies[['companyID:ID', 'name:string']]
-    output_file = output_dir / "node_Company.csv"
-    df_companies.to_csv(output_file, index=False)
-    print(f"Generated {output_file}")
-
-    # Create and return a mapping from name to ID for relationship generation
-    company_to_id = pd.Series(df_companies['companyID:ID'].values, index=df_companies['name:string']).to_dict()
-    return company_to_id
+    return generate_node_csv(
+        df_nodes=df_companies,
+        id_col_name='companyID:ID',
+        id_prefix='company_',
+        value_col_for_mapping='name:string',
+        output_dir=output_dir,
+        filename="node_Company.csv"
+    )
 
 def generate_refers_to_rels(df: pd.DataFrame, name_to_id: dict, output_dir: Path):
     """
@@ -218,11 +198,7 @@ def generate_refers_to_rels(df: pd.DataFrame, name_to_id: dict, output_dir: Path
                     start_id = name_to_id[synonym]
                     rels.append({'START_ID': start_id, 'END_ID': end_id, 'TYPE': 'REFERS_TO_PROJECT'})
 
-    df_rels = pd.DataFrame(rels)
-    df_rels.rename(columns={'START_ID': ':START_ID', 'END_ID': ':END_ID', 'TYPE': ':TYPE'}, inplace=True)
-    output_file = output_dir / "rel_Refers_to.csv"
-    df_rels.to_csv(output_file, index=False)
-    print(f"Generated {output_file}")
+    generate_rel_csv(rels, output_dir, "rel_Refers_to.csv")
 
 def generate_located_in_rels(df: pd.DataFrame, state_to_id: dict, output_dir: Path):
     """
@@ -236,11 +212,7 @@ def generate_located_in_rels(df: pd.DataFrame, state_to_id: dict, output_dir: Pa
             end_id = state_to_id[state]
             rels.append({'START_ID': start_id, 'END_ID': end_id, 'TYPE': 'LOCATED_IN'})
 
-    df_rels = pd.DataFrame(rels)
-    df_rels.rename(columns={'START_ID': ':START_ID', 'END_ID': ':END_ID', 'TYPE': ':TYPE'}, inplace=True)
-    output_file = output_dir / "rel_Located_in.csv"
-    df_rels.to_csv(output_file, index=False)
-    print(f"Generated {output_file}")
+    generate_rel_csv(rels, output_dir, "rel_Located_in.csv")
 
 def generate_has_commodity_rels(df: pd.DataFrame, symbol_to_id: dict, output_dir: Path):
     """
@@ -274,13 +246,7 @@ def generate_has_commodity_rels(df: pd.DataFrame, symbol_to_id: dict, output_dir
                         'TYPE': 'HAS_COMMODITY', 'role:string': 'Secondary'
                     })
 
-    df_rels = pd.DataFrame(rels)
-    df_rels.rename(columns={
-        'START_ID': ':START_ID', 'END_ID': ':END_ID', 
-        'TYPE': ':TYPE'}, inplace=True)
-    output_file = output_dir / "rel_Has_Commodity.csv"
-    df_rels.to_csv(output_file, index=False)
-    print(f"Generated {output_file}")
+    generate_rel_csv(rels, output_dir, "rel_Has_Commodity.csv")
 
 def generate_owns_rels(df: pd.DataFrame, company_to_id: dict, output_dir: Path):
     """
@@ -298,11 +264,7 @@ def generate_owns_rels(df: pd.DataFrame, company_to_id: dict, output_dir: Path):
                     start_id = company_to_id[company_name]
                     rels.append({'START_ID': start_id, 'END_ID': end_id, 'TYPE': 'OWNS'})
 
-    df_rels = pd.DataFrame(rels)
-    df_rels.rename(columns={'START_ID': ':START_ID', 'END_ID': ':END_ID', 'TYPE': ':TYPE'}, inplace=True)
-    output_file = output_dir / "rel_Owns.csv"
-    df_rels.to_csv(output_file, index=False)
-    print(f"Generated {output_file}")
+    generate_rel_csv(rels, output_dir, "rel_Owns.csv")
 
 def main():
     """

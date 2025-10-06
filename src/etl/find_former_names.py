@@ -7,9 +7,9 @@ from pathlib import Path
 # Increase CSV field size limit in case the TSV has very long fields
 csv.field_size_limit(sys.maxsize)
 
-def process_files(master_csv_path, company_tsv_path, output_csv_path):
+def process_files(MERGED_CSV_path, company_tsv_path, output_csv_path):
     """
-    Matches company names from a master CSV to a large TSV file,
+    Matches company names from a Merged CSV to a large TSV file,
     handles name variations, and finds all associated company names by ACN.
     """
     print(f"Starting to load {company_tsv_path} into memory...")
@@ -56,19 +56,19 @@ def process_files(master_csv_path, company_tsv_path, output_csv_path):
         return
 
     print(f"TSV file loading completed. Loaded {len(name_to_acn)} unique company names.")
-    print(f"Starting to process {master_csv_path} and write to {output_csv_path}...")
+    print(f"Starting to process {MERGED_CSV_path} and write to {output_csv_path}...")
 
     try:
-        with open(master_csv_path, mode='r', encoding='utf-8') as master_csv, \
+        with open(MERGED_CSV_path, mode='r', encoding='utf-8') as MERGED_CSV, \
              open(output_csv_path, mode='w', encoding='utf-8', newline='') as output_csv:
             
-            csv_reader = csv.reader(master_csv)
+            csv_reader = csv.reader(MERGED_CSV)
             csv_writer = csv.writer(output_csv)
             
             # Write the output file header
             csv_writer.writerow(['ID', 'ACN', 'MatchedNames'])
             
-            # Skip the header row in master_csv if it exists
+            # Skip the header row in MERGED_CSV if it exists
             next(csv_reader, None)
 
             found_count = 0
@@ -120,7 +120,7 @@ def process_files(master_csv_path, company_tsv_path, output_csv_path):
                     print(f"  Processed {i + 1} CSV records, found {found_count} matches...")
 
     except FileNotFoundError:
-        print(f"Error: Master CSV file not found at '{master_csv_path}'")
+        print(f"Error: Merged CSV file not found at '{MERGED_CSV_path}'")
         return
     except Exception as e:
         print(f"Error processing CSV file: {e}")
@@ -133,7 +133,7 @@ def process_files(master_csv_path, company_tsv_path, output_csv_path):
 if __name__ == '__main__':
     # --- File path configuration ---
     project_root = Path(__file__).resolve().parents[2]
-    MASTER_CSV = project_root / "data" / "master" / "CompanyData_Master.csv"
+    MERGED_CSV = project_root / "data" / "processed" / "CompanyData_Merged.csv"
     COMPANY_TSV = project_root / "data" / "raw" / "company" / "COMPANY_202509.tsv"
     OUTPUT_CSV = project_root / "data" / "processed" / "former_names.csv"
     # --------------------
@@ -141,4 +141,4 @@ if __name__ == '__main__':
     # Ensure output directory exists
     OUTPUT_CSV.parent.mkdir(parents=True, exist_ok=True)
 
-    process_files(MASTER_CSV, COMPANY_TSV, OUTPUT_CSV)
+    process_files(MERGED_CSV, COMPANY_TSV, OUTPUT_CSV)
