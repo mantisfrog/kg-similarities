@@ -1,5 +1,5 @@
 # Import necessary libraries for JSON, CSV, and path manipulation.
-import json, csv
+import json, csv, re
 from pathlib import Path
 
 # Get the absolute path of the directory containing this script.
@@ -48,24 +48,20 @@ def load_commodity_mapping(filepath):
     return symbol_to_name, name_to_symbol
 
 def split_primary_secondary(s: str):
-    """Splits a comma-separated string of commodities into primary and secondary lists.
-       Commodities in parentheses are considered secondary."""
+    """Splits a comma-separated string of commodities into primary and secondary lists."""
     if not s:
         return "", ""
-    items = [t.strip() for t in s.split(",")]
-    primaries, secondaries = [], []
-    for t in items:
-        if not t:
-            continue
-        # Check for both English and Chinese parentheses.
-        has_paren = ("(" in t) or (")" in t) or ("（" in t) or ("）" in t)
-        if (t.startswith("(") and t.endswith(")")) or (t.startswith("（") and t.endswith("）")) or has_paren:
-            # Strip parentheses and whitespace to get the value.
-            v = t.strip().strip("()").strip("（）").strip()
-            if v:
-                secondaries.append(v)
-        else:
-            primaries.append(t)
+
+    # Find all secondary commodities (inside parentheses)
+    secondary_groups = re.findall(r'[\(（](.*)[\)）]', s)
+    secondaries = []
+    for group in secondary_groups:
+        secondaries.extend([item.strip() for item in group.split(',') if item.strip()])
+
+    # Remove secondary parts from the string to get primaries
+    primaries_str_cleaned = re.sub(r'[\(（].*[\)）]', '', s)
+    primaries = [item.strip() for item in primaries_str_cleaned.split(',') if item.strip()]
+
     return ", ".join(primaries), ", ".join(secondaries)
 
 def parse_deposit_model(s: str):
@@ -87,29 +83,9 @@ def parse_deposit_model(s: str):
     return env, grp, typ
 
 def clean_strings(obj):
-    """Recursively removes newline and carriage return characters from all string values in a nested object.
-       Also fixes known dirty data issues."""
+    """Recursively removes newline and carriage return characters from all string values in a nested object."""
     if isinstance(obj, str):
         s = obj.replace("\r", "").replace("\n", "")
-        # Replace historical name and name errors with correct names.
-        # https://www.delisted.com.au/ and Bloomberg Company Actions <GO>.
-        s = s.replace("AuRico Gold Corporporation", "AuRico Gold Corporation")
-        s = s.replace("Resource and Investment NL", "Auris Minerals Ltd")
-        s = s.replace("Vendetta Mining Crop", "Vendetta Mining Corp")
-        s = s.replace("Henna shenhuo Group Co. Ltd", "Henan Shenhuo Group Co Ltd")
-        s = s.replace("Minemakers Ltd (MAK)", "Avenira Limited")
-        s = s.replace("BHP Billiton Limited", "BHP Group Limited")
-        s = s.replace("Gujarat NRE", "Gujarat NRE Coke Ltd")
-        s = s.replace("Black Oak Minerals Limited", "Marda Operations Pty Ltd")
-        s = s.replace("Southern Cross Gold Ltd", "Marda Operations Pty Ltd")
-        s = s.replace("Centrex Metals Limited", "Centrex Ltd")
-        s = s.replace("Fortescue Metals Group Limited", "Fortescue Ltd")
-        s = s.replace("Cougar Energy Ltd", "Moreton Resources")
-        s = s.replace("Minerals and Metals Group (MMG)", "MMG Ltd")
-        s = s.replace("Minerals and Metals Group", "MMG Ltd")
-        s = s.replace("MMG Limited (MMG)", "MMG Ltd")
-        s = s.replace("Minerals Corporation", "MSM Corporation International Ltd")
-
         return s
     elif isinstance(obj, dict):
         return {k: clean_strings(v) for k, v in obj.items()}
