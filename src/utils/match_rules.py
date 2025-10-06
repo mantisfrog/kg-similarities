@@ -17,7 +17,7 @@ def get_match_status(w_ratio, levenshtein_ratio, secondary_scores):
         return "no_space_exact_match"
     if secondary_scores.get("au_removed_match") == 1:
         return "au_removed_match"
-    if (w_ratio >= 90 and
+    if (w_ratio >= 95 and
             levenshtein_ratio >= 90 and
             secondary_scores.get("jaccard_similarity", 0) >= 0.5 and
             secondary_scores.get("spacy_similarity", 0) >= 0.5):
