@@ -1,17 +1,20 @@
 import pandas as pd
 from pathlib import Path
+import sys
 
 # --- Start of Modification ---
 
-# Determine the project root directory relative to this script's location.
-script_dir = Path(__file__).resolve().parent
-project_root = script_dir.parent.parent
+# Add project root to sys.path to allow importing from src
+project_root = Path(__file__).resolve().parents[2]
+sys.path.append(str(project_root))
+
+from src import config
 
 # Define file paths for the source and destination files.
-categorization_file = project_root / 'data/raw/deposit/categorization.csv'
-node_commodity_file = project_root / 'data/graph/node_Commodity.csv'
+categorization_file = config.CATEGORIZATION_CSV
+node_commodity_file = config.NODE_COMMODITY_CSV
 # The result will overwrite the original node file.
-output_file = project_root / 'data/graph/node_Commodity.csv'
+output_file = config.NODE_COMMODITY_CSV
 
 # Ensure the directory for the output file exists.
 output_file.parent.mkdir(parents=True, exist_ok=True)

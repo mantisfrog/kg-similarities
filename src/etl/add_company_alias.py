@@ -2,21 +2,25 @@ import pandas as pd
 from pathlib import Path
 import sys
 
+# Add project root to sys.path to allow importing from src
+project_root = Path(__file__).resolve().parents[2]
+sys.path.append(str(project_root))
+
+from src import config
+
 def create_master_company_data():
     """
     Reads processed data, merges synonyms and ACNs, consolidates duplicates,
     and creates a master company data file with a changes log.
     """
     try:
-        # 1. Define all file paths in one section
-        project_root = Path(__file__).resolve().parents[2]
+        # 1. Define all file paths from config
         # Inputs
-        merged_company_data_path = project_root / "data" / "processed" / "CompanyData_Merged.csv"
-        matches_scores_graph_path = project_root / "data" / "processed" / "Matches_Scores_Graph.csv"
-        former_names_path = project_root / "data" / "processed" / "former_names.csv"
+        merged_company_data_path = config.MERGED_COMPANY_CSV
+        matches_scores_graph_path = config.MATCHES_SCORES_GRAPH_CSV
+        former_names_path = config.FORMER_NAMES_CSV
         # Outputs
-        output_path = project_root / "data" / "master" / "CompanyData_Master.csv"
-        changes_log_path = project_root / "data" / "master" / "ACN_Merge_Changes_Log.csv"
+        output_path = config.MASTER_COMPANY_CSV
 
         # Read input CSV files
         print(f"Reading merged company data: {merged_company_data_path}")
@@ -97,7 +101,7 @@ def create_master_company_data():
             print(f"Warning: {former_names_path} not found. Skipping ACN and former names integration.", file=sys.stderr)
 
         # --- Integrate manual aliases before saving master file ---
-        manual_aliases_path = project_root / "data" / "raw" / "company" / "manual_add_company_names.csv"
+        manual_aliases_path = config.MANUAL_ALIASES_CSV
         try:
             df_manual = pd.read_csv(manual_aliases_path)
             for _, mrow in df_manual.iterrows():
@@ -207,11 +211,12 @@ def create_master_company_data():
         if rows_to_drop:
             df_master.drop(index=rows_to_drop, inplace=True)
             
-            name_changes_log_path = project_root / "data" / "master" / "Name_Merge_Changes_Log.csv"
-            df_changes = pd.DataFrame(changes_log)
-            # print(f"Saving name merge changes log to: {name_changes_log_path}")
-            # name_changes_log_path.parent.mkdir(parents=True, exist_ok=True)
-            # df_changes.to_csv(name_changes_log_path, index=False, encoding='utf-8-sig')
+            # Enable logging if needed
+            # df_changes = pd.DataFrame(changes_log)
+            # changes_log_path = config.CHANGES_LOG_CSV
+            # print(f"Saving name merge changes log to: {changes_log_path}")
+            # changes_log_path.parent.mkdir(parents=True, exist_ok=True)
+            # df_changes.to_csv(changes_log_path, index=False, encoding='utf-8-sig')
         else:
             print("No duplicate names found to consolidate.")
 

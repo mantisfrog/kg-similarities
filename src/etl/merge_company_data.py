@@ -7,7 +7,6 @@ from collections import defaultdict
 import numpy as np
 import sys
 import spacy
-import subprocess
 
 # Add the project root to the Python path to allow for absolute imports
 project_root = Path(__file__).resolve().parents[2]
@@ -19,6 +18,8 @@ from src.utils.calculate_similarities import calculate_text_similarities
 from src.utils.build_word_index import build_word_index
 from src.utils.select_candidates import select_best_candidate
 from src.utils.match_rules import get_match_status
+from src.utils.load_spacy import load_spacy_model
+from src import config
 
 
 
@@ -76,13 +77,12 @@ def main():
     """
     # --- 1. SETUP AND PRE-PROCESSING ---
     # Setup paths
-    project_root = Path(__file__).resolve().parents[2]
-    linkedin_path = project_root / "data" / "raw" / "company" / "linkedin_unpickled" / "linkedin_mining_companies.csv"
-    bloomberg_path = project_root / "data" / "processed" / "Bloomberg_Companies.csv"
-    ms_path = project_root / "data" / "raw" / "company" / "modern_slavery" / "cleaned_ms_statements.csv"
-    log_ms_match_output_path = project_root / "data" / "processed" / "Matches_Scores_Bloomberg_to_MS_Log.csv"
-    log_li_match_output_path = project_root / "data" / "processed" / "Matches_Scores_Merged_to_Linkedin_Log.csv"
-    merged_company_data_output_path = project_root / "data" / "processed" / "CompanyData_Merged.csv"
+    linkedin_path = config.LINKEDIN_MINING_CSV
+    bloomberg_path = config.PROCESSED_BLOOMBERG_CSV
+    ms_path = config.MS_CLEANED_CSV
+    log_ms_match_output_path = config.MATCHES_SCORES_BB_MS_LOG_CSV
+    log_li_match_output_path = config.MATCHES_SCORES_MERGED_LI_LOG_CSV
+    merged_company_data_output_path = config.MERGED_COMPANY_CSV
     
     merged_company_data_output_path.parent.mkdir(parents=True, exist_ok=True)
     
@@ -94,12 +94,7 @@ def main():
 
     # Load spaCy Model
     print("Loading spaCy model...")
-    try:
-        nlp = spacy.load("en_core_web_md")
-    except OSError:
-        print("Downloading spaCy model 'en_core_web_md'...")
-        subprocess.run(["python", "-m", "spacy", "download", "en_core_web_md"])
-        nlp = spacy.load("en_core_web_md")
+    nlp = load_spacy_model("en_core_web_md")
 
     # Pre-process and Normalize all dataframes
     print("Normalizing and cleaning all datasets...")

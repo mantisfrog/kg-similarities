@@ -93,7 +93,7 @@ else
 fi
 
 # Finally, run the Cypher script to load data --- FILENAME CORRECTED
-run_with_spinner "  -> Loading data via Cypher..." "python ./src/etl/load_cyper.py"
+run_with_spinner "  -> Loading data via Cypher..." "python ./src/etl/load_cypher.py"
 
 echo "✅ Graph import process complete."
 

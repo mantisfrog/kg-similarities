@@ -1,14 +1,21 @@
 from pathlib import Path
 from neo4j import GraphDatabase
+import sys
+
+# Add project root to sys.path to allow importing from src
+project_root = Path(__file__).resolve().parents[2]
+sys.path.append(str(project_root))
+
+from src import config
 
 def run_cypher_file(file_path):
     """
     Connects to Neo4j and runs the Cypher commands from a specified file.
     """
-    # Replace with your Neo4j connection details
-    uri = "bolt://localhost:7687"
-    username = "neo4j"
-    password = "neo4jroot"
+    # Connection details from config
+    uri = config.NEO4J_URI
+    username = config.NEO4J_USER
+    password = config.NEO4J_PASSWORD
 
     # Read the Cypher script from the file
     try:
@@ -48,17 +55,7 @@ def run_cypher_file(file_path):
             print("Connection closed.")
 
 if __name__ == "__main__":
-    # --- Start of Modification ---
-
-    # Determine the project root directory based on this script's location
-    # This script is in .../src/etl/, so the project root is two levels up.
-    script_dir = Path(__file__).resolve().parent
-    project_root = script_dir.parent.parent
-
-    # Construct a robust path to the Cypher file
-    cypher_file_path = project_root / "cypher" / "import.cypher"
-    
-    # --- End of Modification ---
+    cypher_file_path = config.CYPHER_FILE
 
     if not cypher_file_path.exists():
         print(f"Error: The file '{cypher_file_path}' was not found.")

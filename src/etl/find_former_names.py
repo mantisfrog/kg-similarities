@@ -4,6 +4,12 @@ import re
 from collections import defaultdict
 from pathlib import Path
 
+# Add project root to sys.path to allow importing from src
+project_root = Path(__file__).resolve().parents[2]
+sys.path.append(str(project_root))
+
+from src import config
+
 # Increase CSV field size limit in case the TSV has very long fields
 csv.field_size_limit(sys.maxsize)
 
@@ -131,11 +137,10 @@ def process_files(MERGED_CSV_path, company_tsv_path, output_csv_path):
 
 
 if __name__ == '__main__':
-    # --- File path configuration ---
-    project_root = Path(__file__).resolve().parents[2]
-    MERGED_CSV = project_root / "data" / "processed" / "CompanyData_Merged.csv"
-    COMPANY_TSV = project_root / "data" / "raw" / "company" / "COMPANY_202509.tsv"
-    OUTPUT_CSV = project_root / "data" / "processed" / "former_names.csv"
+    # --- File path configuration from config ---
+    MERGED_CSV = config.MERGED_COMPANY_CSV
+    COMPANY_TSV = config.COMPANY_TSV
+    OUTPUT_CSV = config.FORMER_NAMES_CSV
     # --------------------
 
     # Ensure output directory exists

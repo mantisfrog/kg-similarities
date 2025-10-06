@@ -13,6 +13,13 @@
 import pandas as pd
 from pathlib import Path
 import pycountry
+import sys
+
+# Add project root to sys.path to allow importing from src
+project_root = Path(__file__).resolve().parents[2]
+sys.path.append(str(project_root))
+
+from src import config
 
 def convert_shorthand_to_numeric(value):
     """Converts a string with K, M, B suffix to a numeric value."""
@@ -47,9 +54,7 @@ def iso_to_country_name(code):
 
 
 def main():
-    project_root = Path(__file__).resolve().parents[2]
-    base_path = project_root / 'data' / 'raw' / 'company' / 'bloomberg'
-    dirs_to_process = [base_path / 'ICB', base_path / 'BICS']
+    dirs_to_process = [config.BLOOMBERG_ICB_DIR, config.BLOOMBERG_BICS_DIR]
 
     df_list = []
     seen_ids = set()
@@ -109,7 +114,7 @@ def main():
         print(f"Warning: Column count mismatch. Expected {len(new_headers)}, but found {len(combined_df.columns)}. Headers not renamed.")
 
     # Perform a left join with the description file
-    des_file_path = project_root / 'data' / 'raw' / 'company' / 'bloomberg' / 'TICKER_NAME_DES.csv'
+    des_file_path = config.BLOOMBERG_TICKER_DES_CSV
     if des_file_path.exists():
         des_df = pd.read_csv(des_file_path, dtype=str)
         
@@ -212,7 +217,7 @@ def main():
         # 4. Concatenate the sorted groups
         combined_df = pd.concat([df_market_cap, df_remaining], ignore_index=True)
 
-    output_path = project_root / 'data' / 'processed' / 'Bloomberg_Companies.csv'
+    output_path = config.PROCESSED_BLOOMBERG_CSV
     output_path.parent.mkdir(parents=True, exist_ok=True)
     combined_df.to_csv(output_path, index=False)
 

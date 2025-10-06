@@ -1,23 +1,22 @@
 import pandas as pd
 import geopandas as gpd
 from pathlib import Path
+import sys
 
-# --- Start of Modification ---
+# Add project root to sys.path to allow importing from src
+project_root = Path(__file__).resolve().parents[2]
+sys.path.append(str(project_root))
 
-# Define the project root directory relative to the script's location.
-script_dir = Path(__file__).resolve().parent
-project_root = script_dir.parent.parent
+from src import config
 
-# Define absolute paths for input and output files.
-DEPOSITS_CSV_PATH = project_root / 'data/processed/MineralDeposits.csv'
-PROVINCES_SHP_PATH = project_root / 'data/raw/shp/116823_AGP_2018/ProvinceFullExtent.shp'
-STATES_SHP_PATH = project_root / 'data/raw/shp/STE_2021_AUST_SHP_GDA94/STE_2021_AUST_GDA94.shp'
-OUTPUT_CSV_PATH = project_root / 'data/master/ProjectData_Master.csv'
+# Define absolute paths for input and output files from config.
+DEPOSITS_CSV_PATH = config.PROCESSED_DEPOSITS_CSV
+PROVINCES_SHP_PATH = config.PROVINCES_SHP
+STATES_SHP_PATH = config.STATES_SHP
+OUTPUT_CSV_PATH = config.MASTER_PROJECT_CSV
 
 
-# --- End of Modification ---
-
-def process_deposits_with_provinces(deposits_path, provinces_path, output_path):
+def process_deposits_with_provinces(deposits_path, provinces_path, states_path, output_path):
     """
     Enriches deposit data by spatially joining it with province and state shapefiles.
     It identifies which province polygons a deposit falls into and backfills missing state data.
@@ -29,7 +28,7 @@ def process_deposits_with_provinces(deposits_path, provinces_path, output_path):
         print("Step 1/6: Loading data...")
         deposits_df = pd.read_csv(deposits_path)
         provinces_gdf = gpd.read_file(provinces_path)
-        states_gdf = gpd.read_file(STATES_SHP_PATH)
+        states_gdf = gpd.read_file(states_path)
         print(f"Loaded {len(deposits_df)} deposits, {len(provinces_gdf)} province polygons, {len(states_gdf)} state polygons.")
 
         # Create a unique index to reliably merge data back after joins.
@@ -174,4 +173,9 @@ def process_deposits_with_provinces(deposits_path, provinces_path, output_path):
 
 # Main execution block.
 if __name__ == "__main__":
-    process_deposits_with_provinces(DEPOSITS_CSV_PATH, PROVINCES_SHP_PATH, OUTPUT_CSV_PATH)
+    process_deposits_with_provinces(
+        DEPOSITS_CSV_PATH, 
+        PROVINCES_SHP_PATH, 
+        STATES_SHP_PATH, 
+        OUTPUT_CSV_PATH
+    )

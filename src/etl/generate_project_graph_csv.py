@@ -8,6 +8,7 @@ project_root = Path(__file__).resolve().parents[2]
 sys.path.append(str(project_root))
 
 from src.utils.generate_node_rel import generate_node_csv, generate_rel_csv
+from src import config
 
 def generate_project_nodes(df: pd.DataFrame, output_dir: Path):
     """
@@ -274,11 +275,9 @@ def main():
     """
     Main function to orchestrate the ETL process.
     """
-    # Define project paths relative to the script location
-    script_dir = Path(__file__).parent
-    project_root = script_dir.parent.parent
-    source_file = project_root / "data/master/ProjectData_Master.csv"
-    output_dir = project_root / "data/graph"
+    # Define project paths from config
+    source_file = config.MASTER_PROJECT_CSV
+    output_dir = config.GRAPH_DIR
 
     # Create output directory if it doesn't exist
     os.makedirs(output_dir, exist_ok=True)

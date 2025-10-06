@@ -1,20 +1,21 @@
 # Import necessary libraries for JSON, CSV, and path manipulation.
 import json, csv, re
 from pathlib import Path
+import sys
 
-# Get the absolute path of the directory containing this script.
-script_dir = Path(__file__).resolve().parent
+# Add project root to sys.path to allow importing from src
+project_root = Path(__file__).resolve().parents[2]
+sys.path.append(str(project_root))
 
-# Determine the project root directory (two levels up from the script's directory).
-project_root = script_dir.parent.parent
+from src import config
 
 # Define absolute paths for the input JSON and output CSV files.
-INPUT = project_root / "data/raw/deposit/MineralDeposits.json"
-INPUT_CSV = project_root / "data/raw/deposit/MajorResourceProjects.csv"
-INPUT_CSV_2 = project_root / "data/raw/deposit/MineView.csv"
-COMMODITY_MAPPING_CSV = project_root / "data/raw/deposit/commodity_mapping.csv"
+INPUT = config.MINERAL_DEPOSITS_JSON
+INPUT_CSV = config.MAJOR_RESOURCE_PROJECTS_CSV
+INPUT_CSV_2 = config.MINE_VIEW_CSV
+COMMODITY_MAPPING_CSV = config.COMMODITY_MAPPING_CSV
 #Rewrite the CommodityNames table using a more robust CommoditySymbol and CommodityName mapping table.
-OUTPUT = project_root / "data/processed/MineralDeposits.csv"
+OUTPUT = config.PROCESSED_DEPOSITS_CSV
 
 # --- End of Modification ---
 

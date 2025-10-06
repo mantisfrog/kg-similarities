@@ -6,7 +6,6 @@ from tqdm import tqdm
 import re
 from collections import defaultdict
 import numpy as np
-import subprocess
 import sys
 
 # Add the project root to the Python path to allow for absolute imports
@@ -19,6 +18,8 @@ from src.utils.calculate_similarities import calculate_text_similarities
 from src.utils.build_word_index import build_word_index
 from src.utils.select_candidates import select_best_candidate
 from src.utils.match_rules import get_match_status
+from src.utils.load_spacy import load_spacy_model
+from src import config
 
 
 
@@ -29,10 +30,9 @@ def main():
     The matching logic is hierarchical: it stops as soon as a perfect match is found.
     """
     # 1. Setup Paths
-    project_root = Path(__file__).resolve().parents[2]
-    graph_path = project_root / "data" / "graph" / "node_Company.csv"
-    merged_company_data_path = project_root / "data" / "processed" / "CompanyData_Merged.csv"
-    output_path = project_root / "data" / "processed" / "Matches_Scores_Graph.csv"
+    graph_path = config.NODE_COMPANY_CSV
+    merged_company_data_path = config.MERGED_COMPANY_CSV
+    output_path = config.MATCHES_SCORES_GRAPH_CSV
     
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -73,12 +73,7 @@ def main():
 
     # 3. Load spaCy Model
     print("Loading spaCy model...")
-    try:
-        nlp = spacy.load("en_core_web_md")
-    except OSError:
-        print("Downloading spaCy model 'en_core_web_md'...")
-        subprocess.run(["python", "-m", "spacy", "download", "en_core_web_md"])
-        nlp = spacy.load("en_core_web_md")
+    nlp = load_spacy_model("en_core_web_md")
 
     # 4. Build Indexes for fast lookup
     print("Building indexes for all data sources...")
