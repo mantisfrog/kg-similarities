@@ -2,8 +2,12 @@ import pandas as pd
 import os
 import re
 from pathlib import Path
+import sys
 
-from ..utils.generate_node_rel import generate_node_csv, generate_rel_csv
+project_root = Path(__file__).resolve().parents[2]
+sys.path.append(str(project_root))
+
+from src.utils.generate_node_rel import generate_node_csv, generate_rel_csv
 
 def generate_project_nodes(df: pd.DataFrame, output_dir: Path):
     """

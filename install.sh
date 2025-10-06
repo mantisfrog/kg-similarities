@@ -75,14 +75,14 @@ else
     echo "🟡 Directory ./neo4j-docker not found, skipping permission fix."
 fi
 
-# [7/7] Generate graph CSVs and Import into Neo4j
-echo -e "\n🧩 [7/7] Generating graph files and importing into Neo4j..."
+# [7/7] Generate project graph CSVs and Import into Neo4j
+echo -e "\n🧩 [7/7] Generating project graph files and importing into Neo4j..."
 
 # First, generate the graph CSVs --- FILENAME CORRECTED
-run_with_spinner "  -> Generating graph CSVs..." "python ./src/etl/generate_graph_csv.py"
+run_with_spinner "  -> Generating graph CSVs..." "python ./src/etl/generate_project_graph_csv.py"
 
 # Then, add the commodity groups --- Assuming this script exists from your previous requests
-# run_with_spinner "  -> Categorising commodities..." "python ./src/feature/categorise_commodity.py"
+run_with_spinner "  -> Categorising commodities..." "python ./src/feature/categorise_commodity.py"
 
 # Copy CSV to import folder (after all graph CSVs are generated/modified)
 if [ -d "./neo4j-docker/import" ]; then

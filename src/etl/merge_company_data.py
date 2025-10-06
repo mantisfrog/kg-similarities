@@ -80,8 +80,8 @@ def main():
     linkedin_path = project_root / "data" / "raw" / "company" / "linkedin_unpickled" / "linkedin_mining_companies.csv"
     bloomberg_path = project_root / "data" / "processed" / "Bloomberg_Companies.csv"
     ms_path = project_root / "data" / "raw" / "company" / "modern_slavery" / "cleaned_ms_statements.csv"
-    ms_match_output_path = project_root / "data" / "processed" / "Matches_Scores_Bloomberg_to_MS.csv"
-    li_match_output_path = project_root / "data" / "processed" / "Matches_Scores_Merged_to_Linkedin.csv"
+    log_ms_match_output_path = project_root / "data" / "processed" / "Matches_Scores_Bloomberg_to_MS_Log.csv"
+    log_li_match_output_path = project_root / "data" / "processed" / "Matches_Scores_Merged_to_Linkedin_Log.csv"
     merged_company_data_output_path = project_root / "data" / "processed" / "CompanyData_Merged.csv"
     
     merged_company_data_output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -138,8 +138,8 @@ def main():
         right_entity_name="MS_Company",
         desc="Matching Bloomberg to MS"
     )
-    # ms_match_results_df.to_csv(ms_match_output_path, index=False)
-    # print(f"Modern Slavery match results saved to {ms_match_output_path}")
+    # ms_match_results_df.to_csv(log_ms_match_output_path, index=False)
+    # print(f"Modern Slavery match results log saved to {log_ms_match_output_path}")
 
     # Enrich Bloomberg with MS Revenue
     high_confidence_statuses = ['no_space_exact_match', 'au_removed_match', 'confident_score_match']
@@ -183,8 +183,8 @@ def main():
         right_entity_name="LinkedIn_Company",
         desc="Matching Merged to LinkedIn"
     )
-    # li_match_results_df.to_csv(li_match_output_path, index=False)
-    # print(f"LinkedIn match results saved to {li_match_output_path}")
+    # li_match_results_df.to_csv(log_li_match_output_path, index=False)
+    # print(f"LinkedIn match results log saved to {log_li_match_output_path}")
 
     # Enrich master_df with LinkedIn data
     high_confidence_li_matches = li_match_results_df[li_match_results_df['match_status'].isin(high_confidence_statuses)].copy()
