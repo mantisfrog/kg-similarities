@@ -13,7 +13,7 @@ def create_master_company_data():
         # Inputs
         merged_company_data_path = project_root / "data" / "processed" / "CompanyData_Merged.csv"
         matches_scores_graph_path = project_root / "data" / "processed" / "Matches_Scores_Graph.csv"
-        former_names_path = project_root / "data" / "raw" / "company" / "former_names.csv"
+        former_names_path = project_root / "data" / "processed" / "former_names.csv"
         # Outputs
         output_path = project_root / "data" / "master" / "CompanyData_Master.csv"
         changes_log_path = project_root / "data" / "master" / "ACN_Merge_Changes_Log.csv"
@@ -209,9 +209,9 @@ def create_master_company_data():
             
             name_changes_log_path = project_root / "data" / "master" / "Name_Merge_Changes_Log.csv"
             df_changes = pd.DataFrame(changes_log)
-            print(f"Saving name merge changes log to: {name_changes_log_path}")
-            name_changes_log_path.parent.mkdir(parents=True, exist_ok=True)
-            df_changes.to_csv(name_changes_log_path, index=False, encoding='utf-8-sig')
+            # print(f"Saving name merge changes log to: {name_changes_log_path}")
+            # name_changes_log_path.parent.mkdir(parents=True, exist_ok=True)
+            # df_changes.to_csv(name_changes_log_path, index=False, encoding='utf-8-sig')
         else:
             print("No duplicate names found to consolidate.")
 

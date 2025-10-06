@@ -135,7 +135,7 @@ if __name__ == '__main__':
     project_root = Path(__file__).resolve().parents[2]
     MASTER_CSV = project_root / "data" / "master" / "CompanyData_Master.csv"
     COMPANY_TSV = project_root / "data" / "raw" / "company" / "COMPANY_202509.tsv"
-    OUTPUT_CSV = project_root / "data" / "raw" / "company" / "former_names.csv"
+    OUTPUT_CSV = project_root / "data" / "processed" / "former_names.csv"
     # --------------------
 
     # Ensure output directory exists

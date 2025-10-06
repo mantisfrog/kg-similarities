@@ -138,8 +138,8 @@ def main():
         right_entity_name="MS_Company",
         desc="Matching Bloomberg to MS"
     )
-    ms_match_results_df.to_csv(ms_match_output_path, index=False)
-    print(f"Modern Slavery match results saved to {ms_match_output_path}")
+    # ms_match_results_df.to_csv(ms_match_output_path, index=False)
+    # print(f"Modern Slavery match results saved to {ms_match_output_path}")
 
     # Enrich Bloomberg with MS Revenue
     high_confidence_statuses = ['no_space_exact_match', 'au_removed_match', 'confident_score_match']
@@ -183,8 +183,8 @@ def main():
         right_entity_name="LinkedIn_Company",
         desc="Matching Merged to LinkedIn"
     )
-    li_match_results_df.to_csv(li_match_output_path, index=False)
-    print(f"LinkedIn match results saved to {li_match_output_path}")
+    # li_match_results_df.to_csv(li_match_output_path, index=False)
+    # print(f"LinkedIn match results saved to {li_match_output_path}")
 
     # Enrich master_df with LinkedIn data
     high_confidence_li_matches = li_match_results_df[li_match_results_df['match_status'].isin(high_confidence_statuses)].copy()
