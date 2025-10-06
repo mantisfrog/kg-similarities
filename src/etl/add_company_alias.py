@@ -228,7 +228,7 @@ def create_master_company_data():
 
         # 7. Save the final master file
         print(f"Saving master data file to: {output_path}")
-        output_path.parent.mkdir(parents=True, exist_ok=True)
+        config.ensure_parent(output_path)
         df_master.to_csv(output_path, index=False, encoding='utf-8-sig')
 
         print("Master company data file created successfully.")

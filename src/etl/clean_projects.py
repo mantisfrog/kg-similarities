@@ -23,7 +23,7 @@ def process_deposits_with_provinces(deposits_path, provinces_path, states_path, 
     """
     try:
         # Ensure the output directory exists.
-        Path(output_path).parent.mkdir(parents=True, exist_ok=True)
+        config.ensure_parent(Path(output_path))
 
         print("Step 1/6: Loading data...")
         deposits_df = pd.read_csv(deposits_path)

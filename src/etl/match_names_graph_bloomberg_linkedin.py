@@ -34,7 +34,7 @@ def main():
     merged_company_data_path = config.MERGED_COMPANY_CSV
     output_path = config.MATCHES_SCORES_GRAPH_CSV
     
-    output_path.parent.mkdir(parents=True, exist_ok=True)
+    config.ensure_parent(output_path)
 
     # 2. Load Data
     print("Loading data files...")

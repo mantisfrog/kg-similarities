@@ -98,7 +98,7 @@ def clean_strings(obj):
 def main():
     """Main function to orchestrate the data loading, processing, and writing."""
     # Ensure the output directory exists.
-    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    config.ensure_parent(OUTPUT)
 
     # --- Data Loading and Initial Processing ---
     all_data = []

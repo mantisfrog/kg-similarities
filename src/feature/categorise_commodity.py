@@ -17,7 +17,7 @@ node_commodity_file = config.NODE_COMMODITY_CSV
 output_file = config.NODE_COMMODITY_CSV
 
 # Ensure the directory for the output file exists.
-output_file.parent.mkdir(parents=True, exist_ok=True)
+config.ensure_parent(output_file)
 
 # --- End of Modification ---
 

@@ -38,7 +38,7 @@ def run_matching_process(left_norm_list, left_norm_to_orig, right_norm_to_orig, 
         left_original = left_norm_to_orig[normalized_left_name]
         
         if best_match_normalized:
-            nlp_model_to_use = nlp if w_ratio >= 90 and w_ratio < 100 else None
+            nlp_model_to_use = nlp if w_ratio >= 95 and w_ratio < 100 else None
             secondary_scores = calculate_text_similarities(
                 normalized_left_name, best_match_normalized, nlp_model_to_use
             )
@@ -84,7 +84,7 @@ def main():
     log_li_match_output_path = config.MATCHES_SCORES_MERGED_LI_LOG_CSV
     merged_company_data_output_path = config.MERGED_COMPANY_CSV
     
-    merged_company_data_output_path.parent.mkdir(parents=True, exist_ok=True)
+    config.ensure_parent(merged_company_data_output_path)
     
     # Load data
     print("Loading data files...")

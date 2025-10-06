@@ -218,7 +218,7 @@ def main():
         combined_df = pd.concat([df_market_cap, df_remaining], ignore_index=True)
 
     output_path = config.PROCESSED_BLOOMBERG_CSV
-    output_path.parent.mkdir(parents=True, exist_ok=True)
+    config.ensure_parent(output_path)
     combined_df.to_csv(output_path, index=False)
 
 if __name__ == "__main__":

@@ -144,6 +144,6 @@ if __name__ == '__main__':
     # --------------------
 
     # Ensure output directory exists
-    OUTPUT_CSV.parent.mkdir(parents=True, exist_ok=True)
+    config.ensure_parent(OUTPUT_CSV)
 
     process_files(MERGED_CSV, COMPANY_TSV, OUTPUT_CSV)

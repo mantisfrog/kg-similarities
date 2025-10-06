@@ -273,27 +273,20 @@ def generate_owns_rels(df: pd.DataFrame, company_to_id: dict, output_dir: Path):
 
 def main():
     """
-    Main function to orchestrate the ETL process.
+    Main function to orchestrate the generation of all project-related nodes and relationships.
     """
-    # Define project paths from config
-    source_file = config.MASTER_PROJECT_CSV
+    # Load the master project data
+    df = pd.read_csv(config.MASTER_PROJECT_CSV, dtype=str).fillna('')
+    
+    # Define the output directory for all graph CSVs
     output_dir = config.GRAPH_DIR
-
-    # Create output directory if it doesn't exist
-    os.makedirs(output_dir, exist_ok=True)
-
-    # Load the source data
-    print(f"Reading source file: {source_file}")
-    try:
-        df = pd.read_csv(source_file)
-    except FileNotFoundError:
-        print(f"Error: Source file not found at {source_file}")
-        return
-
-    # Global rule: Handle null values by converting to empty strings
-    df = df.fillna('')
-
-    # Sort by ENO for deterministic IDs and generate projectID
+    # Ensure the directory exists using the helper function.
+    # We can use any file path that will be inside the graph directory.
+    config.ensure_parent(config.NODE_COMPANY_CSV)
+    
+    print(f"Generating graph CSVs in: {output_dir}")
+    
+    # Generate a unique projectID for each unique ENO
     df.sort_values('ENO', inplace=True)
     df.reset_index(drop=True, inplace=True)
     df['projectID'] = 'project_' + (df.index + 1).astype(str)
