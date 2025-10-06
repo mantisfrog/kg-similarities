@@ -132,9 +132,9 @@ def generate_commodity_nodes(df: pd.DataFrame, output_dir: Path):
         secondary_symbols = [s.strip() for s in row['COMMODITY_SECONDARY'].split(',') if s.strip()]
         
         names_str = str(row['COMMODITY_NAMES'])
-        secondary_names_match = re.search(r'\((.*?)\)', names_str)
+        secondary_names_match = re.search(r'\((.*)\)', names_str)
         
-        primary_names_str = re.sub(r'\(.*?\)', '', names_str).strip(' ,')
+        primary_names_str = re.sub(r'\(.*\)', '', names_str).strip(' ,')
         primary_names = [n.strip() for n in primary_names_str.split(',') if n.strip()]
         
         secondary_names = []

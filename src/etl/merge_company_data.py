@@ -214,6 +214,9 @@ def main():
         'followers': 'Linkedin_Followers'
     }, inplace=True)
 
+    # Add companyID as a unique identifier
+    master_df.insert(0, 'companyID', [f'comp_{i+1}' for i in range(len(master_df))])
+
     # Dynamically define the final columns to keep all Bloomberg columns + new ones
     # 1. Start with the full list of original Bloomberg columns
     final_columns = bloomberg_df_raw.columns.tolist()
@@ -229,6 +232,9 @@ def main():
     for col in newly_added_columns:
         if col not in final_columns:
             final_columns.append(col)
+
+    # Ensure companyID is the first column in the final output
+    final_columns.insert(0, 'companyID')
 
     # Ensure all required columns exist in the master_df, filling missing ones with NaN
     for col in final_columns:

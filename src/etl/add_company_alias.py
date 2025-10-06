@@ -4,18 +4,19 @@ import sys
 
 def create_master_company_data():
     """
-    Reads the processed company data and synonym matching data, merges them,
-    adds unique company IDs, and creates a master company data file.
+    Reads processed data, merges synonyms and ACNs, consolidates duplicates,
+    and creates a master company data file with a changes log.
     """
     try:
-        # Define project root directory and file paths
-        # __file__ is the path of the current script
-        # .resolve() gets the absolute path
-        # .parents[2] goes up two levels to the project root /home/wbi/repos/kg-similarities
+        # 1. Define all file paths in one section
         project_root = Path(__file__).resolve().parents[2]
+        # Inputs
         merged_company_data_path = project_root / "data" / "processed" / "CompanyData_Merged.csv"
         matches_scores_graph_path = project_root / "data" / "processed" / "Matches_Scores_Graph.csv"
+        former_names_path = project_root / "data" / "raw" / "company" / "former_names.csv"
+        # Outputs
         output_path = project_root / "data" / "master" / "CompanyData_Master.csv"
+        changes_log_path = project_root / "data" / "master" / "ACN_Merge_Changes_Log.csv"
 
         # Read input CSV files
         print(f"Reading merged company data: {merged_company_data_path}")
@@ -24,21 +25,12 @@ def create_master_company_data():
         print(f"Reading match data: {matches_scores_graph_path}")
         df_matches = pd.read_csv(matches_scores_graph_path)
 
-        # 1. Add companyID column on the leftmost side
-        print("Adding companyID...")
-        df_merged.insert(0, 'companyID', [f'comp_{i+1}' for i in range(len(df_merged))])
-
         # 2. Prepare synonyms from the match file
         print("Processing synonyms...")
-        # Filter rows where Matched_Name and Graph_Company_Name are different
         df_synonyms = df_matches[df_matches['Matched_Name'] != df_matches['Graph_Company_Name']].copy()
-
-        # Aggregate all synonyms for each company
-        # Use sorted(list(set(x))) to ensure synonyms are unique and ordered
         synonyms_agg = df_synonyms.groupby(['Matched_Name', 'Matched_Source'])['Graph_Company_Name'].apply(
             lambda x: ', '.join(sorted(list(set(x))))
         ).reset_index()
-        
         synonyms_agg.rename(columns={'Graph_Company_Name': 'SYNONYMS'}, inplace=True)
 
         # 3. Merge synonyms into the master dataframe
@@ -50,74 +42,180 @@ def create_master_company_data():
             right_on=['Matched_Name', 'Matched_Source'],
             how='left'
         )
-
-        # Clean up extra columns after merge
         df_master.drop(columns=['Matched_Name', 'Matched_Source'], inplace=True)
-
-        # Replace NaN values in SYNONYMS column with empty strings
         df_master['SYNONYMS'] = df_master['SYNONYMS'].fillna('')
 
         # 4. Reorder columns, placing SYNONYMS column after Company Name
         print("Reordering columns...")
         cols = list(df_master.columns)
-        # Pop the SYNONYMS column
         synonyms_col = cols.pop(cols.index('SYNONYMS'))
-        # Find the index of 'Company Name' and insert 'SYNONYMS' after it
         company_name_index = cols.index('Company Name')
         cols.insert(company_name_index + 1, synonyms_col)
         df_master = df_master[cols]
 
-        # 5. Integrate former names from former_names.csv
-        print("Integrating former names...")
+        # 5. Integrate data from former_names.csv
+        print("Integrating data from former_names.csv...")
         try:
-            former_names_path = project_root / "data" / "raw" / "company" / "former_names.csv"
             print(f"Reading former names data: {former_names_path}")
             df_former_names = pd.read_csv(former_names_path)
 
-            # Set companyID as index for efficient lookups
-            df_master.set_index('companyID', inplace=True)
+            # 6a. Merge ACN column and place it after SYNONYMS
+            df_acn = df_former_names[['ID', 'ACN']].copy()
+            df_master = pd.merge(df_master, df_acn, left_on='companyID', right_on='ID', how='left')
+            df_master.drop(columns=['ID'], inplace=True)
+            
+            cols = list(df_master.columns)
+            if 'ACN' in cols:
+                acn_col = cols.pop(cols.index('ACN'))
+                synonyms_index = cols.index('SYNONYMS')
+                cols.insert(synonyms_index + 1, acn_col)
+                df_master = df_master[cols]
 
+            # 6b. Add former names to SYNONYMS column
+            df_master.set_index('companyID', inplace=True)
             for _, row in df_former_names.iterrows():
                 company_id = row['ID']
-                # Check if the company_id from former_names exists in the master dataframe
                 if company_id in df_master.index:
-                    # Get current company name and synonyms
                     company_name = df_master.loc[company_id, 'Company Name']
                     existing_synonyms_str = df_master.loc[company_id, 'SYNONYMS']
-
-                    # Create a set of existing names (union of Company Name and SYNONYMS) for case-insensitive checking
                     existing_names_set = {str(company_name).lower()}
                     if pd.notna(existing_synonyms_str) and existing_synonyms_str:
                         existing_names_set.update([s.strip().lower() for s in existing_synonyms_str.split(',')])
-
-                    # Get new potential names and find ones that are not already present
-                    former_names_list = [name.strip() for name in str(row['MatchedNames']).split(',')]
-                    names_to_add = []
-                    for name in former_names_list:
-                        # Case-insensitive exact match check
-                        if name.lower() not in existing_names_set:
-                            names_to_add.append(name)
-                            # Add to the set to avoid adding duplicates from the same row in former_names.csv
-                            existing_names_set.add(name.lower())
                     
-                    # If there are new names to add, append them to the SYNONYMS column
+                    former_names_list = [name.strip() for name in str(row['MatchedNames']).split(',')]
+                    names_to_add = [name for name in former_names_list if name.lower() not in existing_names_set]
+                    
                     if names_to_add:
                         new_synonyms_str = ', '.join(names_to_add)
                         if existing_synonyms_str:
                             df_master.loc[company_id, 'SYNONYMS'] = existing_synonyms_str + ', ' + new_synonyms_str
                         else:
                             df_master.loc[company_id, 'SYNONYMS'] = new_synonyms_str
-            
-            # Reset index to bring companyID back as a column before saving
             df_master.reset_index(inplace=True)
 
         except FileNotFoundError:
-            print(f"Warning: former_names.csv not found at {former_names_path}. Skipping integration.", file=sys.stderr)
-            # If the file was not found, we might have set the index, so we should reset it.
-            if 'companyID' not in df_master.columns:
-                 df_master.reset_index(inplace=True)
+            print(f"Warning: {former_names_path} not found. Skipping ACN and former names integration.", file=sys.stderr)
 
-        # 6. Save the final master file
+        # --- Integrate manual aliases before saving master file ---
+        manual_aliases_path = project_root / "data" / "raw" / "company" / "manual_add_company_names.csv"
+        try:
+            df_manual = pd.read_csv(manual_aliases_path)
+            for _, mrow in df_manual.iterrows():
+                cid = mrow['companyID']
+                if cid in df_master['companyID'].values:
+                    aliases = [a.strip() for a in str(mrow['alias']).split(',') if a.strip()]
+                    idxs = df_master.index[df_master['companyID'] == cid].tolist()
+                    if not idxs:
+                        continue
+                    idx = idxs[0]
+                    existing_syn = df_master.at[idx, 'SYNONYMS']
+                    comp_name = df_master.at[idx, 'Company Name']
+                    exist_set = set()
+                    if pd.notna(comp_name):
+                        exist_set.add(comp_name.strip().lower())
+                    if pd.notna(existing_syn) and existing_syn:
+                        exist_set.update([s.strip().lower() for s in existing_syn.split(',')])
+                    new_aliases = [a for a in aliases if a.lower() not in exist_set]
+                    if new_aliases:
+                        appended = ', '.join(new_aliases)
+                        if existing_syn:
+                            df_master.at[idx, 'SYNONYMS'] = existing_syn + ', ' + appended
+                        else:
+                            df_master.at[idx, 'SYNONYMS'] = appended
+        except FileNotFoundError:
+            print(f"Warning: {manual_aliases_path} not found. Skipping manual aliases integration.")
+
+        # 6. Consolidate duplicates based on name matching
+        print("Consolidating duplicates based on name matching...")
+
+        # Ensure correct processing order by sorting by the numeric part of companyID
+        df_master['comp_id_num'] = df_master['companyID'].str.extract(r'(\d+)').astype(int)
+        df_master.sort_values('comp_id_num', inplace=True)
+        df_master.drop(columns=['comp_id_num'], inplace=True)
+
+        seen_names_map = {}  # Maps a lowercase name to the index of the first row it appeared in
+        rows_to_drop = []
+        changes_log = []
+
+        for current_index, current_row in df_master.iterrows():
+            # Collect all unique, non-empty names from the current row
+            current_names = set()
+            if pd.notna(current_row['Company Name']):
+                current_names.add(current_row['Company Name'].strip())
+            if pd.notna(current_row['SYNONYMS']) and current_row['SYNONYMS']:
+                current_names.update([s.strip() for s in str(current_row['SYNONYMS']).split(',')])
+            current_names = {name for name in current_names if name} # Remove empty strings
+
+            # Find the first previously seen name, which determines the target row for merging
+            target_index = None
+            matched_name = None
+            for name in current_names:
+                if name.lower() in seen_names_map:
+                    target_index = seen_names_map[name.lower()]
+                    matched_name = name
+                    break
+            
+            # If a match was found in a previous row and the current row's ACN is empty, then merge and drop
+            if target_index is not None and pd.isna(current_row['ACN']):
+                rows_to_drop.append(current_index)
+                
+                # --- New Logic: Update specific columns if target is empty and source has data ---
+                columns_to_update = ['Revenue:Y', 'Linkedin_empCount', 'Linkedin_Followers']
+                updated_cols_log = []
+                for col in columns_to_update:
+                    if col in df_master.columns: # Ensure column exists
+                        if pd.isna(df_master.loc[target_index, col]) and pd.notna(current_row[col]):
+                            df_master.loc[target_index, col] = current_row[col]
+                            updated_cols_log.append(col)
+                # --- End of New Logic ---
+
+                # Get all names from the target row for a case-insensitive check
+                target_row = df_master.loc[target_index]
+                existing_target_names_lower = set()
+                if pd.notna(target_row['Company Name']):
+                    existing_target_names_lower.add(target_row['Company Name'].strip().lower())
+                if pd.notna(target_row['SYNONYMS']) and target_row['SYNONYMS']:
+                    existing_target_names_lower.update([s.strip().lower() for s in str(target_row['SYNONYMS']).split(',')])
+
+                # Find which names from the current row are new to the target row
+                names_to_add = sorted([name for name in current_names if name.strip().lower() not in existing_target_names_lower])
+
+                if names_to_add:
+                    new_synonyms_part = ', '.join(names_to_add)
+                    current_synonyms = df_master.loc[target_index, 'SYNONYMS']
+                    if pd.notna(current_synonyms) and current_synonyms:
+                        df_master.loc[target_index, 'SYNONYMS'] = current_synonyms + ', ' + new_synonyms_part
+                    else:
+                        df_master.loc[target_index, 'SYNONYMS'] = new_synonyms_part
+                
+                # Log the change
+                changes_log.append({
+                    'Matched_Name': matched_name,
+                    'Target_companyID': df_master.loc[target_index, 'companyID'],
+                    'Dropped_companyID': current_row['companyID'],
+                    'Merged_Names': ', '.join(sorted(list(current_names))),
+                    'Updated_Columns': ', '.join(updated_cols_log)
+                })
+            else:
+                # No match found, or ACN is present, so this entity is considered unique for now.
+                # Add all its names to the map, pointing to the current index for future checks.
+                for name in current_names:
+                    if name.lower() not in seen_names_map:
+                        seen_names_map[name.lower()] = current_index
+
+        # Perform the drop and save the log
+        if rows_to_drop:
+            df_master.drop(index=rows_to_drop, inplace=True)
+            
+            name_changes_log_path = project_root / "data" / "master" / "Name_Merge_Changes_Log.csv"
+            df_changes = pd.DataFrame(changes_log)
+            print(f"Saving name merge changes log to: {name_changes_log_path}")
+            name_changes_log_path.parent.mkdir(parents=True, exist_ok=True)
+            df_changes.to_csv(name_changes_log_path, index=False, encoding='utf-8-sig')
+        else:
+            print("No duplicate names found to consolidate.")
+
+        # 7. Save the final master file
         print(f"Saving master data file to: {output_path}")
         output_path.parent.mkdir(parents=True, exist_ok=True)
         df_master.to_csv(output_path, index=False, encoding='utf-8-sig')

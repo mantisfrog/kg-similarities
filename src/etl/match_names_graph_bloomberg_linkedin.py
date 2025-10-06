@@ -33,7 +33,6 @@ def main():
     graph_path = project_root / "data" / "graph" / "node_Company.csv"
     merged_company_data_path = project_root / "data" / "processed" / "CompanyData_Merged.csv"
     output_path = project_root / "data" / "processed" / "Matches_Scores_Graph.csv"
-    consolidated_output_path = output_path.parent / "Perfect_Matches_All_Sources.csv"
     
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -186,69 +185,6 @@ def main():
     # Uncomment the following line to save all matching scores
     results_df.to_csv(output_path, index=False)
     print(f"Hierarchical matching process complete. All final matches saved to {output_path}")
-
-    # 7. Create a consolidated 'Perfect Match' file by merging with original data
-    all_merged_dfs = []
-
-    # --- Process Bloomberg matches ---
-    final_bloomberg_matches = results_df[results_df['Matched_Source'] == 'Bloomberg'].copy()
-    if not final_bloomberg_matches.empty:
-        merged_bloomberg = pd.merge(
-            final_bloomberg_matches,
-            bloomberg_df,
-            left_on='Matched_Name',
-            right_on=company_name_col,
-            how='inner'
-        )
-        all_merged_dfs.append(merged_bloomberg)
-        print(f"Found {len(merged_bloomberg)} perfect Bloomberg matches.")
-
-    # --- Process LinkedIn matches ---
-    final_linkedin_matches = results_df[results_df['Matched_Source'] == 'LinkedIn'].copy()
-    if not final_linkedin_matches.empty:
-        merged_linkedin = pd.merge(
-            final_linkedin_matches,
-            linkedin_df,
-            left_on='Matched_Name',
-            right_on=company_name_col,
-            how='inner'
-        )
-        all_merged_dfs.append(merged_linkedin)
-        print(f"Found {len(merged_linkedin)} perfect LinkedIn matches.")
-
-    # --- Process Modern Slavery matches ---
-    final_ms_matches = results_df[results_df['Matched_Source'] == 'Modern Slavery'].copy()
-    if not final_ms_matches.empty:
-        merged_ms = pd.merge(
-            final_ms_matches,
-            modern_slavery_df,
-            left_on='Matched_Name',
-            right_on=company_name_col,
-            how='inner'
-        )
-        all_merged_dfs.append(merged_ms)
-        print(f"Found {len(merged_ms)} perfect Modern Slavery matches.")
-
-    # --- Consolidate, clean, and save ---
-    if all_merged_dfs:
-        consolidated_df = pd.concat(all_merged_dfs, ignore_index=True)
-        
-        # Columns to remove from the final output
-        cols_to_drop = [
-            'Matched_Source', 'Matching_Rule', 'w_ratio', 'levenshtein_ratio',
-            'jaccard_similarity', 'spacy_similarity', 'no_space_exact_match',
-            'au_removed_match', 'normalized_name', 'Company Name', 'Source'
-        ]
-        
-        # Drop only the columns that actually exist
-        existing_cols_to_drop = [col for col in cols_to_drop if col in consolidated_df.columns]
-        consolidated_df.drop(columns=existing_cols_to_drop, inplace=True)
-        
-        # Save the consolidated file
-        consolidated_df.to_csv(consolidated_output_path, index=False)
-        print(f"Saved {len(consolidated_df)} total perfect matches to {consolidated_output_path}")
-    else:
-        print("No perfect matches found across all sources.")
 
 
 if __name__ == "__main__":
