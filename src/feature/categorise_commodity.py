@@ -30,7 +30,7 @@ node_commodity_df = pd.read_csv(node_commodity_file, sep=',')
 merged_df = pd.merge(
     node_commodity_df,
     categorization_df,
-    left_on='commoditySymbol:string',
+    left_on='symbol:string',
     right_on='Commodity',
     how='left'
 )
@@ -51,9 +51,9 @@ if 'commodityGroup:string' in cols:
     
     try:
         # Find the index of the column to insert after.
-        symbol_index = cols.index('commoditySymbol:string')
+        symbol_index = cols.index('symbol:string')
         # Insert the new column immediately after the symbol column.
-        cols.insert(symbol_index + 1, group_col)
+        cols.insert(symbol_index + 2, group_col)
     except ValueError:
         # As a fallback, if the symbol column doesn't exist, append it to the end.
         cols.append(group_col)
