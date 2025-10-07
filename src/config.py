@@ -61,11 +61,11 @@ MS_CLEANED_CSV: Path = MS_DIR / "cleaned_ms_statements.csv"
 
 # Intermediate/aux files for company name processing
 FORMER_NAMES_CSV: Path = PROCESSED_DIR / "former_names.csv"
-NODE_COMPANY_CSV: Path = GRAPH_DIR / "node_Company.csv"
+JSON_COMPANY_CSV: Path = PROCESSED_DIR / "json_Companies.csv"
 
 # Consolidated outputs
 PROCESSED_BLOOMBERG_CSV: Path = PROCESSED_DIR / "Bloomberg_Companies.csv"
-MATCHES_SCORES_GRAPH_CSV: Path = PROCESSED_DIR / "Matches_Scores_Graph.csv"
+MATCHES_SCORES_JSON_CSV: Path = PROCESSED_DIR / "Matches_Scores_Json.csv"
 
 # Manual aliasing and change logs
 MANUAL_ALIASES_CSV: Path = COMPANY_DIR / "manual_add_company_names.csv"

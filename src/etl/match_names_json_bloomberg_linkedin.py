@@ -25,21 +25,43 @@ from src import config
 
 def main():
     """
-    For each company in node_Company.csv, find the best match in the merged company data file (CompanyData_Merged.csv),
+    For each company in json_Companies.csv, find the best match in the merged company data file (CompanyData_Merged.csv),
     which contains data from Bloomberg, LinkedIn, and Modern Slavery statements.
     The matching logic is hierarchical: it stops as soon as a perfect match is found.
     """
+    # 0. Generate json_Companies.csv from MASTER_PROJECT_CSV
+    print(f"Generating company list from {config.MASTER_PROJECT_CSV}...")
+    try:
+        df_master_projects = pd.read_csv(config.MASTER_PROJECT_CSV, usecols=['COMPANIES'], dtype=str)
+        all_companies = set()
+        for companies_str in df_master_projects['COMPANIES'].dropna():
+            for company in companies_str.split(','):
+                cleaned_company = company.strip()
+                if cleaned_company:
+                    all_companies.add(cleaned_company)
+        
+        df_companies_to_match = pd.DataFrame(list(all_companies), columns=['name:string'])
+        
+        json_company_path = config.JSON_COMPANY_CSV
+        config.ensure_parent(json_company_path)
+        df_companies_to_match.to_csv(json_company_path, index=False)
+        print(f"Successfully generated {json_company_path} with {len(df_companies_to_match)} unique companies.")
+
+    except Exception as e:
+        print(f"Error generating company list: {e}")
+        return
+
     # 1. Setup Paths
-    graph_path = config.NODE_COMPANY_CSV
+    json_company_path = config.JSON_COMPANY_CSV
     merged_company_data_path = config.MERGED_COMPANY_CSV
-    output_path = config.MATCHES_SCORES_GRAPH_CSV
+    output_path = config.MATCHES_SCORES_JSON_CSV
     
     config.ensure_parent(output_path)
 
     # 2. Load Data
     print("Loading data files...")
     try:
-        graph_df = pd.read_csv(graph_path)
+        json_df = pd.read_csv(json_company_path)
         master_cols = ['Company Name', 'Source']
         master_df = pd.read_csv(merged_company_data_path, usecols=master_cols)
     except Exception as e:
@@ -66,9 +88,9 @@ def main():
     bloomberg_companies_norm = bloomberg_df['normalized_name'].dropna().unique()
     linkedin_companies_norm = linkedin_df['normalized_name'].dropna().unique()
     modern_slavery_companies_norm = modern_slavery_df['normalized_name'].dropna().unique()
-    graph_companies = graph_df['name:string'].dropna().unique()
+    json_companies = json_df['name:string'].dropna().unique()
     
-    print(f"Loaded {len(graph_companies)} graph nodes.")
+    print(f"Loaded {len(json_companies)} companies from JSON file.")
     print(f"Loaded {len(bloomberg_companies_norm)} Bloomberg, {len(linkedin_companies_norm)} LinkedIn, and {len(modern_slavery_companies_norm)} Modern Slavery companies from the merged data file.")
 
     # 3. Load spaCy Model
@@ -83,28 +105,28 @@ def main():
 
     # 5. Main Hierarchical Matching Loop
     all_results = []
-    print("Finding the first perfect match for each graph node using hierarchical logic...")
+    print("Finding the first perfect match for each company from the JSON file using hierarchical logic...")
     perfect_match_statuses = {'no_space_exact_match', 'au_removed_match', 'confident_score_match'}
     score_keys = ["w_ratio", "levenshtein_ratio", "jaccard_similarity", "spacy_similarity", "no_space_exact_match", "au_removed_match"]
 
-    for graph_name in tqdm(graph_companies, desc="Matching Graph Nodes"):
-        normalized_graph_name = normalize_name(graph_name)
+    for company_name in tqdm(json_companies, desc="Matching JSON Companies"):
+        normalized_company_name = normalize_name(company_name)
         
         # --- 1. Try to match with Bloomberg ---
         # Spacy score is used only for exclusion, 'East' and 'West' have a similarity of 1.00
         # This is not the desired outcome, so we set other thresholds lower and only use spacy
         # for exclusion criteria.
-        best_match_bloomberg, w_ratio_bb, lev_ratio_bb = select_best_candidate(normalized_graph_name, bloomberg_index)
+        best_match_bloomberg, w_ratio_bb, lev_ratio_bb = select_best_candidate(normalized_company_name, bloomberg_index)
         if best_match_bloomberg:
             nlp_model_to_use = nlp if w_ratio_bb >= 90 and w_ratio_bb < 100 else None
-            secondary_scores_bb = calculate_text_similarities(normalized_graph_name, best_match_bloomberg, nlp_model_to_use)
+            secondary_scores_bb = calculate_text_similarities(normalized_company_name, best_match_bloomberg, nlp_model_to_use)
             match_status_bb = get_match_status(w_ratio_bb, lev_ratio_bb, secondary_scores_bb)
 
             if match_status_bb in perfect_match_statuses:
                 original_matched_name = bloomberg_norm_to_orig.get(best_match_bloomberg)
                 result = {
-                    "Graph_Company_Name": graph_name,
-                    "Graph_Company_Name_Normalized": normalized_graph_name,
+                    "JSON_Company_Name": company_name,
+                    "JSON_Company_Name_Normalized": normalized_company_name,
                     "Matched_Name": original_matched_name,
                     "Matched_Name_Normalized": best_match_bloomberg,
                     "Matched_Source": "Bloomberg",
@@ -117,17 +139,17 @@ def main():
                 continue
 
         # --- 2. If no Bloomberg match, try LinkedIn ---
-        best_match_li, w_ratio_li, lev_ratio_li = select_best_candidate(normalized_graph_name, linkedin_index)
+        best_match_li, w_ratio_li, lev_ratio_li = select_best_candidate(normalized_company_name, linkedin_index)
         if best_match_li:
             nlp_model_to_use = nlp if w_ratio_li >= 90 else None
-            secondary_scores_li = calculate_text_similarities(normalized_graph_name, best_match_li, nlp_model_to_use)
+            secondary_scores_li = calculate_text_similarities(normalized_company_name, best_match_li, nlp_model_to_use)
             match_status_li = get_match_status(w_ratio_li, lev_ratio_li, secondary_scores_li)
 
             if match_status_li in perfect_match_statuses:
                 original_matched_name = linkedin_norm_to_orig.get(best_match_li)
                 result = {
-                    "Graph_Company_Name": graph_name,
-                    "Graph_Company_Name_Normalized": normalized_graph_name,
+                    "JSON_Company_Name": company_name,
+                    "JSON_Company_Name_Normalized": normalized_company_name,
                     "Matched_Name": original_matched_name,
                     "Matched_Name_Normalized": best_match_li,
                     "Matched_Source": "LinkedIn",
@@ -140,17 +162,17 @@ def main():
                 continue
 
         # --- 3. If no Bloomberg or LinkedIn match, try Modern Slavery ---
-        best_match_ms, w_ratio_ms, lev_ratio_ms = select_best_candidate(normalized_graph_name, modern_slavery_index)
+        best_match_ms, w_ratio_ms, lev_ratio_ms = select_best_candidate(normalized_company_name, modern_slavery_index)
         if best_match_ms:
             nlp_model_to_use = nlp if w_ratio_ms >= 90 else None
-            secondary_scores_ms = calculate_text_similarities(normalized_graph_name, best_match_ms, nlp_model_to_use)
+            secondary_scores_ms = calculate_text_similarities(normalized_company_name, best_match_ms, nlp_model_to_use)
             match_status_ms = get_match_status(w_ratio_ms, lev_ratio_ms, secondary_scores_ms)
 
             if match_status_ms in perfect_match_statuses:
                 original_matched_name = modern_slavery_norm_to_orig.get(best_match_ms)
                 result = {
-                    "Graph_Company_Name": graph_name,
-                    "Graph_Company_Name_Normalized": normalized_graph_name,
+                    "JSON_Company_Name": company_name,
+                    "JSON_Company_Name_Normalized": normalized_company_name,
                     "Matched_Name": original_matched_name,
                     "Matched_Name_Normalized": best_match_ms,
                     "Matched_Source": "Modern Slavery",
@@ -164,8 +186,8 @@ def main():
             
         # --- 4. No perfect match found in any source ---
         all_results.append({
-            "Graph_Company_Name": graph_name,
-            "Graph_Company_Name_Normalized": normalized_graph_name,
+            "JSON_Company_Name": company_name,
+            "JSON_Company_Name_Normalized": normalized_company_name,
             "Matched_Name": None,
             "Matched_Name_Normalized": None,
             "Matched_Source": None,

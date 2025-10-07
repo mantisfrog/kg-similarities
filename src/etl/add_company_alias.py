@@ -17,7 +17,7 @@ def create_master_company_data():
         # 1. Define all file paths from config
         # Inputs
         merged_company_data_path = config.MERGED_COMPANY_CSV
-        matches_scores_graph_path = config.MATCHES_SCORES_GRAPH_CSV
+        matches_scores_json_path = config.MATCHES_SCORES_JSON_CSV
         former_names_path = config.FORMER_NAMES_CSV
         # Outputs
         output_path = config.MASTER_COMPANY_CSV
@@ -26,16 +26,16 @@ def create_master_company_data():
         print(f"Reading merged company data: {merged_company_data_path}")
         df_merged = pd.read_csv(merged_company_data_path)
         
-        print(f"Reading match data: {matches_scores_graph_path}")
-        df_matches = pd.read_csv(matches_scores_graph_path)
+        print(f"Reading match data: {matches_scores_json_path}")
+        df_matches = pd.read_csv(matches_scores_json_path)
 
         # 2. Prepare synonyms from the match file
         print("Processing synonyms...")
-        df_synonyms = df_matches[df_matches['Matched_Name'] != df_matches['Graph_Company_Name']].copy()
-        synonyms_agg = df_synonyms.groupby(['Matched_Name', 'Matched_Source'])['Graph_Company_Name'].apply(
+        df_synonyms = df_matches[df_matches['Matched_Name'] != df_matches['JSON_Company_Name']].copy()
+        synonyms_agg = df_synonyms.groupby(['Matched_Name', 'Matched_Source'])['JSON_Company_Name'].apply(
             lambda x: ', '.join(sorted(list(set(x))))
         ).reset_index()
-        synonyms_agg.rename(columns={'Graph_Company_Name': 'SYNONYMS'}, inplace=True)
+        synonyms_agg.rename(columns={'JSON_Company_Name': 'SYNONYMS'}, inplace=True)
 
         # 3. Merge synonyms into the master dataframe
         print("Merging synonyms into company data...")

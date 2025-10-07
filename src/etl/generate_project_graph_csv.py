@@ -156,30 +156,6 @@ def generate_commodity_nodes(df: pd.DataFrame, output_dir: Path):
         filename="node_Commodity.csv"
     )
 
-def generate_company_nodes(df: pd.DataFrame, output_dir: Path):
-    """
-    Generates node_Company.csv for unique :Company nodes.
-    Returns a dictionary mapping company name to its generated ID.
-    """
-    companies = set()
-    # Collect companies from COMPANIES column, splitting by comma
-    for items in df['COMPANIES'].dropna():
-        for company in items.split(','):
-            if company.strip():
-                companies.add(company.strip())
-
-    # Create DataFrame for unique companies
-    df_companies = pd.DataFrame(list(companies), columns=['name:string'])
-    
-    return generate_node_csv(
-        df_nodes=df_companies,
-        id_col_name='companyID:ID',
-        id_prefix='company_',
-        value_col_for_mapping='name:string',
-        output_dir=output_dir,
-        filename="node_Company.csv"
-    )
-
 def generate_refers_to_rels(df: pd.DataFrame, name_to_id: dict, output_dir: Path):
     """
     Generates rel_Refers_to.csv for :ProjectName-[:REFERS_TO_PROJECT]->:Project relationships.
@@ -253,24 +229,6 @@ def generate_has_commodity_rels(df: pd.DataFrame, symbol_to_id: dict, output_dir
 
     generate_rel_csv(rels, output_dir, "rel_Has_Commodity.csv")
 
-def generate_owns_rels(df: pd.DataFrame, company_to_id: dict, output_dir: Path):
-    """
-    Generates rel_Owns.csv for :Company-[:OWNS]->:Project relationships.
-    """
-    rels = []
-    for _, row in df.iterrows():
-        end_id = row['projectID']
-        
-        companies_str = row['COMPANIES'].strip()
-        if companies_str:
-            for company_name in companies_str.split(','):
-                company_name = company_name.strip()
-                if company_name and company_name in company_to_id:
-                    start_id = company_to_id[company_name]
-                    rels.append({'START_ID': start_id, 'END_ID': end_id, 'TYPE': 'OWNS'})
-
-    generate_rel_csv(rels, output_dir, "rel_Owns.csv")
-
 def main():
     """
     Main function to orchestrate the generation of all project-related nodes and relationships.
@@ -282,7 +240,7 @@ def main():
     output_dir = config.GRAPH_DIR
     # Ensure the directory exists using the helper function.
     # We can use any file path that will be inside the graph directory.
-    config.ensure_parent(config.NODE_COMPANY_CSV)
+    config.ensure_parent(config.NODE_COMMODITY_CSV)
     
     print(f"Generating graph CSVs in: {output_dir}")
     
@@ -296,13 +254,11 @@ def main():
     name_to_id = generate_project_name_nodes(df, output_dir)
     state_to_id = generate_state_nodes(df, output_dir)
     symbol_to_id = generate_commodity_nodes(df, output_dir)
-    company_to_id = generate_company_nodes(df, output_dir)
 
     # --- Generate Relationship Files ---
     generate_refers_to_rels(df, name_to_id, output_dir)
     generate_located_in_rels(df, state_to_id, output_dir)
     generate_has_commodity_rels(df, symbol_to_id, output_dir)
-    generate_owns_rels(df, company_to_id, output_dir)
 
     print("\nETL process completed successfully.")
 
