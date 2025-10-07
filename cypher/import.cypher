@@ -7,6 +7,8 @@ CALL apoc.schema.assert({}, {});
 // 2. Create constraints
 // =================================================================
 // This creates a uniqueness constraint and index for the ID property of each node type
+CREATE CONSTRAINT company_id_unique IF NOT EXISTS FOR (c:Company) REQUIRE c.companyID IS UNIQUE;
+CREATE CONSTRAINT companyname_id_unique IF NOT EXISTS FOR (cn:CompanyName) REQUIRE cn.companyNameID IS UNIQUE;
 CREATE CONSTRAINT project_id_unique IF NOT EXISTS FOR (p:Project) REQUIRE p.projectID IS UNIQUE;
 CREATE CONSTRAINT projectname_id_unique IF NOT EXISTS FOR (pn:ProjectName) REQUIRE pn.projectNameID IS UNIQUE;
 CREATE CONSTRAINT state_id_unique IF NOT EXISTS FOR (s:State) REQUIRE s.stateID IS UNIQUE;
@@ -15,6 +17,24 @@ CREATE CONSTRAINT commodity_id_unique IF NOT EXISTS FOR (c:Commodity) REQUIRE c.
 // =================================================================
 // 3. Import node data
 // =================================================================
+
+// Import Company nodes
+LOAD CSV WITH HEADERS FROM 'file:///node_Company.csv' AS row
+MERGE (c:Company {companyID: row.`companyID:ID`})
+SET c.ticker = row.`Ticker:string`,
+    c.acn = toInteger(row.`ACN:int`),
+    c.marketCap = toFloat(row.`Market Cap:float`),
+    c.revenue = toFloat(row.`Revenue:Y:float`),
+    c.totalAssets = toFloat(row.`Tot Assets:Y:float`),
+    c.employees = toInteger(row.`Number of Employees:LF:int`),
+    c.description = row.`Company Description:string`,
+    c.linkedinEmployees = toInteger(row.`Linkedin_empCount:int`),
+    c.linkedinFollowers = toInteger(row.`Linkedin_Followers:int`);
+
+// Import CompanyName nodes
+LOAD CSV WITH HEADERS FROM 'file:///node_CompanyName.csv' AS row
+MERGE (cn:CompanyName {companyNameID: row.`companyNameID:ID`})
+SET cn.text = row.`text:string`;
 
 // Import Project nodes
 LOAD CSV WITH HEADERS FROM 'file:///node_Project.csv' AS row
@@ -53,8 +73,20 @@ SET c.symbol = row.`symbol:string`,
 // 4. Import relationship data
 // =================================================================
 
+// Import relationship: Company -> OWNS_PROJECT -> Project
+LOAD CSV WITH HEADERS FROM 'file:///rel_Owns_project.csv' AS row
+MATCH (start:Company {companyID: row.`:START_ID`})
+MATCH (end:Project {projectID: row.`:END_ID`})
+MERGE (start)-[:OWNS_PROJECT]->(end);
+
+// Import relationship: CompanyName -> REFERS_TO_COMPANY -> Company
+LOAD CSV WITH HEADERS FROM 'file:///rel_Refers_to_Company.csv' AS row
+MATCH (start:CompanyName {companyNameID: row.`:START_ID`})
+MATCH (end:Company {companyID: row.`:END_ID`})
+MERGE (start)-[:REFERS_TO_COMPANY {type: row.`type:string`}]->(end);
+
 // Import relationship: ProjectName -> REFERS_TO_PROJECT -> Project
-LOAD CSV WITH HEADERS FROM 'file:///rel_Refers_to.csv' AS row
+LOAD CSV WITH HEADERS FROM 'file:///rel_Refers_to_Project.csv' AS row
 MATCH (start:ProjectName {projectNameID: row.`:START_ID`})
 MATCH (end:Project {projectID: row.`:END_ID`})
 MERGE (start)-[:REFERS_TO_PROJECT]->(end);

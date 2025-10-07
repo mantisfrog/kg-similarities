@@ -28,6 +28,7 @@ GRAPH_DIR: Path = DATA_DIR / "graph"
 
 # --- Common inputs (deposits & projects) ---
 MASTER_PROJECT_CSV: Path = MASTER_DIR / "ProjectData_Master.csv"
+NODE_PROJECT_CSV: Path = GRAPH_DIR / "node_Project.csv"
 MINERAL_DEPOSITS_JSON: Path = DEPOSIT_DIR / "MineralDeposits.json"
 MAJOR_RESOURCE_PROJECTS_CSV: Path = DEPOSIT_DIR / "MajorResourceProjects.csv"
 MINE_VIEW_CSV: Path = DEPOSIT_DIR / "MineView.csv"
@@ -60,17 +61,18 @@ LINKEDIN_MINING_CSV: Path = LINKEDIN_DIR / "linkedin_mining_companies.csv"
 MS_CLEANED_CSV: Path = MS_DIR / "cleaned_ms_statements.csv"
 
 # Intermediate/aux files for company name processing
-FORMER_NAMES_CSV: Path = PROCESSED_DIR / "former_names.csv"
-JSON_COMPANY_CSV: Path = PROCESSED_DIR / "json_Companies.csv"
+FORMER_NAMES_CSV: Path = PROCESSED_DIR / "Former_Names.csv"
+JSON_COMPANY_CSV: Path = PROCESSED_DIR / "JSON_Companies.csv"
 
 # Consolidated outputs
 PROCESSED_BLOOMBERG_CSV: Path = PROCESSED_DIR / "Bloomberg_Companies.csv"
-MATCHES_SCORES_JSON_CSV: Path = PROCESSED_DIR / "Matches_Scores_Json.csv"
+MATCHES_SCORES_JSON_CSV: Path = PROCESSED_DIR / "Matches_Scores_JSON.csv"
 
 # Manual aliasing and change logs
 MANUAL_ALIASES_CSV: Path = COMPANY_DIR / "manual_add_company_names.csv"
 MATCHES_SCORES_BB_MS_LOG_CSV: Path = PROCESSED_DIR / "Matches_Scores_Bloomberg_to_MS_Log.csv"
 MATCHES_SCORES_MERGED_LI_LOG_CSV: Path = PROCESSED_DIR / "Matches_Scores_Merged_to_Linkedin_Log.csv"
+UNMATCHED_JSON_COMPANIES_LOG_CSV: Path = PROCESSED_DIR / "Unmatched_JSON_Companies_Log.csv"
 CHANGES_LOG_CSV: Path = MASTER_DIR / "ACN_Merge_Changes_Log.csv"
 
 # --- Small helpers ---

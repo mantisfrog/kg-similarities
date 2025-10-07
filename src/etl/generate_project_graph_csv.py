@@ -158,7 +158,7 @@ def generate_commodity_nodes(df: pd.DataFrame, output_dir: Path):
 
 def generate_refers_to_rels(df: pd.DataFrame, name_to_id: dict, output_dir: Path):
     """
-    Generates rel_Refers_to.csv for :ProjectName-[:REFERS_TO_PROJECT]->:Project relationships.
+    Generates rel_Refers_to_Project.csv for :ProjectName-[:REFERS_TO_PROJECT]->:Project relationships.
     """
     rels = []
     for _, row in df.iterrows():
@@ -168,7 +168,7 @@ def generate_refers_to_rels(df: pd.DataFrame, name_to_id: dict, output_dir: Path
         name = row['PROJECT_NAME'].strip()
         if name and name in name_to_id:
             start_id = name_to_id[name]
-            rels.append({'START_ID': start_id, 'END_ID': end_id, 'TYPE': 'REFERS_TO_PROJECT'})
+            rels.append({'START_ID': start_id, 'END_ID': end_id})
             
         # Relationships from SYNONYMS
         synonyms = row['SYNONYMS'].strip()
@@ -177,9 +177,9 @@ def generate_refers_to_rels(df: pd.DataFrame, name_to_id: dict, output_dir: Path
                 synonym = synonym.strip()
                 if synonym and synonym in name_to_id:
                     start_id = name_to_id[synonym]
-                    rels.append({'START_ID': start_id, 'END_ID': end_id, 'TYPE': 'REFERS_TO_PROJECT'})
+                    rels.append({'START_ID': start_id, 'END_ID': end_id})
 
-    generate_rel_csv(rels, output_dir, "rel_Refers_to.csv")
+    generate_rel_csv(rels, output_dir, "rel_Refers_to_Project.csv")
 
 def generate_located_in_rels(df: pd.DataFrame, state_to_id: dict, output_dir: Path):
     """
@@ -191,7 +191,7 @@ def generate_located_in_rels(df: pd.DataFrame, state_to_id: dict, output_dir: Pa
         if state and state in state_to_id:
             start_id = row['projectID']
             end_id = state_to_id[state]
-            rels.append({'START_ID': start_id, 'END_ID': end_id, 'TYPE': 'LOCATED_IN'})
+            rels.append({'START_ID': start_id, 'END_ID': end_id})
 
     generate_rel_csv(rels, output_dir, "rel_Located_in.csv")
 
@@ -212,7 +212,7 @@ def generate_has_commodity_rels(df: pd.DataFrame, symbol_to_id: dict, output_dir
                     end_id = symbol_to_id[symbol]
                     rels.append({
                         'START_ID': start_id, 'END_ID': end_id, 
-                        'TYPE': 'HAS_COMMODITY', 'role:string': 'Primary'
+                        'role:string': 'Primary'
                     })
 
         # Secondary commodities
@@ -224,7 +224,7 @@ def generate_has_commodity_rels(df: pd.DataFrame, symbol_to_id: dict, output_dir
                     end_id = symbol_to_id[symbol]
                     rels.append({
                         'START_ID': start_id, 'END_ID': end_id, 
-                        'TYPE': 'HAS_COMMODITY', 'role:string': 'Secondary'
+                        'role:string': 'Secondary'
                     })
 
     generate_rel_csv(rels, output_dir, "rel_Has_Commodity.csv")
