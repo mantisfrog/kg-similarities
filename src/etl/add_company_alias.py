@@ -1,12 +1,113 @@
 import pandas as pd
 from pathlib import Path
 import sys
+from tqdm import tqdm
 
 # Add project root to sys.path to allow importing from src
 project_root = Path(__file__).resolve().parents[2]
 sys.path.append(str(project_root))
 
 from src import config
+# --- NEW IMPORTS for name matching ---
+from src.utils.normalize_names import normalize_name
+from src.utils.build_word_index import build_word_index
+from src.utils.select_candidates import select_best_candidate
+from src.utils.calculate_similarities import calculate_text_similarities
+from src.utils.match_rules import get_match_status
+from src.utils.load_spacy import load_spacy_model
+
+
+def match_projects_to_companies():
+    """
+    Performs fuzzy matching between project company names and the newly created
+    master company list, saving the results to an intermediate file.
+    """
+    print("\n--- Starting Step: Matching Projects to Master Companies ---")
+    
+    # 1. Load necessary files
+    print("Loading master company, project, and node data...")
+    companies_df = pd.read_csv(config.MASTER_COMPANY_CSV, usecols=["companyID", "Company Name", "SYNONYMS"])
+    projects_df = pd.read_csv(config.MASTER_PROJECT_CSV, usecols=["ENO", "COMPANIES"])
+    node_project_df = pd.read_csv(config.NODE_PROJECT_CSV, usecols=["projectID:ID", "eno:int"])
+
+    print("Loading spaCy model for semantic matching...")
+    nlp = load_spacy_model("en_core_web_md")
+
+    # 2. Create a mapping from ENO to projectID
+    node_project_df.rename(columns={"eno:int": "eno"}, inplace=True)
+    node_project_df.dropna(subset=["eno"], inplace=True)
+    node_project_df["eno"] = node_project_df["eno"].astype(int)
+    eno_to_projectID = pd.Series(node_project_df["projectID:ID"].values, index=node_project_df["eno"]).to_dict()
+
+    # 3. Prepare master company data for fuzzy matching
+    print("Preparing master company data for fuzzy matching...")
+    norm_to_companyID = {}
+    all_normalized_names = set()
+    for _, row in tqdm(companies_df.iterrows(), total=len(companies_df), desc="Normalizing master companies"):
+        company_id = row["companyID"]
+        names = []
+        if pd.notna(row["Company Name"]):
+            names.append(str(row["Company Name"]).strip())
+        if pd.notna(row["SYNONYMS"]):
+            names.extend([name.strip() for name in str(row["SYNONYMS"]).split(',')])
+        
+        for name in names:
+            if name:
+                normalized_name = normalize_name(name)
+                if normalized_name:
+                    all_normalized_names.add(normalized_name)
+                    norm_to_companyID[normalized_name] = company_id
+    
+    master_company_norm_list = list(all_normalized_names)
+    print("Building word index for master company list...")
+    master_company_index = build_word_index(master_company_norm_list)
+
+    # 4. Iterate through projects and find matches
+    print("Matching project companies to master list...")
+    matches = []
+    high_confidence_statuses = {'no_space_exact_match', 'au_removed_match', 'confident_score_match'}
+    projects_df.dropna(subset=["COMPANIES", "ENO"], inplace=True)
+    
+    for _, row in tqdm(projects_df.iterrows(), total=len(projects_df), desc="Matching projects to companies"):
+        eno = int(row["ENO"])
+        project_id = eno_to_projectID.get(eno)
+        if not project_id:
+            continue
+
+        project_company_names = [name.strip() for name in str(row["COMPANIES"]).split(',')]
+        for original_name in project_company_names:
+            if not original_name:
+                continue
+            
+            normalized_name = normalize_name(original_name)
+            if not normalized_name:
+                continue
+
+            best_match_normalized, w_ratio, lev_ratio = select_best_candidate(
+                normalized_name, master_company_index, w_ratio_threshold=80
+            )
+
+            if best_match_normalized:
+                use_spacy = 95 <= w_ratio < 100
+                secondary_scores = calculate_text_similarities(
+                    normalized_name, best_match_normalized, nlp_model=nlp if use_spacy else None
+                )
+                status = get_match_status(w_ratio, lev_ratio, secondary_scores)
+
+                if status in high_confidence_statuses:
+                    company_id = norm_to_companyID.get(best_match_normalized)
+                    if company_id:
+                        matches.append({'companyID': company_id, 'projectID': project_id})
+
+    # 5. Save the matches to the intermediate file
+    if matches:
+        matches_df = pd.DataFrame(matches).drop_duplicates()
+        output_path = config.ensure_parent(config.PROJECT_COMPANY_MATCHES_CSV)
+        matches_df.to_csv(output_path, index=False)
+        print(f"Successfully saved {len(matches_df)} project-company matches to {output_path}")
+    else:
+        print("No high-confidence project-company matches were found.")
+
 
 def create_master_company_data():
     """
@@ -232,6 +333,9 @@ def create_master_company_data():
         df_master.to_csv(output_path, index=False, encoding='utf-8-sig')
 
         print("Master company data file created successfully.")
+
+        # --- NEW FINAL STEP: Perform project matching after master file is created ---
+        match_projects_to_companies()
 
     except FileNotFoundError as e:
         print(f"Error: File not found - {e}", file=sys.stderr)
