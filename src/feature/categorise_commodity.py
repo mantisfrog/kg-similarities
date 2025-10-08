@@ -2,8 +2,6 @@ import pandas as pd
 from pathlib import Path
 import sys
 
-# --- Start of Modification ---
-
 # Add project root to sys.path to allow importing from src
 project_root = Path(__file__).resolve().parents[2]
 sys.path.append(str(project_root))
@@ -12,62 +10,83 @@ from src import config
 
 # Define file paths for the source and destination files.
 categorization_file = config.CATEGORIZATION_CSV
-node_commodity_file = config.NODE_COMMODITY_CSV
-# The result will overwrite the original node file.
-output_file = config.NODE_COMMODITY_CSV
+commodity_node_file = config.NODE_COMMODITY_CSV  # Input commodity nodes
+output_node_file = config.NODE_COMMODITY_GROUP_CSV
+output_rel_file = config.REL_COMMODITY_GROUP_CSV
 
-# Ensure the directory for the output file exists.
-config.ensure_parent(output_file)
+# Ensure the directory for the output files exists.
+config.ensure_parent(output_node_file)
+config.ensure_parent(output_rel_file)
 
-# --- End of Modification ---
-
-
-# Read the source data.
 # Load the commodity-to-group mappings.
-categorization_df = pd.read_csv(categorization_file, usecols=['Commodity', 'Group'])
-# Load the commodity node file that will be enriched.
-node_commodity_df = pd.read_csv(node_commodity_file, sep=',')
+try:
+    categorization_df = pd.read_csv(categorization_file, usecols=['Commodity', 'Group'])
+    # Drop any rows where either Commodity or Group is missing, as they are essential.
+    categorization_df.dropna(subset=['Commodity', 'Group'], inplace=True)
+except FileNotFoundError:
+    print(f"Error: Categorization file not found at {categorization_file}", file=sys.stderr)
+    sys.exit(1)
+except KeyError:
+    print(f"Error: 'Commodity' or 'Group' column not found in {categorization_file}", file=sys.stderr)
+    sys.exit(1)
 
-# Merge the group information into the commodity node data.
-# A left join ensures all original commodities are kept, even if they have no group.
+# Load the existing commodity nodes to get their IDs.
+try:
+    commodity_nodes_df = pd.read_csv(commodity_node_file, usecols=['commodityID:ID', 'symbol:string'])
+except FileNotFoundError:
+    print(f"Error: Commodity node file not found at {commodity_node_file}", file=sys.stderr)
+    sys.exit(1)
+except KeyError:
+    print(f"Error: Required columns not found in {commodity_node_file}", file=sys.stderr)
+    sys.exit(1)
+
+
+# --- 1. Create CommodityGroup node file ---
+print("Generating CommodityGroup node file...")
+# Get unique group names from the 'Group' column to create distinct nodes.
+unique_groups = categorization_df['Group'].unique()
+
+# Create a DataFrame for the new nodes.
+# The ID for the node is the group name itself, ensuring uniqueness.
+commodity_group_nodes = pd.DataFrame({
+    'id:ID(CommodityGroup)': unique_groups,
+    'name:string': unique_groups,
+    ':LABEL': 'CommodityGroup'
+})
+
+# Save the new node file.
+commodity_group_nodes.to_csv(output_node_file, index=False, encoding='utf-8-sig')
+print(f"-> Successfully created CommodityGroup node file: {output_node_file}")
+
+
+# --- 2. Create relationship file ---
+print("\nGenerating Commodity-to-Group relationship file...")
+# Merge categorization data with commodity node data to get the correct START_ID.
+# The 'Commodity' column in categorization.csv should match the 'symbol:string' in node_Commodity.csv.
 merged_df = pd.merge(
-    node_commodity_df,
     categorization_df,
-    left_on='symbol:string',
-    right_on='Commodity',
-    how='left'
+    commodity_nodes_df,
+    left_on='Commodity',
+    right_on='symbol:string',
+    how='inner'
 )
 
-# Clean and reorder the data columns.
-# Drop the redundant 'Commodity' column that came from the categorization file.
-merged_df = merged_df.drop(columns=['Commodity'])
-# Rename the 'Group' column to match the desired schema.
-merged_df = merged_df.rename(columns={'Group': 'commodityGroup:string'})
+# Check for commodities in categorization file that are not in the node file.
+if len(merged_df) < len(categorization_df):
+    unmapped_commodities = set(categorization_df['Commodity']) - set(merged_df['Commodity'])
+    print(f"Warning: The following commodities from {categorization_file.name} were not found in {commodity_node_file.name} and will be skipped:")
+    for commodity in sorted(list(unmapped_commodities)):
+        print(f"  - {commodity}")
 
-# Reorder columns to place the new group column after the symbol column.
-cols = list(merged_df.columns)
+# Create the relationship DataFrame using the correct IDs.
+relationships_df = pd.DataFrame({
+    ':START_ID(Commodity)': merged_df['commodityID:ID'],
+    ':END_ID(CommodityGroup)': merged_df['Group'],
+    ':TYPE': 'BELONGS_TO'
+})
 
-# Check if the new column exists before trying to move it.
-if 'commodityGroup:string' in cols:
-    # Remove the new column from its current position (at the end).
-    group_col = cols.pop(cols.index('commodityGroup:string'))
-    
-    try:
-        # Find the index of the column to insert after.
-        symbol_index = cols.index('symbol:string')
-        # Insert the new column immediately after the symbol column.
-        cols.insert(symbol_index + 2, group_col)
-    except ValueError:
-        # As a fallback, if the symbol column doesn't exist, append it to the end.
-        cols.append(group_col)
-    
-    # Apply the new column order to the DataFrame.
-    final_df = merged_df[cols]
-else:
-    final_df = merged_df
+# Save the relationship file.
+relationships_df.to_csv(output_rel_file, index=False, encoding='utf-8-sig')
+print(f"-> Successfully created relationship file: {output_rel_file}")
 
-# Save the enriched DataFrame back to the CSV file.
-# This overwrites the original file without the DataFrame index.
-final_df.to_csv(output_file, index=False, encoding='utf-8-sig')
-
-print(f"Processing complete. Output saved to: {output_file}")
+print("\nProcessing complete.")
