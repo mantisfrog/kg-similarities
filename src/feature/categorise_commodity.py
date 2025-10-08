@@ -7,6 +7,7 @@ project_root = Path(__file__).resolve().parents[2]
 sys.path.append(str(project_root))
 
 from src import config
+from src.utils.generate_node_rel import generate_rel_csv
 
 # Define file paths for the source and destination files.
 categorization_file = config.CATEGORIZATION_CSV
@@ -49,7 +50,7 @@ unique_groups = categorization_df['Group'].unique()
 # Create a DataFrame for the new nodes.
 # The ID for the node is the group name itself, ensuring uniqueness.
 commodity_group_nodes = pd.DataFrame({
-    'id:ID(CommodityGroup)': unique_groups,
+    'commodityGroupID:ID': unique_groups,
     'name:string': unique_groups,
     ':LABEL': 'CommodityGroup'
 })
@@ -78,15 +79,13 @@ if len(merged_df) < len(categorization_df):
     for commodity in sorted(list(unmapped_commodities)):
         print(f"  - {commodity}")
 
-# Create the relationship DataFrame using the correct IDs.
-relationships_df = pd.DataFrame({
-    ':START_ID(Commodity)': merged_df['commodityID:ID'],
-    ':END_ID(CommodityGroup)': merged_df['Group'],
-    ':TYPE': 'BELONGS_TO'
-})
+# Create the relationship list using the correct IDs and standard column names.
+relationships = merged_df.rename(columns={
+    'commodityID:ID': 'START_ID',
+    'Group': 'END_ID'
+})[['START_ID', 'END_ID']].to_dict('records')
 
-# Save the relationship file.
-relationships_df.to_csv(output_rel_file, index=False, encoding='utf-8-sig')
-print(f"-> Successfully created relationship file: {output_rel_file}")
+# Save the relationship file using the standard utility.
+generate_rel_csv(relationships, Path(output_rel_file).parent, Path(output_rel_file).name)
 
 print("\nProcessing complete.")

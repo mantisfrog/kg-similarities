@@ -40,7 +40,7 @@ COMPANY_TSV: Path = COMPANY_DIR / "COMPANY_202509.tsv"
 PROCESSED_DEPOSITS_CSV: Path = PROCESSED_DIR / "MineralDeposits.csv"
 NODE_COMMODITY_CSV: Path = GRAPH_DIR / "node_Commodity.csv"
 NODE_COMMODITY_GROUP_CSV: Path = GRAPH_DIR / "node_CommodityGroup.csv"
-REL_COMMODITY_GROUP_CSV: Path = GRAPH_DIR / "rel_Commodity_Group.csv"
+REL_COMMODITY_GROUP_CSV: Path = GRAPH_DIR / "rel_Grouped_as.csv"
 MERGED_COMPANY_CSV: Path = PROCESSED_DIR / "CompanyData_Merged.csv"
 MASTER_COMPANY_CSV: Path = MASTER_DIR / "CompanyData_Master.csv"
 

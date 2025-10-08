@@ -30,7 +30,7 @@ def run_matching_process(left_norm_list, left_norm_to_orig, right_norm_to_orig, 
     results = []
     high_confidence_statuses = {'no_space_exact_match', 'au_removed_match', 'confident_score_match'}
 
-    for normalized_left_name in tqdm(left_norm_list, desc=desc):
+    for normalized_left_name in tqdm(left_norm_list, desc=desc, file=sys.stdout):
         best_match_normalized, w_ratio, levenshtein_ratio = select_best_candidate(
             normalized_left_name, right_index, w_ratio_threshold=80
         )

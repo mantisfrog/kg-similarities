@@ -61,10 +61,10 @@ def create_company_nodes(df: pd.DataFrame):
 
 def create_owns_project_relationships():
     """
-    Generates the rel_Owns_project.csv file by reading the pre-computed
+    Generates the rel_Owns.csv file by reading the pre-computed
     matches from the project-company match file.
     """
-    print("\nGenerating OWNS_PROJECT relationship CSV from pre-computed matches...")
+    print("\nGenerating OWNS relationship CSV from pre-computed matches...")
     
     try:
         # 1. Read the intermediate match file
@@ -81,7 +81,7 @@ def create_owns_project_relationships():
         }, inplace=True)
 
         # 3. Generate the final relationship CSV
-        generate_rel_csv(matches_df.to_dict('records'), config.GRAPH_DIR, "rel_Owns_project.csv")
+        generate_rel_csv(matches_df.to_dict('records'), config.GRAPH_DIR, "rel_Owns.csv")
 
     except FileNotFoundError:
         print(f"Error: Match file not found at {config.PROJECT_COMPANY_MATCHES_CSV}", file=sys.stderr)
@@ -117,7 +117,7 @@ def create_company_name_nodes_and_rels(df: pd.DataFrame):
 
     # 3. Generate relationships
     relationships = []
-    for _, row in tqdm(companies_df.iterrows(), total=len(companies_df), desc="Generating name relationships"):
+    for _, row in tqdm(companies_df.iterrows(), total=len(companies_df), desc="Generating name relationships", file=sys.stdout):
         company_id = row["companyID"]
 
         # Process the official "Company Name"
@@ -246,7 +246,7 @@ def create_classification_nodes_and_rels(df: pd.DataFrame):
     
     rels_map = {col: [] for col in col_to_label.keys()}
 
-    for _, row in tqdm(df.iterrows(), total=len(df), desc="Connecting companies to classifications"):
+    for _, row in tqdm(df.iterrows(), total=len(df), desc="Connecting companies to classifications", file=sys.stdout):
         company_id = row['companyID']
 
         # ICB System: Connect to Subsector if available, else Sector
@@ -285,13 +285,13 @@ def create_classification_nodes_and_rels(df: pd.DataFrame):
         # If the list of relationships is empty, create an empty file with headers
         # to prevent the Cypher import from failing on a missing file.
         if not rels:
-            print(f"No relationships for rel_Belongs_to_{label}.csv. Creating empty file with headers.")
-            output_path = config.ensure_parent(config.GRAPH_DIR / f"rel_Belongs_to_{label}.csv")
+            print(f"No relationships for rel_Classified_as_{label}.csv. Creating empty file with headers.")
+            output_path = config.ensure_parent(config.GRAPH_DIR / f"rel_Classified_as_{label}.csv")
             # These relationships only have start and end nodes. The headers must match what Cypher expects.
             empty_df = pd.DataFrame(columns=[':START_ID', ':END_ID'])
             empty_df.to_csv(output_path, index=False)
         else:
-            generate_rel_csv(rels, config.GRAPH_DIR, f"rel_Belongs_to_{label}.csv")
+            generate_rel_csv(rels, config.GRAPH_DIR, f"rel_Classified_as_{label}.csv")
 
 
 def main():

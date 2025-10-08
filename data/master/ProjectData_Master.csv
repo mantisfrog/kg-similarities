@@ -1634,7 +1634,7 @@
 334418,Hill River,"Brazier, Cadda, Cowla, Gairdner Main, Jurien, Mintaja, Mt Lesuer, Wongonderrah",WA,Dandaragan,115.2195,-30.1639,Mine Projects,Cbl,,Coal - black,,,,,,Perth Basin,,,Perth Basin,"Pinjarra Element,Pinjarra Orogen"
 599450,Greenmount (Brown Coal),,VIC,Wellington,146.675,-38.5379,Mine Projects,Cbr,,Coal - brown,,,,,,Gippsland Basin,,,"Gippsland Basin,Selwyn Province","Lachlan Orogen,Melbourne-Mathinna Zone,Tasman Element"
 336238,St Mungo,,QLD,Cloncurry,139.8502,-21.6226,Mine Projects,Cu,,Copper,,Proterozoic,,,,"Mount Isa Orogen, Kalkadoon-Leichhardt Belt",,,,"Mary Kathleen Domain,Mount Isa Orogen,North Australian Element"
-558871,Kilimiraka,,NT,Tiwi Islands,130.1432,-11.8212,Mine Projects,"Rt, Ilm, Zrn, Leu, HM, Ti",,"Rutile, Ilmenite, Zircon, Leucoxene, Heavy minerals, Titanium",,,Erosional,Placer,Heavy mineral sands,Money Shoal Basin,,,Money Shoal Basin,"North Australian Element,Pine Creek Orogen"
+558871,Kilimiraka,,NT,,130.1432,-11.8212,Mine Projects,"Rt, Ilm, Zrn, Leu, HM, Ti",,"Rutile, Ilmenite, Zircon, Leucoxene, Heavy minerals, Titanium",,,Erosional,Placer,Heavy mineral sands,Money Shoal Basin,,,Money Shoal Basin,"North Australian Element,Pine Creek Orogen"
 335314,Robinsons,Golden Feather,WA,Kalgoorlie-Boulder,121.6003,-30.59,Mine Projects,Au,,Gold,,Archean,,,,"Yilgarn Craton, Eastern Goldfields Province, Kalgoorlie Gold Metallogenic Province",,Kambalda Nickel Metallogenic Province,,"West Australian Element,Yilgarn Craton"
 335857,Robur,Robur 3,QLD,Cloncurry,140.5742,-20.9406,Mine Projects,Cu,,Copper,,Proterozoic,,,,"Mount Isa Orogen, Quamby-Malbon Zone",,,,"Doherty - Fig Tree Gully Domain,Mount Isa Orogen,North Australian Element"
 335955,Edjudina,Mt Edon,WA,Menzies,122.4917,-29.7746,Mine Projects,Au,,Gold,,Archean,,,,"Yilgarn Craton, Eastern Goldfields Province",,,,"West Australian Element,Yilgarn Craton"
@@ -4466,7 +4466,7 @@
 364193,Aurukun,,QLD,Aurukun,141.832,-13.365,Mine Projects,"Bx, Al2O3",,"Bauxite, Alumina",Aluminum Corp of China Ltd,,,,,,,,"Carpentaria Basin,Karumba Basin",North Australian Element
 364203,Barrambie vanadium project,,WA,Sandstone,119.133,-27.43,Mine Projects,FeV,,Ferro-Vanadium,Reed Resources,,,,,,,,,"West Australian Element,Yilgarn Craton"
 364210,Mungada - hematite,,WA,Perenjori,116.9025,-29.1288,Mine Projects,FeOre,,Iron ore,Gindalbie Metals,,,,,,,,,"West Australian Element,Yilgarn Craton"
-364225,Wiggins Island,,QLD,Gladstone,151.217,-23.817,Mine Projects,Cbl,,Coal - black,Wiggins Island Coal Export Terminal,,,,,,,,,"New England Orogen,Tasman Element,Wandilla Province"
+364225,Wiggins Island,,QLD,,151.217,-23.817,Mine Projects,Cbl,,Coal - black,Wiggins Island Coal Export Terminal,,,,,,,,,"New England Orogen,Tasman Element,Wandilla Province"
 361150,Cape Lambert - magnetite,,WA,Karratha,117.0778,-20.7095,Mine Projects,FeOre,,Iron ore,China Metallurgical Group Corporation,,,,,,Warakurna Large Igneous Province,Ruth Well Nickel Metallogenic Province,,"Pilbara Craton,West Australian Element"
 361151,Belvedere underground,,QLD,Banana,149.9361,-24.4858,Mine Projects,Cbl,,Coal - black,Vale,,,,,,,,Bowen Basin,"Connors-Auburn Province,New England Orogen,Tasman Element"
 361153,Olive Downs,,QLD,Isaac,148.3631,-22.1555,Mine Projects,"Coke, Cbl",,"Coke, Coal - black",Macarthur Coal Ltd,,,,,,,,Bowen Basin,"Anakie Province,Tasman Element,Thomson Orogen"
@@ -4635,7 +4635,7 @@
 46760,Honeymoon Well,,WA,Wiluna,120.379,-26.923,Mine Projects,Ni,,Nickel,Norlisk Nickel,,,,,,,Mount Keith Nickel Metallogenic Province,,"West Australian Element,Yilgarn Craton"
 44815,Cadia East,,NSW,Blayney,148.9991,-33.4582,Mine Projects,Au,,Gold,Newcrest Mining,,,,,,,,,"Eastern Province,Lachlan Orogen,Tasman Element"
 47577,Cosmos - Expansion,,WA,Leonora,120.576,-27.599,Mine Projects,Ni,,Nickel,Jubilee Mines,,,,,,,Mount Keith Nickel Metallogenic Province,,"West Australian Element,Yilgarn Craton"
-47374,Gladstone - Steel,,QLD,Gladstone,151.247,-23.81,Processing Projects,Stl,,Steel,Yieh Loong (Taiwan),,,,,,,,,"New England Orogen,Tasman Element,Wandilla Province"
+47374,Gladstone - Steel,,QLD,,151.247,-23.81,Processing Projects,Stl,,Steel,Yieh Loong (Taiwan),,,,,,,,,"New England Orogen,Tasman Element,Wandilla Province"
 47382,Morwell - Mg,,VIC,Latrobe (Vic.),146.411,-38.235,Processing Projects,Mg,,Magnesium,"Hazelwood Power, Europacific Corp",,,,,,,,"Gippsland Basin,Selwyn Province","Lachlan Orogen,Melbourne-Mathinna Zone,Tasman Element"
 47418,Grosvenor,,QLD,Isaac,147.993,-21.876,Mine Projects,Cbl,,Coal - black,Anglo American,,,,,,,,Bowen Basin,"Anakie Province,Tasman Element,Thomson Orogen"
 448599,Agate Creek,,QLD,Etheridge,143.549,-18.994,Mine Projects,Au,,Gold,Renison Consolidated Mines NL,,,,,,,,Etheridge Province,North Australian Element

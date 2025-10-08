@@ -46,12 +46,6 @@ echo -e "\n🐳 [2/5] Setting up Neo4j Docker container..."
 run_with_spinner "  -> Pulling Neo4j Docker image (neo4j:5.26.12)..." "docker pull neo4j:5.26.12"
 echo "  -> Starting Neo4j container via Docker Compose..."
 docker compose up -d
-# Wait for Neo4j to initialize
-echo ""
-for i in {9..0}; do
-    echo -ne "\nAllowing Neo4j to initialize... $i second(s) \r"
-    sleep 1
-done
 echo -e "\n✅ Docker services started."
 
 # [3/5] Process Project Data

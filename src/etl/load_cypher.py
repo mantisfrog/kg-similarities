@@ -49,6 +49,7 @@ def run_cypher_file(file_path):
         # In case of an error, it's good practice to print the failed statement
         # if 'statement' in locals():
         #     print(f"Failed statement:\n{statement}")
+        sys.exit(1)
     finally:
         if driver:
             driver.close()

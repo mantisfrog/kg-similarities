@@ -43,7 +43,7 @@ def match_projects_to_companies():
     print("Preparing master company data for fuzzy matching...")
     norm_to_companyID = {}
     all_normalized_names = set()
-    for _, row in tqdm(companies_df.iterrows(), total=len(companies_df), desc="Normalizing master companies"):
+    for _, row in tqdm(companies_df.iterrows(), total=len(companies_df), desc="Normalizing master companies", file=sys.stdout):
         company_id = row["companyID"]
         names = []
         if pd.notna(row["Company Name"]):
@@ -68,7 +68,7 @@ def match_projects_to_companies():
     high_confidence_statuses = {'no_space_exact_match', 'au_removed_match', 'confident_score_match'}
     projects_df.dropna(subset=["COMPANIES", "ENO"], inplace=True)
     
-    for _, row in tqdm(projects_df.iterrows(), total=len(projects_df), desc="Matching projects to companies"):
+    for _, row in tqdm(projects_df.iterrows(), total=len(projects_df), desc="Matching projects to companies", file=sys.stdout):
         eno = int(row["ENO"])
         project_id = eno_to_projectID.get(eno)
         if not project_id:

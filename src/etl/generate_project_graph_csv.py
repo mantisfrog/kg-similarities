@@ -106,6 +106,27 @@ def generate_state_nodes(df: pd.DataFrame, output_dir: Path):
         filename="node_State.csv"
     )
 
+def generate_lga_nodes(df: pd.DataFrame, output_dir: Path):
+    """
+    Generates node_LGA.csv for unique :LGA nodes.
+    Returns a dictionary mapping LGA text to its generated ID.
+    """
+    # Get unique, non-empty lga values
+    lgas = df['LGA'].dropna().unique()
+    lgas = [l for l in lgas if l.strip()]
+    
+    # Create DataFrame for unique lgas
+    df_lgas = pd.DataFrame(lgas, columns=['text:string'])
+
+    return generate_node_csv(
+        df_nodes=df_lgas,
+        id_col_name='lgaID:ID',
+        id_prefix='lga_',
+        value_col_for_mapping='text:string',
+        output_dir=output_dir,
+        filename="node_LGA.csv"
+    )
+
 def generate_commodity_nodes(df: pd.DataFrame, output_dir: Path):
     """
     Generates node_Commodity.csv for unique :Commodity nodes.
@@ -181,19 +202,37 @@ def generate_refers_to_rels(df: pd.DataFrame, name_to_id: dict, output_dir: Path
 
     generate_rel_csv(rels, output_dir, "rel_Refers_to_Project.csv")
 
-def generate_located_in_rels(df: pd.DataFrame, state_to_id: dict, output_dir: Path):
+def generate_project_located_in_lga_rels(df: pd.DataFrame, lga_to_id: dict, output_dir: Path):
     """
-    Generates rel_Located_in.csv for :Project-[:LOCATED_IN]->:State relationships.
+    Generates rel_Project_Located_in_LGA.csv for :Project-[:LOCATED_IN]->:LGA relationships.
     """
     rels = []
     for _, row in df.iterrows():
-        state = row['STATE'].strip()
-        if state and state in state_to_id:
+        lga = row['LGA'].strip()
+        if lga and lga in lga_to_id:
             start_id = row['projectID']
+            end_id = lga_to_id[lga]
+            rels.append({'START_ID': start_id, 'END_ID': end_id})
+
+    generate_rel_csv(rels, output_dir, "rel_Project_Located_in_LGA.csv")
+
+def generate_lga_located_in_state_rels(df: pd.DataFrame, lga_to_id: dict, state_to_id: dict, output_dir: Path):
+    """
+    Generates rel_LGA_Located_in_State.csv for :LGA-[:LOCATED_IN]->:State relationships.
+    """
+    rels = []
+    # Get unique pairs of LGA and STATE
+    unique_pairs = df[['LGA', 'STATE']].dropna().drop_duplicates()
+    
+    for _, row in unique_pairs.iterrows():
+        lga = row['LGA'].strip()
+        state = row['STATE'].strip()
+        if lga and state and lga in lga_to_id and state in state_to_id:
+            start_id = lga_to_id[lga]
             end_id = state_to_id[state]
             rels.append({'START_ID': start_id, 'END_ID': end_id})
 
-    generate_rel_csv(rels, output_dir, "rel_Located_in.csv")
+    generate_rel_csv(rels, output_dir, "rel_LGA_Located_in_State.csv")
 
 def generate_has_commodity_rels(df: pd.DataFrame, symbol_to_id: dict, output_dir: Path):
     """
@@ -253,11 +292,13 @@ def main():
     generate_project_nodes(df, output_dir)
     name_to_id = generate_project_name_nodes(df, output_dir)
     state_to_id = generate_state_nodes(df, output_dir)
+    lga_to_id = generate_lga_nodes(df, output_dir)
     symbol_to_id = generate_commodity_nodes(df, output_dir)
 
     # --- Generate Relationship Files ---
     generate_refers_to_rels(df, name_to_id, output_dir)
-    generate_located_in_rels(df, state_to_id, output_dir)
+    generate_project_located_in_lga_rels(df, lga_to_id, output_dir)
+    generate_lga_located_in_state_rels(df, lga_to_id, state_to_id, output_dir)
     generate_has_commodity_rels(df, symbol_to_id, output_dir)
 
     print("\nETL process completed successfully.")

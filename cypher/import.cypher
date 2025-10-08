@@ -12,8 +12,9 @@ CREATE CONSTRAINT companyname_id_unique IF NOT EXISTS FOR (cn:CompanyName) REQUI
 CREATE CONSTRAINT project_id_unique IF NOT EXISTS FOR (p:Project) REQUIRE p.projectID IS UNIQUE;
 CREATE CONSTRAINT projectname_id_unique IF NOT EXISTS FOR (pn:ProjectName) REQUIRE pn.projectNameID IS UNIQUE;
 CREATE CONSTRAINT state_id_unique IF NOT EXISTS FOR (s:State) REQUIRE s.stateID IS UNIQUE;
+CREATE CONSTRAINT lga_id_unique IF NOT EXISTS FOR (l:LGA) REQUIRE l.lgaID IS UNIQUE;
 CREATE CONSTRAINT commodity_id_unique IF NOT EXISTS FOR (c:Commodity) REQUIRE c.commodityID IS UNIQUE;
-CREATE CONSTRAINT commoditygroup_id_unique IF NOT EXISTS FOR (cg:CommodityGroup) REQUIRE cg.id IS UNIQUE;
+CREATE CONSTRAINT commoditygroup_id_unique IF NOT EXISTS FOR (cg:CommodityGroup) REQUIRE cg.commodityGroupID IS UNIQUE;
 CREATE CONSTRAINT country_id_unique IF NOT EXISTS FOR (c:Country) REQUIRE c.countryID IS UNIQUE;
 CREATE CONSTRAINT icbsector_id_unique IF NOT EXISTS FOR (n:ICBSector) REQUIRE n.icbsectorID IS UNIQUE;
 CREATE CONSTRAINT icbsubsector_id_unique IF NOT EXISTS FOR (n:ICBSubsector) REQUIRE n.icbsubsectorID IS UNIQUE;
@@ -85,6 +86,11 @@ LOAD CSV WITH HEADERS FROM 'file:///node_State.csv' AS row
 MERGE (s:State {stateID: row.`stateID:ID`})
 SET s.text = row.`text:string`;
 
+// Import LGA nodes
+LOAD CSV WITH HEADERS FROM 'file:///node_LGA.csv' AS row
+MERGE (l:LGA {lgaID: row.`lgaID:ID`})
+SET l.text = row.`text:string`;
+
 // Import Commodity nodes
 LOAD CSV WITH HEADERS FROM 'file:///node_Commodity.csv' AS row
 MERGE (c:Commodity {commodityID: row.`commodityID:ID`})
@@ -93,18 +99,18 @@ SET c.symbol = row.`symbol:string`,
 
 // Import CommodityGroup nodes
 LOAD CSV WITH HEADERS FROM 'file:///node_CommodityGroup.csv' AS row
-MERGE (cg:CommodityGroup {id: row.`id:ID(CommodityGroup)`})
+MERGE (cg:CommodityGroup {commodityGroupID: row.`commodityGroupID:ID`})
 SET cg.name = row.`name:string`;
 
 // =================================================================
 // 4. Import relationship data
 // =================================================================
 
-// Import relationship: Company -> OWNS_PROJECT -> Project
-LOAD CSV WITH HEADERS FROM 'file:///rel_Owns_project.csv' AS row
+// Import relationship: Company -> OWNS -> Project
+LOAD CSV WITH HEADERS FROM 'file:///rel_Owns.csv' AS row
 MATCH (start:Company {companyID: row.`:START_ID`})
 MATCH (end:Project {projectID: row.`:END_ID`})
-MERGE (start)-[:OWNS_PROJECT]->(end);
+MERGE (start)-[:OWNS]->(end);
 
 // Import relationship: CompanyName -> REFERS_TO_COMPANY -> Company
 LOAD CSV WITH HEADERS FROM 'file:///rel_Refers_to_Company.csv' AS row
@@ -119,42 +125,42 @@ MATCH (end:Country {countryID: row.`:END_ID`})
 MERGE (start)-[:DOMICILED_IN]->(end);
 
 // Import Company -> Classification relationships with a unified :CLASSIFIED_AS type
-LOAD CSV WITH HEADERS FROM 'file:///rel_Belongs_to_ICBSector.csv' AS row
+LOAD CSV WITH HEADERS FROM 'file:///rel_Classified_as_ICBSector.csv' AS row
     MATCH (start:Company {companyID: row.`:START_ID`})
     MATCH (end:ICBSector {icbsectorID: row.`:END_ID`})
     MERGE (start)-[:CLASSIFIED_AS {scheme: 'ICB', level: 'Sector'}]->(end);
 
-LOAD CSV WITH HEADERS FROM 'file:///rel_Belongs_to_ICBSubsector.csv' AS row
+LOAD CSV WITH HEADERS FROM 'file:///rel_Classified_as_ICBSubsector.csv' AS row
     MATCH (start:Company {companyID: row.`:START_ID`})
     MATCH (end:ICBSubsector {icbsubsectorID: row.`:END_ID`})
     MERGE (start)-[:CLASSIFIED_AS {scheme: 'ICB', level: 'Subsector'}]->(end);
 
-LOAD CSV WITH HEADERS FROM 'file:///rel_Belongs_to_GICSIndustry.csv' AS row
+LOAD CSV WITH HEADERS FROM 'file:///rel_Classified_as_GICSIndustry.csv' AS row
     MATCH (start:Company {companyID: row.`:START_ID`})
     MATCH (end:GICSIndustry {gicsindustryID: row.`:END_ID`})
     MERGE (start)-[:CLASSIFIED_AS {scheme: 'GICS', level: 'Industry'}]->(end);
 
-LOAD CSV WITH HEADERS FROM 'file:///rel_Belongs_to_GICSSubIndustry.csv' AS row
+LOAD CSV WITH HEADERS FROM 'file:///rel_Classified_as_GICSSubIndustry.csv' AS row
     MATCH (start:Company {companyID: row.`:START_ID`})
     MATCH (end:GICSSubIndustry {gicssubindustryID: row.`:END_ID`})
     MERGE (start)-[:CLASSIFIED_AS {scheme: 'GICS', level: 'SubIndustry'}]->(end);
 
-LOAD CSV WITH HEADERS FROM 'file:///rel_Belongs_to_BICSL3.csv' AS row
+LOAD CSV WITH HEADERS FROM 'file:///rel_Classified_as_BICSL3.csv' AS row
     MATCH (start:Company {companyID: row.`:START_ID`})
     MATCH (end:BICSL3 {bicsl3ID: row.`:END_ID`})
     MERGE (start)-[:CLASSIFIED_AS {scheme: 'BICS', level: 'L3 Industry'}]->(end);
 
-LOAD CSV WITH HEADERS FROM 'file:///rel_Belongs_to_BICSL4.csv' AS row
+LOAD CSV WITH HEADERS FROM 'file:///rel_Classified_as_BICSL4.csv' AS row
     MATCH (start:Company {companyID: row.`:START_ID`})
     MATCH (end:BICSL4 {bicsl4ID: row.`:END_ID`})
     MERGE (start)-[:CLASSIFIED_AS {scheme: 'BICS', level: 'L4 Sub Industry'}]->(end);
 
-LOAD CSV WITH HEADERS FROM 'file:///rel_Belongs_to_BICSL5.csv' AS row
+LOAD CSV WITH HEADERS FROM 'file:///rel_Classified_as_BICSL5.csv' AS row
     MATCH (start:Company {companyID: row.`:START_ID`})
     MATCH (end:BICSL5 {bicsl5ID: row.`:END_ID`})
     MERGE (start)-[:CLASSIFIED_AS {scheme: 'BICS', level: 'L5 Segment'}]->(end);
 
-LOAD CSV WITH HEADERS FROM 'file:///rel_Belongs_to_BICSL6.csv' AS row
+LOAD CSV WITH HEADERS FROM 'file:///rel_Classified_as_BICSL6.csv' AS row
     MATCH (start:Company {companyID: row.`:START_ID`})
     MATCH (end:BICSL6 {bicsl6ID: row.`:END_ID`})
     MERGE (start)-[:CLASSIFIED_AS {scheme: 'BICS', level: 'L6 Segment'}]->(end);
@@ -172,9 +178,15 @@ MATCH (start:ProjectName {projectNameID: row.`:START_ID`})
 MATCH (end:Project {projectID: row.`:END_ID`})
 MERGE (start)-[:REFERS_TO_PROJECT]->(end);
 
-// Import relationship: Project -> LOCATED_IN -> State
-LOAD CSV WITH HEADERS FROM 'file:///rel_Located_in.csv' AS row
+// Import relationship: Project -> LOCATED_IN -> LGA
+LOAD CSV WITH HEADERS FROM 'file:///rel_Project_Located_in_LGA.csv' AS row
 MATCH (start:Project {projectID: row.`:START_ID`})
+MATCH (end:LGA {lgaID: row.`:END_ID`})
+MERGE (start)-[:LOCATED_IN]->(end);
+
+// Import relationship: LGA -> LOCATED_IN -> State
+LOAD CSV WITH HEADERS FROM 'file:///rel_LGA_Located_in_State.csv' AS row
+MATCH (start:LGA {lgaID: row.`:START_ID`})
 MATCH (end:State {stateID: row.`:END_ID`})
 MERGE (start)-[:LOCATED_IN]->(end);
 
@@ -184,8 +196,8 @@ MATCH (start:Project {projectID: row.`:START_ID`})
 MATCH (end:Commodity {commodityID: row.`:END_ID`})
 MERGE (start)-[:HAS_COMMODITY {role: row.`role:string`}]->(end);
 
-// Import relationship: Commodity -> BELONGS_TO -> CommodityGroup
-LOAD CSV WITH HEADERS FROM 'file:///rel_Commodity_Group.csv' AS row
-MATCH (start:Commodity {commodityID: row.`:START_ID(Commodity)`})
-MATCH (end:CommodityGroup {id: row.`:END_ID(CommodityGroup)`})
-MERGE (start)-[:BELONGS_TO]->(end);
+// Import relationship: Commodity -> GROUPED_AS -> CommodityGroup
+LOAD CSV WITH HEADERS FROM 'file:///rel_Grouped_as.csv' AS row
+MATCH (start:Commodity {commodityID: row.`:START_ID`})
+MATCH (end:CommodityGroup {commodityGroupID: row.`:END_ID`})
+MERGE (start)-[:GROUPED_AS]->(end);
