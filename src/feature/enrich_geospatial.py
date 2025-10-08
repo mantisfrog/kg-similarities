@@ -12,14 +12,14 @@ from src import config
 # Define absolute paths for input and output files from config.
 DEPOSITS_CSV_PATH = config.PROCESSED_DEPOSITS_CSV
 PROVINCES_SHP_PATH = config.PROVINCES_SHP
-STATES_SHP_PATH = config.STATES_SHP
+ADMIN_BOUNDARIES_SHP_PATH = config.ADMIN_BOUNDARIES_SHP
 OUTPUT_CSV_PATH = config.MASTER_PROJECT_CSV
 
 
-def process_deposits_with_provinces(deposits_path, provinces_path, states_path, output_path):
+def process_deposits_with_provinces(deposits_path, provinces_path, admin_boundaries_path, output_path):
     """
-    Enriches deposit data by spatially joining it with province and state shapefiles.
-    It identifies which province polygons a deposit falls into and backfills missing state data.
+    Enriches deposit data by spatially joining it with province and administrative boundary (state/LGA) shapefiles.
+    It identifies which province polygons a deposit falls into, backfills missing state data, and adds Local Government Area (LGA) information.
     """
     try:
         # Ensure the output directory exists.
@@ -28,8 +28,8 @@ def process_deposits_with_provinces(deposits_path, provinces_path, states_path, 
         print("Step 1/6: Loading data...")
         deposits_df = pd.read_csv(deposits_path)
         provinces_gdf = gpd.read_file(provinces_path)
-        states_gdf = gpd.read_file(states_path)
-        print(f"Loaded {len(deposits_df)} deposits, {len(provinces_gdf)} province polygons, {len(states_gdf)} state polygons.")
+        admin_gdf = gpd.read_file(admin_boundaries_path)
+        print(f"Loaded {len(deposits_df)} deposits, {len(provinces_gdf)} province polygons, {len(admin_gdf)} admin polygons.")
 
         # Create a unique index to reliably merge data back after joins.
         deposits_df['original_index'] = range(len(deposits_df))
@@ -44,32 +44,47 @@ def process_deposits_with_provinces(deposits_path, provinces_path, states_path, 
             crs="EPSG:4283"  # Set the coordinate reference system to GDA94.
         )
 
-        print("Step 3/6: Filling missing STATE via spatial join...")
-        # Ensure the states shapefile uses the same CRS as the deposits.
-        states_gdf = states_gdf.to_crs(deposits_gdf.crs)
-        # Identify deposits with missing state information.
-        state_missing_mask = deposits_gdf['STATE'].isna() | (deposits_gdf['STATE'].astype(str).str.strip() == '')
-        deposits_missing_state = deposits_gdf.loc[state_missing_mask].copy()
+        print("Step 3/6: Adding LGA and filling missing STATE via spatial join...")
+        # Ensure the admin boundaries shapefile uses the same CRS as the deposits.
+        admin_gdf = admin_gdf.to_crs(deposits_gdf.crs)
+        
+        # Validate required columns in the admin boundaries shapefile.
+        if 'STE_NAME21' not in admin_gdf.columns:
+            raise KeyError("Shapefile missing STE_NAME21 field for states")
+        if 'LGA_NAME25' not in admin_gdf.columns:
+            raise KeyError("Shapefile missing LGA_NAME25 field for LGAs")
 
-        if not deposits_missing_state.empty:
-            # Perform a spatial join to find which state polygon contains each point.
-            joined_states = gpd.sjoin(deposits_missing_state, states_gdf, how='left', predicate='covered_by')
-            
-            # Create a map from the original index to the state name found.
-            fill_map = (joined_states[['original_index', 'STE_NAME21']]
-                        .dropna()
-                        .drop_duplicates()
-                        .groupby('original_index')['STE_NAME21']
-                        .first()
-                        .rename('_STATE_FILL'))
-            
-            # Merge the found state names back into the original dataframe.
-            deposits_df = deposits_df.merge(fill_map.reset_index(), on='original_index', how='left')
-            state_is_blank = deposits_df['STATE'].isna() | (deposits_df['STATE'].astype(str).str.strip() == '')
+        # Perform a spatial join to find which admin polygon contains each deposit point.
+        joined_admin = gpd.sjoin(deposits_gdf, admin_gdf, how='left', predicate='covered_by')
+
+        # Create a map from the original index to the state name found.
+        state_fill_map = (joined_admin[['original_index', 'STE_NAME21']]
+                    .dropna()
+                    .drop_duplicates()
+                    .groupby('original_index')['STE_NAME21']
+                    .first()
+                    .rename('_STATE_FILL'))
+        
+        # Create a map from the original index to the LGA name found.
+        lga_map = (joined_admin[['original_index', 'LGA_NAME25']]
+                    .dropna()
+                    .drop_duplicates()
+                    .groupby('original_index')['LGA_NAME25']
+                    .first()
+                    .rename('LGA'))
+
+        # Merge the found state and LGA names back into the original dataframe.
+        deposits_df = deposits_df.merge(state_fill_map.reset_index(), on='original_index', how='left')
+        deposits_df = deposits_df.merge(lga_map.reset_index(), on='original_index', how='left')
+
+        # Fill missing STATE values using the spatially joined data.
+        state_is_blank = deposits_df['STATE'].isna() | (deposits_df['STATE'].astype(str).str.strip() == '')
+        if state_is_blank.any():
             deposits_df.loc[state_is_blank, 'STATE'] = deposits_df.loc[state_is_blank, '_STATE_FILL']
-            deposits_df.drop(columns=['_STATE_FILL'], inplace=True)
+            print(f"Filled {state_is_blank.sum()} missing STATE values.")
         else:
             print("All rows already have STATE; no filling needed.")
+        deposits_df.drop(columns=['_STATE_FILL'], inplace=True, errors='ignore')
 
         # Re-create the GeoDataFrame with the updated state information.
         deposits_gdf = gpd.GeoDataFrame(
@@ -149,7 +164,7 @@ def process_deposits_with_provinces(deposits_path, provinces_path, states_path, 
 
         # Define the final column order for the output CSV.
         desired_order = [
-            "ENO", "PROJECT_NAME", "SYNONYMS", "STATE", "LONG_GDA94", "LAT_GDA94",
+            "ENO", "PROJECT_NAME", "SYNONYMS", "STATE", "LGA", "LONG_GDA94", "LAT_GDA94",
             "PROJECT_TYPE", "COMMODITY_PRIMARY", "COMMODITY_SECONDARY", "COMMODITY_NAMES",
             "COMPANIES", "GEOLOGIC_AGE", "DEPOSIT_MODEL_ENVIRONMENT", "DEPOSIT_MODEL_GROUP",
             "DEPOSIT_MODEL_TYPE", "PROVINCES", "IGNEOUS", "METALLOGENIC", "SEDIMENTARY", "TECTONIC"
@@ -176,6 +191,6 @@ if __name__ == "__main__":
     process_deposits_with_provinces(
         DEPOSITS_CSV_PATH, 
         PROVINCES_SHP_PATH, 
-        STATES_SHP_PATH, 
+        ADMIN_BOUNDARIES_SHP_PATH, 
         OUTPUT_CSV_PATH
     )

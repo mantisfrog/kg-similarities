@@ -39,12 +39,14 @@ COMPANY_TSV: Path = COMPANY_DIR / "COMPANY_202509.tsv"
 # --- Common outputs ---
 PROCESSED_DEPOSITS_CSV: Path = PROCESSED_DIR / "MineralDeposits.csv"
 NODE_COMMODITY_CSV: Path = GRAPH_DIR / "node_Commodity.csv"
+NODE_COMMODITY_GROUP_CSV: Path = GRAPH_DIR / "node_CommodityGroup.csv"
+REL_COMMODITY_GROUP_CSV: Path = GRAPH_DIR / "rel_Commodity_Group.csv"
 MERGED_COMPANY_CSV: Path = PROCESSED_DIR / "CompanyData_Merged.csv"
 MASTER_COMPANY_CSV: Path = MASTER_DIR / "CompanyData_Master.csv"
 
 # --- Shapefiles ---
 PROVINCES_SHP: Path = SHP_DIR / "116823_AGP_2018" / "ProvinceFullExtent.shp"
-STATES_SHP: Path = SHP_DIR / "STE_2021_AUST_SHP_GDA94" / "STE_2021_AUST_GDA94.shp"
+ADMIN_BOUNDARIES_SHP: Path = SHP_DIR / "LGA_2025_AUST_GDA94" / "LGA_2025_AUST_GDA94.shp"
 
 # --- Neo4j / Cypher ---
 CYPHER_FILE: Path = BASE_DIR / "cypher" / "import.cypher"
@@ -67,6 +69,7 @@ JSON_COMPANY_CSV: Path = PROCESSED_DIR / "JSON_Companies.csv"
 # Consolidated outputs
 PROCESSED_BLOOMBERG_CSV: Path = PROCESSED_DIR / "Bloomberg_Companies.csv"
 MATCHES_SCORES_JSON_CSV: Path = PROCESSED_DIR / "Matches_Scores_JSON.csv"
+PROJECT_COMPANY_MATCHES_CSV: Path = PROCESSED_DIR / "Project_Company_Matches.csv"
 
 # Manual aliasing and change logs
 MANUAL_ALIASES_CSV: Path = COMPANY_DIR / "manual_add_company_names.csv"
