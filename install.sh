@@ -32,22 +32,19 @@ run_with_spinner() {
     fi
 }
 
-echo -e "\n🚀 Starting the Neo4j Environment Setup..."
+echo -e "\n🚀 Starting the KG Environment Setup..."
 
-# [0/7] Create venv (no spinner for activate)
-run_with_spinner "🆕 [0/7] Creating Python virtual environment..." "python3 -m venv .venv"
+# [1/5] Python Environment Setup
+echo -e "\n🐍 [1/5] Setting up Python virtual environment..."
+run_with_spinner "  -> Creating Python virtual environment..." "python3 -m venv .venv"
 source .venv/bin/activate
+run_with_spinner "  -> Installing Python dependencies..." "pip install -r requirements.txt"
+echo "✅ Python environment is ready."
 
-# [1/7] Install dependencies
-run_with_spinner "🐍 [1/7] Installing Python dependencies..." "pip install -r requirements.txt"
-
-# [2/7] Pull Neo4j image
-echo -e "\n🐳 [2/7] Pulling Neo4j Docker image..."
-docker pull neo4j:5.26.12
-echo "✅ Image pull complete."
-
-# [3/7] Start Neo4j container
-echo -e "\n🚀 [3/7] Starting Neo4j container via Docker Compose..."
+# [2/5] Neo4j Docker Setup
+echo -e "\n🐳 [2/5] Setting up Neo4j Docker container..."
+run_with_spinner "  -> Pulling Neo4j Docker image (neo4j:5.26.12)..." "docker pull neo4j:5.26.12"
+echo "  -> Starting Neo4j container via Docker Compose..."
 docker compose up -d
 # Wait for Neo4j to initialize
 echo ""
@@ -57,45 +54,52 @@ for i in {9..0}; do
 done
 echo -e "\n✅ Docker services started."
 
-echo " "
+# [3/5] Process Project Data
+echo -e "\n📊 [3/5] Processing Project datasets..."
+run_with_spinner "  -> Converting project JSON to CSV..." "python ./src/etl/populate_projects.py"
+run_with_spinner "  -> Enriching project data with geospatial information..." "python ./src/feature/enrich_geospatial.py"
+run_with_spinner "  -> Generating project graph CSVs..." "python ./src/etl/generate_project_graph_csv.py"
+run_with_spinner "  -> Categorising commodities..." "python ./src/feature/categorise_commodity.py"
+echo "✅ Project data processed."
 
-# [4/7] Load Pproject Datasets
-run_with_spinner "📊 [4/7] Converting JSON to CSV..." "python ./src/etl/populate_projects.py"
+# [4/5] Process Company Data
+echo -e "\n🏢 [4/5] Processing Company datasets..."
+echo "  -> Running company data ETL pipeline (output will be displayed below)..."
+python src/etl/populate_bloomberg_company.py && \
+       python src/etl/merge_company_data.py && \
+       python src/etl/match_names_json_bloomberg_linkedin.py && \
+       python src/etl/find_former_names.py && \
+       python src/etl/add_company_alias.py && \
+       python src/etl/generate_company_graph_csv.py
+echo "✅ Company data processed."
 
-# [5/7] Run Cleaning
-run_with_spinner "🔗 [5/7] Cleaning names and filling missing values..." "python ./src/etl/clean_projects.py"
+# [5/5] Load Graph into Neo4j
+echo -e "\n🧩 [5/5] Loading all data into Neo4j..."
 
-# [6/7] Fix permissions and copy CSV
-echo -e "\n🔑 [6/7] Adding permissions for ./neo4j-docker directory..."
+# Fix permissions for import directory
+echo "  -> Adding permissions for ./neo4j-docker directory..."
 if [ -d "./neo4j-docker" ]; then
-    # Use sudo only if necessary, or ensure user is in the docker group
     sudo chmod -R 777 ./neo4j-docker
     echo "✅ Permissions Added."
 else
     echo "🟡 Directory ./neo4j-docker not found, skipping permission fix."
 fi
 
-# [7/7] Generate project graph CSVs and Import into Neo4j
-echo -e "\n🧩 [7/7] Generating project graph files and importing into Neo4j..."
-
-# First, generate the graph CSVs --- FILENAME CORRECTED
-run_with_spinner "  -> Generating graph CSVs..." "python ./src/etl/generate_project_graph_csv.py"
-
-# Then, add the commodity groups --- Assuming this script exists from your previous requests
-run_with_spinner "  -> Categorising commodities..." "python ./src/feature/categorise_commodity.py"
-
-# Copy CSV to import folder (after all graph CSVs are generated/modified)
+# Copy all generated CSVs to import folder
 if [ -d "./neo4j-docker/import" ]; then
+    echo "  -> Cleaning import directory..."
+    rm -f ./neo4j-docker/import/*
+    echo "  -> Copying graph CSVs to Neo4j import directory..."
     cp ./data/graph/*.csv ./neo4j-docker/import/
-    echo "✅ Graph CSV files copied to Neo4j import."
+    echo "✅ Graph CSV files copied."
 else
     echo "🟡 Directory ./neo4j-docker/import not found, skipping copy."
 fi
 
-# Finally, run the Cypher script to load data --- FILENAME CORRECTED
-run_with_spinner "  -> Loading data via Cypher..." "python ./src/etl/load_cypher.py"
-
+# Run the Cypher script to load data
+run_with_spinner "  -> Loading data via Cypher script..." "python ./src/etl/load_cypher.py"
 echo "✅ Graph import process complete."
+
 
 BOLD="\033[1m"
 GREEN="\033[32m"
