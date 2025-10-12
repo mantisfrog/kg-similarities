@@ -78,6 +78,41 @@ MATCHES_SCORES_MERGED_LI_LOG_CSV: Path = PROCESSED_DIR / "Matches_Scores_Merged_
 UNMATCHED_JSON_COMPANIES_LOG_CSV: Path = PROCESSED_DIR / "Unmatched_JSON_Companies_Log.csv"
 CHANGES_LOG_CSV: Path = MASTER_DIR / "ACN_Merge_Changes_Log.csv"
 
+# --- Graph Schema Definitions ---
+NODE_LABELS = {
+    "Company": "companyID", "CompanyName": "companyNameID", "Project": "projectID",
+    "ProjectName": "projectNameID", "State": "stateID", "LGA": "lgaID",
+    "Commodity": "commodityID", "CommodityGroup": "commodityGroupID", "Country": "countryID",
+    "CountryGroup": "countrygroupID",
+    "ICBSector": "icbsectorID", "ICBSubsector": "icbsubsectorID", "GICSIndustry": "gicsindustryID",
+    "GICSSubIndustry": "gicssubindustryID", "BICSL3": "bicsl3ID", "BICSL4": "bicsl4ID",
+    "BICSL5": "bicsl5ID", "BICSL6": "bicsl6ID",
+}
+
+RELATION_TYPES = [
+    ("Company", "OWNS", "Project"), ("CompanyName", "REFERS_TO_COMPANY", "Company"),
+    ("Company", "DOMICILED_IN", "Country"), ("Company", "CLASSIFIED_AS", "ICBSector"),
+    ("Company", "CLASSIFIED_AS", "ICBSubsector"), ("Company", "CLASSIFIED_AS", "GICSIndustry"),
+    ("Company", "CLASSIFIED_AS", "GICSSubIndustry"), ("Company", "CLASSIFIED_AS", "BICSL3"),
+    ("Company", "CLASSIFIED_AS", "BICSL4"), ("Company", "CLASSIFIED_AS", "BICSL5"),
+    ("Company", "CLASSIFIED_AS", "BICSL6"), ("ICBSubsector", "PART_OF", "ICBSector"),
+    ("GICSSubIndustry", "PART_OF", "GICSIndustry"), ("BICSL4", "PART_OF", "BICSL3"),
+    ("BICSL5", "PART_OF", "BICSL4"), ("BICSL6", "PART_OF", "BICSL5"),
+    ("ProjectName", "REFERS_TO_PROJECT", "Project"), ("Project", "LOCATED_IN", "LGA"),
+    ("LGA", "LOCATED_IN", "State"), ("Project", "HAS_COMMODITY", "Commodity"),
+    ("Commodity", "GROUPED_AS", "CommodityGroup"),
+    ("Country", "PART_OF", "CountryGroup"),
+]
+
+# --- Feature Engineering Paths ---
+FEATURE_DIR: Path = BASE_DIR / "src" / "feature"
+HETERO_DATA_PATH: Path = FEATURE_DIR / "hetero_graph_data.pt"
+ID_MAPS_PATH: Path = FEATURE_DIR / "id_mappings.pt"
+METAPATH_CONFIG_PATH: Path = FEATURE_DIR / "metapahts.json"
+OUTPUT_EMBEDDINGS_PATH: Path = FEATURE_DIR / "node_embeddings.pt"
+EMBEDDINGS_CSV_DIR: Path = FEATURE_DIR / "embeddings_csv"
+
+
 # --- Small helpers ---
 def ensure_parent(path: Path) -> Path:
     """Create parent directories before writing."""

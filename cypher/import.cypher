@@ -24,6 +24,7 @@ CREATE CONSTRAINT bicsl3_id_unique IF NOT EXISTS FOR (n:BICSL3) REQUIRE n.bicsl3
 CREATE CONSTRAINT bicsl4_id_unique IF NOT EXISTS FOR (n:BICSL4) REQUIRE n.bicsl4ID IS UNIQUE;
 CREATE CONSTRAINT bicsl5_id_unique IF NOT EXISTS FOR (n:BICSL5) REQUIRE n.bicsl5ID IS UNIQUE;
 CREATE CONSTRAINT bicsl6_id_unique IF NOT EXISTS FOR (n:BICSL6) REQUIRE n.bicsl6ID IS UNIQUE;
+CREATE CONSTRAINT countrygroup_id_unique IF NOT EXISTS FOR (cg:CountryGroup) REQUIRE cg.countrygroupID IS UNIQUE;
 
 // =================================================================
 // 3. Import node data
@@ -66,15 +67,7 @@ LOAD CSV WITH HEADERS FROM 'file:///node_BICSL6.csv' AS row MERGE (n:BICSL6 {bic
 LOAD CSV WITH HEADERS FROM 'file:///node_Project.csv' AS row
 MERGE (p:Project {projectID: row.`projectID:ID`})
 SET p.eno = toInteger(row.`eno:int`),
-    p.location = row.`location:point`,
-    p.geologicAge = row.`geologicAge:string`,
-    p.depositModelEnvironment = row.`depositModelEnvironment:string`,
-    p.depositModelGroup = row.`depositModelGroup:string`,
-    p.depositModelType = row.`depositModelType:string`,
-    p.igneous = row.`igneous:string`,
-    p.metallogenic = row.`metallogenic:string`,
-    p.sedimentary = row.`sedimentary:string`,
-    p.tectonic = row.`tectonic:string`;
+    p.location = row.`location:point`;
 
 // Import ProjectName nodes
 LOAD CSV WITH HEADERS FROM 'file:///node_ProjectName.csv' AS row
@@ -157,12 +150,12 @@ LOAD CSV WITH HEADERS FROM 'file:///rel_Classified_as_BICSL4.csv' AS row
 
 LOAD CSV WITH HEADERS FROM 'file:///rel_Classified_as_BICSL5.csv' AS row
     MATCH (start:Company {companyID: row.`:START_ID`})
-    MATCH (end:BICSL5 {bicsl5ID: row.`:END_ID`})
+    MATCH (end:BICSL5 {bicsl5ID: row.`END_ID`})
     MERGE (start)-[:CLASSIFIED_AS {scheme: 'BICS', level: 'L5 Segment'}]->(end);
 
 LOAD CSV WITH HEADERS FROM 'file:///rel_Classified_as_BICSL6.csv' AS row
     MATCH (start:Company {companyID: row.`:START_ID`})
-    MATCH (end:BICSL6 {bicsl6ID: row.`:END_ID`})
+    MATCH (end:BICSL6 {bicsl6ID: row.`END_ID`})
     MERGE (start)-[:CLASSIFIED_AS {scheme: 'BICS', level: 'L6 Segment'}]->(end);
 
 // Import Hierarchical Classification relationships
@@ -170,13 +163,13 @@ LOAD CSV WITH HEADERS FROM 'file:///rel_Part_of_ICBSubsector.csv' AS row MATCH (
 LOAD CSV WITH HEADERS FROM 'file:///rel_Part_of_GICSSubIndustry.csv' AS row MATCH (start:GICSSubIndustry {gicssubindustryID: row.`:START_ID`}) MATCH (end:GICSIndustry {gicsindustryID: row.`:END_ID`}) MERGE (start)-[:PART_OF]->(end);
 LOAD CSV WITH HEADERS FROM 'file:///rel_Part_of_BICSL4.csv' AS row MATCH (start:BICSL4 {bicsl4ID: row.`:START_ID`}) MATCH (end:BICSL3 {bicsl3ID: row.`:END_ID`}) MERGE (start)-[:PART_OF]->(end);
 LOAD CSV WITH HEADERS FROM 'file:///rel_Part_of_BICSL5.csv' AS row MATCH (start:BICSL5 {bicsl5ID: row.`:START_ID`}) MATCH (end:BICSL4 {bicsl4ID: row.`:END_ID`}) MERGE (start)-[:PART_OF]->(end);
-LOAD CSV WITH HEADERS FROM 'file:///rel_Part_of_BICSL6.csv' AS row MATCH (start:BICSL6 {bicsl6ID: row.`:START_ID`}) MATCH (end:BICSL5 {bicsl5ID: row.`:END_ID`}) MERGE (start)-[:PART_OF]->(end);
+LOAD CSV WITH HEADERS FROM 'file:///rel_Part_of_BICSL6.csv' AS row MATCH (start:BICSL6 {bicsl6ID: row.`:START_ID`}) MATCH (end:BICSL5 {bicsl5ID: row.`END_ID`}) MERGE (start)-[:PART_OF]->(end);
 
 // Import relationship: ProjectName -> REFERS_TO_PROJECT -> Project
 LOAD CSV WITH HEADERS FROM 'file:///rel_Refers_to_Project.csv' AS row
 MATCH (start:ProjectName {projectNameID: row.`:START_ID`})
 MATCH (end:Project {projectID: row.`:END_ID`})
-MERGE (start)-[:REFERS_TO_PROJECT]->(end);
+MERGE (start)-[:REFERS_TO_PROJECT {type: row.`type:string`}]->(end);
 
 // Import relationship: Project -> LOCATED_IN -> LGA
 LOAD CSV WITH HEADERS FROM 'file:///rel_Project_Located_in_LGA.csv' AS row
@@ -201,3 +194,73 @@ LOAD CSV WITH HEADERS FROM 'file:///rel_Grouped_as.csv' AS row
 MATCH (start:Commodity {commodityID: row.`:START_ID`})
 MATCH (end:CommodityGroup {commodityGroupID: row.`:END_ID`})
 MERGE (start)-[:GROUPED_AS]->(end);
+
+// =================================================================
+// 5. Import Project Categorisation Data
+// =================================================================
+
+// 5.1 Create constraint for new category node type
+CREATE CONSTRAINT reservesscale_id_unique IF NOT EXISTS FOR (n:ReservesScale) REQUIRE n.reservesScaleID IS UNIQUE;
+
+// 5.2 Import category nodes
+LOAD CSV WITH HEADERS FROM 'file:///node_ReservesScale.csv' AS row
+MERGE (n:ReservesScale {reservesScaleID: row.`reservesScaleID:ID`})
+SET n.text = row.`text:string`;
+
+// 5.3 Import relationships: Project -> CATEGORISED_AS -> ReservesScale
+LOAD CSV WITH HEADERS FROM 'file:///rel_Project_Categorised_as_ReservesScale.csv' AS row
+MATCH (start:Project {projectID: row.`:START_ID`})
+MATCH (end:ReservesScale {reservesScaleID: row.`:END_ID`})
+MERGE (start)-[:CATEGORISED_AS]->(end);
+
+// =================================================================
+// 6. Import Company Categorisation Data
+// =================================================================
+
+// 6.1 Create constraints for new category node types
+CREATE CONSTRAINT tiermarketcap_id_unique IF NOT EXISTS FOR (n:TierMarketCap) REQUIRE n.tiermarketcapID IS UNIQUE;
+CREATE CONSTRAINT tierrevenue_id_unique IF NOT EXISTS FOR (n:TierRevenue) REQUIRE n.tierrevenueID IS UNIQUE;
+CREATE CONSTRAINT tierassets_id_unique IF NOT EXISTS FOR (n:TierAssets) REQUIRE n.tierassetsID IS UNIQUE;
+CREATE CONSTRAINT countrygroup_id_unique IF NOT EXISTS FOR (n:CountryGroup) REQUIRE n.countrygroupID IS UNIQUE;
+CREATE CONSTRAINT groupassetturnover_id_unique IF NOT EXISTS FOR (n:GroupAssetTurnover) REQUIRE n.groupassetturnoverID IS UNIQUE;
+CREATE CONSTRAINT groupmarkettoasset_id_unique IF NOT EXISTS FOR (n:GroupMarketToAsset) REQUIRE n.groupmarkettoassetID IS UNIQUE;
+
+// 6.2 Import category nodes
+LOAD CSV WITH HEADERS FROM 'file:///node_TierMarketCap.csv' AS row MERGE (n:TierMarketCap {tiermarketcapID: row.`tiermarketcapID:ID`}) SET n.text = row.`text:string`;
+LOAD CSV WITH HEADERS FROM 'file:///node_TierRevenue.csv' AS row MERGE (n:TierRevenue {tierrevenueID: row.`tierrevenueID:ID`}) SET n.text = row.`text:string`;
+LOAD CSV WITH HEADERS FROM 'file:///node_TierAssets.csv' AS row MERGE (n:TierAssets {tierassetsID: row.`tierassetsID:ID`}) SET n.text = row.`text:string`;
+LOAD CSV WITH HEADERS FROM 'file:///node_CountryGroup.csv' AS row MERGE (n:CountryGroup {countrygroupID: row.`countrygroupID:ID`}) SET n.text = row.`text:string`;
+LOAD CSV WITH HEADERS FROM 'file:///node_GroupAssetTurnover.csv' AS row MERGE (n:GroupAssetTurnover {groupassetturnoverID: row.`groupassetturnoverID:ID`}) SET n.text = row.`text:string`;
+LOAD CSV WITH HEADERS FROM 'file:///node_GroupMarketToAsset.csv' AS row MERGE (n:GroupMarketToAsset {groupmarkettoassetID: row.`groupmarkettoassetID:ID`}) SET n.text = row.`text:string`;
+
+// 6.3 Import relationships: Company -> CATEGORISED_AS -> [CategoryNode]
+LOAD CSV WITH HEADERS FROM 'file:///rel_CategorisedAs_TierMarketCap.csv' AS row
+MATCH (start:Company {companyID: row.`:START_ID`})
+MATCH (end:TierMarketCap {tiermarketcapID: row.`:END_ID`})
+MERGE (start)-[:CATEGORISED_AS]->(end);
+
+LOAD CSV WITH HEADERS FROM 'file:///rel_CategorisedAs_TierRevenue.csv' AS row
+MATCH (start:Company {companyID: row.`:START_ID`})
+MATCH (end:TierRevenue {tierrevenueID: row.`END_ID`})
+MERGE (start)-[:CATEGORISED_AS]->(end);
+
+LOAD CSV WITH HEADERS FROM 'file:///rel_CategorisedAs_TierAssets.csv' AS row
+MATCH (start:Company {companyID: row.`:START_ID`})
+MATCH (end:TierAssets {tierassetsID: row.`END_ID`})
+MERGE (start)-[:CATEGORISED_AS]->(end);
+
+LOAD CSV WITH HEADERS FROM 'file:///rel_CategorisedAs_GroupAssetTurnover.csv' AS row
+MATCH (start:Company {companyID: row.`:START_ID`})
+MATCH (end:GroupAssetTurnover {groupassetturnoverID: row.`:END_ID`})
+MERGE (start)-[:CATEGORISED_AS]->(end);
+
+LOAD CSV WITH HEADERS FROM 'file:///rel_CategorisedAs_GroupMarketToAsset.csv' AS row
+MATCH (start:Company {companyID: row.`:START_ID`})
+MATCH (end:GroupMarketToAsset {groupmarkettoassetID: row.`END_ID`})
+MERGE (start)-[:CATEGORISED_AS]->(end);
+
+// ADDED: New relationship between Country and CountryGroup
+LOAD CSV WITH HEADERS FROM 'file:///rel_Country_PartOf_CountryGroup.csv' AS row
+MATCH (start:Country {countryID: row.`:START_ID`})
+MATCH (end:CountryGroup {countrygroupID: row.`:END_ID`})
+MERGE (start)-[:PART_OF]->(end);

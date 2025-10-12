@@ -30,24 +30,9 @@ def generate_project_nodes(df: pd.DataFrame, output_dir: Path):
         axis=1
     )
 
-    # Rename columns to camelCase as specified
-    df_project.rename(columns={
-        'GEOLOGIC_AGE': 'geologicAge:string',
-        'DEPOSIT_MODEL_ENVIRONMENT': 'depositModelEnvironment:string',
-        'DEPOSIT_MODEL_GROUP': 'depositModelGroup:string',
-        'DEPOSIT_MODEL_TYPE': 'depositModelType:string',
-        'IGNEOUS': 'igneous:string',
-        'METALLOGENIC': 'metallogenic:string',
-        'SEDIMENTARY': 'sedimentary:string',
-        'TECTONIC': 'tectonic:string'
-    }, inplace=True)
-
     # Select and order columns for the output CSV
     output_columns = [
-        'projectID:ID', 'eno:int', 'location:point', 'geologicAge:string',
-        'depositModelEnvironment:string', 'depositModelGroup:string',
-        'depositModelType:string', 'igneous:string', 'metallogenic:string',
-        'sedimentary:string', 'tectonic:string'
+        'projectID:ID', 'eno:int', 'location:point'
     ]
     df_project = df_project[output_columns]
 
@@ -189,7 +174,11 @@ def generate_refers_to_rels(df: pd.DataFrame, name_to_id: dict, output_dir: Path
         name = row['PROJECT_NAME'].strip()
         if name and name in name_to_id:
             start_id = name_to_id[name]
-            rels.append({'START_ID': start_id, 'END_ID': end_id})
+            rels.append({
+                ':START_ID': start_id, 
+                ':END_ID': end_id, 
+                'type:string': 'Primary'
+            })
             
         # Relationships from SYNONYMS
         synonyms = row['SYNONYMS'].strip()
@@ -198,7 +187,11 @@ def generate_refers_to_rels(df: pd.DataFrame, name_to_id: dict, output_dir: Path
                 synonym = synonym.strip()
                 if synonym and synonym in name_to_id:
                     start_id = name_to_id[synonym]
-                    rels.append({'START_ID': start_id, 'END_ID': end_id})
+                    rels.append({
+                        ':START_ID': start_id, 
+                        ':END_ID': end_id, 
+                        'type:string': 'Synonym'
+                    })
 
     generate_rel_csv(rels, output_dir, "rel_Refers_to_Project.csv")
 

@@ -64,7 +64,9 @@ python src/etl/populate_bloomberg_company.py && \
        python src/etl/match_names_json_bloomberg_linkedin.py && \
        python src/etl/find_former_names.py && \
        python src/etl/add_company_alias.py && \
-       python src/etl/generate_company_graph_csv.py
+       python src/etl/generate_company_graph_csv.py && \
+       python src/feature/categorise_company.py && \
+       python src/feature/generate_categorise_reserves_node.py
 echo "✅ Company data processed."
 
 # [5/5] Load Graph into Neo4j

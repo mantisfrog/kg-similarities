@@ -17,33 +17,11 @@ from src.utils.match_rules import get_match_status
 from src.utils.load_spacy import load_spacy_model
 
 
-def match_projects_to_companies():
-    """
-    Performs fuzzy matching between project company names and the newly created
-    master company list, saving the results to an intermediate file.
-    """
-    print("\n--- Starting Step: Matching Projects to Master Companies ---")
-    
-    # 1. Load necessary files
-    print("Loading master company, project, and node data...")
-    companies_df = pd.read_csv(config.MASTER_COMPANY_CSV, usecols=["companyID", "Company Name", "SYNONYMS"])
-    projects_df = pd.read_csv(config.MASTER_PROJECT_CSV, usecols=["ENO", "COMPANIES"])
-    node_project_df = pd.read_csv(config.NODE_PROJECT_CSV, usecols=["projectID:ID", "eno:int"])
-
-    print("Loading spaCy model for semantic matching...")
-    nlp = load_spacy_model("en_core_web_md")
-
-    # 2. Create a mapping from ENO to projectID
-    node_project_df.rename(columns={"eno:int": "eno"}, inplace=True)
-    node_project_df.dropna(subset=["eno"], inplace=True)
-    node_project_df["eno"] = node_project_df["eno"].astype(int)
-    eno_to_projectID = pd.Series(node_project_df["projectID:ID"].values, index=node_project_df["eno"]).to_dict()
-
-    # 3. Prepare master company data for fuzzy matching
-    print("Preparing master company data for fuzzy matching...")
+def prepare_source_data(df, desc):
+    """Helper function to normalize names and build index for a given dataframe."""
     norm_to_companyID = {}
     all_normalized_names = set()
-    for _, row in tqdm(companies_df.iterrows(), total=len(companies_df), desc="Normalizing master companies", file=sys.stdout):
+    for _, row in tqdm(df.iterrows(), total=len(df), desc=f"Normalizing {desc} names", file=sys.stdout):
         company_id = row["companyID"]
         names = []
         if pd.notna(row["Company Name"]):
@@ -56,14 +34,50 @@ def match_projects_to_companies():
                 normalized_name = normalize_name(name)
                 if normalized_name:
                     all_normalized_names.add(normalized_name)
+                    # This will overwrite duplicates, which is acceptable for this logic
                     norm_to_companyID[normalized_name] = company_id
     
-    master_company_norm_list = list(all_normalized_names)
-    print("Building word index for master company list...")
-    master_company_index = build_word_index(master_company_norm_list)
+    name_list = list(all_normalized_names)
+    word_index = build_word_index(name_list)
+    return norm_to_companyID, word_index
 
-    # 4. Iterate through projects and find matches
-    print("Matching project companies to master list...")
+
+def match_projects_to_companies():
+    """
+    Performs fuzzy matching between project company names and the master company list,
+    with a hierarchical priority: Bloomberg > Modern Slavery > LinkedIn.
+    """
+    print("\n--- Starting Step: Matching Projects to Master Companies (with Priority) ---")
+    
+    # 1. Load necessary files, now including 'Source'
+    print("Loading master company, project, and node data...")
+    companies_df = pd.read_csv(config.MASTER_COMPANY_CSV, usecols=["companyID", "Company Name", "SYNONYMS", "Source"])
+    projects_df = pd.read_csv(config.MASTER_PROJECT_CSV, usecols=["ENO", "COMPANIES"])
+    node_project_df = pd.read_csv(config.NODE_PROJECT_CSV, usecols=["projectID:ID", "eno:int"])
+
+    print("Loading spaCy model for semantic matching...")
+    nlp = load_spacy_model("en_core_web_md")
+
+    # 2. Create a mapping from ENO to projectID
+    node_project_df.rename(columns={"eno:int": "eno"}, inplace=True)
+    node_project_df.dropna(subset=["eno"], inplace=True)
+    node_project_df["eno"] = node_project_df["eno"].astype(int)
+    eno_to_projectID = pd.Series(node_project_df["projectID:ID"].values, index=node_project_df["eno"]).to_dict()
+
+    # 3. Prepare master company data SEPARATELY for each source
+    print("Segregating master company data by source...")
+    companies_df['Source'] = companies_df['Source'].fillna('')
+    bloomberg_df = companies_df[companies_df['Source'] == 'Bloomberg'].copy()
+    ms_df = companies_df[companies_df['Source'] == 'Modern Slavery'].copy()
+    linkedin_df = companies_df[companies_df['Source'] == 'LinkedIn'].copy()
+
+    print("Preparing data for each source...")
+    bloomberg_norm_to_id, bloomberg_index = prepare_source_data(bloomberg_df, "Bloomberg")
+    ms_norm_to_id, ms_index = prepare_source_data(ms_df, "Modern Slavery")
+    linkedin_norm_to_id, linkedin_index = prepare_source_data(linkedin_df, "LinkedIn")
+
+    # 4. Iterate through projects and find matches using the prioritized hierarchy
+    print("Matching project companies to master list with priority...")
     matches = []
     high_confidence_statuses = {'no_space_exact_match', 'au_removed_match', 'confident_score_match'}
     projects_df.dropna(subset=["COMPANIES", "ENO"], inplace=True)
@@ -83,21 +97,49 @@ def match_projects_to_companies():
             if not normalized_name:
                 continue
 
-            best_match_normalized, w_ratio, lev_ratio = select_best_candidate(
-                normalized_name, master_company_index, w_ratio_threshold=80
-            )
-
-            if best_match_normalized:
-                use_spacy = 95 <= w_ratio < 100
-                secondary_scores = calculate_text_similarities(
-                    normalized_name, best_match_normalized, nlp_model=nlp if use_spacy else None
-                )
-                status = get_match_status(w_ratio, lev_ratio, secondary_scores)
-
+            match_found = False
+            # --- HIERARCHICAL MATCHING LOGIC ---
+            # Priority 1: Bloomberg
+            best_match_norm, w_r, lev_r = select_best_candidate(normalized_name, bloomberg_index, 80)
+            if best_match_norm:
+                use_spacy = 95 <= w_r < 100
+                scores = calculate_text_similarities(normalized_name, best_match_norm, nlp_model=nlp if use_spacy else None)
+                status = get_match_status(w_r, lev_r, scores)
                 if status in high_confidence_statuses:
-                    company_id = norm_to_companyID.get(best_match_normalized)
+                    company_id = bloomberg_norm_to_id.get(best_match_norm)
                     if company_id:
                         matches.append({'companyID': company_id, 'projectID': project_id})
+                        match_found = True
+
+            if match_found:
+                continue # Found in Bloomberg, move to the next company name in the project
+
+            # Priority 2: Modern Slavery
+            best_match_norm, w_r, lev_r = select_best_candidate(normalized_name, ms_index, 80)
+            if best_match_norm:
+                use_spacy = 95 <= w_r < 100
+                scores = calculate_text_similarities(normalized_name, best_match_norm, nlp_model=nlp if use_spacy else None)
+                status = get_match_status(w_r, lev_r, scores)
+                if status in high_confidence_statuses:
+                    company_id = ms_norm_to_id.get(best_match_norm)
+                    if company_id:
+                        matches.append({'companyID': company_id, 'projectID': project_id})
+                        match_found = True
+            
+            if match_found:
+                continue # Found in MS, move to the next company name in the project
+
+            # Priority 3: LinkedIn
+            best_match_norm, w_r, lev_r = select_best_candidate(normalized_name, linkedin_index, 80)
+            if best_match_norm:
+                use_spacy = 95 <= w_r < 100
+                scores = calculate_text_similarities(normalized_name, best_match_norm, nlp_model=nlp if use_spacy else None)
+                status = get_match_status(w_r, lev_r, scores)
+                if status in high_confidence_statuses:
+                    company_id = linkedin_norm_to_id.get(best_match_norm)
+                    if company_id:
+                        matches.append({'companyID': company_id, 'projectID': project_id})
+                        # No need for continue here, it's the last check
 
     # 5. Save the matches to the intermediate file
     if matches:

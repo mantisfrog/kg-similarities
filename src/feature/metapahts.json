@@ -1,0 +1,10 @@
+{
+  "Company": {
+    "Company>Project>Commodity>Project>Company": 4.0,
+    "Company>ICBSubsector>Company": 2.0,
+    "Company>GICSSubIndustry>Company": 2.0,
+    "Company>TierMarketCap>Company": 1.0,
+    "Company>TierRevenue>Company": 1.0,
+    "Company>TierAssets>Company": 1.0
+  }
+}
