@@ -1,0 +1,848 @@
+﻿Ticker,Short Name,Cntry Terrtry Of Dom,Sec Type,Market Cap,Revenue:Y,Tot Assets:Y,Number of Employees LF,ICB Sector Name,ICB Subsector Name,GICS Ind Name,GICS SubInd Name,BICS L3 Ind Nm,BICS L4 Sub Ind Nm,BICS L5 Seg Nm,BICS L6 Seg Nm
+CAT US Equity,CATERPILLAR INC,US,Common Stock,331.37B,98.29B,141.90B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+SAND SS Equity,SANDVIK AB,SE,Common Stock,51.91B,17.62B,26.92B,41k,Industrial Engineering,Machinery: Tools,Machinery,Industrial Machinery & Supplies & Components,Machinery,Construction & Mining Machinery,--,--
+6301 JP Equity,KOMATSU LTD,JP,Common Stock,51.39B,41.33B,61.71B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+034020 KS Equity,DOOSAN ENERBILIT,KR,Common Stock,43.41B,18.05B,28.78B,--,Industrial Engineering,Machinery: Industrial,Electrical Equipment,Heavy Electrical Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+600031 CH Equity,SANY HEAVY IND-A,CN,Common Stock,38.95B,16.52B,33.70B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+EPIA SS Equity,EPIROC AB-A,SE,Common Stock,37.47B,9.12B,12.21B,19k,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,--,--
+000425 CH Equity,XCMG CONSTRUCT-A,CN,Common Stock,25.83B,19.32B,35.65B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+METSO FH Equity,METSO CORP,FI,Common Stock,17.71B,7.98B,11.74B,17k,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+WEIR LN Equity,WEIR GROUP PLC,GB,Common Stock,14.14B,4.86B,7.66B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Industrial Machinery & Supplies & Components,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,Mining Material Handling Equip
+000157 CH Equity,ZOOMLION HEAVY-A,CN,Common Stock,13.79B,9.58B,27.40B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+OSK US Equity,OSHKOSH CORP,US,Common Stock,12.94B,16.27B,15.24B,--,Industrial Transportation,Commercial Vehicles and Parts,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+6305 JP Equity,HITACHI CONST MA,JP,Common Stock,10.40B,13.81B,19.14B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,--,--
+601717 CH Equity,ZMJ GROUP CO L-A,CN,Common Stock,9.20B,7.81B,10.86B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+688425 CH Equity,CHINA RAILWAY -A,CN,Common Stock,6.10B,2.12B,5.92B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,--,--
+FLS DC Equity,FLSMIDTH,DK,Common Stock,5.99B,4.44B,6.04B,6k,Construction and Materials,Building Materials: Other,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+603338 CH Equity,ZHEJIANG DINGL-A,CN,Common Stock,5.98B,1.64B,3.40B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+241560 KS Equity,DOOSAN BOBCAT IN,KR,Common Stock,5.80B,9.51B,13.21B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+HIAB FH Equity,HIAB OYJ,FI,Common Stock,5.75B,2.70B,4.10B,4k,Industrial Engineering,Machinery: Construction and Handling,Machinery,Industrial Machinery & Supplies & Components,Machinery,Construction & Mining Machinery,Construction Machinery,--
+600582 CH Equity,TIAN DI -A,CN,Common Stock,5.25B,6.43B,12.68B,--,Industrial Engineering,Machinery: Industrial,Machinery,Industrial Machinery & Supplies & Components,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+TEX US Equity,TEREX CORP,US,Common Stock,5.17B,7.78B,9.26B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+000528 CH Equity,GUANGXI LIUGON-A,CN,Common Stock,4.80B,6.34B,10.61B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+631 HK Equity,SANY HEAVY EQUIP,CN,Common Stock,4.64B,4.62B,9.07B,8k,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+002097 CH Equity,SUNWARD INTELL-A,CN,Common Stock,3.81B,1.50B,4.64B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+042670 KS Equity,HD HYUNDAI INFRA,KR,Common Stock,3.29B,4.57B,4.69B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+000680 CH Equity,SHANTUI CONST-A,CN,Common Stock,3.19B,3.00B,4.05B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+1333 HK Equity,BRETON TECHNOL-H,CN,Common Stock,3.04B,133.91M,318.59M,372,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,--,--
+WAC GR Equity,WACKER NEUSON SE,DE,Common Stock,2.94B,3.67B,4.16B,6k,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+600710 CH Equity,SUMEC CORP-A,CN,Common Stock,2.70B,24.69B,12.16B,--,Industrial Support Services,Industrial Suppliers,Trading Companies & Distributors,Trading Companies & Distributors,Machinery,Construction & Mining Machinery,Construction Machinery,--
+6432 JP Equity,TAKEUCHI MFG CO,JP,Common Stock,2.64B,2.14B,2.33B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+002651 CH Equity,CHENGDU LEEJUN-A,CN,Common Stock,2.50B,163.58M,763.87M,--,Industrial Engineering,Machinery: Industrial,Machinery,Industrial Machinery & Supplies & Components,Machinery,Construction & Mining Machinery,Construction Machinery,--
+3339 HK Equity,LONKING,CN,Common Stock,2.45B,2.15B,3.43B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+ACCE IN Equity,ACTION CONSTRUCT,IN,Common Stock,2.35B,603.77M,507.81M,1k,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+002685 CH Equity,WUXI HUADONG H-A,CN,Common Stock,1.97B,249.57M,674.30M,--,Industrial Transportation,Commercial Vehicles and Parts,Machinery,Industrial Machinery & Supplies & Components,Machinery,Construction & Mining Machinery,--,--
+ENGCONB SS Equity,ENGCON AB,SE,Common Stock,1.89B,236.51M,162.38M,427,Industrial Engineering,Machinery: Specialty,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,--,--
+267270 KS Equity,HD HYUNDAI CONST,KR,Common Stock,1.85B,3.82B,3.64B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+ASTE US Equity,ASTEC INDUSTRIES,US,Common Stock,1.66B,1.98B,1.69B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+002526 CH Equity,SHANDONG MININ-A,CN,Common Stock,1.54B,501.54M,1.13B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,Underground Mining Machinery
+PON1V FH Equity,PONSSE OYJ,FI,Common Stock,1.42B,1.23B,942.15M,2k,Industrial Engineering,Machinery: Agricultural,Machinery,Agricultural & Farm Machinery,Machinery,Construction & Mining Machinery,Construction Machinery,--
+6395 JP Equity,TADANO,JP,Common Stock,1.42B,2.92B,4.14B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+MTU FP Equity,MANITOU BF,FR,Common Stock,1.34B,4.36B,3.51B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+AJAXENGG IN Equity,AJAX ENGINEERING,IN,Common Stock,1.30B,376.36M,277.70M,487,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+002483 CH Equity,JIANGSU RAINBO-A,CN,Common Stock,1.29B,1.73B,2.34B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Industrial Machinery & Supplies & Components,Machinery,Construction & Mining Machinery,Construction Machinery,--
+603861 CH Equity,GUANGZHOU BAIY-A,CN,Common Stock,1.23B,1.05B,2.22B,--,Electronic and Electrical Equipment,Electrical Components,Electrical Equipment,Electrical Components & Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+835174 CH Equity,HUNAN WUXIN TU-A,CN,Common Stock,1.15B,168.37M,245.15M,649,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+300210 CH Equity,ANSHAN SENYUAN-A,CN,Common Stock,1.08B,47.80M,230.77M,--,Industrial Transportation,Transportation Services,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+600815 CH Equity,XIAMEN XGMA-A,CN,Common Stock,1.05B,144.00M,514.38M,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+300986 CH Equity,JIANGXI GETO N-A,CN,Common Stock,1.02B,532.40M,1.21B,--,Construction and Materials,Building Materials: Other,Metals & Mining,Aluminum,Machinery,Construction & Mining Machinery,Construction Machinery,--
+603280 CH Equity,FUJIAN SOUTH H-A,CN,Common Stock,941.40M,211.03M,453.33M,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,--,--
+300818 CH Equity,NAIPU MINING M-A,CN,Common Stock,877.50M,236.39M,569.82M,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+603012 CH Equity,SHANGHAI CHUAN-A,CN,Common Stock,816.59M,658.10M,1.71B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+GEA PW Equity,FAMUR,PL,Common Stock,795.06M,712.12M,1.50B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,Underground Mining Machinery
+002535 CH Equity,LINZHOU HEAVY-A,CN,Common Stock,724.02M,354.78M,949.87M,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Industrial Machinery & Supplies & Components,Machinery,Construction & Mining Machinery,Const & Mining Mach Parts & Svcs,--
+001360 CH Equity,NANCHANG MINER-A,CN,Common Stock,681.76M,163.80M,474.24M,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+300865 CH Equity,CHENGDU DAHONG-A,CN,Common Stock,627.70M,78.36M,228.29M,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Const & Mining Mach Parts & Svcs,--
+001226 CH Equity,ANHUI TUOSHAN -A,CN,Common Stock,618.82M,126.71M,274.35M,--,Industrial Engineering,Machinery: Industrial,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Const & Mining Mach Parts & Svcs,--
+002691 CH Equity,JIKAI EQUIP MA-A,CN,Common Stock,580.81M,80.65M,261.31M,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,Underground Mining Machinery
+MTW US Equity,MANITOWOC CO,US,Common Stock,536.52M,3.30B,2.68B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+300837 CH Equity,ZHE KUANG HEAV-A,CN,Common Stock,530.59M,137.63M,523.54M,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,--,--
+6289 JP Equity,GIKEN LTD,JP,Common Stock,427.30M,298.26M,487.03M,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+300823 CH Equity,TJK INTELLIGE-A,CN,Common Stock,421.84M,95.08M,275.94M,--,Industrial Engineering,Machinery: Industrial,Machinery,Industrial Machinery & Supplies & Components,Machinery,Construction & Mining Machinery,Construction Machinery,--
+SFPI FP Equity,GROUPE SFPI,FR,Common Stock,398.44M,1.09B,947.24M,4k,Construction and Materials,Building Materials: Other,"Electronic Equipment, Instruments & Components",Electronic Equipment & Instruments,Machinery,Construction & Mining Machinery,--,--
+GENC US Equity,GENCOR INDS INC,US,Common Stock,336.45M,171.68M,303.91M,--,Industrial Engineering,Machinery: Industrial,Machinery,Industrial Machinery & Supplies & Components,Machinery,Construction & Mining Machinery,Construction Machinery,--
+6306 JP Equity,NIKKO (ENGINEER),JP,Common Stock,327.31M,495.06M,681.17M,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+036890 KS Equity,JINSUNG T.E.C.,KR,Common Stock,316.18M,434.17M,497.94M,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Industrial Machinery & Supplies & Components,Machinery,Construction & Mining Machinery,Construction Machinery,--
+1660 HK Equity,ZHAOBANGJI LIFES,HK,Common Stock,271.81M,38.96M,85.67M,395,Industrial Engineering,Machinery: Construction and Handling,Trading Companies & Distributors,Trading Companies & Distributors,Machinery,Construction & Mining Machinery,Construction Machinery,--
+SOM LN Equity,SOMERO ENTERPRIS,US,Common Stock,250.37M,165.55M,158.64M,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+EEI IN Equity,EIMCO ELECON LTD,IN,Common Stock,202.78M,44.40M,91.41M,123,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,--,--
+6358 JP Equity,SAKAI HVY INDUST,JP,Common Stock,194.18M,280.49M,455.62M,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+ANG AU Equity,AUSTIN ENGINEERI,AU,Common Stock,179.95M,376.73M,303.33M,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Const & Mining Mach Parts & Svcs,--
+6390 JP Equity,KATO WORKS CO,JP,Common Stock,175.93M,533.02M,1.10B,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+6294 JP Equity,OKADA AIYON CORP,JP,Common Stock,174.75M,267.69M,384.75M,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+MIO ID Equity,MINCON GROUP PLC,IE,Common Stock,174.15M,239.26M,353.79M,510,Industrial Engineering,Machinery: Industrial,Machinery,Industrial Machinery & Supplies & Components,Machinery,Construction & Mining Machinery,--,--
+CVW CN Equity,CVW SUSTAINABLE,CA,Common Stock,163.17M,0,22.24M,--,Precious Metals and Mining,Gold Mining,Metals & Mining,Diversified Metals & Mining,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+BVSAN TI Equity,BULBULOGLU VINC,TR,Common Stock,160.22M,126.75M,152.03M,561,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+041440 KS Equity,HYUNDAI EVERDIGM,KR,Common Stock,150.98M,394.82M,324.26M,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+FAVCO MK Equity,FAVELLE FAVCO BH,MY,Common Stock,136.76M,299.07M,521.14M,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+GAPI IN Equity,GUJARAT APOLLO,IN,Common Stock,101.51M,7.54M,103.89M,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+SHHM SP Equity,SIN HENG HEAVY,SG,Common Stock,89.87M,57.06M,148.67M,--,Industrial Engineering,Machinery: Construction and Handling,Trading Companies & Distributors,Trading Companies & Distributors,Machinery,Construction & Mining Machinery,Construction Machinery,--
+109860 KS Equity,DONGIL METAL CO,KR,Common Stock,81.04M,95.60M,192.85M,--,Industrial Transportation,Commercial Vehicles and Parts,Metals & Mining,Steel,Machinery,Construction & Mining Machinery,Construction Machinery,--
+S188 GR Equity,SMT SCHARF AG,DE,Common Stock,73.79M,155.87M,300.75M,543,Industrial Transportation,Railroads,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,Underground Mining Machinery
+010240 KS Equity,HEUNGKUK METALTE,KR,Common Stock,67.58M,143.10M,138.12M,--,Industrial Engineering,Machinery: Industrial,Machinery,Industrial Machinery & Supplies & Components,Machinery,Construction & Mining Machinery,Const & Mining Mach Parts & Svcs,--
+GMA VN Equity,G-AUTOMOBILE JSC,VN,Common Stock,63.79M,170.23M,94.91M,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,--,--
+RVTH IN Equity,REVATHI EQUIPMEN,IN,Common Stock,63.39M,32.17M,44.66M,--,Industrial Engineering,Machinery: Construction and Handling,Energy Equipment & Services,Oil & Gas Equipment & Services,Machinery,Construction & Mining Machinery,--,--
+317850 KS Equity,DAEMO ENGINEERIN,KR,Common Stock,63.01M,45.94M,67.26M,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Const & Mining Mach Parts & Svcs,--
+YMAO SP Equity,YONGMAO HLDGS,SG,Common Stock,57.62M,187.12M,496.43M,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+APCS TB Equity,ASIA PRECISION,TH,Common Stock,46.52M,57.47M,160.76M,--,Construction and Materials,Engineering and Contracting Services,Machinery,Industrial Machinery & Supplies & Components,Machinery,Construction & Mining Machinery,--,--
+ROBIT FH Equity,ROBIT OYJ,FI,Common Stock,45.85M,148.09M,152.78M,229,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+PAT PW Equity,PATENTUS SA,PL,Common Stock,45.25M,37.80M,78.90M,148,Industrial Engineering,Machinery: Industrial,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+2102 HK Equity,TAK LEE MACHINER,HK,Common Stock,43.29M,54.55M,96.37M,118,Industrial Engineering,Machinery: Construction and Handling,Trading Companies & Distributors,Trading Companies & Distributors,Machinery,Construction & Mining Machinery,Construction Machinery,--
+ICMB IN Equity,INTL COMBUSTION,IN,Common Stock,34.19M,53.17M,43.15M,562,Industrial Engineering,Machinery: Industrial,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,Mining Material Handling Equip
+FBR AU Equity,FBR LTD,AU,Common Stock,32.38M,1.31M,69.84M,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+2078 HK Equity,PANASIALUM HOLDI,HK,Common Stock,32.29M,178.28M,294.32M,615,Electronic and Electrical Equipment,Electrical Components,"Electronic Equipment, Instruments & Components",Electronic Components,Machinery,Construction & Mining Machinery,Const & Mining Mach Parts & Svcs,--
+SPL BD Equity,SAIF POWERTEC L,BD,Common Stock,32.14M,66.70M,395.03M,2k,Industrial Support Services,Professional Business Support Services,Commercial Services & Supplies,Diversified Support Services,Machinery,Construction & Mining Machinery,--,--
+CROWN IN Equity,CROWN LIFTERS LT,IN,Common Stock,32.07M,5.16M,20.00M,--,Industrial Transportation,Commercial Vehicles and Parts,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+READYMIX IN Equity,READYMIX CONSTRU,IN,Common Stock,29.80M,12.82M,7.17M,--,--,--,Construction & Engineering,Construction & Engineering,Machinery,Construction & Mining Machinery,Construction Machinery,--
+CLEV US Equity,CONCRETE LEVELIN,US,Common Stock,27.58M,1.19k,28.58k,--,Construction and Materials,Building Materials: Other,--,--,Machinery,Construction & Mining Machinery,--,--
+INTA RO Equity,INDEPENDENTA,RO,Common Stock,26.01M,3.62M,14.69M,34,Electronic and Electrical Equipment,Electronic Equipment: Other,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+NORRH FH Equity,NORRHYDRO GROUP,FI,Common Stock,25.09M,39.74M,40.08M,145,Industrial Engineering,Machinery: Specialty,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Const & Mining Mach Parts & Svcs,--
+NTBK IJ Equity,NUSATAMA BERKAH,ID,Common Stock,14.99M,10.09M,16.76M,32,Industrial Transportation,Commercial Vehicles and Parts,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+SC MK Equity,SC ESTATE BUILDE,MY,Common Stock,14.75M,661.16k,13.57M,--,Household Goods and Home Construction,Home Construction,Construction & Engineering,Construction & Engineering,Machinery,Construction & Mining Machinery,Construction Machinery,--
+L10 VN Equity,LILAMA 10 JSC,VN,Common Stock,13.62M,64.97M,87.52M,--,Construction and Materials,Construction,Construction & Engineering,Construction & Engineering,Machinery,Construction & Mining Machinery,Construction Machinery,--
+TLO PW Equity,TELESTO,PL,Common Stock,12.65M,3.32M,2.78M,7,Industrial Engineering,Machinery: Specialty,--,--,Machinery,Construction & Mining Machinery,--,--
+CRNX IN Equity,CRANEX LTD,IN,Common Stock,9.94M,9.35M,10.58M,139,Industrial Transportation,Commercial Vehicles and Parts,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+MTS VN Equity,VINACOMIN MATERI,VN,Common Stock,7.76M,247.04M,36.65M,643,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+UZHM ZU Equity,OZBEKKIMYOMASH Z,UZ,Common Stock,5.35M,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+MOJ PW Equity,MOJ,PL,Common Stock,5.12M,27.91M,32.78M,--,Industrial Engineering,Machinery: Industrial,Machinery,Industrial Machinery & Supplies & Components,Machinery,Construction & Mining Machinery,Const & Mining Mach Parts & Svcs,--
+MHEL IN Equity,MEWAR HI-TECH EN,IN,Common Stock,5.04M,9.17M,8.57M,--,Industrial Engineering,Machinery: Industrial,Machinery,Industrial Machinery & Supplies & Components,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,Mining Material Handling Equip
+SRES LN Equity,SUNRISE RESOURCE,GB,Common Stock,3.94M,215.48k,4.10M,--,Industrial Metals and Mining,General Mining,Metals & Mining,Precious Metals & Minerals,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,Mining Material Handling Equip
+SAEN IN Equity,SOUTH ASIAN ENT,IN,Common Stock,2.88M,329.27k,685.85k,14,Travel and Leisure,Recreational Services,"Electronic Equipment, Instruments & Components",Technology Distributors,Machinery,Construction & Mining Machinery,Construction Machinery,--
+UEM VN Equity,VINACOMIN UONG B,VN,Common Stock,2.21M,9.24M,6.56M,164,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+URCB RO Equity,URC SA VASCAU,RO,Common Stock,212.44k,13.48k,159.12k,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+HDRURA BK Equity,HIDRAULIK AD KNE,BA,Common Stock,142.37k,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+RDHK ME Equity,RADOJE DAKIC U S,ME,Common Stock,3.26k,58.76k,82.92M,17,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4221781Z IM Equity,MCI MACCHINE CEN,IT,Private Comp,--,-257.74k,1.04M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4001676Z IM Equity,IMT INTERNATIONA,IT,Private Comp,--,0,12.12M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+ISGI US Equity,INTERNATIONAL SA,US,Common Stock,--,0,5.74k,--,Industrial Support Services,Professional Business Support Services,Professional Services,Research & Consulting Services,Machinery,Construction & Mining Machinery,Construction Machinery,--
+MOU LN Equity,MOUNT ENGINEERIN,GB,Common Stock,--,0,37.47M,--,Industrial Engineering,Machinery: Industrial,--,--,Machinery,Construction & Mining Machinery,--,--
+DRMZ UZ Equity,DRUZHKOVSKY MACH,UA,Common Stock,--,0,111.68M,13,--,--,Machinery,Industrial Machinery & Supplies & Components,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+4401385Z NO Equity,HARSCO INFRASTRU,NO,Private Comp,--,0,933.45k,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+687103Q US Equity,TS ELECTRONI-OLD,US,Common Stock,--,0,0,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4008444Z SS Equity,AGRINOVA HOLDING,SE,Private Comp,--,315.22,69.64k,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4008980Z SS Equity,TRIMA AB,SE,Private Comp,--,712.84,9.88M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+PRMZR BT Equity,PRIM DD ZENICA,BA,Common Stock,--,30.31k,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+TRYB LN Equity,TRIBE TECHNOLOGY,GB,Common Stock,--,71.61k,6.57M,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+3964588Z LN Equity,PECKINGTON ENGIN,GB,Private Comp,--,275.77k,91.33k,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+ZGTH SG Equity,ZAVOD ZA GEOTEHN,RS,Common Stock,--,279.61k,338.30k,13,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4309925Z IM Equity,PALAZZO MACCHINE,IT,Private Comp,--,290.14k,14.57M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4179413Z IM Equity,CONTIMPIANTI SPA,IT,Private Comp,--,291.16k,23.50M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4014108Z SS Equity,STENA STAL OSKAR,SE,Private Comp,--,313.61k,780.46k,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+LETE SG Equity,LEMIND TEHNOMASI,RS,Common Stock,--,395.80k,520.51k,30,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4241397Z IM Equity,TENSACCIAI SPA,IT,Private Comp,--,555.71k,3.85M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4060317Z IM Equity,COMEC SPA,IT,Private Comp,--,558.19k,12.58M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+GEOM SG Equity,GEOMASINA AD BEO,RS,Common Stock,--,579.60k,3.31M,35,Electronic and Electrical Equipment,Electronic Equipment: Other,--,--,Machinery,Construction & Mining Machinery,--,--
+SARX RU Equity,SAREKS OJSC-BRD,RU,Common Stock,--,616.87k,3.84M,74,Industrial Transportation,Commercial Vehicles and Parts,--,--,Machinery,Construction & Mining Machinery,--,--
+KYREMZ UZ Equity,KYIVSKYI REMONTN,UA,Common Stock,--,737.43k,806.36k,--,--,--,--,--,Machinery,Construction & Mining Machinery,Const & Mining Mach Parts & Svcs,--
+GSIB SG Equity,GEOSONDA ISTRAZN,RS,Common Stock,--,1.09M,382.76k,17,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+H1S GR Equity,HANSEN SICHERHEI,DE,Common Stock,--,1.10M,1.49M,--,Industrial Engineering,Machinery: Industrial,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+4773953Z PL Equity,ASSISTENCIA TECN,PT,Private Comp,--,1.39M,7.56M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4707865Z FP Equity,ACOMETIS PRODUCT,FR,Private Comp,--,1.47M,6.58M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4770129Z PL Equity,LISPRENE-PROJECT,PT,Private Comp,--,1.68M,16.58M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4020436Z BB Equity,GRIZABEL NV,BE,Private Comp,--,1.70M,1.22M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+TVET RU Equity,TVERSKOY EXC-RTS,RU,Common Stock,--,1.83M,16.76M,5,Industrial Engineering,Machinery: Industrial,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+ODICO DC Equity,ODICO A/S,DK,Common Stock,--,2.19M,6.53M,--,Industrial Engineering,Machinery: Industrial,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Construction Machinery,--
+BRAR RU Equity,BRYANSKIY AR-BRD,RU,Common Stock,--,2.21M,14.35M,174,Industrial Transportation,Commercial Vehicles and Parts,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4191761Z IM Equity,MIART SPA,IT,Private Comp,--,2.64M,39.63M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+INTB SG Equity,INTEGRAL BETONIR,RS,Common Stock,--,2.91M,901.71k,14,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4248965Z IM Equity,MEVI MACCHINE ED,IT,Private Comp,--,3.13M,7.14M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+GOMZ UZ Equity,GMZ PJSC,UA,Common Stock,--,3.39M,36.21M,254,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4402585Z NO Equity,HYDEX SYLINDERTE,NO,Private Comp,--,3.40M,2.87M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+536428Z US Equity,THOMAS EQUIP-OLD,US,Common Stock,--,3.46M,182.13k,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4325649Z IM Equity,GEOMECCANICA SRL,IT,Private Comp,--,3.79M,38.48M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+KRGM UZ Equity,MASINOBUDUVANNYA,UA,Common Stock,--,3.96M,6.00M,270,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4212337Z IM Equity,MATTIOLI SRL,IT,Private Comp,--,4.15M,5.27M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+2563114Z LN Equity,SCHWING STETTER,GB,Private Comp,--,4.42M,3.96M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+IMKO SG Equity,IMK 14 OKTOBAR A,RS,Common Stock,--,4.52M,102.85M,2k,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+DGRM UZ Equity,DONETSKGORMASH,UA,Common Stock,--,4.68M,108.44M,457,--,--,Machinery,Industrial Machinery & Supplies & Components,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+4405937Z IM Equity,V&V SRL,IT,Private Comp,--,5.09M,6.86M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1147Z BB Equity,KOMATSU EUROPE,BE,Private Comp,--,5.11M,1.86B,16,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4643593Z FP Equity,MEDIACO MAXILIFT,FR,Private Comp,--,5.87M,7.16M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+CE1 VN Equity,CONSTRUCTION AND,VN,Common Stock,--,6.06M,10.18M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Const & Mining Mach Parts & Svcs,--
+4339261Z IM Equity,GALLI BATTISTA S,IT,Private Comp,--,6.07M,6.95M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4240477Z IM Equity,PANCAR SRL,IT,Private Comp,--,6.21M,14.75M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4766513Z PL Equity,LAMAQUINA-COMERC,PT,Private Comp,--,6.23M,9.43M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4353853Z PL Equity,METALURGICA DO T,PT,Private Comp,--,6.44M,11.44M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+DOER RU Equity,DONETSKY BOARD,RU,Common Stock,--,6.48M,12.47M,634,Industrial Transportation,Commercial Vehicles and Parts,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4769377Z PL Equity,MUNDITUBO-ANDAIM,PT,Private Comp,--,6.65M,31.01M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4195761Z IM Equity,FORM IMPIANTI SP,IT,Private Comp,--,6.73M,10.21M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4716881Z FP Equity,CERMEF SAS,FR,Private Comp,--,6.79M,32.28M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4006324Z IM Equity,EDIL MACCHINE SR,IT,Private Comp,--,6.88M,7.56M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+HAMB SS Equity,FACILE & CO AB,SE,Common Stock,--,6.90M,7.76M,17,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4415025Z NO Equity,SUNNHORDLAND MEK,NO,Private Comp,--,6.98M,5.13M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4421185Z IM Equity,WORLDPLUS SRL,IT,Private Comp,--,7.19M,5.23M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4181349Z IM Equity,SAN MARCO VARESE,IT,Private Comp,--,7.37M,7.89M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4233893Z IM Equity,MECCANICA SARTI,IT,Private Comp,--,8.10M,5.54M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+PNHM RU Equity,PENZA CHEMIC-BRD,RU,Common Stock,--,8.30M,18.28M,--,Industrial Engineering,Machinery: Industrial,--,--,Machinery,Construction & Mining Machinery,--,--
+4217765Z IM Equity,OCMER GRANDI IMP,IT,Private Comp,--,8.49M,5.35M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+ZKXO UZ Equity,KOKSOKHIMOBLADNA,UA,Common Stock,--,8.70M,19.08M,277,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4428761Z IM Equity,FLSMIDTH MILANO,IT,Private Comp,--,8.93M,26.74M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4335101Z IM Equity,ORTES COMMERCIAL,IT,Private Comp,--,9.05M,9.21M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4317893Z IM Equity,CUGINI MALAGOLI,IT,Private Comp,--,9.07M,11.54M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4513211Z NO Equity,NATIONAL OILWELL,NO,Private Comp,--,9.08M,5.61M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4361813Z IM Equity,MARCANTONINI SRL,IT,Private Comp,--,9.48M,17.03M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4160973Z BB Equity,WOLF ZONDERVAN N,BE,Private Comp,--,9.64M,8.34M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4412409Z IM Equity,LONGHIN SRL,IT,Private Comp,--,9.83M,4.14M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4642777Z FP Equity,LA MERIDIONALE D,FR,Private Comp,--,9.86M,4.22M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4437873Z IM Equity,CAMOTER COMMERCI,IT,Private Comp,--,9.91M,8.91M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+2595454Z LN Equity,TRACKLINE INTERN,GB,Private Comp,--,10.11M,13.69M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4658897Z FP Equity,SARL TECHMI,FR,Private Comp,--,10.16M,11.39M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,Mining Material Handling Equip
+4228069Z IM Equity,CIANCALEONI SRL,IT,Private Comp,--,10.41M,8.27M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+MSST RM Equity,MULTISISTEMA,RU,Common Stock,--,10.45M,57.33M,--,Industrial Support Services,Security Services,Commercial Services & Supplies,Diversified Support Services,Machinery,Construction & Mining Machinery,--,--
+4758169Z PL Equity,DUROMIN-EQUIPAME,PT,Private Comp,--,10.59M,13.31M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4345021Z IM Equity,BEM SRL,IT,Private Comp,--,10.66M,10.69M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4264917Z IM Equity,CIFA TUNNELLING,IT,Private Comp,--,10.81M,6.07M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4177805Z IM Equity,WEILER ITALIA SR,IT,Private Comp,--,10.87M,8.06M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4329949Z IM Equity,OFFICINE POLIERI,IT,Private Comp,--,11.22M,11.33M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4055261Z IM Equity,SILLA MACCHINE E,IT,Private Comp,--,11.35M,10.12M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+MZVM UZ Equity,MARIUPOL HEAVY M,UA,Common Stock,--,11.45M,38.90M,13,Industrial Engineering,Machinery: Industrial,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+1283197D IJ Equity,DHARMINDO ADHIDU,ID,Common Stock,--,11.60M,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4184573Z IM Equity,PELLEGRINI MECCA,IT,Private Comp,--,11.74M,21.69M,44,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3997636Z IM Equity,DSG SRL,IT,Private Comp,--,11.75M,6.17M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3918212Z US Equity,MBW HOLDINGS INC,US,Private Comp,--,11.78M,7.85M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4433921Z SS Equity,ELIASSONS MASKIN,SE,Private Comp,--,11.81M,11.53M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4738081Z FP Equity,FOSELEV ILE DE F,FR,Private Comp,--,11.83M,8.77M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3746032Z SM Equity,MZ IMER SA,ES,Private Comp,--,11.91M,27.41M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4346577Z IM Equity,ZANELLI SRL,IT,Private Comp,--,12.26M,12.28M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+LVT TB Equity,LV TECHNOLOGY PL,TH,Common Stock,--,12.27M,46.58M,--,Industrial Materials,Diversified Materials,Construction & Engineering,Construction & Engineering,Machinery,Construction & Mining Machinery,Const & Mining Mach Parts & Svcs,--
+4780393Z IM Equity,OCEM OFFICINA CO,IT,Private Comp,--,12.42M,25.05M,59,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+KEUMSZ KS Equity,KEUMSAN CO LTD,KR,Common Stock,--,12.45M,12.12M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4293605Z IM Equity,OSCAM SPA,IT,Private Comp,--,12.62M,19.91M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+JFMGRA BK Equity,JELSINGRAD FMG A,BA,Common Stock,--,12.70M,16.20M,200,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3916188Z US Equity,COLUMBUS PIPE &,US,Private Comp,--,12.76M,9.64M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4380977Z SS Equity,SAXTORPS TRADING,SE,Private Comp,--,12.93M,5.87M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+WUS SK Equity,WUSAM AS,SK,Common Stock,--,13.04M,5.45M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4790333Z US Equity,MOROOKA USA CORP,US,Private Comp,--,13.07M,4.99M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4776761Z NO Equity,LEONHARD NILSEN,NO,Private Comp,--,13.22M,149.91M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4415705Z IM Equity,M&D COSTRUZIONI,IT,Private Comp,--,13.29M,10.77M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4722577Z FP Equity,SIME SAS,FR,Private Comp,--,13.58M,4.86M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+687279Q US Equity,CONESCO INDS LTD,US,Common Stock,--,13.63M,10.53M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4442753Z IM Equity,PONTEGGI EDILPON,IT,Private Comp,--,13.75M,22.23M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4136581Z US Equity,OPEN LOOP ENERGY,US,Private Comp,--,14.06M,6.67M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+4338477Z IM Equity,MASSENZA SRL,IT,Private Comp,--,14.08M,15.54M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4282109Z IM Equity,MC DRILL TECHNOL,IT,Private Comp,--,14.12M,23.10M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4290493Z IM Equity,AMMERCO SRL,IT,Private Comp,--,14.13M,15.06M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4311021Z IM Equity,HARSCO INFRASTRU,IT,Private Comp,--,14.18M,17.60M,24,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4773553Z PL Equity,UNIDADE DE REPAR,PT,Private Comp,--,14.32M,21.50M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4397361Z NO Equity,SPILDE ENTREPREN,NO,Private Comp,--,14.38M,18.17M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4268373Z IM Equity,EDILMED SRL,IT,Private Comp,--,14.80M,8.81M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3794152Z SM Equity,FERRETERA MALAGU,ES,Private Comp,--,14.93M,13.61M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+3744936Z SM Equity,PRENSOLAND SA,ES,Private Comp,--,14.96M,16.33M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3760780Z SM Equity,SOCIEDAD INDUSTR,ES,Private Comp,--,14.97M,50.07M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4650769Z FP Equity,S R T P SARL CV,FR,Private Comp,--,15.49M,6.62M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4221709Z IM Equity,MECBO SRL,IT,Private Comp,--,15.61M,10.31M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4177917Z IM Equity,METSO MINERALS I,IT,Private Comp,--,15.69M,16.61M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4421921Z IM Equity,NEWCOM MACCHINE,IT,Private Comp,--,15.84M,7.18M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4380737Z SS Equity,KIESEL SWEDEN AB,SE,Private Comp,--,15.92M,6.31M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4666649Z FP Equity,SOCIETE DE CONST,FR,Private Comp,--,16.03M,12.29M,50,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+2174964Z LN Equity,TURNER ACCESS LT,GB,Private Comp,--,16.04M,18.50M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4509011Z IM Equity,LUIGI CATTANEO S,IT,Private Comp,--,16.04M,14.49M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+AKMZ RU Equity,ALEKSANDROVSK,RU,Common Stock,--,16.10M,28.03M,502,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+4491123Z IM Equity,HUSQVARNA CONSTR,IT,Private Comp,--,16.19M,11.14M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4398537Z NO Equity,MASKIN OG SKIPSU,NO,Private Comp,--,16.29M,7.39M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4753089Z FP Equity,BONNET FRERES SA,FR,Private Comp,--,16.61M,24.95M,74,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,Mining Material Handling Equip
+4201713Z IM Equity,COMIN SPA,IT,Private Comp,--,16.70M,14.55M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1729984Z LN Equity,HRTL REALISATION,GB,Private Comp,--,16.80M,18.23M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4714457Z FP Equity,SIGNALISATION MO,FR,Private Comp,--,16.96M,11.25M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4414097Z NO Equity,DELTA SYSTEM AS,NO,Private Comp,--,17.00M,18.58M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4500523Z IM Equity,OMAG SPA,IT,Private Comp,--,17.09M,16.27M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3794544Z PL Equity,IRBAL SA,PT,Private Comp,--,17.11M,41.85M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4713337Z FP Equity,SAE SAS,FR,Private Comp,--,17.43M,16.75M,35,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4058853Z IM Equity,MANTOVANIBENNE S,IT,Private Comp,--,17.55M,25.85M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4635905Z FP Equity,CIE DE FABRICATI,FR,Private Comp,--,17.68M,12.69M,47,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4776201Z NO Equity,HILLEVAAG ELEKTR,NO,Private Comp,--,17.99M,6.45M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4153925Z US Equity,ASPHALT ZIPPER I,US,Private Comp,--,18.15M,7.85M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+2886996Z LN Equity,SOMERO ENT LTD,GB,Private Comp,--,18.27M,15.34M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+600813 CH Equity,ANSHAN NO 1-A,CN,Common Stock,--,18.46M,153.56M,6k,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4256925Z IM Equity,PACCHIOSI DRILL,IT,Private Comp,--,18.49M,85.83M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1123207Z LN Equity,SOILMEC LTD,GB,Private Comp,--,18.62M,24.71M,16,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4365933Z SM Equity,LARON SA,ES,Private Comp,--,18.64M,12.11M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4426873Z IM Equity,SIP & T SPA,IT,Private Comp,--,19.02M,21.82M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3757992Z SM Equity,AUTO INDUSTRIA D,ES,Private Comp,--,19.04M,21.56M,36,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3722806Z BB Equity,WOLFTECH SA,BE,Private Comp,--,19.44M,20.45M,37,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4032693Z IM Equity,BAIONI CRUSHING,IT,Private Comp,--,19.70M,32.10M,78,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4001692Z IM Equity,GEMMO GROUP SRL,IT,Private Comp,--,19.84M,17.69M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4664857Z FP Equity,ETABLISSEMENTS J,FR,Private Comp,--,19.99M,13.30M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1335418Z LN Equity,ADVANTE LTD,GB,Private Comp,--,20.03M,19.53M,52,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4276925Z IM Equity,BENETTI MACCHINE,IT,Private Comp,--,20.54M,30.51M,38,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4409721Z IM Equity,TES CAR SRL,IT,Private Comp,--,20.58M,17.96M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4739273Z FP Equity,CONSTRUCTIONS LE,FR,Private Comp,--,20.72M,8.63M,54,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+LZSM RU Equity,STROYMASH-BRD,RU,Common Stock,--,20.74M,23.00M,637,Industrial Transportation,Commercial Vehicles and Parts,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4145789Z US Equity,ASPEN AERIALS IN,US,Private Comp,--,21.03M,9.02M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4303357Z IM Equity,RIETER MORANDO S,IT,Private Comp,--,21.11M,62.92M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3933372Z US Equity,EQUIPMENT SPARE,US,Private Comp,--,21.61M,6.66M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+BEMZ RU Equity,BERDSKIY ELECTRO,RU,Common Stock,--,21.62M,49.41M,592,Industrial Engineering,Machinery: Industrial,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+3749696Z SM Equity,PEAL HISPANIA SA,ES,Private Comp,--,21.63M,46.90M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4022396Z BB Equity,KUKA AUTOMATISER,BE,Private Comp,--,21.76M,11.90M,42,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+BTT GR Equity,BABCOCK-BSH AG,DE,Common Stock,--,21.78M,144.42M,1k,Industrial Engineering,Machinery: Industrial,--,--,Machinery,Construction & Mining Machinery,--,--
+4766473Z PL Equity,SEPREM-SERVICOS,PT,Private Comp,--,21.95M,20.21M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4214209Z IM Equity,SCANDELLARI SPA,IT,Private Comp,--,22.06M,19.64M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+TRMZ RU Equity,TRMZ-BRD,RU,Common Stock,--,22.80M,14.75M,289,Industrial Transportation,Commercial Vehicles and Parts,--,--,Machinery,Construction & Mining Machinery,Const & Mining Mach Parts & Svcs,--
+3958868Z BB Equity,ETUDES&REPRESENT,BE,Private Comp,--,23.20M,2.04M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4681753Z FP Equity,TEC SYSTEM SAS,FR,Private Comp,--,23.21M,18.93M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4346029Z IM Equity,COMAR COMMERCIAL,IT,Private Comp,--,23.28M,17.06M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4195385Z IM Equity,BREVETTI MONTOLI,IT,Private Comp,--,23.45M,19.53M,33,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4765345Z PL Equity,DOKA PORTUGAL-CO,PT,Private Comp,--,23.53M,47.08M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4301005Z IM Equity,METALGALANTE SRL,IT,Private Comp,--,24.14M,24.04M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3806276Z LN Equity,AGD HOLDINGS PLC,GB,Private Comp,--,24.16M,38.21M,68,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4254709Z IM Equity,SAN MARCO INTERN,IT,Private Comp,--,24.17M,46.24M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3637791Z SM Equity,MASA HUELVA SA,ES,Private Comp,--,24.36M,8.89M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4402809Z NO Equity,MUNCK CRANES AS,NO,Private Comp,--,24.43M,15.45M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+INRB US Equity,IRACORE INTERNAT,US,Common Stock,--,24.52M,17.46M,--,General Industrials,Diversified Industrials,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+4404001Z IM Equity,MECCANIDRAULICA,IT,Private Comp,--,24.95M,19.95M,48,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3751536Z US Equity,ERB CAPE LLC,US,Private Comp,--,24.98M,12.96M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4721321Z FP Equity,SAHUT CONREUR SA,FR,Private Comp,--,25.03M,45.53M,63,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4202193Z IM Equity,RIDOLFI IDIO & F,IT,Private Comp,--,25.30M,21.80M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3755664Z SM Equity,TORNILLERIA Y SE,ES,Private Comp,--,25.60M,12.92M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4770249Z PL Equity,LIEBHERR IBERICA,PT,Private Comp,--,25.64M,12.81M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4161925Z BB Equity,VANGAEVER NV,BE,Private Comp,--,25.81M,11.71M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4027221Z BB Equity,TEAM INDUSTRIES,BE,Private Comp,--,25.85M,8.40M,105,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+3728530Z BB Equity,MECANIQUE DE PRE,BE,Private Comp,--,26.99M,60.10M,62,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4279677Z IM Equity,VALME SRL,IT,Private Comp,--,27.18M,36.82M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4191345Z IM Equity,OFFICINE MECCANI,IT,Private Comp,--,27.28M,46.58M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4398817Z NO Equity,TESS INNLANDET A,NO,Private Comp,--,27.93M,17.29M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4007716Z LN Equity,METALEX PRODUCTS,GB,Private Comp,--,28.28M,18.19M,36,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1080290Z LN Equity,CANNING CONVEYOR,GB,Private Comp,--,28.88M,19.68M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4208897Z IM Equity,COMANDULLI COSTR,IT,Private Comp,--,29.34M,27.31M,57,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4663665Z FP Equity,HYDRO MAINTENANC,FR,Private Comp,--,29.65M,19.57M,133,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4013868Z SS Equity,NTD LIFTS AB,SE,Private Comp,--,29.98M,4.00M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+7567620Z IN Equity,HEAVY ENGINEERIN,IN,Private Comp,--,30.33M,87.51M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4508995Z IM Equity,OMV OFFICINE MEC,IT,Private Comp,--,31.20M,35.11M,56,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3776496Z PL Equity,PEIXOTO & PEIXOT,PT,Private Comp,--,31.51M,16.05M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+UTX US Equity,ULTRATREX INC-A,SG,Common Stock,--,31.58M,27.26M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4472115Z IM Equity,TECNIWELL SRL,IT,Private Comp,--,31.98M,37.86M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4408097Z IM Equity,MESSERSI' SPA,IT,Private Comp,--,32.04M,40.32M,92,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4411329Z IM Equity,DYNAPAC SPA,IT,Private Comp,--,32.07M,18.20M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4296653Z IM Equity,SOLMEC SPA,IT,Private Comp,--,32.18M,36.96M,83,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4444713Z NO Equity,JOHN DAHLE SKIPS,NO,Private Comp,--,33.01M,12.91M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4771409Z PL Equity,MOTIVO-COMERCIO,PT,Private Comp,--,33.14M,28.06M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4190777Z IM Equity,VENPA SUD SRL,IT,Private Comp,--,33.19M,37.22M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3741675Z GR Equity,GWE PRAKLA BOHRT,DE,Private Comp,--,33.42M,38.66M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4288301Z SM Equity,LEICA GEOSYSTEMS,ES,Private Comp,--,33.98M,40.38M,64,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3714167Z US Equity,ARMSTRONG GROUP,US,Private Comp,--,34.05M,27.83M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1615162Z LN Equity,ATLAS COPCO CONS,GB,Private Comp,--,34.41M,13.43M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4300253Z IM Equity,FLLI DE PRA SPA,IT,Private Comp,--,34.50M,35.66M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4295085Z IM Equity,OLI SPA,IT,Private Comp,--,35.04M,59.34M,70,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4060661Z IM Equity,COMAI SPA,IT,Private Comp,--,35.49M,32.68M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+SPRK BU Equity,SPARKY AD,BG,Common Stock,--,36.05M,69.01M,--,Electronic and Electrical Equipment,Electronic Equipment: Other,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,--,--
+4176093Z IM Equity,LE OFFICINE RIUN,IT,Private Comp,--,36.15M,44.93M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+HUA/H CN Equity,HUAXING MACHINER,CA,Common Stock,--,36.19M,42.06M,--,Industrial Engineering,Machinery: Industrial,--,--,Machinery,Construction & Mining Machinery,--,--
+4693569Z FP Equity,ABK MACHINERY SA,FR,Private Comp,--,36.27M,27.07M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4242941Z IM Equity,FARESIN BUILDING,IT,Private Comp,--,36.38M,73.32M,80,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3968004Z DC Equity,KROELL KRANER A/,DK,Private Comp,--,37.07M,56.24M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4212377Z IM Equity,SCHMIDT AUTOMOTI,IT,Private Comp,--,37.48M,25.50M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4696865Z FP Equity,THYSSENKRUPP KH,FR,Private Comp,--,37.65M,37.17M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3933076Z US Equity,PIERCE CONSTRUCT,US,Private Comp,--,37.71M,11.31M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3793472Z SM Equity,GEANCAR MAQUINAR,ES,Private Comp,--,38.40M,20.56M,58,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+3805684Z LN Equity,MILES SMITH LTD,GB,Private Comp,--,39.07M,144.56M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4166561Z LN Equity,HE GROUP LTD,GB,Private Comp,--,39.25M,117.12M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4426305Z IM Equity,IPA INTERNATIONA,IT,Private Comp,--,39.51M,39.51M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4334205Z IM Equity,VERMEER ITALIA S,IT,Private Comp,--,40.05M,33.46M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4390449Z NO Equity,PALFINGER NORGE,NO,Private Comp,--,41.41M,15.30M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3968484Z DC Equity,SJORRING MASKINF,DK,Private Comp,--,42.18M,21.32M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4763841Z PL Equity,CENTROCAR-CENTRO,PT,Private Comp,--,43.30M,62.04M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4399617Z NO Equity,NORMANN OLSEN MA,NO,Private Comp,--,43.52M,24.45M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+ANGE RU Equity,ANZHERSKY-BRD,RU,Common Stock,--,43.78M,39.49M,476,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+4417553Z IM Equity,MECCANICA BREGAN,IT,Private Comp,--,43.86M,36.71M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4262301Z IM Equity,MOLLO FRATELLI S,IT,Private Comp,--,44.02M,80.97M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4316077Z IM Equity,EUROMECC SRL,IT,Private Comp,--,44.36M,54.42M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+YAMZ UZ Equity,YSUNUVATA MACHIN,UA,Common Stock,--,44.65M,41.66M,--,Industrial Engineering,Machinery: Construction and Handling,--,--,Machinery,Construction & Mining Machinery,--,--
+4415793Z IM Equity,INDECO IND SPA,IT,Private Comp,--,44.77M,59.93M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3787344Z US Equity,MABEY INC,US,Private Comp,--,44.87M,45.63M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4058605Z IM Equity,MOTRIDAL SPA,IT,Private Comp,--,45.53M,62.69M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4735969Z FP Equity,METSO AUTOMATION,FR,Private Comp,--,45.72M,37.52M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+4162853Z BB Equity,WIRTGEN BELGIUM,BE,Private Comp,--,46.02M,20.54M,32,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4446329Z NO Equity,FREDHEIM MASKIN,NO,Private Comp,--,46.13M,50.20M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4438121Z IM Equity,CGR CORNELIO GHI,IT,Private Comp,--,46.14M,89.76M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+2828608Z LN Equity,AMOT UK HOLDINGS,GB,Private Comp,--,47.10M,45.22M,110,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4686721Z FP Equity,GEM SAS,FR,Private Comp,--,47.79M,38.92M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,Mining Material Handling Equip
+4323485Z IM Equity,COME SRL,IT,Private Comp,--,47.80M,32.95M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4333653Z IM Equity,TREVI BENNE SPA,IT,Private Comp,--,48.87M,33.77M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4349605Z IM Equity,TEMA-TECNOLOGIES,IT,Private Comp,--,49.32M,73.59M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4282293Z SM Equity,INDUSTRIAS LEBLA,ES,Private Comp,--,49.56M,35.26M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4400993Z NO Equity,MELBYE AS,NO,Private Comp,--,49.95M,24.95M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4402625Z NO Equity,PLUSTECH AS,NO,Private Comp,--,50.09M,7.95M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3071316Z LN Equity,RB PIPETECH LTD,GB,Private Comp,--,51.43M,13.32M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+589215Z LN Equity,TENSAR INTERNATI,GB,Private Comp,--,51.47M,188.36M,77,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+3956420Z LN Equity,TESAB ENGINEERIN,GB,Private Comp,--,51.81M,31.32M,77,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+2532074Z LN Equity,CITY LOFTS BAY P,GB,Private Comp,--,51.90M,80.09M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4350921Z IM Equity,CANGINI BENNE SR,IT,Private Comp,--,52.07M,34.40M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4225629Z IM Equity,OMPM - OFFICINA,IT,Private Comp,--,52.13M,100.70M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1089482Z LN Equity,METSO UK LTD,GB,Private Comp,--,52.33M,50.70M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4505195Z IM Equity,KATO IMER SPA,IT,Private Comp,--,53.50M,59.59M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4678217Z FP Equity,QUADRA 1 SAS,FR,Private Comp,--,54.42M,46.08M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4286933Z IM Equity,CONTROLS SRL,IT,Private Comp,--,54.74M,97.45M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3751176Z US Equity,GATEWAY BOBCAT O,US,Private Comp,--,55.14M,30.26M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+585966Z BB Equity,NEOVIA LOGISTICS,BE,Private Comp,--,56.20M,19.03M,125,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4634857Z FP Equity,MAGELLAN SAS,FR,Private Comp,--,57.83M,68.71M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4283693Z SM Equity,PUTZMEISTER IBER,ES,Private Comp,--,57.83M,30.24M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4219341Z IM Equity,RAIMONDI SPA,IT,Private Comp,--,59.02M,63.77M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3742787Z GR Equity,JCB VIBROMAX GMB,DE,Private Comp,--,59.16M,40.83M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+OLI SJ Equity,O-LINE HOLDINGS,ZA,Common Stock,--,61.83M,45.96M,--,Construction and Materials,Building Materials: Other,--,--,Machinery,Construction & Mining Machinery,--,--
+4426137Z IM Equity,GRUPPO EFFE SRL,IT,Private Comp,--,62.34M,73.77M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4015268Z SS Equity,WIRTGEN SWEDEN A,SE,Private Comp,--,62.74M,30.71M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3733062Z BB Equity,KEESTRACK NV,BE,Private Comp,--,63.35M,31.73M,26,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+309338Z SS Equity,LOG MAX AB,SE,Private Comp,--,63.43M,48.91M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4329717Z IM Equity,SIMEX ENGINEERIN,IT,Private Comp,--,64.27M,49.64M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4207593Z IM Equity,PALMIERI SPA,IT,Private Comp,--,66.04M,95.19M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+2220524Z LN Equity,SINOMINE SPECIAL,GB,Private Comp,--,66.30M,67.07M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3746160Z SM Equity,BYG SA,ES,Private Comp,--,69.33M,73.72M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4398089Z NO Equity,METSO NORWAY AS,NO,Private Comp,--,69.61M,47.92M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4407329Z IM Equity,TAKEUCHITALIA SP,IT,Private Comp,--,70.75M,61.03M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+HMBZ UZ Equity,HARKOVSKIY MACH,UA,Common Stock,--,71.35M,53.73M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+4009892Z SS Equity,PJ JONSSON & SON,SE,Private Comp,--,71.37M,53.65M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1992351D RU Equity,PROMTRAKTOR AO,RU,Common Stock,--,71.88M,62.89M,18,Industrial Transportation,Commercial Vehicles and Parts,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4765313Z PL Equity,CIMERTEX & CA-CO,PT,Private Comp,--,72.98M,54.07M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3811792Z ID Equity,MCHALE PLANT SAL,IE,Private Comp,--,73.59M,39.94M,45,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4324013Z IM Equity,SIM SOCIETA' ITA,IT,Private Comp,--,73.71M,53.01M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3731522Z BB Equity,AERTSSEN LIFTING,BE,Private Comp,--,74.99M,83.97M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4767985Z PL Equity,MOVITER-EQUIPAME,PT,Private Comp,--,75.29M,62.16M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4051317Z IM Equity,TRASMEC SRL,IT,Private Comp,--,76.04M,63.46M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,Mining Material Handling Equip
+4388321Z IM Equity,ALBERTO SASSI SP,IT,Private Comp,--,76.49M,51.09M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+HIL9 GR Equity,HILGERS AG,DE,Common Stock,--,77.69M,49.99M,227,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+CIX PL Equity,CIMERTEX,PT,Private Comp,--,80.88M,136.12M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+1809721Z LN Equity,BELL EQUIPMENT U,GB,Private Comp,--,81.18M,31.02M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4152813Z US Equity,THRUSTMASTER OF,US,Private Comp,--,83.00M,84.03M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4317685Z IM Equity,MAIT-SPA,IT,Private Comp,--,83.46M,253.69M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1465242Z LN Equity,KELTBRAY PLANT L,GB,Private Comp,--,83.50M,87.30M,187,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4743745Z FP Equity,SAMI TP SAS,FR,Private Comp,--,84.24M,32.63M,98,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4157293Z LN Equity,MMD MINING MACHI,GB,Private Comp,--,84.66M,129.88M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4197945Z IM Equity,WIRTGEN MACCHINE,IT,Private Comp,--,86.32M,54.75M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+MTG SM Equity,METALOGENIA S.A.,ES,Common Stock,--,88.11M,99.67M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4526199Z NO Equity,EMERSON PROCESS,NO,Private Comp,--,90.68M,53.31M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+384488Z NA Equity,INTERNATIONAL EQ,NL,Private Comp,--,93.85M,70.57M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+DOR GR Equity,DORST MASCHINEN,DE,Common Stock,--,95.65M,60.62M,366,Industrial Engineering,Machinery: Industrial,Machinery,Industrial Machinery & Supplies & Components,Machinery,Construction & Mining Machinery,--,--
+4318893Z IM Equity,OMG DI MESSIERI,IT,Private Comp,--,96.00M,72.61M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+OSTROJ CP Equity,OSTROJ OPAV AS,CZ,Common Stock,--,97.09M,128.73M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+OSRS US Equity,OSIRIS CORP,US,Common Stock,--,98.38M,126.33M,--,Industrial Transportation,Commercial Vehicles and Parts,Machinery,Industrial Machinery & Supplies & Components,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4779729Z IM Equity,LIEBHERR-ITALIA,IT,Private Comp,--,100.71M,37.42M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+3709975Z US Equity,PHILLIPS MACHINE,US,Private Comp,--,101.00M,49.96M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3972644Z DC Equity,SAWO A/S,DK,Private Comp,--,107.36M,91.80M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+5463393Z NO Equity,HD HYUNDAI INFRA,NO,Private Comp,--,109.87M,60.29M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4701153Z FP Equity,HITACHI CONSTRUC,FR,Private Comp,--,113.66M,47.76M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+3725394Z BB Equity,BIA NV,BE,Private Comp,--,115.86M,44.60M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3727090Z BB Equity,ATLAS COPCO BELG,BE,Private Comp,--,117.40M,54.21M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3759932Z SM Equity,LIEBHERR INDUSTR,ES,Private Comp,--,118.60M,86.68M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1176199Z UH Equity,UNATRAC HOLDING,AE,Private Comp,--,126.03M,34.28M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4286229Z LN Equity,CROWN LIFT TRUCK,GB,Private Comp,--,129.28M,68.73M,278,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4633065Z FP Equity,VOLVO CONSTRUCTI,FR,Private Comp,--,133.13M,66.21M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4404409Z IM Equity,GRUPPO OFFICINE,IT,Private Comp,--,134.41M,226.59M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3783360Z US Equity,ROADBUILDERS MAC,US,Private Comp,--,149.66M,150.18M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4310533Z IM Equity,SIAC SPA,IT,Private Comp,--,150.54M,140.13M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4420217Z IM Equity,ERRECI SRL,IT,Private Comp,--,151.09M,494.28M,283,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4523655Z IM Equity,NEW HOLLAND CONS,IT,Private Comp,--,151.14M,197.26M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+2181636Z LN Equity,TEREX EQUIPMENT,GB,Private Comp,--,153.21M,244.68M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+TORINZ CH Equity,SUZHOU TORIN E-A,CN,Common Stock,--,155.46M,114.15M,392,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3759784Z US Equity,4FRONT HOLDINGS,US,Private Comp,--,158.72M,69.98M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+NKMZ UZ Equity,NOVOKRAMATORSKY,UA,Common Stock,--,162.27M,301.29M,9k,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+2599582Z LN Equity,WIRTGEN LTD,GB,Private Comp,--,162.50M,71.47M,122,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4702713Z FP Equity,WACKER NEUSON SA,FR,Private Comp,--,162.92M,50.18M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4199613Z IM Equity,JCB SPA,IT,Private Comp,--,163.08M,59.53M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+PETT US Equity,PETTIBONE CORP,US,Common Stock,--,166.92M,105.38M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+1813032D CH Equity,HUNAN SINOBOOM-A,CN,Common Stock,--,167.95M,223.43M,672,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3893142Z IM Equity,CATERPILLAR PROD,IT,Private Comp,--,169.30M,103.29M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+ASV US Equity,ASV HOLDINGS INC,US,Common Stock,--,170.88M,124.42M,--,Industrial Engineering,Machinery: Construction and Handling,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,--,--
+4390177Z NO Equity,TESS VEST AS,NO,Private Comp,--,175.10M,82.62M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4403201Z LN Equity,GREENSHIELDS JCB,GB,Private Comp,--,181.99M,44.33M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4387121Z IM Equity,CGT LOGISTICA SI,IT,Private Comp,--,183.11M,235.21M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+UNEX CP Equity,UNEX AS,CZ,Common Stock,--,183.48M,138.52M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3765428Z US Equity,GODBERSEN-SMITH,US,Private Comp,--,184.41M,150.68M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3974700Z DC Equity,BMS A/S,DK,Private Comp,--,186.45M,110.21M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3707335Z US Equity,ERB EQUIPMENT CO,US,Private Comp,--,187.19M,117.61M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+1136Q CN Equity,CHAMPION ROAD,CA,Common Stock,--,187.46M,87.46M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4286237Z BB Equity,SMT BELGIUM SA,BE,Private Comp,--,190.16M,48.53M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+96655Z LN Equity,JCB LANDPOWER,GB,Private Comp,--,193.83M,121.30M,98,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4255365Z IM Equity,HINOWA SPA,IT,Private Comp,--,194.31M,161.07M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4500627Z IM Equity,IMER INTERNATION,IT,Private Comp,--,203.52M,210.32M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+88345Q US Equity,SALEM CORP,US,Common Stock,--,204.24M,116.44M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4504355Z IM Equity,BEDESCHI SPA,IT,Private Comp,--,209.71M,216.47M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4255797Z IM Equity,COMACCHIO SPA,IT,Private Comp,--,210.50M,209.51M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+JVO GR Equity,JOSEPH VOEGELE A,DE,Common Stock,--,212.20M,123.46M,746,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+TUZA RM Equity,TZA,RU,Common Stock,--,215.24M,65.40M,746,Construction and Materials,Construction,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,--,--
+LDW AU Equity,LUDOWICI PTY LTD,AU,Common Stock,--,219.45M,226.28M,1k,Industrial Engineering,Machinery: Industrial,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+1567585D HK Equity,ERA MINING MACHI,HK,Common Stock,--,243.18M,710.88M,--,Industrial Engineering,Machinery: Industrial,--,--,Machinery,Construction & Mining Machinery,--,--
+KOMI IJ Equity,KOMATSU INDONESI,ID,Common Stock,--,249.41M,135.89M,1k,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3722294Z BB Equity,MAGOTTEAUX SA,BE,Private Comp,--,257.87M,55.33M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4389609Z NO Equity,MHWIRTH AS,NO,Private Comp,--,272.56M,433.65M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3785328Z NA Equity,CONSTRUCTION MAC,NL,Private Comp,--,277.47M,286.21M,247,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4526343Z IM Equity,MEC-TRACK SRL,IT,Private Comp,--,293.90M,134.48M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+801061Z IM Equity,ATLAS COPCO ITAL,IT,Private Comp,--,303.86M,460.24M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+7173593Z IN Equity,SCHWING STETTER,IN,Private Comp,--,304.50M,266.87M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+1342166D CH Equity,LIUZHOU OUWEIM-A,CN,Common Stock,--,313.02M,477.80M,2k,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+1311365D HK Equity,INTERNATIONAL MI,CN,Common Stock,--,314.61M,641.92M,4k,Industrial Transportation,Commercial Vehicles and Parts,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+4054277Z IM Equity,SANDVIK ITALIA S,IT,Private Comp,--,325.81M,176.64M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4521999Z NO Equity,ODIM AS,NO,Private Comp,--,355.20M,273.39M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1157Q CN Equity,BRUNSWICK MINING,CA,Common Stock,--,355.72M,404.21M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4696529Z FP Equity,YANMAR CONSTRUCT,FR,Private Comp,--,370.38M,221.99M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+IDL AU Equity,INDUSTREA PTY LT,AU,Common Stock,--,371.56M,678.05M,--,Industrial Support Services,Professional Business Support Services,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+4057429Z IM Equity,SAMPIERANA SPA,IT,Private Comp,--,376.56M,227.29M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1505906Z LN Equity,KOMATSU UK LTD,GB,Private Comp,--,382.04M,323.50M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+6977573Z BZ Equity,KOMATSU DO BRASI,BR,Private Comp,--,385.37M,192.64M,850,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3899410Z GR Equity,KOMATSU MINING G,DE,Private Comp,--,409.25M,555.79M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+PDL CN Equity,NORTH AMER PALLA,CA,Common Stock,--,409.94M,705.24M,--,Precious Metals and Mining,Platinum and Precious Metals,Metals & Mining,Precious Metals & Minerals,Machinery,Construction & Mining Machinery,--,--
+1338002Z LN Equity,LIEBHERR - GREAT,GB,Private Comp,--,422.41M,264.54M,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+ACBDPZ CH Equity,DAHAN TECHNOLO-A,CN,Common Stock,--,436.29M,223.53M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+8180898Z BZ Equity,KOMATSU BRASIL I,BR,Private Comp,--,443.39M,190.36M,72,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+FNZ SM Equity,FINANZAUTO-R,ES,Common Stock,--,451.17M,363.60M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3645311Z BB Equity,HYUNDAI CONSTRUC,BE,Private Comp,--,460.34M,203.89M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1608922Z LN Equity,JCB HEAVY PRODUC,GB,Private Comp,--,460.73M,215.47M,433,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1366962Z LN Equity,JCB EARTHMOVERS,GB,Private Comp,--,461.15M,216.59M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+6177767Z BZ Equity,METSO BRASIL IND,BR,Private Comp,--,496.23M,499.54M,2k,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1068442Z LN Equity,ONESUBSEA UK LTD,GB,Private Comp,--,557.00M,610.88M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3899418Z IM Equity,KOMATSU ITALIA M,IT,Private Comp,--,577.28M,403.97M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+877816Q GR Equity,O&K ORENSTEIN,DE,Common Stock,--,608.78M,776.66M,1k,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4526015Z FP Equity,SERCEL SAS,FR,Private Comp,--,619.02M,578.37M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4398041Z NO Equity,KOLO VEIDEKKE AS,NO,Private Comp,--,768.19M,323.44M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1723125D US Equity,GLOBAL INDUSTRIA,US,Common Stock,--,787.06M,2.07B,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+URAM RU Equity,URALMASHPLAN-BRD,RU,Common Stock,--,792.22M,1.39B,2k,Industrial Engineering,Machinery: Industrial,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+1019Z LN Equity,MARUBENI EUROPE,GB,Private Comp,--,802.35M,518.65M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+BKN AU Equity,BRADKEN,AU,Common Stock,--,820.62M,1.05B,--,Industrial Engineering,Machinery: Industrial,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Const & Mining Mach Parts & Svcs,--
+0065188D US Equity,JOY GLOBAL UNDER,US,Common Stock,--,827.90M,753.24M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+NELES FH Equity,NELES OYJ,FI,Common Stock,--,962.00M,1.10B,3k,Electronic and Electrical Equipment,Electronic Equipment: Control and Filter,Machinery,Industrial Machinery & Supplies & Components,Machinery,Construction & Mining Machinery,--,--
+XMEGZ CH Equity,XIAMEN MECHANICA,CN,Private Comp,--,989.14M,5.50B,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+RBN US Equity,ROBBINS & MYERS,US,Common Stock,--,1.01B,1.48B,--,Industrial Engineering,Machinery: Industrial,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+4750065Z FP Equity,LIEBHERR FRANCE,FR,Private Comp,--,1.05B,555.55M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3631187Z BB Equity,CATERPILLAR BELG,BE,Private Comp,--,1.07B,970.47M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+MWE GR Equity,MUELLER WEINGART,DE,Common Stock,--,1.15B,645.33M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3643551Z BB Equity,POWER TOOLS DIST,BE,Private Comp,--,1.17B,271.77M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+TRK1V FH Equity,TAMROCK CORP,FI,Common Stock,--,1.34B,1.14B,5k,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4425625Z IM Equity,CIA GENERALE TRA,IT,Private Comp,--,1.40B,1.15B,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+GTHN NA Equity,GEVEKE NV,NL,Common Stock,--,1.80B,996.11M,3k,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3540636Z GR Equity,HERRENKNECHT AG,DE,Private Comp,--,1.80B,1.66B,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+1315778Z LN Equity,CATERPILLAR UK,GB,Private Comp,--,2.02B,1.70B,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4491579Z ID Equity,SANDVIK MINING &,IE,Private Comp,--,2.15B,860.07M,95,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+SVDA SS Equity,SVEDALA INDUSTRI,SE,Common Stock,--,2.72B,2.71B,10k,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+JOY US Equity,KOMATSU MINING C,US,Common Stock,--,3.21B,4.51B,--,Industrial Transportation,Commercial Vehicles and Parts,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+2447Z AU Equity,CATERPILLAR AUST,AU,Private Comp,--,3.45B,46.58B,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+THMZ CH Equity,TAIYUAN HEAVY MA,CN,Private Comp,--,3.46B,13.91B,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+BUCY US Equity,BUCYRUS INTERNAT,US,Common Stock,--,3.98B,4.91B,--,Industrial Transportation,Commercial Vehicles and Parts,--,--,Machinery,Construction & Mining Machinery,--,--
+CAT1 US Equity,CATERPILLAR FINL,US,Private Comp,--,5.29B,55.11B,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+GGLZ CH Equity,GUANGXI LIUGONG,CN,Private Comp,--,5.98B,10.03B,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1324730Z LN Equity,JC BAMFORD EXCAV,GB,Private Comp,--,7.82B,5.00B,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+SANYIZ CH Equity,SANY GROUP CO,CN,Private Comp,--,21.70B,49.33B,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+XZEMGZ CH Equity,XUZHOU CONSTRUCT,CN,Private Comp,--,21.84B,42.20B,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+LIEB GR Equity,LIEBHERR HLDG,DE,Common Stock,--,23.98B,28.61B,55k,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+CAT2 US Equity,CATERPILLAR INC,US,Common Stock,--,93.07B,85.11B,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4778313Z NA Equity,METSO MINERALS D,NL,Private Comp,--,--,4.61M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+260551Z US Equity,STOCK EQUIPMENT,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+0441245D US Equity,REAMCO INC,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+0181798D IN Equity,HYUNDAI CONSTRUC,IN,Private Comp,--,--,--,500,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+0185438Z US Equity,FALCON POWER INC,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+0195313D US Equity,HI-WAY EQUIPMENT,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+0132291D US Equity,GENESIS ATTACHME,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+STSB CP Equity,STAVEBNI STROJE,CZ,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+0201394D US Equity,JEFFREY RADER CO,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+0009192D US Equity,SIERRA MACHINERY,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+0243338D CN Equity,BMH SYSTEMS INC,CA,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+0284421D US Equity,HYUNDAI CONSTRUC,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+0008739D US Equity,PATTEN INDUSTRIE,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+STRONZ CH Equity,STRONG CONSTRUC,CN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+5166666Z SS Equity,HULTDIN SYSTEM A,SE,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+STZL CP Equity,STAS ZLICIN,CZ,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+0148620D CN Equity,CLEMRO WESTERN 1,CA,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+TUTKOV UZ Equity,PJSC ZAVOD TUTKO,UA,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+241470Z AR Equity,LUFKIN ARGENTINA,AR,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+227995Z US Equity,NORDCO INC,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+ZEG PW Equity,ZEG,PL,Common Stock,--,--,--,221,Electronic and Electrical Equipment,Electronic Equipment: Other,--,--,Machinery,Construction & Mining Machinery,--,--
+22511Z US Equity,IOWA MOLD TOOLIN,US,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+2233840Z PW Equity,GLINIK,PL,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+2187596Z LN Equity,ASHLEY 2006 LTD,GB,Private Comp,--,--,803.96k,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1834609D IN Equity,GHORAD SELOO HAM,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+44728Z BZ Equity,SOTREQ S/A,BR,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4481075Z US Equity,MACALLISTER MACH,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+510227Z AU Equity,EMECO INTERNATIO,AU,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+0004827D US Equity,WARRIOR OF ARKAN,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+0001729D US Equity,SASE CO LLC,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+0001232D US Equity,GILES & RANSOME,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+5057069Z US Equity,TUCSON TRACTOR C,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+0037178D US Equity,MAP RENTALS INC,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+5123522Z CN Equity,1714433 ONTARIO,CA,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+0792344D US Equity,TESMEC USA,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+0073843Z US Equity,CONLEY LOTT NICH,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+0774172D PW Equity,AXTONE SA,PL,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+0739767D AU Equity,CML 7 ZINC/LEAD/,AU,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,Surface Mining Machinery
+0739511D MM Equity,EL CASTILLO GOLD,MX,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+0735804D US Equity,PERMIAN HOLDINGS,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+5145130Z CN Equity,EQUIPEMENT QUADC,CA,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+0008335D US Equity,MCLAUGHLIN GROUP,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+0324074Z US Equity,LIPPMANN - MILWA,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+0642199D SS Equity,GALLIVARE INDUST,SE,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+0127347D US Equity,REICHDRILL INC,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+0795041D HK Equity,HONGKONG WINTERN,HK,Private Comp,--,--,--,13,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+0613416D HK Equity,ZOOMLION HK SPV,HK,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4881147Z US Equity,H&R CONSTRUCTION,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+0604579D US Equity,ALLEGIANCE CRANE,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+0518886D US Equity,GREYSTONE INC,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+0456454D CN Equity,EQUIPEMENTS LOUR,CA,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+0178845D US Equity,PRODUCTION SPECI,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+0437011D US Equity,ESCO WINDBER INC,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+5222B US Equity,ENERCO INC,US,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+0402700D US Equity,TRIO ENGINEERED,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+4824019Z SW Equity,CONDECTA AG,CH,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+5137138Z CN Equity,GROUPE ENVIRONNE,CA,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1831570D IN Equity,PARAMITRA SMART,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+1816217D AU Equity,ESSA AUSTRALIA L,AU,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1816322Z LN Equity,PLATFORM CO UK L,GB,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1599290D IN Equity,VERGA ATTACHMENT,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Const & Mining Mach Parts & Svcs,--
+4486371Z US Equity,GEORGE YOUNG CO,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+174858Z US Equity,PAPE BROS INC,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1744346D IN Equity,SIBY MINING & IN,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+1744145D IN Equity,RAJAT EQUIPMENTS,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+1736661D VN Equity,TUYEN QUANG MINE,VN,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+173359Z BZ Equity,MARCOSA SA MAQUI,BR,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1441960D US Equity,ELGI COMPRESSORS,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1643440Z LN Equity,ANDOVER TRAILERS,GB,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1637519D IN Equity,DCS TECHNO SERVI,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+SKST CP Equity,SOKOLOVSKE STROJ,CZ,Common Stock,--,--,--,11,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+2605Z GR Equity,CASE GERMANY GMB,DE,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+SPK SK Equity,SPEKTRA AS,SK,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+6056702Z AU Equity,G&S ENGINEERING,AU,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+606168Q US Equity,BECOR WESTERN IN,US,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+6132 JP Equity,MITACHI ELEC MAC,JP,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3068Q US Equity,COMMERCIAL INTER,US,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3069844Z LN Equity,DAWSON CONSTRUCT,GB,Private Comp,--,--,25.13M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+SLSZ CP Equity,SILNICNI TECHNIK,CZ,Common Stock,--,--,--,39,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+SSMCLZ CH Equity,CATERPILLAR QING,CN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+SHRUZ CH Equity,SHENYANG RUIFENG,CN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4447905Z LN Equity,DOUG EDWARDS STE,GB,Private Comp,--,--,4.27M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1835155D IN Equity,SHARMA CONTRACTO,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+1835323D IN Equity,ACETECH MACHINER,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1889494Z LN Equity,ESCO HYDRA UK LT,GB,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1891943D KS Equity,HD HYUNDAI XITES,KR,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Const & Mining Mach Parts & Svcs,--
+1895746D CH Equity,JIANGXI ZHONGT-A,CN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1905236D CH Equity,ZHENGZHOU NEW DA,CN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+2742506Z US Equity,NUCOR WAREHOUSE,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,Mining Material Handling Equip
+1634935D IN Equity,STAR TRACE PVT L,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+1633856D IN Equity,SRI SCL INFRATEC,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1633308D IN Equity,ROLJACK ASIA LTD,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4507155Z NA Equity,HUISMAN EQUIPMEN,NL,Private Comp,--,--,209.40M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1607693D IN Equity,MAHALAXMI INFRAC,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+14679Z US Equity,PORT INDUSTRIES,US,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+6038702Z AU Equity,GROUNDPROBE PTY,AU,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+2705168Z LN Equity,GLOBAL CLOSURE S,GB,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1974590D ID Equity,TRIBE TECHNOLOGY,IE,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+275256Q US Equity,CMI CORP-A,US,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+STE IN Equity,STANFORD ENGR,IN,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+2834148Z US Equity,TREAD CORP,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,Mining Material Handling Equip
+2865856Z CN Equity,MILLER FARM EQUI,CA,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+SSUL CP Equity,STAVEBNI STR UST,CZ,Common Stock,--,--,--,18,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+2923201Z LN Equity,PHOENIX ENGINEER,GB,Private Comp,--,--,8.26M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3001435Z CN Equity,STARTCO ENGINEER,CA,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+OKST CP Equity,OK STS TOUZIM AS,CZ,Common Stock,--,--,--,195,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+RELDA US Equity,RELIANCE INDS-A,US,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+3742603Z GR Equity,SCHROEDER GMBH,DE,Private Comp,--,--,19.13M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+RDNKRA CZ Equity,RADNIK DD,HR,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3743032Z US Equity,YUKON EQUIPMENT,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+6285 JP Equity,HANIX INDUSTRY,JP,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+QTECZ CH Equity,JIUYI HUANQIU QI,CN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3714375Z US Equity,STEVE'S EQUIPMEN,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+374771Z US Equity,PALADIN BRANDS,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+PRMT RU Equity,PROMTECH-BRD,RU,Common Stock,--,--,--,--,Personal Goods,Clothing and Accessories,--,--,Machinery,Construction & Mining Machinery,--,--
+PEJI RO Equity,PETROUTILAJ SA P,RO,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+6308 JP Equity,NIPPON CRANE WKS,JP,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+OVMI US Equity,OVM INTL HLDG,HK,Common Stock,--,--,--,--,Industrial Transportation,Commercial Vehicles and Parts,--,--,Machinery,Construction & Mining Machinery,--,--
+3765028Z US Equity,JH FLETCHER & CO,US,Private Comp,--,--,69.11M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3733022Z BB Equity,MECHANICAL SUPPL,BE,Private Comp,--,--,--,100,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+6317383Z GR Equity,LIEBHERR-BETONPU,DE,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Const & Mining Mach Parts & Svcs,--
+3783872Z NA Equity,BEZEMER-DORDRECH,NL,Private Comp,--,--,13.70M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3784572Z US Equity,RIGGS INDUSTRIES,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3620579Z US Equity,LBX CO LLC,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+3237079Z US Equity,FAIRCHILD INTERN,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+3259591Z AU Equity,KOMATSU FORKLIFT,AU,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+326656Z IM Equity,ITALTRACTOR SPA,IT,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3466547Z US Equity,CONTINENTAL MANU,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+3540400Z AU Equity,WESTRAC HOLDINGS,AU,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3548597Z FP Equity,BELAIR SASU,FR,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3604536Q DC Equity,SKAKO CONCRETE A,DK,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3608317Z MM Equity,MAQUINARIA LIGER,MX,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3611350Z SS Equity,EDMESTON AB,SE,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4341397Z IM Equity,CIFA PUMPS SRL,IT,Private Comp,--,--,--,175,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+748833Z AU Equity,CAPE CRUSHING AN,AU,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+BATT RO Equity,BAT VIFORATA SA,RO,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4224173Z IM Equity,EUROPE AIR SERVI,IT,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+BATI MB Equity,BASTINA SA,MD,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+7284658Z SS Equity,GIA INDUSTRI AB,SE,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+72898Z IN Equity,L&T CUTTING TOOL,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+AMZPT UZ Equity,ARTYOMOVSK MASHI,UA,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+AMOR RO Equity,AMORIM SA TG JIU,RO,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+7324498Z SW Equity,BTG ECLEPENS SA,CH,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+AETR US Equity,ALLIANCE ENTERPR,US,Common Stock,--,--,--,--,Aerospace and Defense,Defense,--,--,Machinery,Construction & Mining Machinery,--,--
+7356391Z CN Equity,CWS INDUSTRIES M,CA,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+JOYM US Equity,JOY GLOBAL AUSTR,AU,Common Stock,--,--,--,1k,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+ADFKSZ CH Equity,ZIGONG TIANCHENG,CN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3616732Z US Equity,PERFORMANCE DRIL,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4262597Z IM Equity,GC SPA,IT,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+7551780Z AU Equity,PROCESS GROUP PT,AU,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+AAMONZ CH Equity,SHENYANG TIAN -A,CN,Common Stock,--,--,--,200,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+AAENIZ CH Equity,CHENGDU KOBELCO,CN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+9691Z US Equity,GROVE WORLDWIDE,US,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+9685283Z AU Equity,DRILLING TOOLS A,AU,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+7582332Z FH Equity,METSO FINLAND OY,FI,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Const & Mining Mach Parts & Svcs,--
+959166Z US Equity,CHARLES MACHINE,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+PWB/H CN Equity,POWER TECH CORP,CA,Common Stock,--,--,--,--,Industrial Transportation,Commercial Vehicles and Parts,--,--,Machinery,Construction & Mining Machinery,--,--
+6270 JP Equity,KYC MACHINE IND.,JP,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+SDS AU Equity,SDS CORP LTD,AU,Common Stock,--,--,--,2k,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+6275 JP Equity,ISEKI POLY-TECH,JP,Common Stock,--,--,--,170,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+385293Z US Equity,UNITED CENTRAL I,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+KPXM SG Equity,KOPEX MIN OPREMA,RS,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+6708012Z US Equity,REXCON INC,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+KKP IN Equity,KIRLOSKAR PNEUM,IN,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+KISNOZ JP Equity,KOHSOKU KISHINO,JP,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+KIR SJ Equity,KAIROS INDUSTRIA,ZA,Common Stock,--,--,--,--,Industrial Engineering,Machinery: Industrial,--,--,Machinery,Construction & Mining Machinery,--,--
+6751372Z US Equity,SCREEN MACHINE I,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+MOTOR UZ Equity,MOTOR,UA,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+6354 JP Equity,HITACHI KIDEN,JP,Common Stock,--,--,--,782,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3790344Z US Equity,FARIS MACHINERY,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4408233Z IM Equity,KEY EQUIPMENT SP,IT,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+NCL RO Equity,NICOLINA SA,RO,Common Stock,--,--,--,--,Industrial Transportation,Commercial Vehicles and Parts,--,--,Machinery,Construction & Mining Machinery,--,--
+MUIL RO Equity,MUNTENIA SA FILI,RO,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3820552Z LN Equity,JH CARRUTHERS LT,GB,Private Comp,--,--,5.80M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+KRST CP Equity,KRUSNOHORSKE STR,CZ,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+ZONT MB Equity,ORIZONTUL-LUX SA,MD,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+6588404Z IN Equity,MACAWBER BEEKAY,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,Mining Material Handling Equip
+3913980Z US Equity,GLEDHILL ROAD MA,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+3180593Z US Equity,JOY GLOBAL LONGV,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+MNPR SG Equity,MINPROJEKT AD NI,RS,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3921736Z US Equity,JD EVANS INC,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3924144Z US Equity,CYPRESS EQUIPMEN,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3925732Z US Equity,CONTINENTAL SUPP,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3927052Z US Equity,SAUBER MANUFACTU,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+659904Z FH Equity,NORMET OY,FI,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+3936452Z US Equity,TEGRA EQUIPMENT,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+MENMAW SW Equity,MENZI MUCK AG,CH,Common Stock,--,--,--,230,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+MENI RO Equity,BEGA MECANICA SA,RO,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3968964Z DC Equity,CIMBRIA BULK EQU,DK,Private Comp,--,--,3.36M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4409989Z IM Equity,PONTEGGI EUROTEM,IT,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3626447Z BB Equity,DOOSAN INFRACORE,BE,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+79873Z ID Equity,CATERPILLAR INTE,IE,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3641111Z NA Equity,SONG DOC MV19 BV,NL,Private Comp,--,--,222.74M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3643543Z SS Equity,ATLAS COPCO SICK,SE,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4429785Z IM Equity,BESSEGA SERVICE,IT,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3665Z LN Equity,SPARROWS OFFSHOR,GB,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+6153 JP Equity,ISHIHARA KIKAI,JP,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3709367Z US Equity,WESTATE MACHINER,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+SHDR US Equity,SHAFT DRILLERS,US,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+SHANGDZ CH Equity,SHANDONG LINGONG,CN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3981740Z DC Equity,AKTIESELSKABET A,DK,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+MAHL SS Equity,MAHLER INTERNATI,SE,Common Stock,--,--,--,--,Industrial Transportation,Commercial Vehicles and Parts,--,--,Machinery,Construction & Mining Machinery,--,--
+7927385Z JP Equity,TSUKUBA TECH KK,JP,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3969004Z DC Equity,HP ENTREPRENORMA,DK,Private Comp,--,--,28.42M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3970540Z DC Equity,STEMAS MASKINSAL,DK,Private Comp,--,--,9.69M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3972428Z DC Equity,WIRTGEN DENMARK,DK,Private Comp,--,--,43.74M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4402617Z NO Equity,RISHAUG ANLEGGSM,NO,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3973432Z DC Equity,SCANCAB A/S,DK,Private Comp,--,--,9.83M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+6617500Z DC Equity,EPOKE A/S,DK,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+3977684Z DC Equity,HYDREMA EXPORT A,DK,Private Comp,--,--,30.63M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3977900Z DC Equity,OMME LIFT A/S,DK,Private Comp,--,--,15.55M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+MECC RO Equity,MECAGENT SA CONS,RO,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3983940Z DC Equity,TRANSLYFT A/S,DK,Private Comp,--,--,11.95M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3985452Z DC Equity,HAARUP MASKINFAB,DK,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+3990492Z GR Equity,JUNGBLUTH BAUMAS,DE,Private Comp,--,--,10.58M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+565159Z GR Equity,WEIDEMANN GMBH/D,DE,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+10012Z US Equity,MULTIQUIP INC,US,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+10191Z US Equity,PENHALL INTL,US,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+524650Z AU Equity,ROCHE CASTINGS P,AU,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1025241D CN Equity,MOBILIFT INC,CA,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1044Z AU Equity,KONE HOLDING,AU,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1058526D US Equity,DOVER EUROPE INC,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1598198D IN Equity,TRISHUL TREAD PV,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1078430D NW Equity,NAMIB LEAD/ZINC,NA,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+XMXGMZ CH Equity,XIAMEN XIAGONG M,CN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+XMFMCZ CH Equity,XIAMEN FORGING M,CN,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+52967Q CN Equity,INTER-TECH DRILL,CA,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+537131Z GR Equity,YALE-SLT FOERDER,DE,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+XGZLUZ CH Equity,XUGONG ROAD CONS,CN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+0949096D US Equity,VANDER INTERMEDI,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+116269Z GR Equity,KOMATSU GERMANY,DE,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+XGGMEZ CH Equity,XUGONG GROUP CON,CN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1232447D IN Equity,RAKHEJA ENGINEER,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+CPN IN Equity,CHICAGO PNEUMAT,IN,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+ESCO US Equity,ESCO CORP,US,Common Stock,--,--,--,5k,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+ENMZ CH Equity,JINTAI ENG MACH,CN,Private Comp,--,--,--,1k,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4367521Z SM Equity,HILTI ESPANOLA S,ES,Private Comp,--,--,--,390,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+DIME MB Equity,DIMECON-11 SA,MD,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4187057Z IM Equity,CVS COSTRUZIONE,IT,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+DETZ UZ Equity,DONETSKIY ELECTR,UA,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+CVL SP Equity,CIVMEC SINGAPORE,AU,Common Stock,--,--,--,--,Construction and Materials,Engineering and Contracting Services,Construction & Engineering,Construction & Engineering,Machinery,Construction & Mining Machinery,--,--
+CTC AU Equity,CHINA TRACK LTD,AU,Common Stock,--,--,--,--,Industrial Engineering,Machinery: Industrial,Machinery,Construction Machinery & Heavy Transportation Equipment,Machinery,Construction & Mining Machinery,Const & Mining Mach Parts & Svcs,--
+4194385Z IM Equity,ADRIANO CORSI SP,IT,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1550242Z LN Equity,HANIX EUROPE LTD,GB,Private Comp,--,--,2.42M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+SHIKOZ JP Equity,SHIKOKUKIKO CO,JP,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1239002D IN Equity,SAI DEEPA ROCK D,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+4568498Z US Equity,SUMNER MANUFACTU,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4553062Z US Equity,SOONER CONSTRUCT,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4543742Z US Equity,MCSWEENEY'S INC,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+13665Z US Equity,VAREL INTL INC,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+57270Z JP Equity,KOBELCO CONSTRUC,JP,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1375642Z LN Equity,POWERSCREEN INTE,GB,Private Comp,--,--,67.42M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+146243Z AU Equity,BT EQUIPMENT PTY,AU,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4514527Z IM Equity,TEREXLIFT SRL,IT,Private Comp,--,--,--,178,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1234042D US Equity,AABACO HOLDINGS,US,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1524Z IN Equity,SIEMENS ENERGY I,IN,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4195265Z IM Equity,EDIL GAMMA SRL,IT,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1571228D US Equity,LITHIUM MINING I,US,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1588746D IN Equity,GAINWELL COMMOSA,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+1590335D IN Equity,PROPEL INDUSTRIE,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+1591200D IN Equity,SV ENGINEERING C,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+1592163D IN Equity,BUILDMATE PROJEC,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+1593142D IN Equity,LALIT MINING IMP,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Const & Mining Mach Parts & Svcs,--
+1593511D IN Equity,ORISSA DIESEL EN,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+1598162D IN Equity,PICSON CONSTRUCT,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+5293091Z RU Equity,RENTEK OOO,RU,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+0907485D IN Equity,PUTZMEISTER CONC,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+0909986D US Equity,TERRAMAC LLC,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+0942228D US Equity,BLUELINE RENTAL,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+874484Z BB Equity,MAGOTTEAUX GROUP,BE,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Const & Mining Mach Parts & Svcs,--
+GEHL US Equity,GEHL COMPANY,US,Common Stock,--,--,--,--,Industrial Transportation,Commercial Vehicles and Parts,--,--,Machinery,Construction & Mining Machinery,--,--
+7031253Z GR Equity,GEDA-DECHENTREIT,DE,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+FSI ZH Equity,FSI HOLDINGS,ZW,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+FORZ TT Equity,FORMOSA HEAVY IN,TW,Private Comp,--,--,--,1k,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+7113853Z GR Equity,INTERMIX GMBH,DE,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+7686687Z GR Equity,PUTZMEISTER HOLD,DE,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+7598379Z US Equity,TUG TECHNOLOGIES,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+9257793Z IN Equity,SANY HEAVY INDUS,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+9022073Z NO Equity,TRIPLE-S AS,NO,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+7602155Z US Equity,DOYLE'S VALVES I,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+7615547Z US Equity,HELAC CORP,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+4294109Z IM Equity,GRAMIGNA SRL,IT,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+875384Z AU Equity,NRW PTY LTD,AU,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+7030453Z GR Equity,AMMANN ELBA BETO,DE,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4298149Z IM Equity,CENTROEDILE SRL,IT,Private Comp,--,--,--,13,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+8427Z US Equity,CONTINENTAL CONV,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+957589Z LN Equity,FINTEC CRUSHING,GB,Private Comp,--,--,1.88M,2,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+8181860Z US Equity,GREDE HOLDINGS L,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Const & Mining Mach Parts & Svcs,--
+4304637Z IM Equity,TIRRENIA EDILIZI,IT,Private Comp,--,--,--,61,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4307677Z IM Equity,EGTECHNOLOGY SPA,IT,Private Comp,--,--,--,22,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+790017Z US Equity,SAFEWORKS LLC,US,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+7902209Z JP Equity,HITACHI CONSTRUC,JP,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+8132Z US Equity,CATERPILLAR FIN,CA,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+8090198Z CH Equity,CHANGZHOU DEVELO,CN,Private Comp,--,--,--,433,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+801610Z IM Equity,TURBOSOL PRODUZI,IT,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+8012094Z CH Equity,ZHEJIANG GREAT-A,CN,Common Stock,--,--,--,341,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+JIXCOZ CH Equity,JIXI COAL MINING,CN,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+7161005Z RU Equity,INMAN ZAO,RU,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+CKDS CP Equity,CKD SLANY AS,CZ,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+CEI IN Equity,CONDEQUIP ENGINE,IN,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+7173521Z IN Equity,TAL MANUFACTURIN,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,Mining Material Handling Equip
+CATERZ JP Equity,CATERPILLAR TOH,JP,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4203409Z IM Equity,IPC SPA,IT,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+7176757Z IN Equity,VULCAN INDUSTRIA,IN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4213585Z IM Equity,CAMSERVICE SRL,IT,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+BHNTRK1 BT Equity,BNT HIDRAULIKA D,BA,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+BHEQ3 BZ Equity,BAHEMA EQUIP,BR,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+BETE MS Equity,BETON TETOVO,MK,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+HCM IN Equity,HOLMAN-CLIMAX,IN,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+JLG US Equity,JLG INDUSTRIES,US,Common Stock,--,--,--,4k,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+0174326D US Equity,RESTORATION INDU,US,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+JAQSV SW Equity,JAQUET SA,CH,Common Stock,--,--,--,80,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+IWAFZ JP Equity,OYAMAKAWA CO LTD,JP,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+6877877Z CN Equity,CUBEX LTD,CA,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4033341Z LN Equity,EASTFIELD NO 24,GB,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+4044389Z NA Equity,WACKER NEUSON BV,NL,Private Comp,--,--,15.65M,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+HCMP IN Equity,HINDUSTAN COMPRE,IN,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+6895869Z CN Equity,KRAMER LTD,CA,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+BCAIYZ CH Equity,ZHENGZHOU YUTONG,CN,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+HALA US Equity,HALLAMORE CORP,US,Common Stock,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,Construction Machinery,--
+GULD US Equity,GOLD HILL RESOUR,US,Common Stock,--,--,--,--,Investment Banking and Brokerage Services,Diversified Financial Services,"Electronic Equipment, Instruments & Components",Electronic Equipment & Instruments,Machinery,Construction & Mining Machinery,Mining Machinery & Equipment,--
+4061509Z DC Equity,BECH-HANSEN & ST,DK,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--
+7029533Z GR Equity,HESS KRAUSE VERM,DE,Private Comp,--,--,--,--,--,--,--,--,Machinery,Construction & Mining Machinery,--,--

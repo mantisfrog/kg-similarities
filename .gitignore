@@ -205,3 +205,12 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Custom
+neo4j-docker
+.trash
+data/processed/*
+data/graph/*
+*.Identifier
+apps/streamlit/.streamlit/secrets.toml
+!.gitkeep
