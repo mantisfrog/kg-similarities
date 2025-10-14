@@ -105,3 +105,37 @@ RESET="\033[0m"
 
 echo -e "\n${GREEN}${BOLD} All steps completed successfully! Your Neo4j environment is ready.${RESET}"
 echo -e "   You can access the Neo4j Browser at: ${BOLD}${UNDERLINE}${BLUE}http://localhost:7474${RESET}"
+
+# --- Optional: Start Model Training ---
+echo -e "\n🧠 ${BOLD}[Optional] Start Model Training${RESET}"
+echo -e "The environment is set up. You can now train the embedding model."
+echo -e "⚠️  ${BOLD}Warning:${RESET} The default training process can take several hours."
+echo -e "   You can adjust hyperparameters in ${BOLD}analysis/train_metapath2vec.py${RESET} or by using environment variables"
+echo -e "   (e.g., MP2V_EPOCHS=5) for a shorter run."
+
+while true; do
+    read -p "Do you want to start the training now? (y/n): " yn
+    case $yn in
+        [Yy]* )
+            echo -e "\n🚀 Starting training process..."
+
+            echo -e "\n[1/2] Creating PyG HeteroData object from Neo4j..."
+            run_with_spinner "  -> Running create_heterodata.py..." "python src/analysis/create_heterodata.py"
+
+            echo -e "\n[2/2] Training MetaPath2Vec model..."
+            echo "  -> Running train_metapath2vec.py (this will take a while, progress will be shown below)..."
+            python src/analysis/train_metapath2vec.py
+
+            echo -e "\n${GREEN}${BOLD}✅ Training finished successfully!${RESET}"
+            break;;
+        [Nn]* )
+            echo -e "\nSkipping training. You can run it later with the following commands:"
+            echo -e "   ${BOLD}source .venv/bin/activate${RESET}"
+            echo -e "   ${BOLD}python src/analysis/create_heterodata.py${RESET}"
+            echo -e "   ${BOLD}python src/analysis/train_metapath2vec.py${RESET}"
+            exit;;
+        * ) echo "Please answer yes (y) or no (n).";;
+    esac
+done
+
+echo -e "\nSetup and training process complete."

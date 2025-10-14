@@ -150,12 +150,12 @@ LOAD CSV WITH HEADERS FROM 'file:///rel_Classified_as_BICSL4.csv' AS row
 
 LOAD CSV WITH HEADERS FROM 'file:///rel_Classified_as_BICSL5.csv' AS row
     MATCH (start:Company {companyID: row.`:START_ID`})
-    MATCH (end:BICSL5 {bicsl5ID: row.`END_ID`})
+    MATCH (end:BICSL5 {bicsl5ID: row.`:END_ID`})
     MERGE (start)-[:CLASSIFIED_AS {scheme: 'BICS', level: 'L5 Segment'}]->(end);
 
 LOAD CSV WITH HEADERS FROM 'file:///rel_Classified_as_BICSL6.csv' AS row
     MATCH (start:Company {companyID: row.`:START_ID`})
-    MATCH (end:BICSL6 {bicsl6ID: row.`END_ID`})
+    MATCH (end:BICSL6 {bicsl6ID: row.`:END_ID`})
     MERGE (start)-[:CLASSIFIED_AS {scheme: 'BICS', level: 'L6 Segment'}]->(end);
 
 // Import Hierarchical Classification relationships
@@ -163,7 +163,7 @@ LOAD CSV WITH HEADERS FROM 'file:///rel_Part_of_ICBSubsector.csv' AS row MATCH (
 LOAD CSV WITH HEADERS FROM 'file:///rel_Part_of_GICSSubIndustry.csv' AS row MATCH (start:GICSSubIndustry {gicssubindustryID: row.`:START_ID`}) MATCH (end:GICSIndustry {gicsindustryID: row.`:END_ID`}) MERGE (start)-[:PART_OF]->(end);
 LOAD CSV WITH HEADERS FROM 'file:///rel_Part_of_BICSL4.csv' AS row MATCH (start:BICSL4 {bicsl4ID: row.`:START_ID`}) MATCH (end:BICSL3 {bicsl3ID: row.`:END_ID`}) MERGE (start)-[:PART_OF]->(end);
 LOAD CSV WITH HEADERS FROM 'file:///rel_Part_of_BICSL5.csv' AS row MATCH (start:BICSL5 {bicsl5ID: row.`:START_ID`}) MATCH (end:BICSL4 {bicsl4ID: row.`:END_ID`}) MERGE (start)-[:PART_OF]->(end);
-LOAD CSV WITH HEADERS FROM 'file:///rel_Part_of_BICSL6.csv' AS row MATCH (start:BICSL6 {bicsl6ID: row.`:START_ID`}) MATCH (end:BICSL5 {bicsl5ID: row.`END_ID`}) MERGE (start)-[:PART_OF]->(end);
+LOAD CSV WITH HEADERS FROM 'file:///rel_Part_of_BICSL6.csv' AS row MATCH (start:BICSL6 {bicsl6ID: row.`:START_ID`}) MATCH (end:BICSL5 {bicsl5ID: row.`:END_ID`}) MERGE (start)-[:PART_OF]->(end);
 
 // Import relationship: ProjectName -> REFERS_TO_PROJECT -> Project
 LOAD CSV WITH HEADERS FROM 'file:///rel_Refers_to_Project.csv' AS row
@@ -241,12 +241,12 @@ MERGE (start)-[:CATEGORISED_AS]->(end);
 
 LOAD CSV WITH HEADERS FROM 'file:///rel_CategorisedAs_TierRevenue.csv' AS row
 MATCH (start:Company {companyID: row.`:START_ID`})
-MATCH (end:TierRevenue {tierrevenueID: row.`END_ID`})
+MATCH (end:TierRevenue {tierrevenueID: row.`:END_ID`})
 MERGE (start)-[:CATEGORISED_AS]->(end);
 
 LOAD CSV WITH HEADERS FROM 'file:///rel_CategorisedAs_TierAssets.csv' AS row
 MATCH (start:Company {companyID: row.`:START_ID`})
-MATCH (end:TierAssets {tierassetsID: row.`END_ID`})
+MATCH (end:TierAssets {tierassetsID: row.`:END_ID`})
 MERGE (start)-[:CATEGORISED_AS]->(end);
 
 LOAD CSV WITH HEADERS FROM 'file:///rel_CategorisedAs_GroupAssetTurnover.csv' AS row
@@ -256,7 +256,7 @@ MERGE (start)-[:CATEGORISED_AS]->(end);
 
 LOAD CSV WITH HEADERS FROM 'file:///rel_CategorisedAs_GroupMarketToAsset.csv' AS row
 MATCH (start:Company {companyID: row.`:START_ID`})
-MATCH (end:GroupMarketToAsset {groupmarkettoassetID: row.`END_ID`})
+MATCH (end:GroupMarketToAsset {groupmarkettoassetID: row.`:END_ID`})
 MERGE (start)-[:CATEGORISED_AS]->(end);
 
 // ADDED: New relationship between Country and CountryGroup

@@ -19,15 +19,13 @@ def calculate_company_project_pathsim(data, company_node_type='Company', project
     print("Calculating PathSim for Company-Project-Company...")
 
     # 1. 获取 (Company, OWNS, Project) 的边索引
-    #    注意：这里的关系名 'owns' 需要和你的 HeteroData edge_type 中的完全一致
-    #    请根据你的实际情况调整 ('Company', 'owns', 'Project')
+    #    注意：这里的关系名 'OWNS' 需要和你的 HeteroData edge_type 中的完全一致
     try:
-        # 假设关系名为 'owns'，全小写
-        edge_index = data[company_node_type, 'owns', project_node_type].edge_index
+        # 修正：关系名应为大写的 'OWNS'
+        edge_index = data[company_node_type, 'OWNS', project_node_type].edge_index
     except KeyError:
-        # 如果关系名是大写或有其他形式，请在这里修改
-        # 例如: edge_index = data['Company', 'OWNS', 'Project'].edge_index
-        print(f"Error: Edge type ('{company_node_type}', 'owns', '{project_node_type}') not found.")
+        # 如果关系名有其他形式，请在这里修改
+        print(f"Error: Edge type ('{company_node_type}', 'OWNS', '{project_node_type}') not found.")
         print("Please check your RELATION_TYPES and adjust the key in the script.")
         return None
 
@@ -94,7 +92,7 @@ def main():
     # 确保 data 中有 num_nodes 属性
     if not hasattr(data['Company'], 'num_nodes') or not hasattr(data['Project'], 'num_nodes'):
          print("Inferring num_nodes from edges as it's missing in the data object...")
-         from train_metapath2vec_fast import infer_num_nodes_dict_from_edges
+         from train_metapath2vec import infer_num_nodes_dict_from_edges
          num_nodes_dict = infer_num_nodes_dict_from_edges(data)
          data['Company'].num_nodes = num_nodes_dict.get('Company', 0)
          data['Project'].num_nodes = num_nodes_dict.get('Project', 0)

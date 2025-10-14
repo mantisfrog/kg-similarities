@@ -1,29 +1,16 @@
 {
   "Company": {
-    "Company>Project>Company": 3.0,
-    "Company>Project>Commodity>Project>Company": 3.0,
+    "Company>Project>Commodity>Project>Company": 4.0,
     "Company>Project>LGA>Project>Company": 1.0,
-
-    "Company>ICBSubsector>Company": 2.0,
-    "Company>GICSSubIndustry>Company": 2.0,
-    "Company>BICSL4>Company": 1.0,
-    "Company>BICSL5>Company": 1.0,
-    "Company>BICSL6>Company": 2.0,
-
-    "Company>TierMarketCap>Company": 2.0,
-    "Company>TierRevenue>Company": 2.0,
-    "Company>TierAssets>Company": 2.0,
-    "Company>GroupMarketToAsset>Company": 1.0,
-    "Company>GroupAssetTurnover>Company": 1.0,
-    "Company>Country>Company": 0.5
+    "Company>Project>ReservesScale>Project>Company": 1.0,
+    "Company>Project>Company": 2.0,
+    "Company>GICSSubIndustry>Company": 1.0,
+    "Company>TierMarketCap>Company": 1.0
   },
 
   "Project": {
-    "Project>Commodity>Project": 4.0,
-    "Project>LGA>Project": 2.0,
-    "Project>ReservesScale>Project": 1.0,
-    
-    "Project>Company>GICSSubIndustry>Company>Project": 1.0,
-    "Project>Company>TierMarketCap>Company>Project": 1.0
+    "Project>Commodity>Project": 3.0,
+    "Project>ReservesScale>Project": 2.0,
+    "Project>LGA>State>LGA>Project": 1.0
   }
 }

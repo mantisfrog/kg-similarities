@@ -1,0 +1,96 @@
+{
+  "company": {
+    "target_label": "Company",
+    "target_id_prop": "companyID",
+    "name_label": "CompanyName",
+    "name_relationship": "-[:REFERS_TO_COMPANY {type: 'Current Name'}]->",
+    "neighbors": [
+      {
+        "name": "project",
+        "neighbor_label": "Project",
+        "relationship": "-[:OWNS]->",
+        "weight": 2.0
+      },
+      {
+        "name": "icb_subsector",
+        "neighbor_label": "ICBSubsector",
+        "relationship": "-[:CLASSIFIED_AS]->",
+        "weight": 2.0
+      },
+      {
+        "name": "gics_subindustry",
+        "neighbor_label": "GICSSubIndustry",
+        "relationship": "-[:CLASSIFIED_AS]->",
+        "weight": 2.0
+      },
+      {
+        "name": "bics_l4",
+        "neighbor_label": "BICSL6",
+        "relationship": "-[:CLASSIFIED_AS]->",
+        "weight": 0.3
+      },
+      {
+        "name": "bics_l5",
+        "neighbor_label": "BICSL5",
+        "relationship": "-[:CLASSIFIED_AS]->",
+        "weight": 0.45
+      },
+      {
+        "name": "tier_market_cap",
+        "neighbor_label": "TierMarketCap",
+        "relationship": "-[:CATEGORISED_AS]->",
+        "weight": 2
+      },
+      {
+        "name": "tier_revenue",
+        "neighbor_label": "TierRevenue",
+        "relationship": "-[:CATEGORISED_AS]->",
+        "weight": 0.5
+      },
+      {
+        "name": "tier_assets",
+        "neighbor_label": "TierAssets",
+        "relationship": "-[:CATEGORISED_AS]->",
+        "weight": 0.5
+      },
+      {
+        "name": "country",
+        "neighbor_label": "Country",
+        "relationship": "-[:DOMICILED_IN]->",
+        "weight": 0.25
+      }
+    ]
+  },
+  "project": {
+    "target_label": "Project",
+    "target_id_prop": "projectID",
+    "name_label": "ProjectName",
+    "name_relationship": "-[:REFERS_TO_PROJECT {type: 'Primary'}]->",
+    "neighbors": [
+      {
+        "name": "commodity",
+        "neighbor_label": "Commodity",
+        "relationship": "-[:HAS_COMMODITY]->",
+        "weight": 6.0
+      },
+      {
+        "name": "lga",
+        "neighbor_label": "LGA",
+        "relationship": "-[:LOCATED_IN]->",
+        "weight": 1.0
+      },
+      {
+        "name": "company",
+        "neighbor_label": "Company",
+        "relationship": "<-[:OWNS]-",
+        "weight": 2.0
+      },
+      {
+        "name": "reservesscale",
+        "neighbor_label": "ReservesScale",
+        "relationship": "-[:CATEGORISED_AS]->",
+        "weight": 1.0
+      }
+    ]
+  }
+}

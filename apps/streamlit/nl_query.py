@@ -32,16 +32,92 @@ NEO4J_USER = get_secret("NEO4J_USER", "neo4j")
 NEO4J_PASSWORD = get_secret("NEO4J_PASSWORD", "neo4jroot")
 
 SCHEMA = """
-Graph schema (simplified):
-Nodes:
-- Name(nameID UNIQUE, nameText)
-- Company(companyID UNIQUE, companyName)
-- Commodity(commodityID UNIQUE, commoditySymbol, commodityDesc, commodityGroup)
-- Deposit(depositID UNIQUE, eno:int, state, location, operatingStatus, geologicAge, depositModelEnvironment, depositModelGroup, depositModelType, provinces, igneous, metallogenic, sedimentary, tectonic)
-Relationships:
-- (Name)-[:REFERS_TO]->(Deposit)
-- (Deposit)-[:HAS {role}]->(Commodity)
-- (Company)-[:OWNS]->(Deposit)
+# Neo4j Graph Schema
+
+## Node Types
+
+### Core Entities
+- **Company** (`companyID`)
+  - Properties: `ticker`, `acn`, `marketCap`, `revenue`, `totalAssets`, `employees`, `description`, `linkedinEmployees`, `linkedinFollowers`
+- **CompanyName** (`companyNameID`)
+  - Properties: `text`
+- **Project** (`projectID`)
+  - Properties: `eno`, `location` (point)
+- **ProjectName** (`projectNameID`)
+  - Properties: `text`
+
+### Geographic Entities
+- **Country** (`countryID`)
+  - Properties: `text`
+- **CountryGroup** (`countrygroupID`)
+  - Properties: `text`
+- **State** (`stateID`)
+  - Properties: `text`
+- **LGA** (`lgaID`) *(Local Government Area)*
+  - Properties: `text`
+
+### Commodity Entities
+- **Commodity** (`commodityID`)
+  - Properties: `symbol`, `name`
+- **CommodityGroup** (`commodityGroupID`)
+  - Properties: `name`
+
+### Industry Classification (Company)
+- **ICBSector** (`icbsectorID`), **ICBSubsector** (`icbsubsectorID`)
+- **GICSIndustry** (`gicsindustryID`), **GICSSubIndustry** (`gicssubindustryID`)
+- **BICSL3** (`bicsl3ID`), **BICSL4** (`bicsl4ID`), **BICSL5** (`bicsl5ID`), **BICSL6** (`bicsl6ID`)
+  - All have property: `text`
+
+### Company Scale Categories
+- **TierMarketCap** (`tiermarketcapID`)
+- **TierRevenue** (`tierrevenueID`)
+- **TierAssets** (`tierassetsID`)
+- **GroupAssetTurnover** (`groupassetturnoverID`)
+- **GroupMarketToAsset** (`groupmarkettoassetID`)
+  - All have property: `text`
+
+### Project Scale Categories
+- **ReservesScale** (`reservesScaleID`)
+  - Properties: `text`
+
+---
+
+## Relationships
+
+### Ownership & Core Links
+- `(Company)-[:OWNS]->(Project)`
+- `(CompanyName)-[:REFERS_TO_COMPANY {type}]->(Company)`
+- `(ProjectName)-[:REFERS_TO_PROJECT {type}]->(Project)`
+
+### Company Attributes
+- `(Company)-[:DOMICILED_IN]->(Country)`
+- `(Company)-[:CLASSIFIED_AS {scheme, level}]->(ICBSector|ICBSubsector|GICSIndustry|GICSSubIndustry|BICSL3|BICSL4|BICSL5|BICSL6)`
+- `(Company)-[:CATEGORISED_AS]->(TierMarketCap|TierRevenue|TierAssets|GroupAssetTurnover|GroupMarketToAsset)`
+
+### Project Attributes
+- `(Project)-[:LOCATED_IN]->(LGA)`
+- `(Project)-[:HAS_COMMODITY {role}]->(Commodity)`
+- `(Project)-[:CATEGORISED_AS]->(ReservesScale)`
+
+### Geographic & Classification Hierarchies
+- `(LGA)-[:LOCATED_IN]->(State)`
+- `(Country)-[:PART_OF]->(CountryGroup)`
+- `(Commodity)-[:GROUPED_AS]->(CommodityGroup)`
+- `(ICBSubsector)-[:PART_OF]->(ICBSector)`
+- `(GICSSubIndustry)-[:PART_OF]->(GICSIndustry)`
+- `(BICSL4)-[:PART_OF]->(BICSL3)`
+- `(BICSL5)-[:PART_OF]->(BICSL4)`
+- `(BICSL6)-[:PART_OF]->(BICSL5)`
+
+---
+
+## Summary
+- **Core entities**: Company, Project (linked by `OWNS`)
+- **Names**: CompanyName, ProjectName (aliases/references)
+- **Geography**: Country → CountryGroup; LGA → State
+- **Commodities**: Commodity → CommodityGroup
+- **Industries**: Three classification schemes (ICB, GICS, BICS) with hierarchical levels
+- **Categorization**: Companies and Projects are categorized by scale/tier nodes
 """
 
 GEMINI_MODEL_ID = get_secret("GEMINI_MODEL_ID", "gemini-2.5-flash-preview-05-20")

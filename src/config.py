@@ -87,21 +87,61 @@ NODE_LABELS = {
     "ICBSector": "icbsectorID", "ICBSubsector": "icbsubsectorID", "GICSIndustry": "gicsindustryID",
     "GICSSubIndustry": "gicssubindustryID", "BICSL3": "bicsl3ID", "BICSL4": "bicsl4ID",
     "BICSL5": "bicsl5ID", "BICSL6": "bicsl6ID",
+    "TierMarketCap": "tiermarketcapID",
+    "TierRevenue": "tierrevenueID",
+    "TierAssets": "tierassetsID",
+    "GroupAssetTurnover": "groupassetturnoverID",
+    "GroupMarketToAsset": "groupmarkettoassetID",
+    "ReservesScale": "reservesScaleID"
 }
 
+# =================================================================
+# 1. Graph Schema Definition
+# =================================================================
+# Defines the canonical edge types for the PyG HeteroData object.
+# Format: (source_node_type, relationship_name, destination_node_type)
+# This list is the single source of truth for graph construction.
+
 RELATION_TYPES = [
-    ("Company", "OWNS", "Project"), ("CompanyName", "REFERS_TO_COMPANY", "Company"),
-    ("Company", "DOMICILED_IN", "Country"), ("Company", "CLASSIFIED_AS", "ICBSector"),
-    ("Company", "CLASSIFIED_AS", "ICBSubsector"), ("Company", "CLASSIFIED_AS", "GICSIndustry"),
-    ("Company", "CLASSIFIED_AS", "GICSSubIndustry"), ("Company", "CLASSIFIED_AS", "BICSL3"),
-    ("Company", "CLASSIFIED_AS", "BICSL4"), ("Company", "CLASSIFIED_AS", "BICSL5"),
-    ("Company", "CLASSIFIED_AS", "BICSL6"), ("ICBSubsector", "PART_OF", "ICBSector"),
-    ("GICSSubIndustry", "PART_OF", "GICSIndustry"), ("BICSL4", "PART_OF", "BICSL3"),
-    ("BICSL5", "PART_OF", "BICSL4"), ("BICSL6", "PART_OF", "BICSL5"),
-    ("ProjectName", "REFERS_TO_PROJECT", "Project"), ("Project", "LOCATED_IN", "LGA"),
-    ("LGA", "LOCATED_IN", "State"), ("Project", "HAS_COMMODITY", "Commodity"),
-    ("Commodity", "GROUPED_AS", "CommodityGroup"),
-    ("Country", "PART_OF", "CountryGroup"),
+    # Company-centric relationships
+    ('Company', 'OWNS', 'Project'),
+    ('CompanyName', 'REFERS_TO_COMPANY', 'Company'),
+    ('Company', 'DOMICILED_IN', 'Country'),
+
+    # Company to Classification relationships
+    ('Company', 'CLASSIFIED_AS', 'ICBSector'),
+    ('Company', 'CLASSIFIED_AS', 'ICBSubsector'),
+    ('Company', 'CLASSIFIED_AS', 'GICSIndustry'),
+    ('Company', 'CLASSIFIED_AS', 'GICSSubIndustry'),
+    ('Company', 'CLASSIFIED_AS', 'BICSL3'),
+    ('Company', 'CLASSIFIED_AS', 'BICSL4'),
+    ('Company', 'CLASSIFIED_AS', 'BICSL5'),
+    ('Company', 'CLASSIFIED_AS', 'BICSL6'),
+
+    # Company to Category relationships (NEW)
+    ('Company', 'CATEGORISED_AS', 'TierMarketCap'),
+    ('Company', 'CATEGORISED_AS', 'TierRevenue'),
+    ('Company', 'CATEGORISED_AS', 'TierAssets'),
+    ('Company', 'CATEGORISED_AS', 'GroupAssetTurnover'),
+    ('Company', 'CATEGORISED_AS', 'GroupMarketToAsset'),
+
+    # Project-centric relationships
+    ('ProjectName', 'REFERS_TO_PROJECT', 'Project'),
+    ('Project', 'LOCATED_IN', 'LGA'),
+    ('Project', 'HAS_COMMODITY', 'Commodity'),
+
+    # Project to Category relationships (NEW)
+    ('Project', 'CATEGORISED_AS', 'ReservesScale'),
+
+    # Hierarchical and linking relationships
+    ('LGA', 'LOCATED_IN', 'State'),
+    ('Commodity', 'GROUPED_AS', 'CommodityGroup'),
+    ('ICBSubsector', 'PART_OF', 'ICBSector'),
+    ('GICSSubIndustry', 'PART_OF', 'GICSIndustry'),
+    ('BICSL4', 'PART_OF', 'BICSL3'),
+    ('BICSL5', 'PART_OF', 'BICSL4'),
+    ('BICSL6', 'PART_OF', 'BICSL5'),
+    ('Country', 'PART_OF', 'CountryGroup'), # (NEW)
 ]
 
 # --- Feature Engineering Paths ---

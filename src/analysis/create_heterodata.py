@@ -107,6 +107,10 @@ if __name__ == "__main__":
         if 'Company' in id_maps and not id_maps['Company'].empty:
             print(f"\nExample Neo4j Company IDs for PyG indices 0-4: {id_maps['Company'].head()}")
         
+        # Add this code to show Project examples too
+        if 'Project' in id_maps and not id_maps['Project'].empty:
+            print(f"\nExample Neo4j Project IDs for PyG indices 0-4: {id_maps['Project'].head()}")
+        
         # Save the data and mappings to disk for later use
         torch.save(data, config.HETERO_DATA_PATH)
         torch.save(id_maps, config.ID_MAPS_PATH)

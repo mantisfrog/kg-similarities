@@ -12,6 +12,6 @@ services:
       - ./neo4j-docker/exports:/var/lib/neo4j/exports
     environment:
       - NEO4J_AUTH=neo4j/neo4jroot
-      - NEO4J_PLUGINS=["apoc"]
+      - NEO4J_PLUGINS=["apoc","graph-data-science"]
       - NEO4J_apoc_export_file_enabled=true
       - NEO4J_apoc_import_file_enabled=true
