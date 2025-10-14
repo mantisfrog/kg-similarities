@@ -144,7 +144,7 @@ This hybrid approach allows for a flexible and powerful definition of similarity
   $$
 - Choose two parameters:
   - Maximum considered age in months: M_max (e.g., 120 months).
-  - Half-life in months: H (role-specific, e.g., technical 24, managerial 60).
+  - Half-life in months: H (role-specific, e.g., technical 12, managerial 60).
 - Compute a per-month decay weight and aggregate, then scale the base similarity:
   - Per-month weight at age a (months):
     $$
