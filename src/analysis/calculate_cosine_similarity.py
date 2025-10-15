@@ -189,8 +189,8 @@ def main():
     COMPANY_B_ID = "comp_3"
     #
     # Project IDs for pairwise comparison and Top-K search
-    PROJECT_A_ID = "project_2831"
-    PROJECT_B_ID = "project_2411"
+    PROJECT_A_ID = "project_1461"
+    PROJECT_B_ID = "project_3634"
     #
     TOP_K = 5
 
