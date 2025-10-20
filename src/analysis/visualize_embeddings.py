@@ -35,7 +35,7 @@ from src import config
 
 def load_embeddings_and_idmaps():
     emb_path = Path(os.environ.get("MP2V_EMBEDDINGS_PATH", config.OUTPUT_EMBEDDINGS_PATH))
-    idmap_path_env = "src/feature/id_mappings_subgraph.pt"
+    idmap_path_env = os.environ.get("MP2V_ID_MAPS_PATH")
     idmap_path = Path(idmap_path_env) if idmap_path_env else Path(config.ID_MAPS_PATH)
 
     if not emb_path.exists():
@@ -43,12 +43,15 @@ def load_embeddings_and_idmaps():
     all_embeddings = torch.load(emb_path, weights_only=False)
 
     if not idmap_path.exists():
-        # 兼容你在 subgraph 模式下可能把 idmap 存在 feature 目录的情况
+        if idmap_path_env:
+            raise FileNotFoundError(f"ID maps not found at '{idmap_path}'.")
         sub_path = config.FEATURE_DIR / "id_mappings_subgraph.pt"
         if sub_path.exists():
             idmap_path = sub_path
         else:
-            raise FileNotFoundError(f"ID maps not found: {idmap_path}")
+            raise FileNotFoundError(
+                f"ID maps not found at '{config.ID_MAPS_PATH}' (nor subgraph fallback)."
+            )
 
     id_maps = torch.load(idmap_path, weights_only=False)
     return all_embeddings, id_maps, emb_path, idmap_path

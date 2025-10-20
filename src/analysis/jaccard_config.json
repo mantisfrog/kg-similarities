@@ -9,55 +9,43 @@
         "name": "project",
         "neighbor_label": "Project",
         "relationship": "-[:OWNS]->",
-        "weight": 2.0
+        "weight": 1.0
       },
       {
         "name": "icb_subsector",
         "neighbor_label": "ICBSubsector",
         "relationship": "-[:CLASSIFIED_AS]->",
-        "weight": 2.0
+        "weight": 1.5
       },
       {
         "name": "gics_subindustry",
         "neighbor_label": "GICSSubIndustry",
         "relationship": "-[:CLASSIFIED_AS]->",
-        "weight": 2.0
-      },
-      {
-        "name": "bics_l4",
-        "neighbor_label": "BICSL6",
-        "relationship": "-[:CLASSIFIED_AS]->",
-        "weight": 0.3
-      },
-      {
-        "name": "bics_l5",
-        "neighbor_label": "BICSL5",
-        "relationship": "-[:CLASSIFIED_AS]->",
-        "weight": 0.45
+        "weight": 1.5
       },
       {
         "name": "tier_market_cap",
         "neighbor_label": "TierMarketCap",
         "relationship": "-[:CATEGORISED_AS]->",
-        "weight": 2
+        "weight": 1.5
       },
       {
         "name": "tier_revenue",
         "neighbor_label": "TierRevenue",
         "relationship": "-[:CATEGORISED_AS]->",
-        "weight": 0.5
+        "weight": 1.5
       },
       {
         "name": "tier_assets",
         "neighbor_label": "TierAssets",
         "relationship": "-[:CATEGORISED_AS]->",
-        "weight": 0.5
+        "weight": 1.5
       },
       {
         "name": "country",
         "neighbor_label": "Country",
         "relationship": "-[:DOMICILED_IN]->",
-        "weight": 0.25
+        "weight": 1.5
       }
     ]
   },
@@ -70,7 +58,7 @@
       {
         "name": "commodity",
         "neighbor_label": "Commodity",
-        "relationship": "-[:HAS_COMMODITY]->",
+        "relationship": "-[:HAS_COMMODITY {role: 'Primary'}]->",
         "weight": 6.0
       },
       {

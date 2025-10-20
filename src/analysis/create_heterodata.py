@@ -39,8 +39,17 @@ def get_node_data(driver, label, id_prop):
     return neo4j_id_to_pyg_idx, pyg_idx_to_neo4j_id
 
 def get_edge_data(driver, src_label, rel_type, dst_label, src_id_prop, dst_id_prop):
-    """Fetches relationships from Neo4j for a given edge type."""
-    query = f"MATCH (s:{src_label})-[r:{rel_type}]->(d:{dst_label}) RETURN s.{src_id_prop} AS source, d.{dst_id_prop} AS target"
+    """Fetches relationships from Neo4j for a given edge type.
+
+    Note: For (Project)-[:HAS_COMMODITY]->(Commodity), only main products are included
+    by filtering relationship property `role = 'Primary'` so metapath walks reflect
+    primary commodities only.
+    """
+    query = f"MATCH (s:{src_label})-[r:{rel_type}]->(d:{dst_label})"
+    # Restrict commodity links to main products only
+    if rel_type == 'HAS_COMMODITY':
+        query += " WHERE r.role = 'Primary'"
+    query += f" RETURN s.{src_id_prop} AS source, d.{dst_id_prop} AS target"
     with driver.session() as session:
         result = session.run(query)
         df = pd.DataFrame([record.data() for record in result])

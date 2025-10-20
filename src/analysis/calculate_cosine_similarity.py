@@ -79,12 +79,14 @@ def load_matching_id_maps(all_embeddings: dict):
 
     # If no perfect match is found, use the first valid file as a fallback
     if attempted:
-        fallback_path, fallback_maps = attempted[0]
-        print(f"[warn] Falling back to ID maps from '{fallback_path}', but row counts may mismatch.")
-        return fallback_maps, fallback_path
+        tried = ", ".join(str(path) for path, _ in attempted)
+        raise ValueError(
+            "No ID maps matched the embedding dimensions. "
+            f"Tried: {tried}. Set MP2V_ID_MAPS_PATH to the file saved alongside the embeddings."
+        )
 
     raise FileNotFoundError(
-        "Could not find a usable ID maps file. "
+        "Could not find any ID maps file. "
         "Please set MP2V_ID_MAPS_PATH to the matching id_mappings file saved during training."
     )
 
@@ -117,18 +119,19 @@ def run_similarity_analysis(node_type: str, all_embeddings: dict, id_maps: dict,
             try:
                 df = pd.read_csv(csv_path, index_col=0)
             except Exception as e:
-                print(f"[warn] Failed to rebuild ID map from '{csv_path}': {e}")
-                return
+                raise RuntimeError(f"Failed to rebuild ID map from '{csv_path}': {e}") from e
             if df.shape[0] != embeddings.shape[0]:
-                print(f"[warn] CSV row count mismatch for {node_type}: csv_rows={df.shape[0]} vs embeddings={embeddings.shape[0]}")
-                print("Set MP2V_ID_MAPS_PATH to the matching id_mappings file saved during training.")
-                return
+                raise ValueError(
+                    f"CSV row count mismatch for {node_type}: csv_rows={df.shape[0]} vs embeddings={embeddings.shape[0]}. "
+                    "Set MP2V_ID_MAPS_PATH to the matching id_mappings file saved during training."
+                )
             id_map = pd.Series(df.index.tolist())
             print(f"[info] Rebuilt '{node_type}' ID map from '{csv_path}'.")
         else:
-            print("These embeddings were likely trained on a subgraph."
-                  " Set MP2V_ID_MAPS_PATH to the matching id_mappings file saved during training.")
-            return
+            raise ValueError(
+                "Could not align embeddings with ID maps for "
+                f"{node_type}. Set MP2V_ID_MAPS_PATH to the matching id_mappings file saved during training."
+            )
 
     print(f"Loaded {embeddings.shape[0]} {node_type.lower()} embeddings with dim={embeddings.shape[1]}.")
 
@@ -185,8 +188,8 @@ def main():
     """
     TOP_K = 5
     # Company IDs for pairwise comparison and Top-K search
-    COMPANY_A_ID = "comp_2"
-    COMPANY_B_ID = "comp_3"
+    COMPANY_A_ID = "comp_3"
+    COMPANY_B_ID = "comp_4"
     #
     # Project IDs for pairwise comparison and Top-K search
     PROJECT_A_ID = "project_1461"

@@ -14,10 +14,11 @@ import math
 import os
 import random
 import sys
-from collections import Counter, defaultdict
+from collections import Counter
 from pathlib import Path
 from typing import Dict, List, Sequence, Tuple
 
+import numpy as np
 import pandas as pd
 import torch
 import torch.optim as optim
@@ -48,15 +49,6 @@ MAX_STEPS_PER_PATH = int(os.environ.get("MP2V_MAX_STEPS", 5000))
 REPEAT_SCALE = float(os.environ.get("MP2V_REPEAT_SCALE", 10.0))
 RELATION_TYPES = config.RELATION_TYPES
 VERBOSE = True
-DEFAULT_SUB_ID_MAPS_PATH = config.FEATURE_DIR / "id_mappings_subgraph.pt"
-
-TWO_HOP_BRIDGE = os.environ.get("MP2V_2HOP_BRIDGE", "1") == "1"
-TWO_HOP_TOTAL_PROJECT_CAP = int(os.environ.get("MP2V_2HOP_TOTAL_PROJECT_CAP", 1200))
-TWO_HOP_MAX_COMMODITY_PROJECTS = int(os.environ.get("MP2V_2HOP_MAX_COMMODITY_PROJECTS", 50))
-TWO_HOP_MAX_LGA_PROJECTS = int(os.environ.get("MP2V_2HOP_MAX_LGA_PROJECTS", 40))
-TWO_HOP_MAX_RESERVES_PROJECTS = int(os.environ.get("MP2V_2HOP_MAX_RESERVES_PROJECTS", 30))
-TWO_HOP_MAX_NEW_COMPANIES = int(os.environ.get("MP2V_2HOP_MAX_NEW_COMPANIES", 600))
-
 
 # ---------------- Utilities ----------------
 def set_seed(seed: int = 42):
@@ -64,6 +56,7 @@ def set_seed(seed: int = 42):
     torch.manual_seed(seed)
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(seed)
+    np.random.seed(seed)
 
 
 def build_schema_map(
@@ -169,228 +162,12 @@ def print_estimated_steps(data, metapaths: List[List[Tuple[str, str, str]]]):
     print(f"≈ total steps per epoch (if all paths used): {total}")
 
 
-# ===================== Subgraph helpers =====================
-def ids_to_idx(series: pd.Series, neo4j_ids):
-    """Map Neo4j string IDs (e.g., 'comp_123') to PyG indices via id_maps series."""
-    val_to_idx = {v: i for i, v in enumerate(series.to_numpy())}
-    return [val_to_idx[_id] for _id in neo4j_ids if _id in val_to_idx]
-
-
-def top_k_projects_from_companies(data: HeteroData, company_keep_idx, top_k=100):
-    et = ('Company', 'owns', 'Project')
-    if et not in data.edge_types:
-        return set()
-    ei = data[et].edge_index
-    src, dst = ei[0], ei[1]
-    if len(company_keep_idx) == 0:
-        return set()
-    mask = torch.isin(src, torch.tensor(sorted(company_keep_idx), dtype=torch.long))
-    proj_hits = dst[mask]
-    if proj_hits.numel() == 0:
-        return set()
-    vals, cnts = proj_hits.unique(return_counts=True)
-    order = torch.argsort(cnts, descending=True)
-    if top_k is None or top_k <= 0:
-        return set(vals.tolist())
-    return set(vals[order][:top_k].tolist())
-
-
-def expand_one_hop_needed_for_metapaths(data: HeteroData, allow: dict):
-    keep = {t: set(v) for t, v in allow.items()}
-
-    if 'Project' in keep and keep['Project']:
-        P = torch.tensor(sorted(keep['Project']), dtype=torch.long)
-        for et in [
-            ('Project', 'has_commodity', 'Commodity'),
-            ('Project', 'categorised_as', 'ReservesScale'),
-            ('Project', 'located_in', 'LGA'),
-        ]:
-            if et in data.edge_types:
-                ei = data[et].edge_index
-                mask = torch.isin(ei[0], P)
-                keep.setdefault(et[2], set()).update(ei[1][mask].tolist())
-        if 'LGA' in keep and keep['LGA'] and ('LGA', 'located_in', 'State') in data.edge_types:
-            L = torch.tensor(sorted(keep['LGA']), dtype=torch.long)
-            ei = data[('LGA', 'located_in', 'State')].edge_index
-            mask = torch.isin(ei[0], L)
-            keep.setdefault('State', set()).update(ei[1][mask].tolist())
-
-    if 'Company' in keep and keep['Company']:
-        C = torch.tensor(sorted(keep['Company']), dtype=torch.long)
-        for et in [
-            ('Company', 'classified_as', 'GICSSubIndustry'),
-            ('Company', 'classified_as', 'ICBSubsector'),
-            ('Company', 'categorised_as', 'TierMarketCap'),
-            ('Company', 'categorised_as', 'TierRevenue'),
-            ('Company', 'categorised_as', 'TierAssets'),
-            ('Company', 'domiciled_in', 'Country'),
-        ]:
-            if et in data.edge_types:
-                ei = data[et].edge_index
-                mask = torch.isin(ei[0], C)
-                keep.setdefault(et[2], set()).update(ei[1][mask].tolist())
-
-    if 'Commodity' in keep and keep['Commodity'] and ('Commodity', 'grouped_as', 'CommodityGroup') in data.edge_types:
-        K = torch.tensor(sorted(keep['Commodity']), dtype=torch.long)
-        ei = data[('Commodity', 'grouped_as', 'CommodityGroup')].edge_index
-        mask = torch.isin(ei[0], K)
-        keep.setdefault('CommodityGroup', set()).update(ei[1][mask].tolist())
-
-    return keep
-
-
-def induce_subgraph_by_allowlist(data: HeteroData, allow: dict):
-    sub = HeteroData(); old2new = {}
-    # nodes
-    for nt in data.node_types:
-        if nt not in allow or len(allow[nt]) == 0:
-            sub[nt].num_nodes = 0
-            old2new[nt] = torch.empty(0, dtype=torch.long)
-            continue
-        keep = torch.tensor(sorted(list(allow[nt])), dtype=torch.long)
-        N = getattr(data[nt], 'num_nodes', 0)
-        mapping = -torch.ones(N, dtype=torch.long)
-        mapping[keep] = torch.arange(keep.numel(), dtype=torch.long)
-        old2new[nt] = mapping
-        sub[nt].num_nodes = keep.numel()
-    # edges
-    for (s, r, d) in data.edge_types:
-        if sub[s].num_nodes == 0 or sub[d].num_nodes == 0:
-            continue
-        ei = data[(s, r, d)].edge_index
-        ms, md = old2new[s], old2new[d]
-        if ms.numel() == 0 or md.numel() == 0:
-            continue
-        mask = (ms[ei[0]] >= 0) & (md[ei[1]] >= 0)
-        if mask.sum() == 0:
-            continue
-        sub[(s, r, d)].edge_index = torch.stack([ms[ei[0][mask]], md[ei[1][mask]]], dim=0)
-    return sub, old2new
-
-
-def build_sub_id_maps(id_maps: dict, allow: dict):
-    sub_maps = {}
-    for nt, idx_set in allow.items():
-        if nt not in id_maps:
-            continue
-        keep_sorted = sorted(list(idx_set))
-        sub_maps[nt] = id_maps[nt].iloc[keep_sorted].reset_index(drop=True)
-    return sub_maps
-
-
-def metapath_two_hop_bridge(
-    data: HeteroData,
-    allow: dict,
-    *,
-    per_anchor_limits: Dict[str, int],
-    total_project_cap: int,
-    max_new_companies: int,
-) -> dict:
-    """
-    Expand the allowlist with a bounded 2-hop closure that reinforces key metapaths:
-    - Company>Project>Commodity/LGA/ReservesScale>Project>Company
-    - Project>Company>…>Company>Project
-    """
-    keep: Dict[str, set] = {nt: set(idx) for nt, idx in allow.items()}
-    project_set = keep.setdefault("Project", set())
-    company_set = keep.setdefault("Company", set())
-
-    if not project_set or (not keep.get("Commodity") and not keep.get("LGA") and not keep.get("ReservesScale")):
-        return keep
-
-    anchor_cfgs = [
-        ("Commodity", ("Project", "has_commodity", "Commodity")),
-        ("LGA", ("Project", "located_in", "LGA")),
-        ("ReservesScale", ("Project", "categorised_as", "ReservesScale")),
-    ]
-
-    new_projects: set = set()
-    anchor_stats = {name: 0 for name, _ in anchor_cfgs}
-    remaining_total = total_project_cap if total_project_cap > 0 else None
-
-    for anchor_type, edge_key in anchor_cfgs:
-        anchors = keep.get(anchor_type, set())
-        if not anchors or edge_key not in data.edge_types:
-            continue
-        ei = data[edge_key].edge_index
-        if ei.numel() == 0:
-            continue
-        src_nodes = ei[0].tolist()
-        dst_nodes = ei[1].tolist()
-        adj = defaultdict(set)
-        for src, dst in zip(src_nodes, dst_nodes):
-            adj[dst].add(src)
-
-        per_anchor_limit = per_anchor_limits.get(anchor_type, -1)
-        for anchor in sorted(anchors):
-            candidates = [p for p in adj.get(anchor, ()) if p not in project_set and p not in new_projects]
-            if not candidates:
-                continue
-            if per_anchor_limit > 0 and len(candidates) > per_anchor_limit:
-                random.shuffle(candidates)
-                candidates = candidates[:per_anchor_limit]
-            if remaining_total is not None and remaining_total <= 0:
-                break
-            if remaining_total is not None and len(candidates) > remaining_total:
-                candidates = candidates[:remaining_total]
-            new_projects.update(candidates)
-            anchor_stats[anchor_type] += len(candidates)
-            if remaining_total is not None:
-                remaining_total -= len(candidates)
-                if remaining_total <= 0:
-                    break
-        if remaining_total is not None and remaining_total <= 0:
-            break
-
-    if new_projects:
-        project_set.update(new_projects)
-        breakdown = ", ".join(
-            f"{k}={v}" for k, v in anchor_stats.items() if v
-        ) or "none"
-        limit_tag = "unbounded" if total_project_cap <= 0 else str(total_project_cap)
-        print(
-            f"[2hop] Added {len(new_projects)} projects via Commodity/LGA/ReservesScale bridging "
-            f"(total_cap={limit_tag}; breakdown: {breakdown})."
-        )
-    else:
-        print("[2hop] No additional projects added via 2-hop bridging.")
-
-    new_companies: set = set()
-    owns_edge = ("Company", "owns", "Project")
-    if new_projects and owns_edge in data.edge_types:
-        ei = data[owns_edge].edge_index
-        if ei.numel() > 0:
-            comp_nodes = ei[0].tolist()
-            proj_nodes = ei[1].tolist()
-            proj_to_comp = defaultdict(set)
-            for comp, proj in zip(comp_nodes, proj_nodes):
-                proj_to_comp[proj].add(comp)
-
-            remaining_companies = max_new_companies if max_new_companies > 0 else None
-            for proj in sorted(new_projects):
-                candidates = [c for c in proj_to_comp.get(proj, ()) if c not in company_set and c not in new_companies]
-                if not candidates:
-                    continue
-                if remaining_companies is not None and remaining_companies <= 0:
-                    break
-                if remaining_companies is not None and len(candidates) > remaining_companies:
-                    random.shuffle(candidates)
-                    candidates = candidates[:remaining_companies]
-                new_companies.update(candidates)
-                if remaining_companies is not None:
-                    remaining_companies -= len(candidates)
-                    if remaining_companies <= 0:
-                        break
-
-    if new_companies:
-        company_set.update(new_companies)
-        limit_tag = "unbounded" if max_new_companies <= 0 else str(max_new_companies)
-        print(f"[2hop] Added {len(new_companies)} companies from bridged projects (limit={limit_tag}).")
-    elif new_projects:
-        print("[2hop] No new companies discovered for bridged projects.")
-
-    return keep
-# ================== /Subgraph helpers ==================
+def metapath_seed_priority(mp: List[Tuple[str, str, str]]) -> Tuple[int, int]:
+    """Higher score for covering more node types, then longer paths."""
+    nodes = set()
+    for s, _, d in mp:
+        nodes.add(s); nodes.add(d)
+    return (len(nodes), len(mp))
 
 
 def make_unique_paths_and_probs(metapaths: List[List[Tuple[str, str, str]]]):
@@ -438,19 +215,30 @@ def train(data, metapaths: List[List[Tuple[str, str, str]]]):
 
     node_type_counts = {nt: getattr(data[nt], 'num_nodes', 0) for nt in data.node_types}
 
-    # CPU 友好：自动放大 MAX_STEPS_PER_PATH
-    start_type = metapaths[0][0][0]
+    # 选择覆盖类型最多的 metapath 作为模型初始化种子
+    seed_metapath = max(metapaths, key=metapath_seed_priority)
+    if seed_metapath is not metapaths[0]:
+        seed_str = " > ".join([s for s, _, _ in seed_metapath] + [seed_metapath[-1][-1]])
+        print(f"[info] Seed metapath selected for model initialisation: {seed_str}")
+
+    # 估算步数并应用硬上限
+    start_type = seed_metapath[0][0]
     est_steps = math.ceil(node_type_counts.get(start_type, 0) * WALKS_PER_NODE / BATCH_SIZE)
-    auto_max_steps = max(MAX_STEPS_PER_PATH, int(est_steps * 1.2))
-    if auto_max_steps != MAX_STEPS_PER_PATH:
-        print(f"[auto] steps/epoch≈{est_steps}, raise MAX_STEPS_PER_PATH -> {auto_max_steps}")
-    _MAX_STEPS_PER_PATH = auto_max_steps
+    est_steps = max(est_steps, 1)
+    if MAX_STEPS_PER_PATH > 0:
+        dynamic_cap = max(1, int(est_steps * 1.2))
+        _MAX_STEPS_PER_PATH = min(MAX_STEPS_PER_PATH, dynamic_cap)
+        if _MAX_STEPS_PER_PATH < MAX_STEPS_PER_PATH:
+            print(f"[auto] steps/epoch≈{est_steps}, clamp MAX_STEPS_PER_PATH -> {_MAX_STEPS_PER_PATH}")
+    else:
+        _MAX_STEPS_PER_PATH = max(1, int(est_steps * 1.2))
+        print(f"[auto] steps/epoch≈{est_steps}, derived MAX_STEPS_PER_PATH -> {_MAX_STEPS_PER_PATH}")
 
     # 构造模型（PyG：始终一张 embedding 表 + 类型偏移；forward('<type>') 负责切片）
     model = MetaPath2Vec(
         edge_index_dict=edge_index_dict,
         embedding_dim=EMBEDDING_DIM,
-        metapath=metapaths[0],
+        metapath=seed_metapath,
         walk_length=WALK_LENGTH,
         context_size=CONTEXT_SIZE,
         walks_per_node=WALKS_PER_NODE,
@@ -477,9 +265,20 @@ def train(data, metapaths: List[List[Tuple[str, str, str]]]):
     epoch_pbar = tqdm(range(1, EPOCHS + 1), desc="Epochs", position=0)
     for epoch in epoch_pbar:
         model.train(); total_loss = 0.0; total_steps = 0
-    
-        sampled_idx = list(range(len(uniq_paths)))
-        random.shuffle(sampled_idx)
+
+        total_paths = len(uniq_paths)
+        if SAMPLED_PATHS_PER_EPOCH <= 0 or SAMPLED_PATHS_PER_EPOCH >= total_paths:
+            sampled_idx = list(range(total_paths))
+        else:
+            probs_arr = np.array(probs, dtype=float)
+            probs_arr = probs_arr / probs_arr.sum()
+            replace = SAMPLED_PATHS_PER_EPOCH > total_paths
+            sampled_idx = np.random.choice(
+                total_paths,
+                size=SAMPLED_PATHS_PER_EPOCH,
+                replace=replace,
+                p=probs_arr,
+            ).tolist()
         sampled_idx.sort(key=lambda i: uniq_paths[i][0][0] != "Project")
 
         # ====== 你要求添加的统计：本轮采样的起点类型分布 ======
@@ -584,6 +383,52 @@ def save_embeddings(model: MetaPath2Vec, id_maps: Dict[str, pd.Series]):
         (out_dir / f"{nt}_embeddings.csv").write_text(df.to_csv())
 
 
+# ---------------- Optional filtering by node types ----------------
+def _parse_allowed_types_from_env() -> List[str]:
+    """Parse MP2V_ALLOWED_TYPES env var into a list of node types.
+    - Example: MP2V_ALLOWED_TYPES="Company,Project[,LGA,State]"
+    - Case-insensitive compare; returned names preserve original casing from input.
+    """
+    raw = os.environ.get("MP2V_ALLOWED_TYPES", "").strip()
+    if not raw:
+        return []
+    parts = [p.strip() for p in raw.replace("|", ",").split(",") if p.strip()]
+    return parts
+
+
+def _filter_metapaths_by_allowed_types(
+    metapaths: List[List[Tuple[str, str, str]]], allowed_types: Sequence[str]
+) -> List[List[Tuple[str, str, str]]]:
+    if not allowed_types:
+        return metapaths
+
+    allowed_lc = {t.lower() for t in allowed_types}
+
+    def mp_ok(mp: List[Tuple[str, str, str]]) -> bool:
+        for s, _, d in mp:
+            if s.lower() not in allowed_lc or d.lower() not in allowed_lc:
+                return False
+        return True
+
+    kept = [mp for mp in metapaths if mp_ok(mp)]
+    dropped = len(metapaths) - len(kept)
+    print(
+        f"[filter] MP2V_ALLOWED_TYPES={list(allowed_types)} -> keep={len(kept)} drop={dropped}"
+    )
+    if dropped > 0 and VERBOSE:
+        # Show up to 3 examples that were removed
+        shown = 0
+        for mp in metapaths:
+            if mp in kept:
+                continue
+            path_str = ' > '.join([s for s, _, _ in mp] + [mp[-1][-1]])
+            print(f"        - dropped: {path_str}")
+            shown += 1
+            if shown >= 3:
+                break
+    return kept
+
+
 # ---------------- Main ----------------
 if __name__ == "__main__":
     set_seed(SEED)
@@ -595,52 +440,8 @@ if __name__ == "__main__":
     id_maps = torch.load(config.ID_MAPS_PATH, weights_only=False) if os.path.exists(config.ID_MAPS_PATH) else None
     print("Data loaded successfully.")
 
-    # --- Optional subgraph induction ---
-    USE_SUB = os.environ.get("MP2V_SUBGRAPH", "0") == "1"
-    COMPANY_IDS_FILE = os.environ.get("MP2V_COMPANY_IDS_FILE", "")
-    TOPK_PROJ = int(os.environ.get("MP2V_TOPK_PROJECTS", 100))
     id_maps_out_override = os.environ.get("MP2V_ID_MAPS_OUT_PATH")
-    if id_maps_out_override:
-        id_maps_save_path = Path(id_maps_out_override)
-    else:
-        id_maps_save_path = Path(config.ID_MAPS_PATH)
-
-    if USE_SUB:
-        # default file path: same directory as this script
-        if not COMPANY_IDS_FILE:
-            COMPANY_IDS_FILE = str(Path(__file__).parent / "seed_companies.txt")
-        if id_maps is None or 'Company' not in id_maps:
-            print("Error: id_maps missing 'Company' for subgraph mode."); sys.exit(1)
-        if not os.path.exists(COMPANY_IDS_FILE):
-            print(f"Error: seeds file not found: {COMPANY_IDS_FILE}"); sys.exit(1)
-        with open(COMPANY_IDS_FILE, "r", encoding="utf-8") as f:
-            company_ids = [ln.strip() for ln in f if ln.strip()]
-        company_idx = set(ids_to_idx(id_maps["Company"], company_ids))
-        # Project top-K by count from selected companies
-        proj_idx = top_k_projects_from_companies(data, company_idx, top_k=TOPK_PROJ)
-        allow = {"Company": company_idx, "Project": proj_idx}
-        allow = expand_one_hop_needed_for_metapaths(data, allow)
-        if TWO_HOP_BRIDGE:
-            anchor_limits = {
-                "Commodity": TWO_HOP_MAX_COMMODITY_PROJECTS,
-                "LGA": TWO_HOP_MAX_LGA_PROJECTS,
-                "ReservesScale": TWO_HOP_MAX_RESERVES_PROJECTS,
-            }
-            allow = metapath_two_hop_bridge(
-                data,
-                allow,
-                per_anchor_limits=anchor_limits,
-                total_project_cap=TWO_HOP_TOTAL_PROJECT_CAP,
-                max_new_companies=TWO_HOP_MAX_NEW_COMPANIES,
-            )
-            allow = expand_one_hop_needed_for_metapaths(data, allow)
-        sub_data, old2new = induce_subgraph_by_allowlist(data, allow)
-        sub_id_maps = build_sub_id_maps(id_maps, allow)
-        data, id_maps = sub_data, sub_id_maps
-        sizes = {nt: getattr(data[nt], 'num_nodes', 0) for nt in data.node_types}
-        print(f"[subgraph] node counts: {sizes}")
-        if not id_maps_out_override:
-            id_maps_save_path = DEFAULT_SUB_ID_MAPS_PATH
+    id_maps_save_path = Path(id_maps_out_override) if id_maps_out_override else Path(config.ID_MAPS_PATH)
 
     schema_lookup = build_schema_map(RELATION_TYPES)
     metapaths = load_and_process_metapaths(config.METAPATH_CONFIG_PATH, schema_lookup, repeat_scale=REPEAT_SCALE)
@@ -648,6 +449,11 @@ if __name__ == "__main__":
         print("No valid metapaths from config. Exit."); sys.exit(1)
 
     metapaths = validate_metapaths_against_graph(metapaths, data)
+
+    # Optionally filter metapaths by allowed node types from env
+    allowed_types = _parse_allowed_types_from_env()
+    if allowed_types:
+        metapaths = _filter_metapaths_by_allowed_types(metapaths, allowed_types)
 
     # ====== 你要求添加的强校验与 OK 日志 ======
     if not metapaths:
@@ -665,7 +471,5 @@ if __name__ == "__main__":
         config.ensure_parent(id_maps_save_path)
         torch.save(id_maps, id_maps_save_path)
         print(f"[ok] ID maps saved to '{id_maps_save_path}'.")
-        if USE_SUB and not id_maps_out_override:
-            print("Hint: Set MP2V_ID_MAPS_PATH to this file when running analysis scripts.")
 
     print("\nEmbedding generation process completed successfully.")
