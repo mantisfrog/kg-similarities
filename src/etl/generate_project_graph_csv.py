@@ -20,6 +20,9 @@ def generate_project_nodes(df: pd.DataFrame, output_dir: Path):
     # Generate projectID:ID from ENO column
     df_project['projectID:ID'] = df_project['projectID']
     
+    # Add project name
+    df_project['name:string'] = df_project['PROJECT_NAME']
+    
     # Copy ENO to eno:int
     df_project['eno:int'] = df_project['ENO']
 
@@ -32,7 +35,7 @@ def generate_project_nodes(df: pd.DataFrame, output_dir: Path):
 
     # Select and order columns for the output CSV
     output_columns = [
-        'projectID:ID', 'eno:int', 'location:point'
+        'projectID:ID', 'name:string', 'eno:int', 'location:point'
     ]
     df_project = df_project[output_columns]
 

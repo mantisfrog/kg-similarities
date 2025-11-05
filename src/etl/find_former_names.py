@@ -11,7 +11,11 @@ sys.path.append(str(project_root))
 from src import config
 
 # Increase CSV field size limit in case the TSV has very long fields
-csv.field_size_limit(sys.maxsize)
+# Use a safe value that works on Windows
+try:
+    csv.field_size_limit(sys.maxsize)
+except OverflowError:
+    csv.field_size_limit(2147483647)  # Max value for 32-bit systems
 
 def process_files(MERGED_CSV_path, company_tsv_path, output_csv_path):
     """

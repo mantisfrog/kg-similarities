@@ -29,6 +29,7 @@ def create_company_nodes(df: pd.DataFrame):
     # Define columns and their types for the node file
     node_cols = {
         "companyID": "companyID:ID",
+        "Company Name": "name:string",
         "Ticker": "Ticker:string",
         "ACN": "ACN:int",
         "Market Cap": "Market Cap:float",

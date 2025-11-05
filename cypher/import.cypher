@@ -33,7 +33,8 @@ CREATE CONSTRAINT countrygroup_id_unique IF NOT EXISTS FOR (cg:CountryGroup) REQ
 // Import Company nodes
 LOAD CSV WITH HEADERS FROM 'file:///node_Company.csv' AS row
 MERGE (c:Company {companyID: row.`companyID:ID`})
-SET c.ticker = row.`Ticker:string`,
+SET c.name = row.`name:string`,
+    c.ticker = row.`Ticker:string`,
     c.acn = toInteger(row.`ACN:int`),
     c.marketCap = toFloat(row.`Market Cap:float`),
     c.revenue = toFloat(row.`Revenue:Y:float`),
@@ -66,7 +67,8 @@ LOAD CSV WITH HEADERS FROM 'file:///node_BICSL6.csv' AS row MERGE (n:BICSL6 {bic
 // Import Project nodes
 LOAD CSV WITH HEADERS FROM 'file:///node_Project.csv' AS row
 MERGE (p:Project {projectID: row.`projectID:ID`})
-SET p.eno = toInteger(row.`eno:int`),
+SET p.name = row.`name:string`,
+    p.eno = toInteger(row.`eno:int`),
     p.location = row.`location:point`;
 
 // Import ProjectName nodes
@@ -109,7 +111,8 @@ MERGE (start)-[:OWNS]->(end);
 LOAD CSV WITH HEADERS FROM 'file:///rel_Refers_to_Company.csv' AS row
 MATCH (start:CompanyName {companyNameID: row.`:START_ID`})
 MATCH (end:Company {companyID: row.`:END_ID`})
-MERGE (start)-[:REFERS_TO_COMPANY {type: row.`type:string`}]->(end);
+MERGE (start)-[r:REFERS_TO_COMPANY]->(end)
+SET r.type = row.`type:string`;
 
 // Import relationship: Company -> DOMICILED_IN -> Country
 LOAD CSV WITH HEADERS FROM 'file:///rel_Domiciled_in.csv' AS row
@@ -169,7 +172,8 @@ LOAD CSV WITH HEADERS FROM 'file:///rel_Part_of_BICSL6.csv' AS row MATCH (start:
 LOAD CSV WITH HEADERS FROM 'file:///rel_Refers_to_Project.csv' AS row
 MATCH (start:ProjectName {projectNameID: row.`:START_ID`})
 MATCH (end:Project {projectID: row.`:END_ID`})
-MERGE (start)-[:REFERS_TO_PROJECT {type: row.`type:string`}]->(end);
+MERGE (start)-[r:REFERS_TO_PROJECT]->(end)
+SET r.type = row.`type:string`;
 
 // Import relationship: Project -> LOCATED_IN -> LGA
 LOAD CSV WITH HEADERS FROM 'file:///rel_Project_Located_in_LGA.csv' AS row
@@ -187,7 +191,8 @@ MERGE (start)-[:LOCATED_IN]->(end);
 LOAD CSV WITH HEADERS FROM 'file:///rel_Has_Commodity.csv' AS row
 MATCH (start:Project {projectID: row.`:START_ID`})
 MATCH (end:Commodity {commodityID: row.`:END_ID`})
-MERGE (start)-[:HAS_COMMODITY {role: row.`role:string`}]->(end);
+MERGE (start)-[r:HAS_COMMODITY]->(end)
+SET r.role = row.`role:string`;
 
 // Import relationship: Commodity -> GROUPED_AS -> CommodityGroup
 LOAD CSV WITH HEADERS FROM 'file:///rel_Grouped_as.csv' AS row
