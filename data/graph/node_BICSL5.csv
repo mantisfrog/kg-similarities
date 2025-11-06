@@ -1,0 +1,193 @@
+bicsl5ID:ID,text:string
+bics_l5_1,3D Printers
+bics_l5_2,Advanced Materials
+bics_l5_3,Advertising Agencies & Svcs
+bics_l5_4,Aggregates
+bics_l5_5,Aircraft Parts
+bics_l5_6,Alternative Vehicle Parts
+bics_l5_7,Aluminum
+bics_l5_8,Apparel Design
+bics_l5_9,Aquaculture Fishing
+bics_l5_10,Architectural Services
+bics_l5_11,Auto Finance
+bics_l5_12,Auto Metal Stamping
+bics_l5_13,Automotive Engineering & Tech
+bics_l5_14,Bicycles & Parts
+bics_l5_15,Biofuel Feedstock Suppliers
+bics_l5_16,Blank Check
+bics_l5_17,Book Stores
+bics_l5_18,"Brick, Tile & Clay Bldg Matl"
+bics_l5_19,Building Materials Dealers
+bics_l5_20,Carbonated Soft Drinks
+bics_l5_21,Casino Hotels
+bics_l5_22,Cement
+bics_l5_23,Cloud & Virtualization Software
+bics_l5_24,Coal Support Services
+bics_l5_25,Cobalt
+bics_l5_26,Commercial Vehicles Mfg
+bics_l5_27,Comml Equip Finance & Leasing
+bics_l5_28,Communication Equip Cmpnts
+bics_l5_29,Communication Infra Const
+bics_l5_30,Concrete Products
+bics_l5_31,Const & Mining Mach Parts & Svcs
+bics_l5_32,Construction Engineering Svcs
+bics_l5_33,Construction Machinery
+bics_l5_34,Consumer Electronics - Online
+bics_l5_35,Consumer Retail Chemicals
+bics_l5_36,Content & Collaboration Software
+bics_l5_37,Copper
+bics_l5_38,Crude Oil & Natural Gas E&P
+bics_l5_39,Cryptocurrency Investment Co
+bics_l5_40,Cutting & Machine Tool Acc
+bics_l5_41,Dairy Products
+bics_l5_42,Database Software
+bics_l5_43,Development & Construction
+bics_l5_44,Discrete
+bics_l5_45,Display Components
+bics_l5_46,Displays
+bics_l5_47,Drill Support
+bics_l5_48,Electric Distribution
+bics_l5_49,Electronic Chemicals
+bics_l5_50,Electronic Coil
+bics_l5_51,Energy Infra Construction
+bics_l5_52,Enterprise Software
+bics_l5_53,Environmental Engineering Svcs
+bics_l5_54,Explosives
+bics_l5_55,Fabricated Metal
+bics_l5_56,Farm Machinery & Equipment
+bics_l5_57,Fertilizers
+bics_l5_58,Film & TV Production & Distr
+bics_l5_59,Financial Info Services
+bics_l5_60,Financial Transaction Processors
+bics_l5_61,Flat Rolled
+bics_l5_62,Flooring
+bics_l5_63,Food Crop Processing
+bics_l5_64,Food Product Machinery
+bics_l5_65,Footwear Wholesalers
+bics_l5_66,Fossil Electric Generation
+bics_l5_67,Fresh Fruit & Vegetable Whslrs
+bics_l5_68,Functional Additives
+bics_l5_69,Gas Distribution
+bics_l5_70,General Purpose Machinery
+bics_l5_71,Gold
+bics_l5_72,HVAC Building Products
+bics_l5_73,Hardware
+bics_l5_74,Hardware Wholesalers
+bics_l5_75,Health Care Testing Services
+bics_l5_76,Health Supplement Stores
+bics_l5_77,IT Services - Commercial
+bics_l5_78,IT Services - Government
+bics_l5_79,Ind & Traffic Engineering Svcs
+bics_l5_80,Industrial Buildings Const
+bics_l5_81,Industrial Equip & Sply Whslrs
+bics_l5_82,Industrial Machinery Whslrs
+bics_l5_83,Industrial Mold
+bics_l5_84,Industrial Rental Services
+bics_l5_85,Industrial Valve
+bics_l5_86,Inorganic Base Chemicals
+bics_l5_87,Insulation Products
+bics_l5_88,Internet Advertising Portals
+bics_l5_89,Investment Banking
+bics_l5_90,Investment Holding Companies
+bics_l5_91,Iron Foundries
+bics_l5_92,Iron Ore Mining
+bics_l5_93,Jewelry & Watch - Online
+bics_l5_94,Jewelry & Watch Wholesalers
+bics_l5_95,Jewelry Stores
+bics_l5_96,Landscaping Services
+bics_l5_97,Lighting Fixtures
+bics_l5_98,Local TV Broadcasting
+bics_l5_99,"Long, Pipe & Tubular"
+bics_l5_100,Machine Tool (Metal Cutting)
+bics_l5_101,Manganese
+bics_l5_102,Marine Energy Equipment
+bics_l5_103,Metal Containers & Packaging
+bics_l5_104,Metal Service Centers
+bics_l5_105,Metallurgical Coal
+bics_l5_106,Metals Support Services
+bics_l5_107,Mgmt & Admin Consulting Svcs
+bics_l5_108,Mineral Mining
+bics_l5_109,Mining Machinery & Equipment
+bics_l5_110,Mobile & Online Games
+bics_l5_111,Molybdenum
+bics_l5_112,Motorcycles
+bics_l5_113,Movie Theaters
+bics_l5_114,"News, Sports & Entmt Web"
+bics_l5_115,"Nickel, Lead & Zinc"
+bics_l5_116,Non-Metallic Mining Support
+bics_l5_117,Nursing & Residential Care
+bics_l5_118,Nutritional Supplements
+bics_l5_119,Oil & Liquid Rich Gas Pipelines
+bics_l5_120,Onshore Drilling
+bics_l5_121,"Organic Resins, Fibers & Rubber"
+bics_l5_122,Other Machinery Parts & Svcs
+bics_l5_123,Other Renewable Energy Equip
+bics_l5_124,Outpatient Health Services
+bics_l5_125,PCBs
+bics_l5_126,Paints & Coatings
+bics_l5_127,Paper Industry Machinery
+bics_l5_128,Passenger Car Rental & Leasing
+bics_l5_129,Personal Computers
+bics_l5_130,Petroleum Marketing
+bics_l5_131,Petroleum Refining
+bics_l5_132,Pharmacies & Drug Stores
+bics_l5_133,Pharmacy Benefits Mgmt (PBM)
+bics_l5_134,Plastic Building Materials
+bics_l5_135,Plastics & Rubber Machinery
+bics_l5_136,Platinum Group
+bics_l5_137,Plumbing Fixtures
+bics_l5_138,Power Generation Equipment
+bics_l5_139,Power Trans & Distr Equip
+bics_l5_140,Precious Stone Mining
+bics_l5_141,"Protein, Dairy & Other Food Alt"
+bics_l5_142,Psych & Substance Abuse Hosp
+bics_l5_143,Radiation Equipment
+bics_l5_144,Real Estate Investments
+bics_l5_145,Recyclable Materials
+bics_l5_146,Renewable Energy Generation
+bics_l5_147,Royalty Income - Oil & Gas
+bics_l5_148,Security & Commodity Brokerage
+bics_l5_149,Security Software
+bics_l5_150,Seeds & Agriculture Biotech
+bics_l5_151,Silver
+bics_l5_152,Solar Energy Equipment
+bics_l5_153,Solid Waste Collection & Treat
+bics_l5_154,Special Die & Tool Fixture
+bics_l5_155,Specialized Freight Trucking Svcs
+bics_l5_156,Specialty Food & Staples Stores
+bics_l5_157,Specialty Metals
+bics_l5_158,Specialty Pharma
+bics_l5_159,Specialty Software
+bics_l5_160,Steel Processors
+bics_l5_161,Stone Building Products
+bics_l5_162,Sundry Building Products
+bics_l5_163,Supermarkets
+bics_l5_164,Surgical Appliances & Supplies
+bics_l5_165,Tanker Shipping
+bics_l5_166,Textile
+bics_l5_167,Textile Products
+bics_l5_168,Thermal Coal
+bics_l5_169,Tin
+bics_l5_170,Tire
+bics_l5_171,Tobacco Products
+bics_l5_172,Tools
+bics_l5_173,Total Commodity - Rail
+bics_l5_174,Trading & Principal Investment
+bics_l5_175,Transaction Mgmt Systems
+bics_l5_176,Transport Support Services
+bics_l5_177,Transportation Infra Const
+bics_l5_178,Transportation Infra Operators
+bics_l5_179,Uranium
+bics_l5_180,Utility Line Construction
+bics_l5_181,Vehicle Batteries
+bics_l5_182,Vehicle Wheels
+bics_l5_183,Venture Capital
+bics_l5_184,Vintners
+bics_l5_185,Watch & Jewelry Design
+bics_l5_186,Water Purification Equipment
+bics_l5_187,Welding & Solder Equipment
+bics_l5_188,Wind Energy Equipment
+bics_l5_189,Windows & Doors
+bics_l5_190,Wire & Cable
+bics_l5_191,Wireless Service Providers
+bics_l5_192,Wireline Phone Services

@@ -1,0 +1,4 @@
+groupmarkettoassetID:ID,text:string
+gma_1,FairValue
+gma_2,HighValue
+gma_3,LowValue

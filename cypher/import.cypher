@@ -269,3 +269,51 @@ LOAD CSV WITH HEADERS FROM 'file:///rel_Country_PartOf_CountryGroup.csv' AS row
 MATCH (start:Country {countryID: row.`:START_ID`})
 MATCH (end:CountryGroup {countrygroupID: row.`:END_ID`})
 MERGE (start)-[:PART_OF]->(end);
+
+// =================================================================
+// 7. Import Tier Relationships
+// =================================================================
+// These relationships connect tier nodes to show their relative positions
+// with a tier_distance property indicating how many tiers apart they are
+
+// TierMarketCap tier relationships
+LOAD CSV WITH HEADERS FROM 'file:///rel_TierRelated_TierMarketCap.csv' AS row
+MATCH (start:TierMarketCap {tiermarketcapID: row.`:START_ID`})
+MATCH (end:TierMarketCap {tiermarketcapID: row.`:END_ID`})
+MERGE (start)-[r:TIER_RELATED]->(end)
+SET r.tier_distance = toInteger(row.`tier_distance:int`);
+
+// TierRevenue tier relationships
+LOAD CSV WITH HEADERS FROM 'file:///rel_TierRelated_TierRevenue.csv' AS row
+MATCH (start:TierRevenue {tierrevenueID: row.`:START_ID`})
+MATCH (end:TierRevenue {tierrevenueID: row.`:END_ID`})
+MERGE (start)-[r:TIER_RELATED]->(end)
+SET r.tier_distance = toInteger(row.`tier_distance:int`);
+
+// TierAssets tier relationships
+LOAD CSV WITH HEADERS FROM 'file:///rel_TierRelated_TierAssets.csv' AS row
+MATCH (start:TierAssets {tierassetsID: row.`:START_ID`})
+MATCH (end:TierAssets {tierassetsID: row.`:END_ID`})
+MERGE (start)-[r:TIER_RELATED]->(end)
+SET r.tier_distance = toInteger(row.`tier_distance:int`);
+
+// GroupAssetTurnover tier relationships
+LOAD CSV WITH HEADERS FROM 'file:///rel_TierRelated_GroupAssetTurnover.csv' AS row
+MATCH (start:GroupAssetTurnover {groupassetturnoverID: row.`:START_ID`})
+MATCH (end:GroupAssetTurnover {groupassetturnoverID: row.`:END_ID`})
+MERGE (start)-[r:TIER_RELATED]->(end)
+SET r.tier_distance = toInteger(row.`tier_distance:int`);
+
+// GroupMarketToAsset tier relationships
+LOAD CSV WITH HEADERS FROM 'file:///rel_TierRelated_GroupMarketToAsset.csv' AS row
+MATCH (start:GroupMarketToAsset {groupmarkettoassetID: row.`:START_ID`})
+MATCH (end:GroupMarketToAsset {groupmarkettoassetID: row.`:END_ID`})
+MERGE (start)-[r:TIER_RELATED]->(end)
+SET r.tier_distance = toInteger(row.`tier_distance:int`);
+
+// ReservesScale tier relationships
+LOAD CSV WITH HEADERS FROM 'file:///rel_TierRelated_ReservesScale.csv' AS row
+MATCH (start:ReservesScale {reservesScaleID: row.`:START_ID`})
+MATCH (end:ReservesScale {reservesScaleID: row.`:END_ID`})
+MERGE (start)-[r:TIER_RELATED]->(end)
+SET r.tier_distance = toInteger(row.`tier_distance:int`);

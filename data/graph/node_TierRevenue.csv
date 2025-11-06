@@ -1,0 +1,6 @@
+tierrevenueID:ID,text:string
+trv_1,HighRevenue
+trv_2,LowRevenue
+trv_3,MidRevenue
+trv_4,UpperRevenue
+trv_5,VeryLowRevenue

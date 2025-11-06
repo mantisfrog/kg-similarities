@@ -1,0 +1,7 @@
+:START_ID,:END_ID,tier_distance:int
+gma_2,gma_1,1
+gma_2,gma_3,2
+gma_1,gma_2,1
+gma_1,gma_3,1
+gma_3,gma_2,2
+gma_3,gma_1,1

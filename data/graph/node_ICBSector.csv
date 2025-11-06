@@ -1,0 +1,41 @@
+icbsectorID:ID,text:string
+icb_sec_1,Aerospace and Defense
+icb_sec_2,Alternative Energy
+icb_sec_3,Automobiles and Parts
+icb_sec_4,Banks
+icb_sec_5,Beverages
+icb_sec_6,Chemicals
+icb_sec_7,Closed End Investments
+icb_sec_8,Construction and Materials
+icb_sec_9,Consumer Services
+icb_sec_10,Electricity
+icb_sec_11,Electronic and Electrical Equipment
+icb_sec_12,Finance and Credit Services
+icb_sec_13,Food Producers
+icb_sec_14,"Gas, Water and Multi-utilities"
+icb_sec_15,General Industrials
+icb_sec_16,Health Care Providers
+icb_sec_17,Household Goods and Home Construction
+icb_sec_18,Industrial Engineering
+icb_sec_19,Industrial Materials
+icb_sec_20,Industrial Metals and Mining
+icb_sec_21,Industrial Support Services
+icb_sec_22,Industrial Transportation
+icb_sec_23,Investment Banking and Brokerage Services
+icb_sec_24,Leisure Goods
+icb_sec_25,Media
+icb_sec_26,Medical Equipment and Services
+icb_sec_27,"Oil, Gas and Coal"
+icb_sec_28,Open End and Miscellaneous Investment Vehicles
+icb_sec_29,"Personal Care, Drug and Grocery Stores"
+icb_sec_30,Personal Goods
+icb_sec_31,Pharmaceuticals and Biotechnology
+icb_sec_32,Precious Metals and Mining
+icb_sec_33,Real Estate Investment and Services
+icb_sec_34,Retailers
+icb_sec_35,Software and Computer Services
+icb_sec_36,Technology Hardware and Equipment
+icb_sec_37,Telecommunications Equipment
+icb_sec_38,Telecommunications Service Providers
+icb_sec_39,Travel and Leisure
+icb_sec_40,Waste and Disposal Services

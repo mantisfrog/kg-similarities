@@ -1,0 +1,8 @@
+countrygroupID:ID,text:string
+cg_1,Africa
+cg_2,Asia
+cg_3,Australia
+cg_4,Europe
+cg_5,North_America
+cg_6,Other_Regions
+cg_7,South_America

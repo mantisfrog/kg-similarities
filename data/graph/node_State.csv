@@ -1,0 +1,10 @@
+stateID:ID,text:string
+state_1,ACT
+state_2,IOT
+state_3,NSW
+state_4,NT
+state_5,QLD
+state_6,SA
+state_7,TAS
+state_8,VIC
+state_9,WA

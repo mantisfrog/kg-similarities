@@ -1,0 +1,63 @@
+gicsindustryID:ID,text:string
+gics_ind_1,Aerospace & Defense
+gics_ind_2,Air Freight & Logistics
+gics_ind_3,Automobile Components
+gics_ind_4,Banks
+gics_ind_5,Beverages
+gics_ind_6,Biotechnology
+gics_ind_7,Building Products
+gics_ind_8,Capital Markets
+gics_ind_9,Chemicals
+gics_ind_10,Commercial Services & Supplies
+gics_ind_11,Communications Equipment
+gics_ind_12,Construction & Engineering
+gics_ind_13,Construction Materials
+gics_ind_14,Consumer Finance
+gics_ind_15,Consumer Staples Distribution & Retail
+gics_ind_16,Containers & Packaging
+gics_ind_17,Distributors
+gics_ind_18,Diversified Consumer Services
+gics_ind_19,Diversified REITs
+gics_ind_20,Diversified Telecommunication Services
+gics_ind_21,Electric Utilities
+gics_ind_22,Electrical Equipment
+gics_ind_23,"Electronic Equipment, Instruments & Components"
+gics_ind_24,Energy Equipment & Services
+gics_ind_25,Entertainment
+gics_ind_26,Financial Services
+gics_ind_27,Food Products
+gics_ind_28,Gas Utilities
+gics_ind_29,Ground Transportation
+gics_ind_30,Health Care Equipment & Supplies
+gics_ind_31,Health Care Providers & Services
+gics_ind_32,Health Care Technology
+gics_ind_33,"Hotels, Restaurants & Leisure"
+gics_ind_34,Household Durables
+gics_ind_35,IT Services
+gics_ind_36,Independent Power and Renewable Electricity Producers
+gics_ind_37,Industrial Conglomerates
+gics_ind_38,Insurance
+gics_ind_39,Interactive Media & Services
+gics_ind_40,Leisure Products
+gics_ind_41,Life Sciences Tools & Services
+gics_ind_42,Machinery
+gics_ind_43,Marine Transportation
+gics_ind_44,Media
+gics_ind_45,Metals & Mining
+gics_ind_46,"Oil, Gas & Consumable Fuels"
+gics_ind_47,Paper & Forest Products
+gics_ind_48,Passenger Airlines
+gics_ind_49,Personal Care Products
+gics_ind_50,Pharmaceuticals
+gics_ind_51,Professional Services
+gics_ind_52,Real Estate Management & Development
+gics_ind_53,Semiconductors & Semiconductor Equipment
+gics_ind_54,Software
+gics_ind_55,Specialty Retail
+gics_ind_56,"Technology Hardware, Storage & Peripherals"
+gics_ind_57,"Textiles, Apparel & Luxury Goods"
+gics_ind_58,Tobacco
+gics_ind_59,Trading Companies & Distributors
+gics_ind_60,Transportation Infrastructure
+gics_ind_61,Water Utilities
+gics_ind_62,Wireless Telecommunication Services

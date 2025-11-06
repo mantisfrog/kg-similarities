@@ -1,0 +1,6 @@
+tiermarketcapID:ID,text:string
+tmc_1,LargeCap
+tmc_2,MegaCap
+tmc_3,MicroCap
+tmc_4,MidCap
+tmc_5,SmallCap

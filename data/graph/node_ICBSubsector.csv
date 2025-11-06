@@ -1,0 +1,122 @@
+icbsubsectorID:ID,text:string
+icb_sub_1,Aerospace
+icb_sub_2,Alternative Electricity
+icb_sub_3,Alternative Fuels
+icb_sub_4,Aluminum
+icb_sub_5,Apparel Retailers
+icb_sub_6,Asset Managers and Custodians
+icb_sub_7,Auto Parts
+icb_sub_8,Banks
+icb_sub_9,Biotechnology
+icb_sub_10,Building Materials: Other
+icb_sub_11,"Building, Roofing/Wallboard and Plumbing"
+icb_sub_12,Building: Climate Control
+icb_sub_13,Business Training and Employment Agencies
+icb_sub_14,Cable Television Services
+icb_sub_15,Cannabis Producers
+icb_sub_16,Casinos and Gambling
+icb_sub_17,Cement
+icb_sub_18,Chemicals: Diversified
+icb_sub_19,Closed End Investments
+icb_sub_20,Clothing and Accessories
+icb_sub_21,Coal
+icb_sub_22,Commercial Vehicle-Equipment Leasing
+icb_sub_23,Commercial Vehicles and Parts
+icb_sub_24,Computer Hardware
+icb_sub_25,Computer Services
+icb_sub_26,Construction
+icb_sub_27,Consumer Digital Services
+icb_sub_28,Consumer Lending
+icb_sub_29,Consumer Services: Misc.
+icb_sub_30,Containers and Packaging
+icb_sub_31,Conventional Electricity
+icb_sub_32,Copper
+icb_sub_33,Defense
+icb_sub_34,Delivery Services
+icb_sub_35,Diamonds and Gemstones
+icb_sub_36,Diversified Financial Services
+icb_sub_37,Diversified Industrials
+icb_sub_38,Diversified Materials
+icb_sub_39,Diversified Retailers
+icb_sub_40,Drug Retailers
+icb_sub_41,Electrical Components
+icb_sub_42,Electronic Components
+icb_sub_43,Electronic Entertainment
+icb_sub_44,Electronic Equipment: Control and Filter
+icb_sub_45,Electronic Equipment: Gauges and Meters
+icb_sub_46,Electronic Equipment: Other
+icb_sub_47,Electronic Equipment: Pollution Control
+icb_sub_48,Engineering and Contracting Services
+icb_sub_49,"Farming, Fishing, Ranching and Plantations"
+icb_sub_50,Fertilizers
+icb_sub_51,Food Products
+icb_sub_52,Food Retailers and Wholesalers
+icb_sub_53,Footwear
+icb_sub_54,Forestry
+icb_sub_55,Forms and Bulk Printing Services
+icb_sub_56,Gas Distribution
+icb_sub_57,General Mining
+icb_sub_58,Gold Mining
+icb_sub_59,Health Care Management Services
+icb_sub_60,Health Care Services
+icb_sub_61,Home Construction
+icb_sub_62,Home Improvement Retailers
+icb_sub_63,Hotels and Motels
+icb_sub_64,Household Appliance
+icb_sub_65,Household Equipment and Products
+icb_sub_66,Household Furnishings
+icb_sub_67,Industrial Suppliers
+icb_sub_68,Investment Services
+icb_sub_69,Iron and Steel
+icb_sub_70,Machinery: Agricultural
+icb_sub_71,Machinery: Construction and Handling
+icb_sub_72,Machinery: Industrial
+icb_sub_73,Machinery: Specialty
+icb_sub_74,Machinery: Tools
+icb_sub_75,Marine Transportation
+icb_sub_76,Media Agencies
+icb_sub_77,Medical Equipment
+icb_sub_78,Medical Supplies
+icb_sub_79,Metal Fabricating
+icb_sub_80,Miscellaneous Consumer Staple Goods
+icb_sub_81,Mortgage Finance
+icb_sub_82,Multi-Utilities
+icb_sub_83,Nondurable Household Products
+icb_sub_84,Nonferrous Metals
+icb_sub_85,Offshore Drilling and Other Services
+icb_sub_86,Oil Equipment and Services
+icb_sub_87,Oil Refining and Marketing
+icb_sub_88,Oil: Crude Producers
+icb_sub_89,Open End and Miscellaneous Investment Vehicles
+icb_sub_90,Paints and Coatings
+icb_sub_91,Paper
+icb_sub_92,Personal Products
+icb_sub_93,Pharmaceuticals
+icb_sub_94,Pipelines
+icb_sub_95,Platinum and Precious Metals
+icb_sub_96,Production Technology Equipment
+icb_sub_97,Professional Business Support Services
+icb_sub_98,Railroad Equipment
+icb_sub_99,Railroads
+icb_sub_100,Real Estate Holding and Development
+icb_sub_101,Real Estate Services
+icb_sub_102,Recreational Products
+icb_sub_103,Recreational Services
+icb_sub_104,Renewable Energy Equipment
+icb_sub_105,Restaurants and Bars
+icb_sub_106,Security Services
+icb_sub_107,Semiconductors
+icb_sub_108,Soft Drinks
+icb_sub_109,Software
+icb_sub_110,Specialty Chemicals
+icb_sub_111,Specialty Retailers
+icb_sub_112,Telecommunications Equipment
+icb_sub_113,Telecommunications Services
+icb_sub_114,Textile Products
+icb_sub_115,Toys
+icb_sub_116,Transaction Processing Services
+icb_sub_117,Transportation Services
+icb_sub_118,Travel and Tourism
+icb_sub_119,Trucking
+icb_sub_120,Waste and Disposal Services
+icb_sub_121,Water

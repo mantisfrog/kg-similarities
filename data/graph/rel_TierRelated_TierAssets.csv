@@ -1,0 +1,11 @@
+:START_ID,:END_ID,tier_distance:int
+tas_1,tas_2,1
+tas_1,tas_5,2
+tas_1,tas_3,3
+tas_1,tas_4,4
+tas_2,tas_5,1
+tas_2,tas_3,2
+tas_2,tas_4,3
+tas_5,tas_3,1
+tas_5,tas_4,2
+tas_3,tas_4,1

@@ -1,0 +1,117 @@
+gicssubindustryID:ID,text:string
+gics_sub_1,Advertising
+gics_sub_2,Aerospace & Defense
+gics_sub_3,Agricultural & Farm Machinery
+gics_sub_4,Agricultural Products & Services
+gics_sub_5,Air Freight & Logistics
+gics_sub_6,Alternative Carriers
+gics_sub_7,Aluminum
+gics_sub_8,Apparel Retail
+gics_sub_9,"Apparel, Accessories & Luxury Goods"
+gics_sub_10,Application Software
+gics_sub_11,Asset Management & Custody Banks
+gics_sub_12,Automotive Parts & Equipment
+gics_sub_13,Biotechnology
+gics_sub_14,Building Products
+gics_sub_15,Cargo Ground Transportation
+gics_sub_16,Casinos & Gaming
+gics_sub_17,Coal & Consumable Fuels
+gics_sub_18,Commercial & Residential Mortgage Finance
+gics_sub_19,Commodity Chemicals
+gics_sub_20,Communications Equipment
+gics_sub_21,Computer & Electronics Retail
+gics_sub_22,Construction & Engineering
+gics_sub_23,Construction Machinery & Heavy Transportation Equipment
+gics_sub_24,Construction Materials
+gics_sub_25,Consumer Electronics
+gics_sub_26,Consumer Finance
+gics_sub_27,Copper
+gics_sub_28,Distillers & Vintners
+gics_sub_29,Distributors
+gics_sub_30,Diversified Chemicals
+gics_sub_31,Diversified Metals & Mining
+gics_sub_32,Diversified REITs
+gics_sub_33,Diversified Real Estate Activities
+gics_sub_34,Diversified Support Services
+gics_sub_35,Education Services
+gics_sub_36,Electric Utilities
+gics_sub_37,Electrical Components & Equipment
+gics_sub_38,Electronic Components
+gics_sub_39,Electronic Equipment & Instruments
+gics_sub_40,Electronic Manufacturing Services
+gics_sub_41,Environmental & Facilities Services
+gics_sub_42,Fertilizers & Agricultural Chemicals
+gics_sub_43,Financial Exchanges & Data
+gics_sub_44,Food Retail
+gics_sub_45,Forest Products
+gics_sub_46,Gas Utilities
+gics_sub_47,Gold
+gics_sub_48,Health Care Distributors
+gics_sub_49,Health Care Equipment
+gics_sub_50,Health Care Services
+gics_sub_51,Health Care Technology
+gics_sub_52,Heavy Electrical Equipment
+gics_sub_53,Highways & Railtracks
+gics_sub_54,Home Improvement Retail
+gics_sub_55,Homebuilding
+gics_sub_56,"Hotels, Resorts & Cruise Lines"
+gics_sub_57,Household Appliances
+gics_sub_58,Housewares & Specialties
+gics_sub_59,Human Resource & Employment Services
+gics_sub_60,IT Consulting & Other Services
+gics_sub_61,Independent Power Producers & Energy Traders
+gics_sub_62,Industrial Conglomerates
+gics_sub_63,Industrial Gases
+gics_sub_64,Industrial Machinery & Supplies & Components
+gics_sub_65,Insurance Brokers
+gics_sub_66,Integrated Telecommunication Services
+gics_sub_67,Interactive Home Entertainment
+gics_sub_68,Interactive Media & Services
+gics_sub_69,Internet Services & Infrastructure
+gics_sub_70,Investment Banking & Brokerage
+gics_sub_71,Leisure Products
+gics_sub_72,Life Sciences Tools & Services
+gics_sub_73,Marine Ports & Services
+gics_sub_74,Marine Transportation
+gics_sub_75,"Metal, Glass & Plastic Containers"
+gics_sub_76,Movies & Entertainment
+gics_sub_77,Multi-Sector Holdings
+gics_sub_78,Office Services & Supplies
+gics_sub_79,Oil & Gas Drilling
+gics_sub_80,Oil & Gas Equipment & Services
+gics_sub_81,Oil & Gas Exploration & Production
+gics_sub_82,Oil & Gas Refining & Marketing
+gics_sub_83,Oil & Gas Storage & Transportation
+gics_sub_84,Packaged Foods & Meats
+gics_sub_85,Paper & Plastic Packaging Products & Materials
+gics_sub_86,Paper Products
+gics_sub_87,Passenger Airlines
+gics_sub_88,Passenger Ground Transportation
+gics_sub_89,Personal Care Products
+gics_sub_90,Pharmaceuticals
+gics_sub_91,Precious Metals & Minerals
+gics_sub_92,Rail Transportation
+gics_sub_93,Real Estate Development
+gics_sub_94,Real Estate Operating Companies
+gics_sub_95,Regional Banks
+gics_sub_96,Renewable Electricity
+gics_sub_97,Research & Consulting Services
+gics_sub_98,Security & Alarm Services
+gics_sub_99,Semiconductor Materials & Equipment
+gics_sub_100,Semiconductors
+gics_sub_101,Silver
+gics_sub_102,Soft Drinks & Non-alcoholic Beverages
+gics_sub_103,Specialized Consumer Services
+gics_sub_104,Specialized Finance
+gics_sub_105,Specialty Chemicals
+gics_sub_106,Steel
+gics_sub_107,Systems Software
+gics_sub_108,Technology Distributors
+gics_sub_109,"Technology Hardware, Storage & Peripherals"
+gics_sub_110,Textiles
+gics_sub_111,Tires & Rubber
+gics_sub_112,Tobacco
+gics_sub_113,Trading Companies & Distributors
+gics_sub_114,Transaction & Payment Processing Services
+gics_sub_115,Water Utilities
+gics_sub_116,Wireless Telecommunication Services
