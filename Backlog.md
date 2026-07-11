@@ -9,11 +9,11 @@ This document summarizes known gaps and suggested improvements before production
    - As shown in the unmatched company occurrences list, some companies do not exist in the database, so linked projects cannot be mapped to them. A common reason is that these companies are not captured under Mining categories in GICS/ICB/BICS. Manual curation is recommended.
    - Illustration (Name and Occurences in Project dataset):
 - ![Unmatched Company Occurrences](./md/unmatched_company_occurences.png)
-1. Incomplete corporate hierarchy (parent/child, M&A)
+2. Incomplete corporate hierarchy (parent/child, M&A)
    - Current name-based entity resolution only catches name-similar parent/child relations. M&A events and complex subsidiary variations are not reliably reflected, so Company OWNS Project may be stale or incomplete.
-2. Incomplete normalization of special company variants and JV notation
+3. Incomplete normalization of special company variants and JV notation
    - Many non-standard variants and JV-style descriptions remain; projects can be mapped to the wrong company. Example: BMA should map to BHP and Mitsubishi.
-3. Company description field not fully populated
+4. Company description field not fully populated
    - Useful text signals may exist but are currently missing.
 
 ### Project-level data
