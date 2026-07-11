@@ -1,0 +1,4 @@
+:START_ID,:END_ID,tier_distance:int
+gat_1,gat_3,1
+gat_1,gat_2,2
+gat_3,gat_2,1

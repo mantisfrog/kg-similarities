@@ -210,7 +210,7 @@ __marimo__/
 neo4j-docker
 .trash
 data/processed/*
-data/graph/*
+#data/graph/*
 *.Identifier
 apps/streamlit/.streamlit/secrets.toml
 !.gitkeep

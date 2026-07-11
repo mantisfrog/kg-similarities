@@ -1,0 +1,4 @@
+groupassetturnoverID:ID,text:string
+gat_1,HighTurnover
+gat_2,LowTurnover
+gat_3,MidTurnover

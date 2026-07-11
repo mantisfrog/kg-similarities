@@ -1,0 +1,314 @@
+lgaID:ID,text:string
+lga_1,Adelaide Hills
+lga_2,Albany
+lga_3,Alexandrina
+lga_4,Alice Springs
+lga_5,Alpine
+lga_6,Anangu Pitjantjatjara Yankunytjatjara
+lga_7,Ararat
+lga_8,Armidale
+lga_9,Ashburton
+lga_10,Augusta Margaret River
+lga_11,Aurukun
+lga_12,Ballarat
+lga_13,Ballina
+lga_14,Balranald
+lga_15,Banana
+lga_16,Barcaldine
+lga_17,Barkly
+lga_18,Barossa
+lga_19,Barunga West
+lga_20,Bass Coast
+lga_21,Bathurst
+lga_22,Baw Baw
+lga_23,Bega Valley
+lga_24,Bellingen
+lga_25,Blackall Tambo
+lga_26,Bland
+lga_27,Blayney
+lga_28,Blue Mountains
+lga_29,Boddington
+lga_30,Bogan
+lga_31,Boulia
+lga_32,Bourke
+lga_33,Boyup Brook
+lga_34,Break O'Day
+lga_35,Brewarrina
+lga_36,Bridgetown-Greenbushes
+lga_37,Brisbane
+lga_38,Broken Hill
+lga_39,Broome
+lga_40,Broomehill-Tambellup
+lga_41,Buloke
+lga_42,Bunbury
+lga_43,Bundaberg
+lga_44,Burke
+lga_45,Burnie
+lga_46,Busselton
+lga_47,Cabonne
+lga_48,Campaspe
+lga_49,Campbelltown (NSW)
+lga_50,Capel
+lga_51,Carnamah
+lga_52,Carnarvon
+lga_53,Carrathool
+lga_54,Cassowary Coast
+lga_55,Central Coast (NSW)
+lga_56,Central Coast (Tas.)
+lga_57,Central Darling
+lga_58,Central Desert
+lga_59,Central Goldfields
+lga_60,Central Highlands (Qld)
+lga_61,Central Highlands (Tas.)
+lga_62,Cessnock
+lga_63,Chapman Valley
+lga_64,Charters Towers
+lga_65,Chittering
+lga_66,Christmas Island
+lga_67,Circular Head
+lga_68,Clarence
+lga_69,Clarence Valley
+lga_70,Cleve
+lga_71,Cloncurry
+lga_72,Cobar
+lga_73,Coffs Harbour
+lga_74,Collie
+lga_75,Coober Pedy
+lga_76,Cook
+lga_77,Coolamon
+lga_78,Coolgardie
+lga_79,Coomalie
+lga_80,Coorong
+lga_81,Coorow
+lga_82,Cootamundra-Gundagai
+lga_83,Copper Coast
+lga_84,Corrigin
+lga_85,Cowra
+lga_86,Croydon
+lga_87,Cue
+lga_88,Cunderdin
+lga_89,Dandaragan
+lga_90,Dardanup
+lga_91,Derby-West Kimberley
+lga_92,Derwent Valley
+lga_93,Dorset
+lga_94,Douglas
+lga_95,Dubbo
+lga_96,Dundas
+lga_97,Dungog
+lga_98,East Arnhem
+lga_99,East Gippsland
+lga_100,East Pilbara
+lga_101,Elliston
+lga_102,Esperance
+lga_103,Etheridge
+lga_104,Eurobodalla
+lga_105,Exmouth
+lga_106,Federation
+lga_107,Flinders (Qld)
+lga_108,Flinders Ranges
+lga_109,Forbes
+lga_110,Franklin Harbour
+lga_111,Fraser Coast
+lga_112,Gannawarra
+lga_113,George Town
+lga_114,Gingin
+lga_115,Gladstone
+lga_116,Glamorgan-Spring Bay
+lga_117,Glen Innes Severn
+lga_118,Glenelg
+lga_119,Golden Plains
+lga_120,Goondiwindi
+lga_121,Goulburn Mulwaree
+lga_122,Goyder
+lga_123,Greater Bendigo
+lga_124,Greater Geraldton
+lga_125,Greater Hume
+lga_126,Groote Archipelago
+lga_127,Gunnedah
+lga_128,Gwydir
+lga_129,Gympie
+lga_130,Halls Creek
+lga_131,Harvey
+lga_132,Hepburn
+lga_133,Hilltops
+lga_134,Hope Vale
+lga_135,Horsham
+lga_136,Huon Valley
+lga_137,Indigo
+lga_138,Inverell
+lga_139,Ipswich
+lga_140,Irwin
+lga_141,Isaac
+lga_142,Jerramungup
+lga_143,Junee
+lga_144,Kalgoorlie-Boulder
+lga_145,Karoonda East Murray
+lga_146,Karratha
+lga_147,Katanning
+lga_148,Katherine
+lga_149,Kempsey
+lga_150,Kentish
+lga_151,Kimba
+lga_152,King Island
+lga_153,Kingston (SA)
+lga_154,Kondinin
+lga_155,Kulin
+lga_156,Kwinana
+lga_157,Lachlan
+lga_158,Lake Grace
+lga_159,Lake Macquarie
+lga_160,Latrobe (Tas.)
+lga_161,Latrobe (Vic.)
+lga_162,Laverton
+lga_163,Leonora
+lga_164,Light
+lga_165,Lithgow
+lga_166,Liverpool Plains
+lga_167,Livingstone
+lga_168,Loddon
+lga_169,Logan
+lga_170,Longreach
+lga_171,Lower Eyre
+lga_172,MacDonnell
+lga_173,Macedon Ranges
+lga_174,Mackay
+lga_175,Mansfield
+lga_176,Maralinga Tjarutja
+lga_177,Maranoa
+lga_178,Mareeba
+lga_179,McKinlay
+lga_180,Meander Valley
+lga_181,Meekatharra
+lga_182,Menzies
+lga_183,Merredin
+lga_184,Mid Murray
+lga_185,Mid-Coast
+lga_186,Mid-Western
+lga_187,Mildura
+lga_188,Mingenew
+lga_189,Mitcham
+lga_190,Mitchell
+lga_191,Moora
+lga_192,Moorabool
+lga_193,Morawa
+lga_194,Moreton Bay
+lga_195,Mount Alexander
+lga_196,Mount Barker
+lga_197,Mount Isa
+lga_198,Mount Magnet
+lga_199,Mount Marshall
+lga_200,Mount Remarkable
+lga_201,Mukinbudin
+lga_202,Murchison
+lga_203,Murray
+lga_204,Murrindindi
+lga_205,Murweh
+lga_206,Muswellbrook
+lga_207,Nambucca Valley
+lga_208,Nannup
+lga_209,Napranum
+lga_210,Narembeen
+lga_211,Narrabri
+lga_212,Narromine
+lga_213,Newcastle
+lga_214,Ngaanyatjarraku
+lga_215,Noosa
+lga_216,North Burnett
+lga_217,Northam
+lga_218,Northampton
+lga_219,Northern Grampians
+lga_220,Northern Midlands
+lga_221,Northern Peninsula Area
+lga_222,Nungarin
+lga_223,Oberon
+lga_224,Orange
+lga_225,Orroroo Carrieton
+lga_226,Parkes
+lga_227,Perenjori
+lga_228,Port Hedland
+lga_229,Port Macquarie-Hastings
+lga_230,Port Pirie
+lga_231,Port Stephens
+lga_232,Pyrenees
+lga_233,Queanbeyan-Palerang
+lga_234,Quilpie
+lga_235,Ravensthorpe
+lga_236,Redland
+lga_237,Richmond
+lga_238,Rockhampton
+lga_239,Roper Gulf
+lga_240,Sandstone
+lga_241,Serpentine-Jarrahdale
+lga_242,Shark Bay
+lga_243,Shoalhaven
+lga_244,Singleton
+lga_245,Snowy Monaro
+lga_246,Snowy Valleys
+lga_247,Somerset
+lga_248,South Burnett
+lga_249,South Gippsland
+lga_250,Southern Downs
+lga_251,Southern Midlands
+lga_252,Strathbogie
+lga_253,Streaky Bay
+lga_254,Sunshine Coast
+lga_255,Surf Coast
+lga_256,Swan
+lga_257,Swan Hill
+lga_258,Tablelands
+lga_259,Tamworth
+lga_260,Temora
+lga_261,Tenterfield
+lga_262,Three Springs
+lga_263,Tiwi Islands
+lga_264,Toodyay
+lga_265,Toowoomba
+lga_266,Torres
+lga_267,Townsville
+lga_268,Towong
+lga_269,Tumby Bay
+lga_270,Unincorporated ACT
+lga_271,Unincorporated NSW
+lga_272,Unincorporated NT
+lga_273,Unincorporated SA
+lga_274,Upper Gascoyne
+lga_275,Upper Hunter
+lga_276,Upper Lachlan
+lga_277,Uralla
+lga_278,Victor Harbor
+lga_279,Victoria Daly
+lga_280,Victoria Plains
+lga_281,Wakefield
+lga_282,Walcha
+lga_283,Walgett
+lga_284,Wandering
+lga_285,Wangaratta
+lga_286,Waratah-Wynyard
+lga_287,Waroona
+lga_288,Warrumbungle
+lga_289,Wattle Range
+lga_290,Weddin
+lga_291,Wellington
+lga_292,Wentworth
+lga_293,West Arnhem
+lga_294,West Coast
+lga_295,West Tamar
+lga_296,Western Downs
+lga_297,Westonia
+lga_298,Whitsunday
+lga_299,Whyalla
+lga_300,Williams
+lga_301,Wiluna
+lga_302,Wingecarribee
+lga_303,Wollondilly
+lga_304,Wollongong
+lga_305,Wongan-Ballidu
+lga_306,Wudinna
+lga_307,Wyndham-East Kimberley
+lga_308,Yalgoo
+lga_309,Yankalilla
+lga_310,Yarriambiack
+lga_311,Yass Valley
+lga_312,Yilgarn
+lga_313,Yorke Peninsula

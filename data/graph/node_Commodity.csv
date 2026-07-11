@@ -1,0 +1,160 @@
+commodityID:ID,symbol:string,name:string
+commodity_1,(Magnesium,(Magnesium
+commodity_2,Ag,Silver
+commodity_3,Agg-CR,Aggregate - crushed rock
+commodity_4,Al,Aluminium
+commodity_5,Al2O3,Alumina
+commodity_6,Alu,Alunite
+commodity_7,Ap,Apatite
+commodity_8,As,Arsenic
+commodity_9,Asb,Asbestos
+commodity_10,Asbr,Asbestos - crocidolite
+commodity_11,Atta,Attapulgite
+commodity_12,Au,Gold
+commodity_13,Ba,Barium
+commodity_14,Be,Beryllium
+commodity_15,Bi,Bismuth
+commodity_16,Brt,Barite
+commodity_17,Bx,Bauxite
+commodity_18,CaCO3,Calcite
+commodity_19,Cbl,Coal - black
+commodity_20,Cbr,Coal - brown
+commodity_21,Cd,Cadmium
+commodity_22,Co,Cobalt
+commodity_23,Coal,Coal - undifferentiated
+commodity_24,Coke,Coke
+commodity_25,Cor,Corundum - undifferentiated
+commodity_26,Corr,Corundum - ruby
+commodity_27,Cors,Corundum - sapphire
+commodity_28,Cr,Chromium
+commodity_29,Cr2O3,Chromium oxide
+commodity_30,Cs,Cesium
+commodity_31,Cu,Copper
+commodity_32,Cy,Clay
+commodity_33,Dmd,Diamond - undifferentiated
+commodity_34,Dmdg,Diamond - gem and cheap gem
+commodity_35,Dmdi,Diamond - industrial
+commodity_36,Dol,Dolomite
+commodity_37,Dy,Dysprosium
+commodity_38,Dy2O3,DysprosiumIII oxide
+commodity_39,Eu,Europium
+commodity_40,Eu2O3,EuropiumIII oxide
+commodity_41,F,Fluorine
+commodity_42,Fe,Iron
+commodity_43,FeCr,Ferrochrome
+commodity_44,FeCr2O4,Chromite
+commodity_45,FeOre,Iron ore
+commodity_46,FeV,Ferro-Vanadium
+commodity_47,Fel,Feldspar
+commodity_48,Feox,Iron oxide
+commodity_49,Fl,Fluorite
+commodity_50,GS,Gemstones
+commodity_51,Ga,Gallium
+commodity_52,Ga2O3,Gallium oxide
+commodity_53,Ge,Germanium
+commodity_54,Gp,Gypsum
+commodity_55,Gr,Graphite
+commodity_56,Grt,Garnet
+commodity_57,HM,Heavy minerals
+commodity_58,HPA,Alumina - High Purity
+commodity_59,HPQ,Quartz - high purity
+commodity_60,HPSi,Silica - High Purity
+commodity_61,Hem,Hematite
+commodity_62,Hf,Hafnium
+commodity_63,HfO2,Hafnium oxide
+commodity_64,Hg,Mercury
+commodity_65,Ilm,Ilmenite
+commodity_66,In,Indium
+commodity_67,Ir,Iridium
+commodity_68,Jade,Jade
+commodity_69,K,Potassium
+commodity_70,K2O,Potash
+commodity_71,K2SO4,Potassium sulfate
+commodity_72,Kln,Kaolin
+commodity_73,Ky,Kyanite
+commodity_74,Leu,Leucoxene
+commodity_75,Li,Lithium
+commodity_76,Li2O,Lithium oxide
+commodity_77,Lime,Agricultural Lime
+commodity_78,Lst,Limestone
+commodity_79,Mag,Magnetite
+commodity_80,Magnesia,Magnesia
+commodity_81,Mg,Magnesium
+commodity_82,MgO,Magnesia (magnesium oxide)
+commodity_83,Mgs,Magnesite
+commodity_84,Mica,Mica
+commodity_85,Mn,Manganese
+commodity_86,MnOre,Manganese ore
+commodity_87,Mnsd,Mineral sands
+commodity_88,Mnz,Monazite
+commodity_89,Mo,Molybdenum
+commodity_90,MoO3,Molybdenum trioxide
+commodity_91,MoS2,Molybdenite
+commodity_92,NaCl,Salt
+commodity_93,Nb,Niobium
+commodity_94,Nb2O5,Niobium pentoxide
+commodity_95,Nd,Neodymium
+commodity_96,Nd2O3,NeodymiumIII oxide
+commodity_97,Ni,Nickel
+commodity_98,Opl,Opal
+commodity_99,Os,Osmium
+commodity_100,OsIr,Osmiridium
+commodity_101,Osh,Oil shale
+commodity_102,P,Phosphorus
+commodity_103,P2O5,Phosphorus oxide
+commodity_104,PGE,Platinum group elements
+commodity_105,Pb,Lead
+commodity_106,Pd,Palladium
+commodity_107,Phos,Phosphate
+commodity_108,Pr,Praseodymium
+commodity_109,Pr2O3,PraseodymiumIII oxide
+commodity_110,Pt,Platinum
+commodity_111,Py,Pyrite
+commodity_112,Qklm,Quicklime
+commodity_113,Quartz-U,Quartz - undifferentiated
+commodity_114,REE,Rare earth elements
+commodity_115,REO,Rare earth oxides
+commodity_116,Rb,Rubidium
+commodity_117,Re,Rhenium
+commodity_118,Rh,Rhodium
+commodity_119,Rt,Rutile
+commodity_120,Ru,Ruthenium
+commodity_121,S,Sulphur
+commodity_122,Sb,Antimony
+commodity_123,Sc,Scandium
+commodity_124,Se,Selenium
+commodity_125,Sic,Silica
+commodity_126,Silicon,Silicon
+commodity_127,Sisd,Silica sand
+commodity_128,Sn,Tin
+commodity_129,SnO2,Tin oxide/cassiterite
+commodity_130,Sr,Strontium
+commodity_131,Stl,Steel
+commodity_132,Ta,Tantalum
+commodity_133,Ta2O5,Tantalum pentoxide
+commodity_134,Tb,Terbium
+commodity_135,Tb4O7,TerbiumIII&IV Oxide
+commodity_136,Te,Tellurium
+commodity_137,Th,Thorium
+commodity_138,ThO2,Thorium Oxide
+commodity_139,Ti,Titanium
+commodity_140,TiO2,Titanium dioxide
+commodity_141,Tlc,Talc
+commodity_142,Toz,Topaz
+commodity_143,U,Uranium
+commodity_144,U3O8,Uranium oxide
+commodity_145,V,Vanadium
+commodity_146,V2O5,Vanadium pentoxide
+commodity_147,Vrm,Vermiculite
+commodity_148,W,Tungsten
+commodity_149,WO3,Tungsten trioxide wolframite
+commodity_150,Xen,Xenotime
+commodity_151,Y,Yttrium
+commodity_152,Y2O3,Yttrium oxide
+commodity_153,Zeol,Zeolite
+commodity_154,Zn,Zinc
+commodity_155,Zr,Zirconium
+commodity_156,ZrO2,Zirconia
+commodity_157,Zrn,Zircon
+commodity_158,magnesium oxide,magnesium oxide
+commodity_159,magnesium oxide),magnesium oxide)

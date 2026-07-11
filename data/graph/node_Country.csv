@@ -1,0 +1,111 @@
+countryID:ID,text:string
+country_1,Argentina
+country_2,Australia
+country_3,Austria
+country_4,Azerbaijan
+country_5,Bahrain
+country_6,Bangladesh
+country_7,Belgium
+country_8,Bermuda
+country_9,"Bolivia, Plurinational State of"
+country_10,Bosnia and Herzegovina
+country_11,Botswana
+country_12,Brazil
+country_13,Bulgaria
+country_14,Cambodia
+country_15,Canada
+country_16,Cayman Islands
+country_17,Chile
+country_18,China
+country_19,Colombia
+country_20,Croatia
+country_21,Cyprus
+country_22,Czechia
+country_23,Côte d'Ivoire
+country_24,Denmark
+country_25,Dominican Republic
+country_26,Egypt
+country_27,Finland
+country_28,France
+country_29,French Guiana
+country_30,Georgia
+country_31,Germany
+country_32,Ghana
+country_33,Gibraltar
+country_34,Greece
+country_35,Greenland
+country_36,Guernsey
+country_37,Hong Kong
+country_38,India
+country_39,Indonesia
+country_40,Iraq
+country_41,Ireland
+country_42,Isle of Man
+country_43,Israel
+country_44,Italy
+country_45,Jamaica
+country_46,Japan
+country_47,Jersey
+country_48,Jordan
+country_49,Kazakhstan
+country_50,Kenya
+country_51,"Korea, Republic of"
+country_52,Kuwait
+country_53,Lao People's Democratic Republic
+country_54,Latvia
+country_55,Lithuania
+country_56,Luxembourg
+country_57,Macao
+country_58,Malaysia
+country_59,Mauritius
+country_60,Mexico
+country_61,Monaco
+country_62,Mongolia
+country_63,Montenegro
+country_64,Morocco
+country_65,Mozambique
+country_66,Netherlands
+country_67,New Zealand
+country_68,Nigeria
+country_69,North Macedonia
+country_70,Norway
+country_71,Oman
+country_72,Pakistan
+country_73,"Palestine, State of"
+country_74,Panama
+country_75,Papua New Guinea
+country_76,Paraguay
+country_77,Peru
+country_78,Philippines
+country_79,Poland
+country_80,Portugal
+country_81,Puerto Rico
+country_82,Qatar
+country_83,Romania
+country_84,Russian Federation
+country_85,Saudi Arabia
+country_86,Serbia
+country_87,Singapore
+country_88,Slovakia
+country_89,Slovenia
+country_90,South Africa
+country_91,Spain
+country_92,Sri Lanka
+country_93,Sweden
+country_94,Switzerland
+country_95,"Taiwan, Province of China"
+country_96,"Tanzania, United Republic of"
+country_97,Thailand
+country_98,Tunisia
+country_99,Türkiye
+country_100,Ukraine
+country_101,United Arab Emirates
+country_102,United Kingdom
+country_103,United States
+country_104,Uruguay
+country_105,Uzbekistan
+country_106,"Venezuela, Bolivarian Republic of"
+country_107,Viet Nam
+country_108,"Virgin Islands, British"
+country_109,Zambia
+country_110,Zimbabwe

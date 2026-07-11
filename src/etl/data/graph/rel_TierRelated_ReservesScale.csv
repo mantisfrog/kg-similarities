@@ -1,0 +1,13 @@
+:START_ID,:END_ID,tier_distance:int
+reservesScale_1,reservesScale_2,1
+reservesScale_1,reservesScale_3,2
+reservesScale_1,reservesScale_4,3
+reservesScale_2,reservesScale_1,1
+reservesScale_2,reservesScale_3,1
+reservesScale_2,reservesScale_4,2
+reservesScale_3,reservesScale_1,2
+reservesScale_3,reservesScale_2,1
+reservesScale_3,reservesScale_4,1
+reservesScale_4,reservesScale_1,3
+reservesScale_4,reservesScale_2,2
+reservesScale_4,reservesScale_3,1

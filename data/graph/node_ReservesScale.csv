@@ -1,0 +1,5 @@
+reservesScaleID:ID,text:string
+reservesScale_1,Tier 1 (Highest)
+reservesScale_2,Tier 2
+reservesScale_3,Tier 3
+reservesScale_4,Tier 4 (Lowest)

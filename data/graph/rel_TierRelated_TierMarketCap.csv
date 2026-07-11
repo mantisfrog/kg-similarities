@@ -1,0 +1,11 @@
+:START_ID,:END_ID,tier_distance:int
+tmc_2,tmc_1,1
+tmc_2,tmc_4,2
+tmc_2,tmc_5,3
+tmc_2,tmc_3,4
+tmc_1,tmc_4,1
+tmc_1,tmc_5,2
+tmc_1,tmc_3,3
+tmc_4,tmc_5,1
+tmc_4,tmc_3,2
+tmc_5,tmc_3,1

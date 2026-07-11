@@ -1,0 +1,6 @@
+tierassetsID:ID,text:string
+tas_1,HeavyAsset
+tas_2,LargeAsset
+tas_3,LightAsset
+tas_4,MicroAsset
+tas_5,MidAsset
